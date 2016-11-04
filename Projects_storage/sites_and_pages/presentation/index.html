@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<meta charset="utf-8">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title> Планета городов </title>
+
+	<meta property="og:title" content="Уникальный проект Планета Городов" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="http://planetagorodov-demo.ru" />
+	<meta property="og:image" content="images/backgrounds/logo.png" />
+
+	<!-- Custom styles -->
+	<link rel="stylesheet" href="styles/compressed/basic.css">
+	<link rel="stylesheet" href="styles/compressed/responsive.css">
+
+	<!-- Css file for full-page JS library -->
+	<link rel="stylesheet" href="styles/libraries/javascript.fullPage.css">
+
+	<!-- Css file for gallery JS library -->
+	<link rel="stylesheet" href="styles/libraries/swiper.min.css">
+
+	<!-- Add fonts -->	
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+	
+	<style>
+		#page-preloader {
+		  position: fixed;
+		  top: 0;
+		  left: 0;
+		  width: 100%;
+		  height: 100%;
+		  z-index: 1000;
+		  background: black;
+		  transition: opacity 0.5s;
+		}
+		#page-preloader:after {
+			width: 100%;
+			height: 60px;
+			display: block;
+			position: absolute;
+			top: calc(50vh - 60px);
+			background-size: 100% auto;
+			font-size: 2vw;
+			text-align: center;
+		}
+		#loader {
+		  border: 3px solid transparent;
+		  border-top-color: #3498db;
+		  border-radius: 50%;
+		  display: block;
+		  margin: -75px 0 0 -75px;
+		  width: 150px;
+		  height: 150px;
+		  position: relative;
+		  top: calc(100vh - 150px);
+		  left: 50%;
+		  -webkit-animation: spin 2s linear infinite;
+		  -moz-animation: spin 2s linear infinite;
+		  -o-animation: spin 2s linear infinite;
+		  -ms-animation: spin 2s linear infinite;
+		  animation: spin 2s linear infinite;
+		}
+		#loader:before {
+		  border: 3px solid transparent;
+		  border-top-color: #6bc3fe;
+		  border-radius: 50%;
+		  content: "";
+		  position: absolute;
+		  top: 5px;
+		  right: 5px;
+		  bottom: 5px;
+		  left: 5px;
+		  -webkit-animation: spin 3s linear infinite;
+		  -moz-animation: spin 3s linear infinite;
+		  -o-animation: spin 3s linear infinite;
+		  -ms-animation: spin 3s linear infinite;
+		  animation: spin 3s linear infinite;
+		}
+		#loader:after {
+		  border: 3px solid transparent;
+		  border-top-color: #b4e1ff;
+		  border-radius: 50%;
+		  content: "";
+		  position: absolute;
+		  top: 15px;
+		  left: 15px;
+		  bottom: 15px;
+		  right: 15px;
+		  -webkit-animation: spin 1.5s linear infinite;
+		  -moz-animation: spin 1.5s linear infinite;
+		  -o-animation: spin 1.5s linear infinite;
+		  -ms-animation: spin 1.5s linear infinite;
+		  animation: spin 1.5s linear infinite;
+		}
+		@-webkit-keyframes spin {
+		  0% {
+		    -webkit-transform: rotate(0deg);
+		    -ms-transform: rotate(0deg);
+		    transform: rotate(0deg);
+		  }
+		  100% {
+		    -webkit-transform: rotate(360deg);
+		    -ms-transform: rotate(360deg);
+		    transform: rotate(360deg);
+		  }
+		}
+		@-moz-keyframes spin {
+		  0% {
+		    -webkit-transform: rotate(0deg);
+		    -ms-transform: rotate(0deg);
+		    transform: rotate(0deg);
+		  }
+		  100% {
+		    -webkit-transform: rotate(360deg);
+		    -ms-transform: rotate(360deg);
+		    transform: rotate(360deg);
+		  }
+		}
+		@-o-keyframes spin {
+		  0% {
+		    -webkit-transform: rotate(0deg);
+		    -ms-transform: rotate(0deg);
+		    transform: rotate(0deg);
+		  }
+		  100% {
+		    -webkit-transform: rotate(360deg);
+		    -ms-transform: rotate(360deg);
+		    transform: rotate(360deg);
+		  }
+		}
+		@-ms-keyframes spin {
+		  0% {
+		    -webkit-transform: rotate(0deg);
+		    -ms-transform: rotate(0deg);
+		    transform: rotate(0deg);
+		  }
+		  100% {
+		    -webkit-transform: rotate(360deg);
+		    -ms-transform: rotate(360deg);
+		    transform: rotate(360deg);
+		  }
+		}
+		@keyframes spin {
+		  0% {
+		    -webkit-transform: rotate(0deg);
+		    -ms-transform: rotate(0deg);
+		    transform: rotate(0deg);
+		  }
+		  100% {
+		    -webkit-transform: rotate(360deg);
+		    -ms-transform: rotate(360deg);
+		    transform: rotate(360deg);
+		  }
+		}
+
+	</style>
+
+</head>
+
+<body>
+
+<div id="page-preloader">
+	
+  <div id="loader"></div>
+
+</div>
+
+<main id="fullpage">
+
+<header class="section" id="section0">
+
+	<div class="stars"> </div>
+
+	<div class="menu_logo"> </div>
+
+	<nav>
+		<ul>
+			<li><a href="#presentation" title=""> Презентация проекта </a></li>
+			<li><a href="#how_it_work" title=""> Рассмотрим работу сервисов </a></li>
+			<li><a href="#perspective" title=""> Инвестиционные перспективы </a></li>
+			<li><a href="#what_they_say" title=""> Отзывы о нас </a></li>
+			<li><a href="#sportsmen_0" title=""> Союз спортсменов </a></li>
+			<li><a href="#about_us" title=""> Заключительное слово </a></li>
+		</ul>
+	</nav>
+
+	<article class="intro">
+
+			<h2>
+				Уникальный <br>
+				<span> своевременный </span> проект 
+			</h2>
+
+			<h1>
+				Планета Городов
+			</h1>
+
+			<p>
+				
+				Проект «Планета Городов» - новый формат соцсети,
+				который вскоре объединит миллионы людей. 
+				По всей России и за рубежом. 
+
+			</p>
+
+		</article>
+
+		<h2 class="all_world"> Весь мир на ладони! </h2>
+
+	<div class="corner_bg"> </div>
+
+	<div class='icon-scroll'>
+        <div class="icon-scroll-screen"></div>
+    </div>
+
+</header>
+
+<section class="presentation section" id="section1">
+
+	<article>
+
+		<p>
+
+			Мы предлагаем Вам принять участие не только в качестве 	инвестора и идейного вдохновителя  – мы предлагаем Вам 	сделать нашу страну такой, в которой будет хорошо жить не только нам, но и нашим детям!
+		</p>
+
+		<h2> Ты можешь изменить будущее. </h2>
+
+		<h3> Поехали! </h3>
+
+	</article>
+
+	<section class="video_block">
+
+		<div class="video">
+
+			<span></span>
+
+		</div>
+
+		<div class="video">
+
+			<span></span>
+
+		</div>
+		
+	</section>
+
+	<div class="youtube_block">
+
+		<span class="close_icon">	</span>
+
+		<iframe src="" frameborder="0" allowfullscreen" frameborder="0" allowfullscreen></iframe>
+
+	</div>
+
+	<canvas id='canvas'></canvas>
+
+</section>
+
+<section class="how_it_work section" id="section2">
+
+	<p> Рассмотрим работу сервисов на конкретном примере </p>
+
+	<form>
+
+		<button type="button" id="start_button"> Начать </button>
+
+	</form>
+
+	<section class="tour_block">
+
+		<div class="polls polls_line">
+
+			<object id="polls" type="image/svg+xml" data="images/icons/polls.svg" class="polls_icon">
+				Your browser does not support SVG
+			</object>
+
+			<h3> Опросы </h3>
+
+			<p> 
+				В ядро Опросы поступает вопрос:
+				что бы Вы хотели увидеть в клипе,
+				посвящённому Победе?
+			</p>
+			
+		</div>
+
+		<div class="talents talents_line">
+
+			<object id="talents" type="image/svg+xml" data="images/icons/talents.svg">
+				Your browser does not support SVG
+			</object>
+
+			<object type="image/svg+xml" data="images/icons/tap.svg" class="tap"> </object>
+
+			<h3> Таланты </h3>
+
+			<p> 
+				Результаты доводятся до ядра Таланты.
+				Собираются рабочие группы, музыканты,
+				пишут музыку, клипмейкеры снимают видео,
+				кто-то пишет тексты.
+			</p>
+
+			<div class="start_area"> </div>
+			
+		</div>
+
+		<div class="photo_album photo_line">
+
+			<object id="gallery" type="image/svg+xml" data="images/icons/gallery.svg">
+				Your browser does not support SVG
+			</object>
+
+			<object type="image/svg+xml" data="images/icons/tap.svg" class="tap"> </object>
+
+			<h3> Фотоальбом </h3>
+
+			<p> 
+				Заносят движения своих работ в
+				наш уникальный фотоальбом, рассказывая 
+				о процессе созидания.
+			</p>
+
+			<div class="start_area"> </div>
+			
+		</div>
+
+		<div class="competitions competitions_line">
+
+			<object id="competitions" data="images/icons/competitions.svg" type="image/svg+xml">
+				Your browser doesn't support SVG
+			</object>
+
+			<object type="image/svg+xml" data="images/icons/tap.svg" class="tap"> </object>
+
+			<h3> Конкурсы </h3>
+
+			<p> 
+				Готовые клипы размещаются в ядре
+				Конкурсы и народ голосует за лучшие работы.
+			</p>
+
+			<div class="start_area"> </div>
+			
+		</div>
+
+		<div class="my_city">
+
+			<object id="city" type="image/svg+xml" data="images/icons/city.svg">
+				Your browser does not support SVGs
+			</object>
+
+			<object type="image/svg+xml" data="images/icons/tap.svg" class="tap"> </object>
+
+			<h3> Мой город </h3>
+
+			<p> 
+				Тем самым они распространяются по ядрам
+				"Мой город". Тут же мы привлекаем спонсоров
+				для премирования лучших работ.
+			</p>
+
+			<div class="start_area"> </div>
+			
+		</div>
+		
+	</section>
+
+</section>
+
+<section class="perspective section" id="section3">
+
+	<div class="perspective_logo"> </div>
+
+	<aside>
+
+		<h3> Планета городов через: </h3>
+
+		<ul>
+			<li class="selected"> 3 года </li>
+			<li> 5 лет </li>
+			<li> 10 лет </li>
+			<li> 15 лет </li>
+		</ul>
+
+	</aside>
+
+	<section class="graphics">
+
+		<div>	</div>
+
+		<span> 900 000 чел. <br> 65 000 000 руб. </span>
+
+		<h5> Оптимистично </h5>
+
+		<div>	</div>
+
+		<span> 280 000 чел. <br> 15 000 000 руб. </span>
+
+		<h5> Реалистично </h5>
+
+		<div>	</div>
+
+		<span> 120 000 чел. <br> 3 000 000 руб. </span>
+
+		<h5> Пессимистично </h5>
+
+	</section>
+
+	<article>
+
+		<h2> Оцените инвестиционные перспективы </h2>
+
+		<p>
+			Для того, чтобы наша Планета городов закружилась, необходимо 10 млн.рублей.
+			На данных графиках отображен прогноз количества зарегистрированных пользователей и выручка только от тех сервисов, которые были показаны в презентации.
+			Их значительно больше и каждый из них является уникальным.
+			Об одном из них Вы узнаете ниже. 
+			И если мы скажем, что здесь отображена 1/10 финансовых перспектив, то это будет абсолютной правдой 
+		</p>
+		
+	</article>
+
+</section>
+
+<!-- Block that may be needed -->
+<!--
+<section class="facts section" id="section4">
+
+	<h2> Сравнение капитализации ведущих компаний <span> Росии и США </span> </h2>
+
+	<ul class="russia">
+		<li> 62 млрд. $ </li>
+		<li> 25 млрд. $ </li>
+		<li> 35 млрд. $ </li>
+	</ul>
+
+	<ul class="usa">
+		<li> 747 млрд. $  </li>
+		<li> 100 млрд. $  </li>
+		<li> 100 млрд. $  </li>
+	</ul>	
+
+	<p> Зачем качать нефть, <br> если можно качать деньги?! </p>
+
+</section>
+-->
+
+<section class="what_they_say section" id="section5">
+
+	<nav> 
+
+		 <div id="prof">
+
+		 	<h3> Что говорят профессионалы </h3>
+		 	
+		 </div>
+
+		 <div id="peoples">
+
+		 	<h3> Что говорят люди </h3>
+		 	
+		 </div>
+
+	</nav>
+
+	<section class="review_prof">
+
+		<div class="video_2">
+
+			<span></span>
+
+		</div>
+
+		<div class="youtube_block_2">
+
+			<span class="close_icon_2">	</span>
+
+			<iframe src="" frameborder="0" allowfullscreen" frameborder="0" allowfullscreen></iframe>
+
+		</div>
+
+		<p> Donec imperdiet nisl at orci convallis tincidunt. Donec rhoncus sapien elit, ac tincidunt felis posuere a. Praesent justo dui, feugiat id ligula quis, tristique pellentesque eros. Donec sodales purus ac ligula pretium, at aliquet enim lacinia. Aenean congue dignissim massa, ut finibus urna tempor at. Integer sed volutpat mi, vel varius nunc. Vivamus elementum cursus scelerisque. </p>
+
+	</section>
+
+	<section class="review_people">
+
+		<article class="review_block">
+
+			<h2> Василий Петров, <span> Креативный директор 'Турурум' </span> </h2>
+
+			<p> Donec imperdiet nisl at orci convallis tincidunt. Donec rhoncus sapien elit, ac tincidunt felis posuere a. Praesent justo dui, feugiat id ligula quis, tristique pellentesque eros. Donec sodales purus ac ligula pretium, at aliquet enim lacinia. Aenean congue dignissim massa, ut finibus urna tempor at. Integer sed volutpat mi, vel varius nunc. Vivamus elementum cursus scelerisque. </p>
+			
+		</article>
+
+		<article class="review_block">
+
+			<h2> Василий Петров, <span> Креативный директор 'Турурум' </span> </h2>
+
+			<p> Donec imperdiet nisl at orci convallis tincidunt. Donec rhoncus sapien elit, ac tincidunt felis posuere a. Praesent justo dui, feugiat id ligula quis, tristique pellentesque eros. Donec sodales purus ac ligula pretium, at aliquet enim lacinia. Aenean congue dignissim massa, ut finibus urna tempor at. Integer sed volutpat mi, vel varius nunc. Vivamus elementum cursus scelerisque. </p>
+			
+		</article>
+
+		<article class="review_block">
+
+			<h2> Василий Петров, <span> Креативный директор 'Турурум' </span> </h2>
+
+			<p> Donec imperdiet nisl at orci convallis tincidunt. Donec rhoncus sapien elit, ac tincidunt felis posuere a. Praesent justo dui, feugiat id ligula quis, tristique pellentesque eros. Donec sodales purus ac ligula pretium, at aliquet enim lacinia. Aenean congue dignissim massa, ut finibus urna tempor at. Integer sed volutpat mi, vel varius nunc. Vivamus elementum cursus scelerisque. </p>
+			
+		</article>
+
+		<article class="review_block">
+
+			<h2> Василий Петров, <span> Креативный директор 'Турурум' </span> </h2>
+
+			<p> Donec imperdiet nisl at orci convallis tincidunt. Donec rhoncus sapien elit, ac tincidunt felis posuere a. Praesent justo dui, feugiat id ligula quis, tristique pellentesque eros. Donec sodales purus ac ligula pretium, at aliquet enim lacinia. Aenean congue dignissim massa, ut finibus urna tempor at. Integer sed volutpat mi, vel varius nunc. Vivamus elementum cursus scelerisque. </p>
+			
+		</article>
+
+	</section>
+
+</section>
+
+<section class="sportsmen_0 section" id="section6">
+
+	<h2> В Планете городов можно стать сильным </h2>
+
+	<div class='icon-scroll'>
+        <div class="icon-scroll-screen"></div>
+    </div>
+
+	<!--
+		<div class="swiper-container">
+	        <div class="swiper-wrapper">
+	            <div class="swiper-slide"> <span class="slide_title"> В проекте можно дружить всем миром </span> </div>
+	            <div class="swiper-slide"> <span class="slide_title"> Впечатляющий заголовок 1 </span> </div>
+	            <div class="swiper-slide"> <span class="slide_title"> Впечатляющий заголовок 2 </span> </div>
+	            <div class="swiper-slide"> <span class="slide_title"> Впечатляющий заголовок 3 </span> </div>
+	            <div class="swiper-slide"> <span class="slide_title"> Впечатляющий заголовок 4 </span> </div>
+	            <div class="swiper-slide"> <span class="slide_title"> Впечатляющий заголовок 5 </span> </div>
+	            <div class="swiper-slide"> <span class="slide_title"> Впечатляющий заголовок 6 </span> </div>
+	            <div class="swiper-slide"> <span class="slide_title"> Впечатляющий заголовок 7 </span> </div>
+	            <div class="swiper-slide"> <span class="slide_title"> Впечатляющий заголовок 8 </span> </div>
+	            <div class="swiper-slide"> <span class="slide_title"> Впечатляющий заголовок 9 </span> </div>
+	        </div>
+	        <div class="swiper-pagination"></div>
+	        <div class="swiper-button-next"></div>
+	        <div class="swiper-button-prev"></div>
+	    </div>
+	-->
+
+</section>
+
+<section class="sportsmen_1 section" id="section7">
+
+	<div class="sportsmen_1_container">
+
+	<h2> Союз спортсменов России </h2>
+
+	<p>
+
+		ССР это отдельный модуль на базе проекта, объединяющий сильных телом и духом людей, настоящих защитников Отечества.
+		<span> Задача ССР привлечь к участию спортсменов, чемпионов, которых знает весь мир, и которыми гордится вся страна. </span>
+		«Планета городов» как мощный информационный ресурс позволяет объединить в одном месте весь спортивный мир России. 
+
+	</p>
+
+	<p>
+
+		Как известно,спортсмены - люди деятельные и быстро мобилизующиеся с большим кругом знакомств.
+		<span> Это позволит оперативно взаимодействовать и устанавливать связи с региональными общественными и бизнес структурами. </span>
+		И так по всей России. Тут сложно не увидеть разносторонних перспектив.
+
+	</p>
+
+	<h3> Мы рубим ступени <br> <span> ... ни шагу назад! </span> </h3>
+
+	</div>
+
+</section>
+
+<section class="sportsmen_2 section" id="section8">
+
+	<article>
+
+		<h2> Союз спортсменов - это настоящая команда  </h2>
+
+		<h3> С помощью Планеты эта команда может многое: </h3>
+
+		<ul>
+			<li> - Общаться между собой; </li>
+			<li> - Делиться секретами спортивного мастерства; </li>
+			<li> - Находить таланты в самых отдаленных уголках России; </li>
+			<li> - Зарабатывать деньги для поддержки спортсменов и тренеров.; </li>
+			<li> - Реализовывать инвестиционные проекты; </li>
+			<li> - Организовывать спортивные мероприятия в любом городе России; </li>
+			<li> - Сотрудничать с крупнейшими производителями спортивной  одежды и инвентаря. </li>
+		</ul>
+
+		<h5> Побеждаешь ты – выигрывают все! </h5>
+
+	</article>
+
+</section>
+
+<!-- Block that may be needed -->
+<!--
+<section class="sportsmen_3 section" id="section9">
+
+	<section class="review_sportsmen">
+
+		<h2> Что говорят наши чемпионы </h2>
+
+		<article class="review_block">
+
+			<h2> Фридрих Пупкин, <span> Креативный директор 'Турурум' </span> </h2>
+
+			<p> Donec imperdiet nisl at orci convallis tincidunt. Donec rhoncus sapien elit, ac tincidunt felis posuere a. Praesent justo dui, feugiat id ligula quis, tristique pellentesque eros. Donec sodales purus ac ligula pretium, at aliquet enim lacinia. Aenean congue dignissim massa, ut finibus urna tempor at. Integer sed volutpat mi, vel varius nunc. Vivamus elementum cursus scelerisque. </p>
+			
+		</article>
+
+		<article class="review_block">
+
+			<h2> Фридрих Пупкин, <span> Креативный директор 'Турурум' </span> </h2>
+
+			<p> Donec imperdiet nisl at orci convallis tincidunt. Donec rhoncus sapien elit, ac tincidunt felis posuere a. Praesent justo dui, feugiat id ligula quis, tristique pellentesque eros. Donec sodales purus ac ligula pretium, at aliquet enim lacinia. Aenean congue dignissim massa, ut finibus urna tempor at. Integer sed volutpat mi, vel varius nunc. Vivamus elementum cursus scelerisque. </p>
+			
+		</article>
+
+		<article class="review_block">
+
+			<h2> Фридрих Пупкин, <span> Креативный директор 'Турурум' </span> </h2>
+
+			<p> Donec imperdiet nisl at orci convallis tincidunt. Donec rhoncus sapien elit, ac tincidunt felis posuere a. Praesent justo dui, feugiat id ligula quis, tristique pellentesque eros. Donec sodales purus ac ligula pretium, at aliquet enim lacinia. Aenean congue dignissim massa, ut finibus urna tempor at. Integer sed volutpat mi, vel varius nunc. Vivamus elementum cursus scelerisque. </p>
+			
+		</article>
+
+		<article class="review_block">
+
+			<h2> Фридрих Пупкин, <span> Креативный директор 'Турурум' </span> </h2>
+
+			<p> Donec imperdiet nisl at orci convallis tincidunt. Donec rhoncus sapien elit, ac tincidunt felis posuere a. Praesent justo dui, feugiat id ligula quis, tristique pellentesque eros. Donec sodales purus ac ligula pretium, at aliquet enim lacinia. Aenean congue dignissim massa, ut finibus urna tempor at. Integer sed volutpat mi, vel varius nunc. Vivamus elementum cursus scelerisque. </p>
+			
+		</article>
+
+	</section>
+
+</section>
+-->
+
+<section class="about_us section" id="section10">
+
+	<video autoplay loop id="bgvid" width="100%">
+	    <source src="video/video_bg.webm" type="video/webm">
+	    <source src="video/video_bg.mp4" type="video/mp4">
+	</video>
+
+	<div class="footer_container">
+
+		<h2> - В заключение хочу сказать </h2>
+
+		<div class="footer_list">
+
+			<h3> Вкладывая деньги в наш проект, Вы получите: </h3>
+
+			<ul>
+				<li> - ощутимую прибыль; </li>
+				<li> - обширный круг деловых связей; </li>
+				<li> - новые перспективы; </li>
+			</ul>
+			
+		</div>
+
+		<div class="footer_list">
+
+			<h3> В Ваших руках: </h3>
+
+			<ul>
+				<li> - помочь миллионам людей найти свою правильную дорогу в жизни и реализовать мечты; </li>
+				<li> - внести существенный вклад в сохранение традиций, истории и культуры нашей страны </li>
+				<li> - возможность способствовать развитию России. </li>
+			</ul>
+			
+		</div>
+
+		<h5> Планета городов будет рада серьезным людям, которым будет  интересно принять участие в создании <span> уникального продукта.</span> </h5>
+
+		<h5> Руководитель проекта <span> Павел Чернов </span> </h5>
+
+		<div class="contacts">
+
+			Контакты: <br>
+			<a href="mailto:chernov@planetci.ru"> Email: chernov@planetci.ru </a> <br>
+			<a href="tel:83832877981"> Телефон: 8 (383) 287-79-81 </a>
+			
+		</div>
+
+	</div>
+
+</section>
+
+</main>
+
+
+<!-- Full page library -->
+<script src="scripts/libraries/javascript.fullPage.min.js"></script>
+
+<!-- Vivus SVG library -->
+<script src="scripts/libraries/vivus.min.js"></script>
+
+<!-- Init if needed -->
+<!-- Gelery library  -->
+<!--
+<script src="scripts/libraries/swiper.min.js"></script>
+-->
+
+<!-- Custom scripts -->
+<script src="scripts/compressed/main.js"></script>
+
+</body>
+</html>

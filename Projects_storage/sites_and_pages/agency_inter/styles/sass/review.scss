@@ -1,0 +1,137 @@
+.review {
+	width: 100%;
+	text-align: center;
+}
+
+.review h2 {
+	font-size: 45px;
+	text-align: center;
+	line-height: 35px;
+	position: relative;
+	margin-bottom: 7%;
+}
+
+.review h2:before {
+	content: "";
+	width: 2000px;
+	height: 3px;
+	position: absolute;
+	left: -1550px;
+	top: 18px;
+	background: black;
+}
+
+.review h2:after {
+	content: "";
+	width: 2000px;
+	height: 3px;
+	position: absolute;
+	right: -1550px;
+	top: 18px;
+	background: black;
+}
+
+.review article {
+	width: 44%;
+	min-height: 18vw;
+	float: left;
+	margin: 0 0 2.4% 6%;
+	position: relative;
+	padding: 1.3% 0 0 15%;
+	text-align: left;
+	line-height: 1.3;
+}
+
+.review article:nth-of-type(2n) {
+	margin: 0 5% 2.4% 0;
+	float: right;
+}
+
+.review article:before {
+	content: "";
+	width: 173px;
+	height: 173px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background-size: 100% 100% !important;
+	border-radius: 50%;
+}
+
+.review article:nth-of-type(1):before {
+	background: url(../../images/basic/custom_images/reviews/av_1.jpg) no-repeat;
+}
+
+.review article:nth-of-type(2):before {
+	background: url(../../images/basic/custom_images/reviews/av_2.jpg) no-repeat;
+}
+
+.review article:nth-of-type(3):before {
+	background: url(../../images/basic/custom_images/reviews/av_3.jpg) no-repeat;
+}
+
+.review article:nth-of-type(4):before {
+	background: url(../../images/basic/custom_images/reviews/av_4.jpg) no-repeat;
+}
+
+.more_reviews article:nth-of-type(1):before {
+	background: url(../../images/basic/custom_images/reviews/av_5.jpg) no-repeat;
+}
+
+.more_reviews article:nth-of-type(2):before {
+	background: url(../../images/basic/custom_images/reviews/av_6.jpg) no-repeat;
+}
+
+.more_reviews article:nth-of-type(3):before {
+	background: url(../../images/basic/custom_images/reviews/av_7.jpg) no-repeat;
+}
+
+.more_reviews article:nth-of-type(4):before {
+	background: url(../../images/basic/custom_images/reviews/av_8.jpg) no-repeat;
+}
+
+.review article span {
+	display: block;
+	color: #959595;
+}
+
+.review article span:first-of-type {
+	margin-top: 5.7%;
+}
+
+.review article:last-of-type:after{
+    content: '';
+    height: 1%;
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.reviews_block:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.show_more {
+	width: 27.5%;
+	height: 4.6vw;
+	margin: -0.5% auto 8% auto;
+	line-height: 3.5vw;
+	font-size: 24px;
+	color: $h_clr_1;
+	border: 2px $h_clr_1 solid;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: all 0.5s;
+}
+
+.show_more:hover {
+	text-shadow: 0 0 0 $h_clr_1, 0 0 0 $h_clr_1;
+}
+
+.more_reviews {
+	overflow: hidden;
+	transition: all 1s;
+}

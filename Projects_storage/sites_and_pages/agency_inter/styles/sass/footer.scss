@@ -1,0 +1,169 @@
+footer {
+	width: 100%;
+	background: url(../../images/basic/backgrounds/footer_bg.png) no-repeat center bottom;
+	background-size: 100% auto;
+	padding-bottom: 18% !important;
+}
+
+footer h2 {
+	font-size: 45px;
+	text-align: center;
+	line-height: 35px;
+	position: relative;
+	margin-bottom: 7%;
+}
+
+footer h2:before {
+	content: "";
+	width: 2000px;
+	height: 3px;
+	position: absolute;
+	left: -1550px;
+	top: 18px;
+	background: black;
+}
+
+footer h2:after {
+	content: "";
+	width: 2000px;
+	height: 3px;
+	position: absolute;
+	right: -1550px;
+	top: 18px;
+	background: black;
+}
+
+footer .contact_block {
+	width: 43%;
+	margin: 0 auto;
+}
+
+footer .contact_block .contacts {
+	width: 100%;
+	margin: 2% 0 0 0;
+	font-size: 22px;
+}
+
+footer .contact_block .contacts a {
+	padding-left: 65px;
+	position: relative;
+}
+
+footer .contact_block .contacts a:hover {
+	text-shadow: 0 0 0px black;
+}
+
+footer .contact_block .contacts a:first-of-type {
+	float: left;
+}
+
+footer .contact_block .contacts a:last-of-type {
+	float: right;
+}
+
+footer .contact_block .contacts a:before {
+	content: "";
+	width: 40px;
+	height: 40px;
+	display: block;
+	position: absolute;
+	left: 0;
+	top: -7px;
+	background-size: 100% 100% !important;
+}
+
+footer .contact_block .contacts a:first-of-type:before {
+	background: url(../../images/basic/icons/phone.svg) no-repeat;
+}
+
+footer .contact_block .contacts a:last-of-type:before {
+	background: url(../../images/basic/icons/mail_black.svg) no-repeat;
+}
+
+footer .contact_block input,
+footer .contact_block textarea  {
+	width: 96.4%;
+	font-size: 18px;
+	padding-left: 17px;
+	border: 1px #e1e1e1 solid;
+	color: grey;
+}
+
+
+footer .contact_block .name {
+	height: 45px;
+	margin-top: 10%;
+}
+
+footer .contact_block .phone_or_mail {
+	height: 45px;
+	margin-top: 4%;
+}
+
+footer .contact_block .message {
+	height: 125px;
+	margin-top: 4%;
+	font-size: 20px;
+	padding: 10px 0 0 17px;
+}
+
+footer .contact_block .send {
+	width: 35%;
+	height: 42px;
+	display: block;
+	margin: 6% auto 0 auto;
+	padding-top: 5px;
+	background: #3e9dd6;
+	border: none;
+	color: white;
+	cursor: pointer;
+	box-shadow: 0 4px 0 #1e88c7;
+	transition: all 0.4s;
+}
+
+footer .contact_block .send:hover {
+	background: #3ec6ed;
+	color: black;
+}
+
+footer .contact_block span {
+	display: block;
+	margin-top: 25px;
+	font-size: 17px;
+	text-align: center;
+}
+
+footer .social_block {
+	width: 30%;
+	height: 47px;
+	margin: 60px auto 0 auto;
+	text-align: center;
+}
+
+footer .social_block a {
+	width: 47px;
+	height: 100%;
+	display: inline-block;
+	margin-right: 20px;
+	background-size: 100% 100% !important;
+	transition: 0.3s transform;
+}
+
+footer .social_block a:hover {
+	transform: translateY(-3px);
+}
+
+footer .social_block a:last-of-type {
+	margin: 0;
+}
+
+footer .social_block a:nth-of-type(1) {
+	background: url(../../images/basic/icons/facebook.svg) no-repeat;
+}
+
+footer .social_block a:nth-of-type(2) {
+	background: url(../../images/basic/icons/in.svg) no-repeat center;
+	background-size: 80% !important;
+}
+
+

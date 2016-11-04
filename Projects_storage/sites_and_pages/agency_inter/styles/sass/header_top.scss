@@ -1,0 +1,144 @@
+header {
+	width: 100%;
+	height: 78.57vw;
+	background: url(../../images/basic/backgrounds/header_bg.jpg) no-repeat;
+	background-size: 100% auto;
+}
+
+/* Header top */
+
+$h_clr_1: #3e9dd6;
+$h_clr_2: #1e88c7;
+
+.header_top {
+	width: 100%;
+	height: 21.3%;
+}
+
+.header_top .logo {
+	width: 20%;
+	height: 30%;
+	background: url(../../images/basic/logo.svg) no-repeat;
+	position: absolute;
+	left: 6.5%;
+	top: 10%;
+}
+
+.header_top nav {
+	width: 67%;
+	height: 86.5%;
+	float: right;
+	margin: 2.3% 6% 0 0;
+	position: relative;
+}
+
+.header_top .lang {
+	width: 14.2%;
+	height: 24%;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.header_top .lang a {
+	display: inline-block;
+	width: 44%;
+	height: 100%;
+	text-align: center;
+	line-height: 3.3vw;
+}
+
+.header_top .lang a:nth-of-type(1) {
+	float: left;
+	color: $h_clr_1;
+	border: 2px $h_clr_1 solid;
+}
+
+.header_top .lang a:nth-of-type(2) {
+	background: #96cbe9;
+	float: right;
+	line-height: 3.6vw;
+}
+
+.header_top .lang a:nth-of-type(2):hover {
+	color: white;
+}
+
+.header_top .navigation {
+	height: 10%;
+	position: absolute;
+	right: 0;
+	top: 45%;
+}
+
+.header_top .navigation li {
+	display: inline-block;
+	margin-right: 3.15vw;
+}
+
+.header_top .navigation li:hover {
+	color: $h_clr_1;
+}
+
+.header_top .navigation li:last-of-type {
+	margin-right: 0;
+}
+
+.header_top nav .feedback {
+	width: 45.3%;
+	height: 25%;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+
+.header_top nav .feedback aside {
+	float: left;
+	max-width: 40%;
+}
+
+.header_top nav .feedback aside * {
+	display: block;
+	position: absolute;
+	transition: transform 0.3s;
+}
+
+.header_top nav .feedback aside a:first-of-type {
+	font-size: 25px;
+	top: -12%;
+	transform-origin: 0 0;
+}
+
+.header_top nav .feedback aside a:first-of-type:hover {
+	color: rgb(80, 80, 80);
+}
+
+.header_top nav .feedback aside a:last-of-type {
+	font-size: 14px;
+	color: #3e9dd6;
+	bottom: 0;
+}
+
+.header_top nav .feedback aside a:last-of-type:hover {
+	color: rgb(42, 137, 194);;
+}
+
+.header_top nav .feedback .feedback_mail {
+	width: 53.2%;
+	height: 97%;
+	padding: 3% 0 0 16%;
+	display: block;
+	float: right;
+	background: $h_clr_1 url(../../images/basic/icons/mail.svg) no-repeat 10% center;
+	background-size: auto 43%;
+	font-size: 18px;
+	color: white;
+	box-shadow: 0 2px 0 $h_clr_2;
+	overflow: hidden;
+	transition: background-color 0.4s;
+}
+
+.header_top nav .feedback .feedback_mail:hover {
+	background: #41c5ea url(../../images/basic/icons/mail.svg) no-repeat 10% center;
+	background-size: auto 43%;
+}

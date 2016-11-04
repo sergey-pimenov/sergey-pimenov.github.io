@@ -1,0 +1,117 @@
+@media all and (max-width: 1314px) {
+
+
+	.news_page .news_banner_block {
+		width: calc(100% - 63px);
+		margin: 28px auto 50px auto;
+		padding: 0 30px;
+		position: relative;
+		left: 30px;
+		color: black;
+	}
+
+	.news_page .news_banner_1 {
+		width: 60%;
+		height: 22vw !important;
+		float: left;
+		background: url('../../images/news_page/news_banners/banner_1.jpg') no-repeat;
+		background-size: 100% auto;
+	}
+
+	.news_page .news_banner_2 {
+		width: 37%;
+		height: 22vw !important;
+		float: right;
+		background: url('../../images/news_page/news_banners/banner_2.jpg') no-repeat;
+		background-size: 100% auto;
+	}
+
+
+}
+
+
+@media all and (max-width: 830px) {
+
+
+	.news_page .news_banner_block {
+		width: calc(100% - 63px);
+		margin: 28px auto 50px auto;
+		padding: 0 30px;
+		position: relative;
+		left: 30px;
+		color: black;
+	}
+
+	.news_page .news_banner_1 {
+		width: 100%;
+		height: 32vw !important;
+		float: left;
+		background: url('../../images/news_page/news_banners/banner_1.jpg') no-repeat;
+		background-size: 100% auto;
+	}
+
+	.news_page .news_banner_2 {
+		width: 100%;
+		height: 50vw !important;
+		margin: 30px 0 0 0;
+		float: right;
+		background: url('../../images/news_page/news_banners/banner_2.jpg') no-repeat center center;
+		background-size: 100% auto;
+	}
+
+}
+
+@media all and (max-width: 767px) {
+
+
+	.news_page .news_banner_block {
+		width: 100%;
+		margin: 28px auto 50px auto;
+		padding: 0 30px;
+		position: relative;
+		left: 0;
+		color: black;
+	}
+
+	.news_page .news_banner_1 {
+		width: 100%;
+		height: 37vw !important;
+		float: left;
+		background: url('../../images/news_page/news_banners/banner_1.jpg') no-repeat;
+		background-size: 100% auto;
+	}
+
+	.news_page .news_banner_2 {
+		width: 100%;
+		height: 50vw !important;
+		margin: 30px 0 0 0;
+		float: right;
+		background: url('../../images/news_page/news_banners/banner_2.jpg') no-repeat center center;
+		background-size: 100% auto;
+	}
+
+
+
+
+}
+
+
+
+
+.news_page .news_banner_block:after {
+	content: '';
+	width: 100%;
+	display: block;
+	clear: both;
+}
+
+.news_page .news_banner_block > div {
+	height: 300px;
+}
+
+.news_page .news_banner_block > div a {
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+

@@ -1,0 +1,161 @@
+.presentation {
+	color: white;
+}
+
+.presentation canvas {
+	width: 100vw;
+	height: 100vh;
+	left: 0;
+	top: 0;
+	z-index: 0;
+}
+
+.presentation article {
+	width: 65.5vw;
+	position: absolute;
+	left: 20vw;
+	top: 2vw;
+	z-index: 5;
+	font-size: 1.6vw;
+}
+
+.presentation p a {
+	font-size: 0.95vw;
+	color: #a2d7f8;
+}
+
+.presentation h2 {
+	width: 100%;
+	text-align: right;
+	font-size: 2.3vw;
+	color: #a2d7f8;
+	margin-top: 1vw;
+}
+
+.presentation h3 {
+	width: 100%;
+	text-align: right;
+	font-size: 2.3vw;
+	color: #a2d7f8;
+}
+
+.video_block {
+	width: 65.5vw;
+	height: 20vw;
+	position: absolute;
+	left: 20vw;
+	bottom: 4.5vw;
+}
+
+.video_block .video {
+	position: absolute;
+	border: 1px #a2d7f8 solid;
+	transition: all 0.3s;
+}
+
+.video_block .video:first-of-type {
+	width: 35vw;
+	height: 22vw;
+	top: -2vw;
+	background: url('../../images/backgrounds/video_1.jpg') no-repeat center;
+	background-size: auto 100%;
+	z-index: 5;
+}
+
+.video_block .video:first-of-type:before {
+	content: "Коротко о главном";
+	position: absolute;
+	top: -3.1vw;
+	font-size: 1.6vw;
+	color: #a2d7f8;
+}
+
+.video_block .video:last-of-type {
+	width: 27vw;
+	height: 17vw;
+	right: 0;
+	bottom: 0;
+	background: url('../../images/backgrounds/video_2.jpg') no-repeat center;
+	background-size: auto 100%;
+}
+
+.video_block .video:last-of-type:before {
+	content: "Подробно обо всём";
+	position: absolute;
+	top: -3.1vw;
+	font-size: 1.6vw;
+	color: #a2d7f8;
+}
+
+.video_block .video:last-of-type:hover {
+		z-index: 5;
+}
+
+.video_block .video span {
+	width: 7vw;
+	height: 7vw;
+	display: block;
+	position: absolute;
+	left: 40%;
+	top: 33%;
+	border-radius: 50%;
+	background: url('../../images/icons/video_play.png') no-repeat;
+	background-size: 100% auto;
+	cursor: pointer;
+	transition: transform 0.3s;
+}
+
+.video_block .video:last-of-type span {
+	width: 5vw;
+	height: 5vw;
+	left: 40%;
+	top: 35%;
+	background: url('../../images/icons/video_play.png') no-repeat;
+	background-size: 100% auto;
+}
+
+.video_block .video span:hover {
+	transform: scale(1.1);
+}
+
+.youtube_block {
+	width: 100vw;
+	height: 100vh;
+	position: absolute;
+	display: none;
+}
+
+.youtube_block iframe {
+	width: 79vw;
+	height: 90vh;
+	position: absolute;
+	left: 10.5vw;
+	top: 5vh;
+	z-index: 5;
+}
+
+.youtube_block .close_icon {
+	width: 4vw;
+	height: 4vw;
+	position: absolute;
+	right: 3vw;
+	top: 5vh;
+	cursor: pointer;
+}
+
+.youtube_block .close_icon:before,
+.youtube_block .close_icon:after {
+	content: "";
+	width: 4vw;
+	height: 0.3vw;
+	position: absolute;
+	top: 1.6vw;
+	background: #a2d7f8;
+	transform: rotateZ(45deg);
+}
+
+.youtube_block .close_icon:after {
+	transform: rotateZ(-45deg);
+}
+
+

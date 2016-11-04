@@ -1,0 +1,61 @@
+header .about {
+	margin: 7.3% auto 0 auto;
+}
+
+header .about h2 {
+	width: 73%;
+	margin: 0 auto;
+	font-size: 55px;
+}
+
+header .about .description {
+	width: 73%;
+	margin: 0 auto;
+	font-size: 19px;
+	line-height: 1.3;
+}
+
+header .about .description:first-of-type {
+	margin-top: 2.1%;
+}
+
+header .about article {
+	width: 43%;
+	height: 25vw;
+	margin-top: 4.2%;
+	position: relative;
+	overflow: hidden;
+	background: rgba(250, 250, 250, 0.55);
+}
+
+header .about article:first-of-type {
+	float: left;
+	margin-left: 6%;
+}
+
+header .about article:last-of-type {
+	float: right;	
+	margin-right: 6%;
+}
+
+header .about article h3 {
+	margin: 5% 0 0 18%;
+	font-size: 28px;
+}
+
+header .about article:after {
+	content: "";
+	width: 35.3%;
+	height: 2px;
+	position: absolute;
+	left: 0;
+	top: 24.7%;
+	background: black;
+}
+
+header .about article p {
+	width: 65%;
+	margin: 8.5% 0 0 17.9%;
+	font-size: 17px;
+	line-height: 1.4;
+}

@@ -1,0 +1,147 @@
+@media all and (max-width: 980px) {
+
+	/*** Basic ***/
+
+	body {
+    min-width: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    font-size: 1.3em;
+	}
+
+	.body {
+		min-width: 100%;
+		width: 100%;
+	}
+
+	/*** Basic ***/
+
+
+	/*** Header ***/
+
+	.main-header .container {
+		position: relative;
+		width: 100%;
+		height: auto;
+		margin: 0 auto;
+		text-align: left;
+	}
+
+	.main-header .flag {
+    background-size: auto 100%;
+	}	
+
+	/* Top link panel */
+
+	.main-header .links {
+		width: 100%;
+		min-height: 30px;
+		height: auto;
+		padding-top: 20px;
+	}
+
+	.main-header .links .col-1 {
+    position: static;
+    float: left;
+	}
+
+	.main-header .lang {
+		margin: 0 30px 0 0;
+    float: right;
+	}
+
+	/* National emblem */
+
+	.logo {
+		position: relative;
+		width: 290px;
+		height: 130px;
+		float: left;
+		margin: 0 0 0 5px;
+		background: url(http://minjust.gov.by/static/main/img/logo.png) no-repeat left center;
+	}
+
+	.logo .logo-text {
+		width: 130px;
+		top: 0;
+		font-size: 1em;
+		letter-spacing: 1px;
+	}
+
+	/* Phones & shedule */
+
+	.main-header .wrapper .info {
+		position: relative;
+		width: auto;
+		height: auto;
+		float: right;
+		margin: 0 20px 0 0;
+		font-size: 0.875em;
+		line-height: 1.5em;
+	}
+
+	.main-header .wrapper .info.hotline {
+		margin-right: 20px;
+	}
+
+	/*** Header end ***/
+
+
+	/*** Navigation ***/
+
+	.nav {
+		position: relative;
+		width: 100%;
+		height: auto;
+	}
+
+	.nav:after {
+		content: '';
+		width: 100%;
+		display: block;
+		clear: both;
+	}
+
+	.nav .menu-item {
+		width: 25%;
+		margin: 0 auto;
+		text-align: center;
+	}
+
+	.nav .menu-item a.link {
+		margin: 0 0 0 0 !important;
+		display: block;
+	}
+
+	.nav-search-holder {
+		width: 50%;
+		margin-top: -80px;
+		padding: 15px 0 0 0;
+		position: static;
+		float: right;
+		text-align: center;
+		border-top: 1px #4a82b9 solid;
+	}
+
+	.nav-search-holder:after {
+		content: '';
+		width: 100%;
+		height: 1px;
+		display: block;
+		clear: both;
+	}
+
+	.nav-search-holder input.search {
+		width: 60%;
+		padding: 7px 25px 7px 25px;
+	}
+
+	/*** Navigation end ***/
+
+
+	.main-container {
+    width: 100%;
+    height: auto;
+	}
+
+}

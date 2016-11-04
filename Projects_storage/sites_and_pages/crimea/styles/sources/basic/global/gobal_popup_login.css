@@ -1,0 +1,225 @@
+.popup_login {
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.7);
+	color: black;
+	z-index: 100;
+	display: none;
+}
+
+.login_container {
+	width: 471px;
+	min-height: 443px;
+	margin: -221.5px 0 0 -235.5px;
+	padding: 25px 35px;
+	background: white;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	border-radius: 3px;
+	opacity: 0;
+}
+
+.close_login_container {
+	width: 15px;
+	height: 15px;
+	position: absolute;
+	right: 35px;
+	top: 36px;
+	color: #717171;
+	cursor: pointer;
+}
+
+.close_login_container:before {
+	content: '';
+	width: 2px;
+	height: 19px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background: #aeaeae;
+	transform: rotateZ(-45deg);
+	transform-origin: 0 0;
+	transition: background 0.3s;
+}
+
+.close_login_container:after {
+	content: '';
+	width: 2px;
+	height: 18px;
+	position: absolute;
+	right: 0;
+	top: -1px;
+	background: #aeaeae;
+	transform: rotateZ(45deg);
+	transform-origin: 0 0;
+	transition: background 0.3s;
+}
+
+.close_login_container:hover:before,
+.close_login_container:hover:after {
+	background: #e18432;
+}
+
+.popup_login_display {
+	display: block;
+}
+
+.popup_login_display .login_container {
+	animation: login_container_anim 0.8s forwards;
+}
+
+@keyframes login_container_anim {
+	100% {
+		opacity: 1;
+	}
+}
+
+.login_container > h5 {
+	margin: 0 0 50px 0;
+	position: relative;
+	font-size: 25px;
+	font-weight: 100;
+	color: black;
+}
+
+.login_container h5:after {
+	content: '';
+	width: 100%;
+	height: 1px;
+	position: absolute;
+	left: 0;
+	bottom: -23px;
+	background: lightgray;
+}
+
+.login_container input[type=email],
+.login_container input[type=password] {
+	width: 100%;
+	height: 47px;
+	margin: 0 0 15px 0;
+	border: 1px lightgray solid;
+	border-radius: 3px;
+	transition: border 0.5s;
+}
+
+.login_container input[type=email],
+.login_container input[type=password] {
+	padding: 0 0 0 40px;
+	background-size: auto 13px !important;
+	font-size: 13px;
+}
+
+.login_container input[type=email] {
+	background: url('../../images/global/icons/user_login.png') no-repeat 15px center;
+}
+
+.login_container input[type=password] {
+	margin: 0 0 20px 0;
+	background: url('../../images/global/icons/lock.png') no-repeat 15px center;
+}
+
+.login_container input:focus {
+	border: 1px #e18432 solid;
+}
+
+.login_container .login_checkbox {
+	display: none;
+}
+
+.login_container label {
+	font-size: 13px;
+	cursor: pointer;
+}
+
+.login_container .checkbox_icon {
+	width: 14px;
+	height: 14px;
+	margin: 3px 12px 0 0;
+	display: inline-block;
+	position: relative;
+	float: left;
+	border: 1px lightgray solid;
+}
+
+.login_container .login_checkbox + span:after {
+	content: '';
+	width: 7px;
+	height: 1px;
+	position: absolute;
+	left: 3px;
+	top: 3px;
+	transform: rotateZ(55deg) scaleX(0);
+	transform-origin: 0 0;
+	background: #717171;
+	transition: all 0.5s;
+}
+
+.login_container .login_checkbox + span:before {
+	content: '';
+	width: 5px;
+	height: 1px;
+	position: absolute;
+	left: 6px;
+	bottom: 3px;
+	transform: rotateZ(-55deg) scaleX(0);
+	transform-origin: 0 0;
+	background: #717171;
+	transition: all 0.5s;
+}
+
+.login_container .login_checkbox:checked + span:after {
+	transform: rotateZ(55deg) scaleX(1);
+}
+
+.login_container .login_checkbox:checked + span:before {
+	transform: rotateZ(-55deg) scaleX(1);
+}
+
+.login_container [type=submit] {
+	height: 47px;
+	margin: 20px 29px 0 0;
+	padding: 0 54px;
+	border-radius: 3px;
+	background: #e18432;
+	font-size: 15px;
+	font-weight: 700;
+	color: white;
+	cursor: pointer;
+}
+
+.login_container .login_registration {
+	position: relative;
+	font-size: 13px;
+	font-weight: 400;
+	color: #e18432;
+	cursor: pointer;
+}
+
+.login_container .social_login {
+	width: 100%;
+	height: 40px;
+	margin: 65px 0 0 0;
+	position: relative;
+}
+
+.login_container .social_login:before {
+	content: '';
+	width: 100%;
+	height: 1px;
+	position: absolute;
+	left: 0;
+	top: -33px;
+	background: lightgray;
+}
+
+.login_container .social_login h5 {
+	font-size: 18px;
+	font-weight: 100;
+	color: black;
+}

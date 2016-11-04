@@ -1,0 +1,46 @@
+.sportsmen_3 {
+	background: linear-gradient(to bottom, rgb(45, 93, 146), #781980);
+}
+
+.sportsmen_3 article {
+	width: 70%;
+	min-height: 8vw;
+	margin: 0 auto 6vh auto;
+	padding-left: 9vw;
+	position: relative;
+	color: white;
+}
+
+.review_sportsmen article:before {
+	content: "";
+	width: 8vw;
+	height: 8vw;
+	position: absolute;
+	left: 0;
+	top: 0;
+	border-radius: 50%;
+	background: url('../../images/they_talking/av_1.png') center center;
+	background-size: 100% 100%;
+}
+
+.review_sportsmen > h2 {
+	width: 100%;
+	padding: 3vh 0 2vh 0;
+	position: relative;
+	font-size: 2vw;
+	text-align: center;
+	color: white;
+}
+
+.sportsmen_3 article h2 {
+	padding: 0.5vw 0;
+	font-size: 1.2vw;
+}
+
+.sportsmen_3 article h2 span {
+	color: #a2d7f8;
+}
+
+.sportsmen_3 article p {
+	font-size: 1.1vw;
+}
