@@ -3,6 +3,12 @@
 	display: none;
 }
 
+a[href="https://metrika.yandex.ru/stat/?id=38960170&from=informer"] {
+		background: red;
+		display: none;
+	}
+
+
 @media all and (max-width: 980px) {
 
 	/*** Basic ***/
@@ -627,11 +633,6 @@
 	.main-content-block .header {
     margin-left: -5%;
     text-align: center;
-	}
-
-	a[href="https://metrika.yandex.ru/stat/?id=38960170&from=informer"] {
-		background: red;
-		display: none;
 	}
 
 }
