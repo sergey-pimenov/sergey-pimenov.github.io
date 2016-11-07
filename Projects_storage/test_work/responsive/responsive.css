@@ -538,14 +538,11 @@
 	/*** Footer ***/
 
 	.footer {
-		width: 100%;
-		width: 100vw;
 		height: auto;
 		position: static;
 	}
 
 	.footer .content {
-		width: 100%;
 		width: 100vw;
 		height: auto;
 		position: relative;
