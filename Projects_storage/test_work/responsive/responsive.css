@@ -260,6 +260,10 @@ a[href="https://metrika.yandex.ru/stat/?id=38960170&from=informer"] {
 		padding: 0 !important;
 	}
 
+	.green {
+		background: #40c458 !important;
+	}
+
 	.sub-menu .title {
 	}
 
@@ -755,7 +759,7 @@ a[href="https://metrika.yandex.ru/stat/?id=38960170&from=informer"] {
 
 	.sub-menu {
 		width: 100vw !important;
-		margin: 175px 0 10px 0 !important;
+		margin: 185px 0 10px 0 !important;
 		display: block !important;
 		-webkit-transform: scaleY(0);
 		    -ms-transform: scaleY(0);
@@ -767,7 +771,7 @@ a[href="https://metrika.yandex.ru/stat/?id=38960170&from=informer"] {
 	.nav .menu-item:nth-of-type(6) .sub-menu,
 	.nav .menu-item:nth-of-type(7) .sub-menu,
 	.nav .menu-item:nth-of-type(8) .sub-menu {
-		margin-top: 175px !important;
+		margin-top: 185px !important;
 	}
 
 	/*** Menu end ***/
