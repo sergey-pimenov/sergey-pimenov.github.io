@@ -277,7 +277,7 @@
 	/*** Main slider ***/
 
 	.main-slider {
-		width: 100vw !important;
+		width: 100% !important;
 		min-height: auto !important;
 	}
 
