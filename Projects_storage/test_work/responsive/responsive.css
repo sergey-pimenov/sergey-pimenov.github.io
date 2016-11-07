@@ -280,8 +280,9 @@
 		width: 100% !important;
 		max-width: 100vw !important;
 		min-height: auto !important;
-		background: pink;
-		overflow: hidden;
+		height: 205px !important;
+		max-height: 205px !important;
+		background: springgreen;
 	}
 
 	.main-slider .items {
