@@ -621,6 +621,11 @@
     text-align: center;
 	}
 
+	a[href="https://metrika.yandex.ru/stat/?id=38960170&from=informer"] {
+		background: red;
+		display: none;
+	}
+
 }
 
 
@@ -778,6 +783,59 @@
 
 	.menu_button_checkbox:checked ~ .menu-item  {
 		display: block;
+	}
+
+	.main-content-block .header {
+		width: 90%;
+		margin: 0 auto 20px auto;
+		font-size: 23px;
+		text-align: center;
+	}
+
+	.main-content-block .header img,
+	.main-content-block .header .icon {
+		display: none;
+	}
+
+	.main-content-block.photo .content-item {
+		width: 90%;
+		display: inline-block;
+		margin-left: 0;
+		margin-bottom: 30px;
+		padding: 0 0 30px 0;
+		text-align: left;
+		border-bottom: 1px grey dashed;
+	}
+
+	.link-holder div.banner {
+		width: 90%;
+		height: 27vw;
+		margin: 0 5px 15px 5px !important;
+		border: 1px lightgray solid;
+		box-sizing: border-box;
+	}
+
+	.footer .content .holder {
+		position: relative;
+		width: 100%;
+		height: auto;
+		margin: 0 0 30px 0;
+		padding: 15px 0 0 0;
+		font-size: 1em;
+		line-height: 1.3;
+		background-image: none;
+		text-align: center;
+		border-top: 1px lightgrey solid;
+	}
+
+	.footer .content .holder a {
+		position: static;
+		width: 170px;
+		height: 70px;
+		margin: 20px auto 30px auto;
+		color: #2bcd4e !important;
+		border: #2bcd4e solid 1px;
+		background: url(http://minjust.gov.by/static/main/img/icon-draft.png) no-repeat 35px center !important;
 	}
 
 }
