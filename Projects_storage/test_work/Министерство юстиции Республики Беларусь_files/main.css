@@ -1642,7 +1642,6 @@ a.logout:hover span {
 /* ----------------------------------------------------------------------- HOMEPAGE */
 .main-slider {
 	position: relative;
-	width: auto; min-height: 430px;
 	background: #fff;
 }
 .main-slider a {

@@ -47,3 +47,9 @@ function openSliderItem() {
 		this.style.fontWeight = 'bold';
 	}
 }
+
+var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+
+if (iOS) {
+	alert("!")
+}
