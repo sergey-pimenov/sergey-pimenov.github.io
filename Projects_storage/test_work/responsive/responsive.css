@@ -13,14 +13,9 @@ a[href="https://metrika.yandex.ru/stat/?id=38960170&from=informer"] {
 
   /*** Basic ***/
 
-  hmtl {
-    overflow-x: hidden;
-  }
-
   body {
     min-width: 100% !important;
     width: 100%;
-    overflow-x: hidden;
     font-size: 1.3em;
   }
 
@@ -58,6 +53,11 @@ a[href="https://metrika.yandex.ru/stat/?id=38960170&from=informer"] {
 
 
   /* Remove left-padding to disable x-scroll */
+
+  .main-header .col-right {
+    right: 0;
+  }
+
   .main-header .container #main-menu-nav .menu-item .sub-menu,
   .main-header .links {
     padding-left: 0;
