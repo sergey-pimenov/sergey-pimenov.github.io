@@ -28,7 +28,7 @@ a[href="https://metrika.yandex.ru/stat/?id=38960170&from=informer"] {
     min-width: 100%;
     width: 100%;
     padding-bottom: 0;
-    overflow-x: hidden;
+    /*overflow-x: hidden;*/
   }
 
   .main-header .flag {
@@ -299,6 +299,10 @@ a[href="https://metrika.yandex.ru/stat/?id=38960170&from=informer"] {
     min-height: 0;
   }
 
+  .main-slider .item {
+    padding-left: 5% !important;
+  }
+
   .main-slider .items {
     position: relative;
     float: left;
@@ -446,12 +450,16 @@ a[href="https://metrika.yandex.ru/stat/?id=38960170&from=informer"] {
 
   /*** News ***/
 
+  .main-content-block.news .content {
+    width: 90%;
+    margin: 0 auto;
+  }
 
   .main-content-block.news .content-item {
     width: 90%;
     height: auto;
     padding-bottom: 30px;
-    margin-bottom: 30px;
+    margin: 0 0 30px 0;
     border-bottom: 1px grey solid;
   }
 
@@ -507,15 +515,16 @@ a[href="https://metrika.yandex.ru/stat/?id=38960170&from=informer"] {
   /*** Interview***/
 
   .main-content-block.interview {
-    width: 95%;
-    padding-bottom: 70px;
+    width: 90%;
+    margin: 0 auto 70px auto;
   }
 
   .main-content-block.interview .content-item {
     width: 100%;
     margin-bottom: 30px;
     padding-bottom: 20px;
-    border-bottom: 1px grey dashed;
+    margin-left: 0;
+    border-bottom: 1px red dashed;
   }
 
   .main-content-block.interview .content-item:last-of-type {
@@ -526,8 +535,12 @@ a[href="https://metrika.yandex.ru/stat/?id=38960170&from=informer"] {
   }
 
   .voting-holder .checkbox .text {
-    width: 80%;
+    width: 100%;
   }
+
+  .main-content-block {
+    border-bottom: none;
+}
 
   /*** Interview end***/
 
@@ -557,12 +570,13 @@ a[href="https://metrika.yandex.ru/stat/?id=38960170&from=informer"] {
   /*** Footer ***/
 
   .footer {
+    width: 100%;
     height: auto;
     position: static;
   }
 
   .footer .content {
-    width: 100vw;
+    width: 90%;
     height: auto;
     position: relative;
   }
@@ -603,7 +617,7 @@ a[href="https://metrika.yandex.ru/stat/?id=38960170&from=informer"] {
   .footer .contact {
     position: relative;
     float: left;
-    margin: 0 0 20px 30px;
+    margin: 0 0 20px 0;
     font-size: 0.875em;
     line-height: 1.75em;
   }
@@ -612,7 +626,7 @@ a[href="https://metrika.yandex.ru/stat/?id=38960170&from=informer"] {
     width: 90%;
     position: relative;
     float: left;
-    margin: 30px 0 30px 30px;
+    margin: 30px 0 30px 0;
     font-size: 0.875em;
     line-height: 1.75em;
   }
@@ -629,10 +643,6 @@ a[href="https://metrika.yandex.ru/stat/?id=38960170&from=informer"] {
     width: 100%;
     height: auto;
     margin: 0 auto !important;
-  }
-
-  .main-content-block .content-item {
-    margin-left: 4%;
   }
 
   .main-content-block .header {
@@ -668,7 +678,7 @@ a[href="https://metrika.yandex.ru/stat/?id=38960170&from=informer"] {
 
   .main-header .links .col-1 {
     position: absolute !important;
-    left: 28px;
+    left: 15px;
     top: 20px;
   }
 
@@ -678,7 +688,7 @@ a[href="https://metrika.yandex.ru/stat/?id=38960170&from=informer"] {
   }
 
   .col-right.social-banners {
-    left: 0px;
+    left: -10px;
     top: 75px;
   }
 
@@ -694,7 +704,7 @@ a[href="https://metrika.yandex.ru/stat/?id=38960170&from=informer"] {
 
   .logo {
     width: 150px;
-    left: 13px;
+    left: 0;
     top: -5px;
     background: none;
     z-index: 100;
@@ -747,15 +757,47 @@ a[href="https://metrika.yandex.ru/stat/?id=38960170&from=informer"] {
   }
 
   .main-container .search-holder {
-    padding: 20px 0 10px;
+    width: 100vw !important;
+    padding: 20px 0 10px 0;
+    padding-bottom: 20px;
+  }
+
+  .main-container .search {
+    width: 95%;
+    margin: 0 auto;
   }
 
   .main-container input.search {
   }
 
   .main-container .search-holder .title {
+    width: 88%;
+    margin: 0 auto 20px auto;
+    text-align: center;
     padding: 0 5px;
     font-size: 1em;
+  }
+
+  #home-search-form {
+    width: 90%;
+    margin: 0 auto;
+    padding: 0 !important;
+  }
+
+  #home-search-form > {
+    width: 100%;
+    padding: 0 !important;
+    display: block !important;
+    border: none;
+  }
+
+  #home-search-form * {
+    width: 100%;
+    padding: 0;
+    border: none;
+    text-align: center;
+    background-position: 2% center;
+    background-size: auto 35%;
   }
 
   .sub-menu {
@@ -877,12 +919,13 @@ a[href="https://metrika.yandex.ru/stat/?id=38960170&from=informer"] {
 
   .logo .logo-text {
     width: 100%;
+    left: 20px;
   }
 
   .main-header .wrapper .info {
     width: 90%;
     left: 0;
-    margin: 15px 0 0 37px !important;
+    margin: 15px 0 0 25px !important;
     padding: 0;
     position: static !important;
     display: block;
