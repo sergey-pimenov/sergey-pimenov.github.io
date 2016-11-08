@@ -514,6 +514,13 @@ a[href="https://metrika.yandex.ru/stat/?id=38960170&from=informer"] {
     border-top: 1px lightgrey solid;
   }
 
+  .main-content-block.photo .header {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
   .main-content-block.photo .content-item {
     width: 60%;
     display: inline-block;
