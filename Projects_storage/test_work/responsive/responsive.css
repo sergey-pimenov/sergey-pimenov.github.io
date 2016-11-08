@@ -28,6 +28,7 @@ a[href="https://metrika.yandex.ru/stat/?id=38960170&from=informer"] {
     min-width: 100%;
     width: 100%;
     padding-bottom: 0;
+    overflow-x: hidden;
   }
 
   .main-header .flag {
