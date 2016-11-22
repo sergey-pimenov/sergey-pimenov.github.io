@@ -1,0 +1,47 @@
+@media all and (min-width: 767px) and (max-width: 1314px) {
+	.about_page header {
+		left: 30px !important;
+		background: url('../../images/main_page/backgrounds/mobile/header_bg_1_1314.jpg') center top no-repeat;
+	}
+}
+
+@media all and (max-width: 1314px) {
+
+	.about_page header {
+		min-height: auto;
+		height: auto;
+		left: 63px !important;
+		margin-bottom: 8px;
+		background-size: 100% auto;
+		background-color: red;
+	}
+
+	.about_page .header_content {
+		width: calc(100vw - 60px);
+		height: 100%;
+		margin: 0 auto;
+	}
+
+	.about_page .header_content h1  {
+		margin: 50px 0 0 0;
+		padding: 0 0 40px 0;
+	}
+}
+
+@media all and (max-width: 766px) {
+
+	.about_page header {
+		width: 100%;
+		left: 0px !important;
+		height: auto;
+		padding: 0 0 8px 0;
+		background: url('../../images/main_page/backgrounds/mobile/header_bg_1_767.jpg') center top no-repeat;
+	}
+
+	.about_page .header_content {
+		width: 100%;
+		height: 100%;
+		margin: 0 auto;
+	}
+
+}

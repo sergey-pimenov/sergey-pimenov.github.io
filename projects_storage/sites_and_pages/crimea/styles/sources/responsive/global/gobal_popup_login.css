@@ -1,0 +1,66 @@
+@media all and (max-width: 1314px) {
+
+	.popup_login {
+		min-width: 100vw;
+		min-height: 100vh;
+		width: auto;
+		height: auto;
+		overflow: scroll;
+	}
+
+	.login_container {
+		width: 100%;
+		min-height: auto;
+		margin: 0;
+		padding: 25px 35px;
+		background: white;
+		position: static;
+		border-radius: 3px;
+	}
+
+	.login_container h5 {
+		font-size: 16px;
+	}
+
+	.close_login_container {
+		width: 15px;
+		height: 15px;
+		position: absolute;
+		right: 35px;
+		top: 29px;
+		color: #717171;
+		cursor: pointer;
+	}
+
+	.login_container .social_login {
+		width: 100%;
+		height: 40px;
+		margin: 40px 0 0 0;
+		position: relative;
+	}
+
+	.login_container .social_login:before {
+		content: '';
+		width: 100%;
+		height: 1px;
+		position: absolute;
+		left: 0;
+		top: -17px;
+		background: lightgray;
+	}
+
+
+}
+
+
+
+@media all and (max-width: 389px) {
+
+
+	.login_registration {
+		margin: 15px 0 0 0;
+		display: inline-block;
+	}
+
+
+}

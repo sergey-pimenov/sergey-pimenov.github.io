@@ -1,0 +1,134 @@
+@media all and (max-width: 1314px) {
+
+	footer {
+		width: calc(100vw - 63px);
+		height: 157px;
+		margin: 0 auto;
+		position: relative;
+		left: 31px;
+		color: black;
+		font-size: 14px;
+	}
+
+	footer .logo_footer {
+		width: 133px;
+		height: 40px;
+		margin: 55px auto 50px 35px;
+		position: relative;
+		float: left;
+		background: url('../../images/global/icons/logo_footer.png');
+	}
+
+	footer .logo_agency {
+		width: 180px;
+		height: 80px;
+		margin: 40px 40px 50px auto;
+		position: relative;
+		float: right;
+		background: url('../../images/global/logo_agency.jpg');
+		transition: all 0.5s;
+	}
+
+
+}
+
+@media all and (max-width: 767px) {
+
+	footer {
+		width: 100vw;
+		height: auto;
+		margin: 0 auto;
+		padding: 0;
+		position: relative;
+		left: 0 !important;
+		color: black;
+		font-size: 14px;
+	}
+
+	footer nav {
+		width: 100%;
+		padding: 10px 0 0 0;
+		position: relative;
+	}
+
+	footer nav ul {
+		width: 100%;
+		padding: 0 5px;
+		text-align: center;
+	}
+
+	footer nav ul li {
+		display: inline-block;
+		margin: 20px 0 0 20px;
+	}
+
+}
+
+@media all and (max-width: 767px) {
+
+
+	footer .logo_footer {
+		width: 133px;
+		height: 40px;
+		margin: 40px auto 20px auto;
+		position: relative;
+		float: none;
+		background: url('../../images/global/icons/logo_footer.png') no-repeat center center;
+	}
+
+	footer .logo_agency {
+		width: 180px;
+		height: 80px;
+		margin: 20px auto 40px auto;
+		position: relative;
+		float: none;
+		background: url('../../images/global/logo_agency.jpg') no-repeat center center;
+		transition: all 0.5s;
+	}
+
+
+}
+
+
+
+footer:before {
+	content: '';
+	width: 5000px;
+	height: 1px;
+	background: #dcdcdc;
+	position: absolute;
+	left: -50%;
+}
+
+footer nav ul li a {
+	color: black !important;
+	transition: color 0.3s;
+}
+
+footer nav ul li a:hover {
+	color: #e18432 !important;
+}
+
+footer .logo_footer:after {
+	content: '';
+	width: 133px;
+	height: 40px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background: url('../../images/global/icons/logo_hover.png');
+	opacity: 0;
+	transition: opacity 0.5s;
+}
+
+footer .logo_footer:hover:after {
+	content: '';
+	width: 133px;
+	height: 40px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background: url('../../images/global/icons/logo_hover.png');
+	z-index: 5;
+	opacity: 1;
+}

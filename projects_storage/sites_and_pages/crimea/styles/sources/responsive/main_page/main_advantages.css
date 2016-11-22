@@ -1,0 +1,145 @@
+@media all and (min-width: 767px) and (max-width: 1314px) {
+
+	.main_page .advantages {
+		width: calc(100vw - 50px);
+		margin: 0 auto 15px auto;
+		background: url('../../images/main_page/backgrounds/mobile/advantages_bg_1314.jpg') center bottom no-repeat;
+		background-size: auto 100%;
+	}
+
+	.main_page .advantages_content {
+		width: 100%;
+		height: 255px;
+		margin: 0 auto;
+		padding: 10px 2vw;
+	}
+
+	.main_page .advantages_why_us {
+		width: 70%;
+		height: 95px;
+		margin: 75px 0 0 0;
+		float: left;
+	}
+
+	.main_page .advantages_why_us h3 {
+		width: 170px;
+		margin: 25px 0 0 0;
+		padding: 0 0 0 10px;
+		font-size: 15px;
+	}
+
+	.main_page .advantages_why_us h5 {
+		width: 70px;
+		margin: 0 4vw 0 0;
+		font-size: 14px;
+	}
+
+	.main_page .advantages_content .tags_block {
+		width: 30%;
+		height: auto;
+		margin: 7px 0 0 0;
+		padding: 10px;
+	}
+
+	.main_page .advantages_content .tags_block a {
+		height: 24px;
+		display: inline-block;
+		padding: 0 5px;
+		margin: 0 5px 5px 0;
+		border-radius: 3px;
+		line-height: 24px;
+		font-size: 14px;
+		background: #3a428e;
+		transition: background 0.3s;
+	}
+
+}
+
+
+@media all and (max-width: 767px) {
+
+	.main_page .advantages {
+		width: 100vw;
+		height: auto;
+		margin: 0;
+		left: 0;
+		background: url('../../images/main_page/backgrounds/mobile/advantages_bg_767.jpg') center bottom no-repeat;
+		background-size: auto 100%;
+	}
+
+	.main_page .advantages_content {
+		width: 100%;
+		height: auto;
+		min-height: auto;
+		margin: 0 auto;
+		padding: 10px 2vw 20px 2vw;
+		position: static;
+		float: none;
+	}
+
+	.main_page .advantages_why_us {
+		width: 100%;
+		height: auto;
+		margin: 15px 0 0 0;
+		float: none;
+		position: static;
+	}
+
+	.main_page .advantages_why_us:after {
+	    content:"";
+	    width: 100%;
+	    display:block;
+	    clear:both;
+	}
+
+	.main_page .advantages_why_us h3 {
+		width: 120px;
+		margin: 23px 0 0 0;
+		padding: 0;
+		font-size: 13px;
+	}
+
+	.main_page .advantages_why_us h5 {
+		width: 70px;
+		margin: 0 4vw 0 0;
+		font-size: 9px;
+	}
+
+	.main_page .advantages_content .tags_block {
+		width: 100%;
+		height: auto;
+		margin: 15px 0 0 0;
+		padding: 10px;
+		float: none;
+	}
+
+	.main_page .advantages_content .tags_block a {
+		height: 24px;
+		display: inline-block;
+		padding: 0 5px;
+		margin: 0 5px 5px 0;
+		border-radius: 3px;
+		line-height: 24px;
+		font-size: 14px;
+		background: #3a428e;
+		transition: background 0.3s;
+	}
+
+}
+
+
+@media all and (max-width: 420px) {
+
+	.main_page .advantages_why_us h3 {
+		width: 110px;
+		margin: 28px 0 0 0;
+		font-size: 11px;
+	}
+
+	.main_page .advantages_why_us h5 {
+		width: 50px;
+		margin: 0 4vw 0 0;
+		font-size: 9px;
+	}
+
+}

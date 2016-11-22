@@ -1,0 +1,91 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&subset=latin,cyrillic);
+@font-face{
+    font-family: "BebasNeueLight";
+    src: url("../fonts/BebasNeueLight.woff") format('woff'),
+         url("../fonts/BebasNeueLight.ttf") format('truetype'),
+         url("../fonts/BebasNeueLight.eot") format('embedded-opentype'),
+         url("../fonts/BebasNeueLight.svg") format('svg');
+}
+
+
+
+/***** Basic *****/
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, 
+td,article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    font-family: 'BebasNeueLight', monospace;
+    font-size: 2.38vh;
+}
+
+::selection {
+    background: rgba(250, 250, 250, 0.3);
+}
+
+h2, h3 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+a, a:visited {
+	color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+li {
+    list-style: none;
+}
+
+
+/* Custom scroll-bar for -webkit- */
+.main_page ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+.main_page ::-webkit-scrollbar-track-piece {
+    background-color: rgba(59, 186, 130, 0.8);
+}
+
+.main_page ::-webkit-scrollbar-thumb:vertical {
+    height: 5px;
+    background-color: white;
+}
+
+.main_page ::-webkit-scrollbar-thumb:horizontal {
+    width: 5px;
+    background-color: #666;
+}
+
+/* Custom scroll-bar for IE */
+html, body {
+    scrollbar-3dlight-color: rgba(59, 186, 130, 0.8); 
+    scrollbar-arrow-color: rgba(59, 186, 130, 0.8);
+    scrollbar-highlight-color: rgba(59, 186, 130, 0.8);
+    scrollbar-face-color: white;
+    scrollbar-shadow-color: rgba(59, 186, 130, 0.8);
+    scrollbar-darkshadow-color: #8ab3cf;
+    scrollbar-track-color: rgba(59, 186, 130, 0.8);
+}
+
+
+/***** Basic end *****/

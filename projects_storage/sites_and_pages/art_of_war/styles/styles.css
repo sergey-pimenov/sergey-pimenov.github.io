@@ -1,0 +1,627 @@
+
+@font-face {
+	font-family: 'Conv_6603';
+	src: url('../fonts/6603.eot');
+	src: local('☺'), url('../fonts/6603.woff') format('woff'), url('../fonts/6603.ttf') format('truetype'), url('../fonts/6603.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+
+/***** Basic ******/
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, 
+td,article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+}
+
+a,
+a:visited {
+	color: white;
+	text-decoration: none;
+}
+
+html {
+	width: 100%;
+	font-size: 10px;
+	background: #141c24;
+	font-family: 'Conv_6603';
+	color: white;
+	text-align: center;
+}
+
+body {
+	width: 100%;
+	overflow-x: hidden;
+}
+
+html,
+body {
+	width: 100%;
+}
+
+main {
+	display: block;
+}
+
+* {
+	font-weight: normal;
+}
+
+.o_mini {
+	display: none;
+}
+
+
+/***** Basic end *****/
+
+
+
+/***** Header *****/
+
+
+header {
+	width: 100%;
+	height: 54.644vw;
+	background: #090d10 url("../images/basic/bg_header.jpg") no-repeat;
+	background-size: 100% auto;
+	position: relative;
+}
+
+header:after {
+	content: "";
+	width: 100%;
+	height: 15vw;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	background: url('../images/basic/blue_line_0.png') no-repeat bottom;
+	background-size: 100% auto;
+}
+
+header:before {
+	content: "";
+	width: 100%;
+	height: 54.644vw;
+	position: absolute;
+	left: 0;
+	bottom: -0.15vw;
+	background: url('../images/basic/logo_anim.png') no-repeat;
+	background-size: 100% auto;
+	animation: logo_anim 2s infinite alternate linear;
+}
+
+@keyframes logo_anim {
+	100% {
+		opacity: 0.1;
+	}
+}
+
+header h1 {
+	font-size: 2.15vw;
+	padding: 2.4vw 0 0 0;
+}
+
+header h1 br {
+	display: none;
+}
+
+header iframe {
+	width: 44vw;
+	height: 24.719vw;
+	background: url('../images/basic/header_video.jpg') no-repeat;
+	background-size: 100% auto;
+	position: relative;
+	margin-top: 2.2vw;
+	border: 0.5vw rgba(250, 250, 250, 0.3) solid;
+	transition: all 0.3s;
+	z-index: 3;
+	box-shadow: -3px 0 105px rgba(250, 250, 100, 0.25),
+				-3px 0 105px rgba(250, 250, 100, 0.25);
+}
+
+.iframe_cursor_and_play {
+	width: 44vw;
+	height: 24.719vw;
+	position: absolute;
+	top: 7vw;
+	left: 50%;
+	margin-left: -22vw;
+	cursor: pointer;
+	z-index: 5;
+}
+
+@media all and (min-width: 901px) {
+
+	.iframe_cursor_and_play:hover + iframe {
+		box-shadow: -3px 0 105px rgba(250, 250, 100, 0.55),
+					-3px 0 105px rgba(250, 250, 100, 0.55);
+		border: 0.5vw rgba(250, 250, 250, 0.5) solid;
+	}
+
+}
+
+.iframe_cursor_and_play div {
+	width: 7vw;
+	height: 7vw;
+	background: url('../images/basic/play_icon_one.png') no-repeat;
+	background-size: 100% auto;
+	position: absolute;
+	left: 0;
+	top: 0;
+	transition: all 0.3s;
+	left: 50%;
+	top: 50%;
+	margin: -3vw 0 0 -3vw;
+}
+
+@media all and (min-width: 901px) {
+
+	.iframe_cursor_and_play div:hover {
+		background: url('../images/basic/play_icon_one_hover.png') no-repeat;
+		background-size: 100% auto;
+	}
+
+}
+
+.ru,
+.eng {
+	width: 4.5vw;
+	height: 90px;
+	position: absolute;
+	display: block;
+	top: 0.33vw;
+	transition: -webkit-filter 0.3s, filter 0.3s;
+}
+
+@media all and (min-width: 901px) {
+
+	.ru:hover,
+	.eng:hover {
+		-webkit-filter: brightness(1.5);
+		filter: brightness(1.5);
+	}
+
+}
+
+.ru {
+	background: url('../images/basic/ru.png') no-repeat;
+	background-size: 100% auto;
+	right: 5vw;
+}
+
+.eng {
+	background: url('../images/basic/eng.png') no-repeat;
+	background-size: 100% auto;
+	right: 0.3vw;
+}
+
+.link_block {
+	height: 5.5vw;
+	position: absolute;
+	bottom: 2.8vw;
+	left: 31.95%;
+}
+
+.link_block a {
+	width: 10.5vw;
+	height: 100%;
+	display: block;
+	margin-left: 2.1vw;
+	float: left;
+	z-index: 10;
+	position: relative;
+	transition: all 0.3s;
+}
+
+@media all and (min-width: 901px) {
+
+	.link_block a:hover {
+		width: 11vw;
+	}
+
+}
+
+.link_block a:first-of-type {
+	margin-left: 0;
+}
+
+.link_block a:nth-of-type(1) {
+	background: url('../images/basic/app_store.png') no-repeat;
+	background-size: 100% auto;
+}
+
+.link_block a:nth-of-type(2) {
+	background: url('../images/basic/google_play.png') no-repeat;
+	background-size: 100% auto;
+}
+
+.link_block a:nth-of-type(3) {
+	background: url('../images/basic/apk.png') no-repeat;
+	background-size: 100% auto;
+}
+
+header h3 {
+	width: 100%;
+	height: 3vw;
+	position: absolute;
+	left: 1vw;
+	bottom: 0.6vw;
+	font-size: 1.95vw;
+	background: url('../images/basic/free.png') no-repeat center;
+	background-size: auto 2.1vw;
+}
+
+
+/***** Header end *****/
+
+
+
+/***** Main *****/
+
+
+main {
+	width: 100%;
+	background: url('../images/basic/bg_main.jpg') no-repeat bottom;
+	background-size: 100% auto;
+}
+
+main p {
+	width: 69%;
+	font-size: 1.9vw;
+	margin: 0 auto;
+	padding-top: 2.3vw;
+	position: relative;
+}
+
+main p:last-of-type:after {
+	content: "";
+	width: 100vw;
+	height: 30px;
+	background: url('../images/basic/blue_shadow_1.png') no-repeat bottom;
+	background-size: 100% auto;
+	position: absolute;
+	left: -30%;
+	bottom: -2.3vw;
+}
+
+.images_under_main_p {
+	width: 100%;
+	height: 47vw;
+	padding-top: 5vw;
+	margin-bottom: 1vw;
+	position: relative;
+}
+
+.images_under_main_p .current_picture {
+	width: 64%;
+	height: 37.55vw;
+	margin: 0 auto;
+	background: url('../images/basic/game_picture_1.jpg') no-repeat;
+	background-size: 100% 100% !important;
+	border: 0.5vw rgba(250, 250, 250, 0.3) solid;
+	transition: background-image 0.3s linear;
+	box-sizing: border-box;
+}
+
+.preview_block {
+	width: 65%;
+	height: 6vw;
+	position: absolute;
+	left: 18%;
+	bottom: 1.4vw;
+}
+
+.preview_block article {
+	width: 15.27%;
+	height: 100%;
+	display: block;
+	float: left;
+	cursor: pointer;
+	margin-left: 0.88vw;
+	border: 0.3vw rgba(250, 250, 250, 0.3) solid;
+	transition: all 0.3s;
+	box-sizing: border-box;
+}
+
+.preview_block article:first-of-type {
+	margin-left: 0;
+}
+
+@media all and (min-width: 901px) {
+
+	.images_under_main_p article:hover {
+		border: 0.3vw rgba(250, 250, 250, 0.6) solid;
+	}
+
+}
+
+.shadow_add {
+	border: 0.3vw rgba(250, 250, 250, 0.6) solid !important;
+	box-shadow: 0 0 10px white;
+}
+
+.images_under_main_p article:nth-of-type(1) {
+	background: url('../images/basic/game_picture_1.jpg') no-repeat;
+	background-size: 100% auto;
+}
+
+.images_under_main_p article:nth-of-type(2) {
+	background: url('../images/basic/game_picture_2.jpg') no-repeat;
+	background-size: 100% auto;
+}
+
+.images_under_main_p article:nth-of-type(3) {
+	background: url('../images/basic/game_picture_3.jpg') no-repeat;
+	background-size: 100% auto;
+}
+
+.images_under_main_p article:nth-of-type(4) {
+	background: url('../images/basic/game_picture_4.jpg') no-repeat;
+	background-size: 100% auto;
+}
+
+.images_under_main_p article:nth-of-type(5) {
+	background: url('../images/basic/game_picture_1.jpg') no-repeat;
+	background-size: 100% auto;
+}
+
+.images_under_main_p article:nth-of-type(6) {
+	background: url('../images/basic/game_picture_2.jpg') no-repeat;
+	background-size: 100% auto;
+}
+
+.images_under_main_p aside {
+	width: 0;
+	height: 0;
+	position: absolute;
+	top: 21vw;
+	cursor: pointer;
+	transition: transform 0.3s;
+}
+
+.images_under_main_p aside:hover {
+	transform: scale(1.1);
+}
+
+.images_under_main_p aside:nth-of-type(1) {
+	left: 13vw;
+	border-right: 2vw rgba(250, 250, 250, 0.3) solid;
+	border-top: 1.7vw transparent solid;
+	border-bottom: 1.7vw transparent solid;
+}
+
+.images_under_main_p aside:nth-of-type(2) {
+	right: 13vw;
+	border-left: 2vw rgba(250, 250, 250, 0.3) solid;
+	border-top: 1.7vw transparent solid;
+	border-bottom: 1.7vw transparent solid;
+}
+
+/***** Main end *****/
+
+
+
+/***** Choose your side *****/
+
+
+.choose_your_side {
+	width: 100%;
+	background: #141c24;
+}
+
+.choose_your_side h2 {
+	width: 100%;
+	height: 4.5vw;
+	font-size: 2.4vw;
+	background: url('../images/basic/blue_shadow_2.png') no-repeat,
+				url('../images/basic/choose.png') no-repeat center 1vw;
+	background-size: 100% 2.5vw, auto 2.5vw;
+	padding-top: 1.1vw;
+	text-shadow: 0 0 5px white;
+}
+
+.confederation {
+	width: 100%;
+	height: 38.759vw;
+	background: url('../images/basic/blue_side.jpg') no-repeat bottom;
+	background-size: 100% auto;
+	position: relative;
+}
+
+.confederation h3,
+.resistance h3 {
+	font-size: 2.35vw;
+	padding-top: 0.6vw;
+}
+
+.confederation p,
+.resistance p {
+	width: 40%;
+	font-size: 1.75vw;
+	margin: 2.2vw auto 0 auto;
+	line-height: 115%;
+}
+
+.resistance p {
+	width: 45% !important;
+	font-size: 1.75vw;
+	margin: 2.3vw auto 0 auto;
+	line-height: 115%;
+}
+
+.confederation iframe {
+	width: 39vw;
+	height: 21.91vw;
+	border: none;
+	background: url('../images/basic/blue_side_video.jpg') no-repeat;
+	background-size: 100% auto;
+	position: absolute;
+	top: 14.8vw;
+	left: 50%;
+	margin-left: -19.5vw;
+	border: 0.5vw rgba(21, 151, 214, 0.4) solid;
+	box-shadow: 0 0 35px rgba(21, 151, 214, 0.4);
+	transition: all 0.3s;
+	z-index: 3;
+}
+
+@media all and (min-width: 901px) {
+
+	.iframe_cursor_and_play_2:hover + iframe {
+		border: 0.5vw rgba(21, 151, 214, 0.6) solid;
+		box-shadow: 0 0 55px rgba(21, 151, 214, 0.8);
+	}
+
+}
+
+.iframe_cursor_and_play_2,
+.iframe_cursor_and_play_3 {
+	width: 33vw;
+	height: 18.539vw;
+	position: absolute;
+	top: 17vw;
+	left: 50%;
+	margin-left: -16.5vw;
+	cursor: pointer;
+	z-index: 5;
+}
+
+.resistance {
+	width: 100%;
+	height: 38.759vw;
+	background: url('../images/basic/red_side.jpg') no-repeat bottom;
+	background-size: 100% auto;
+	position: relative;
+	margin-top: 2.7vw;
+}
+
+.resistance iframe {
+	width: 39vw;
+	height: 21.91vw;
+	border: none;
+	background: url('../images/basic/red_side_video.jpg') no-repeat;
+	background-size: 100% auto;
+	position: absolute;
+	top: 14.8vw;
+	left: 50%;
+	margin-left: -19.5vw;
+	border: 0.5vw rgba(250, 0, 0, 0.4) solid;
+	box-shadow: 0 0 35px rgba(250, 0, 0, 0.4);
+	transition: all 0.3s;
+}
+
+@media all and (min-width: 901px) {
+
+	.iframe_cursor_and_play_3:hover + iframe {
+		border: 0.5vw rgba(250, 0, 0, 0.6) solid;
+		box-shadow: 0 0 75px rgba(250, 0, 0, 0.8);
+	}
+
+}
+
+.iframe_cursor_and_play_2 div,
+.iframe_cursor_and_play_3 div {
+	width: 5vw;
+	height: 5vw;
+	margin: -3.7vw 0 0 -2.5vw;
+	background: url('../images/basic/play_icon_two.png') no-repeat;
+	background-size: 100% auto;
+	position: absolute;
+	transition: all 0.3s;
+	left: 50%;
+	top: 50%;
+}
+
+.iframe_cursor_and_play_2 div:hover,
+.iframe_cursor_and_play_3 div:hover {
+	background: url('../images/basic/play_icon_two_hover.png') no-repeat;
+	background-size: 100% auto;
+}
+
+/***** Choose your side end *****/
+
+
+
+/***** Footer *****/
+
+
+footer {
+	width: 100%;
+}
+
+footer .social_block {
+	width: 100%;
+	height: 5vw;
+	margin: 0 auto;
+	padding: 2vw 0 1.8vw 0;
+	background: url('../images/basic/blue_shadow_3.png') no-repeat center 90%;
+	background-size: 100% auto;
+}
+
+.social_block a {
+	width: 4.5%;
+	height: 15.3vw;
+	display: inline-block;
+	transition: -webkit-filter 0.3s, filter 0.3s;
+}
+
+@media all and (min-width: 901px) {
+
+	.social_block a:hover {
+		-webkit-filter: brightness(1.2);
+		filter: brightness(1.2);
+	}
+
+}
+
+.social_block a:nth-of-type(1) {
+	background: url('../images/basic/facebook.png') no-repeat;
+	background-size: 100% auto;
+}
+
+.social_block a:nth-of-type(2) {
+	background: url('../images/basic/google_plus.png') no-repeat;
+	background-size: 100% auto;
+}
+
+.social_block a:nth-of-type(3) {
+	background: url('../images/basic/vk.png') no-repeat;
+	background-size: 100% auto;
+}
+
+.social_block a:nth-of-type(4) {
+	background: url('../images/basic/youtube.png') no-repeat;
+	background-size: 100% auto;
+}
+
+footer p {
+	width: 37%;
+	height: 5vw;
+	margin: 0.8vw auto 0 auto;
+	padding: 2vw 0 0 10vw;
+	text-align: left;	line-height: 130%;
+	background: url('../images/basic/gear_games.png') no-repeat left 0.3vw;
+	background-size: auto 80%;
+	font-size: 0.7vw;
+}
+
+footer p a {
+	color: #32c6f0;
+}
+
+/***** Footer end *****/

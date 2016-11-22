@@ -1,0 +1,469 @@
+@font-face {
+  font-family: 'ProximaNova-Light';
+  src: url('fonts/ProximaNova-Light.eot?#iefix') format('embedded-opentype'),  url('fonts/ProximaNova-Light.woff') format('woff'), url('fonts/ProximaNova-Light.ttf')  format('truetype'), url('fonts/ProximaNova-Light.svg#ProximaNova-Light') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'ProximaNova-Regular';
+  src: url('fonts/ProximaNova-Regular.eot?#iefix') format('embedded-opentype'),  url('fonts/ProximaNova-Regular.woff') format('woff'), url('fonts/ProximaNova-Regular.ttf')  format('truetype'), url('fonts/ProximaNova-Regular.svg#ProximaNova-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'ProximaNova-Bold';
+  src: url('fonts/ProximaNova-Bold.eot?#iefix') format('embedded-opentype'),  url('fonts/ProximaNova-Bold.woff') format('woff'), url('fonts/ProximaNova-Bold.ttf')  format('truetype'), url('fonts/ProximaNova-Bold.svg#ProximaNova-Bold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+/***** Basic *****/
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, 
+td,article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+margin: 0;
+padding: 0;
+}
+
+main {
+	display: block;
+}
+
+a, a:visited {
+	color: white;
+}
+
+html {
+	background-color: #dbe8f6;
+	font-family: 'ProximaNova-Regular';
+}
+
+body {
+	background: url(../images/bg_icons.png);
+	overflow-x: hidden;
+}
+
+
+/***** Basic end *****/
+
+
+
+/***** Header *****/
+
+
+header {
+	width: 100%;
+	height: 84px;
+	background: white;
+	position: relative;
+	font-family: "ProximaNova-Regular";
+}
+
+header section {
+	width: 960px;
+	height: 100%;
+	margin: 0 auto;
+	position: relative;
+}
+
+.logo {
+	width: 145px;
+	height: 55px;
+	background: url(../images/logo.png) no-repeat;
+	position: absolute;
+	left: -2px;
+	top: 50%;
+	margin-top: -28px;
+}
+
+.user_actions_block {
+	position: absolute;
+	right: -720px;
+	height: 100%;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+	-webkit-transform-origin: 50% 0;
+	   -moz-transform-origin: 50% 0;
+	        transform-origin: 50% 0;
+}
+
+.user_actions_block a {
+	height: 30px;
+	display: inline-block;
+	position: relative;
+	top: 17px;
+	cursor: pointer;
+	text-decoration: none;
+	color: #4595de;
+}
+
+.user:before {
+	content: "";
+	width: 50px;
+	height: 50px;
+	background: url(../images/login-name.png) no-repeat;
+	position: absolute;
+	left: -21px;
+	top: 5px;
+}
+
+.question {
+	width: 22px;
+	height: 50px;
+	position: relative;
+	left: 15px;
+}
+
+.question:after {
+	content: "";
+	width: 22px;
+	height: 50px;
+	background: url(../images/question_circle.png) no-repeat;
+	position: absolute;
+	top: 15px;
+}
+
+.logout {
+	width: 30px;
+	height: 30px;
+	position: relative;
+}
+
+.logout:after {
+	content: "";
+	width: 30px;
+	height: 30px;
+	background: url(../images/logout.png) no-repeat;
+	position: absolute;
+	left: 30px;
+	top: 16px;
+}
+
+.display_on_mobile {
+	display: none;
+}
+
+.mobile_menu_icon {
+	display: none;
+}
+
+.display_this {
+	-webkit-transform: scaleY(1) !important;
+	   -moz-transform: scaleY(1) !important;
+	        transform: scaleY(1) !important;
+}
+
+
+/***** Header end *****/
+
+
+
+/***** Main *****/
+
+
+main {
+	width: 960px;
+	min-height: 765px;
+	background: white;
+	margin: 43px auto 52px auto;
+	color: #6d6e86;
+}
+
+main h2 {
+	height: 65px;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(-60%, white), color-stop(-60%, #f6f9fb));
+	background: -webkit-linear-gradient(top, white -60%, #f6f9fb);
+	background: -moz-linear-gradient(top, white -60%, #f6f9fb);
+	background: linear-gradient(to bottom, white -60%, #e6edf6);
+	font-size: 26px;
+	padding: 35px 0 0 43px;
+	font-weight: 400;
+	font-family: "ProximaNova-Bold";
+	letter-spacing: 2px;
+}
+
+main h3 {
+	font-size: 1.5em;
+	position: relative;
+	font-family: "ProximaNova-Bold";
+}
+
+h3:after {
+	content: "";
+	width: 62px;
+	height: 2px;
+	background: #3c90dc;
+	position: absolute;
+	left: 0;
+	top: 40px;
+}
+
+
+/***** Main end *****/
+
+
+
+/***** Cost *****/
+
+
+.selection_price {
+	width: 92%;
+	margin: 48px auto 0 auto;
+}
+
+.cost {
+	width: 225px;
+	height: 70px;
+	border: 1px #c0cbe2 solid;
+	border-radius: 5px/7px;
+	display: inline-block;
+	margin-top: 32px;
+	position: relative;
+	cursor: pointer;
+}
+
+.cost:hover {
+	-webkit-box-shadow: 0 0 2px #3388d5;
+	        box-shadow: 0 0 2px #3388d5;
+	border: 1px #3388d5 solid;
+}
+
+.cost:hover .days {
+	color: #3388d5;
+}
+
+.cost:not(:first-of-type) {
+	position: relative;
+	margin-left: 20px;
+}
+
+.cost span {
+	position: relative;
+	left: 34px;
+	top: 25px;
+}
+
+.days {
+	color: #6d6e86;
+	font-size: 20px;
+	-webkit-transition: all 0.2s;
+	-moz-transition: all 0.2s;
+	transition: all 0.2s;
+	font-family: "ProximaNova-Bold";
+}
+
+.cost_inner {
+	position: relative;
+	left: 50px !important;
+	top: 24px !important;
+}
+
+.cost:not(:first-of-type) span {
+	position: relative;
+	top: 14px;
+	top: 14px !important;
+}
+
+.cost footer {
+	position: absolute;
+	left: 34px;
+	bottom: 14px;
+	color: #f23f00;
+	font-size: 0.8em;
+}
+
+.cost_footer_element {
+	display: inline-block;
+	margin: 21px 0 0 0;
+	font-family: "ProximaNova-Light";
+	font-size: 1.3em;
+}
+
+.cost_footer_element span {
+	color: #3885d7;
+}
+
+.description_for_selection {
+	font-family: "ProximaNova-Light";
+	font-size: 1.3em;
+}
+
+.select_cost {
+	-webkit-box-shadow: 0 0 2px #3388d5;
+	        box-shadow: 0 0 2px #3388d5;
+	border: 1px #3388d5 solid;
+}
+
+.days_select {
+	color: #3388d5;
+}
+
+#days,
+#price {
+	font-family: "ProximaNova-Bold";
+	font-size: 1.05em;
+}
+
+
+/***** Cost end *****/
+
+
+
+/***** Payment  *****/
+
+
+.selection_payment {
+	width: 92%;
+	margin: 60px auto 0 auto;
+}
+
+.selection_payment ul {
+	margin: 50px 0 0 0;
+}
+
+.selection_payment ul li {
+	width: 205px;
+	height: 60px;
+	border: 1px #c0cbe2 solid;
+	border-radius: 7px/7px;
+	list-style: none;
+	display: inline-block;
+	margin-bottom: 20px;
+	cursor: pointer;
+	-webkit-filter: grayscale(1);
+	filter: grayscale(1);
+	-webkit-transition: all 0.2s;
+	-moz-transition: all 0.2s;
+	transition: all 0.2s;
+}
+
+.selection_payment ul li:hover {
+	-webkit-filter: grayscale(0);
+	filter: grayscale(0);
+	-webkit-box-shadow: 0 0 2px #3388d5;
+	        box-shadow: 0 0 2px #3388d5;
+	border: 1px #3388d5 solid;
+}
+
+.selection_payment ul li:not(:first-of-type) {
+	margin-left: 12px;
+}
+
+.selection_payment ul li:nth-of-type(5) {
+	margin-left: 0;
+}
+
+.selection_payment ul li span {
+	position: relative;
+	left: 50px;
+	top: 17px;
+}
+
+.selection_payment ul li:nth-of-type(1) {
+	background: url(../images/card_logo.png) no-repeat;
+	background-size: 30px auto;
+	background-position: 12px 11px;
+}
+
+.selection_payment ul li:nth-of-type(2) {
+	background: url(../images/webmoney.png) no-repeat;
+	background-size: 30px auto;
+	background-position: 12px 11px;
+}
+
+.selection_payment ul li:nth-of-type(3) {
+	background: url(../images/yandex_money.png) no-repeat;
+	background-size: 30px auto;
+	background-position: 12px 11px;
+}
+
+.selection_payment ul li:nth-of-type(4) {
+	background: url(../images/qiwi.png) no-repeat;
+	background-size: 30px auto;
+	background-position: 12px 11px;
+}
+
+.selection_payment ul li:nth-of-type(5) {
+	background: url(../images/alfabank.png) no-repeat;
+	background-size: 30px auto;
+	background-position: 12px 11px;
+}
+
+.selection_payment ul li:nth-of-type(6) {
+	background: url(../images/privat24.png) no-repeat;
+	background-size: 30px auto;
+	background-position: 12px 11px;
+}
+
+.selection_payment ul li:nth-of-type(7) {
+	background: url(../images/paypal.png) no-repeat;
+	background-size: 30px auto;
+	background-position: 12px 11px;
+}
+
+.selection_payment ul li:nth-of-type(8) {
+	background: url(../images/other.png) no-repeat;
+	background-size: 20px auto;
+	background-position: 12px 13px;
+}
+
+.li_selected {
+	-webkit-filter: grayscale(0) !important;
+	filter: grayscale(0) !important;
+	-webkit-box-shadow: 0 0 2px #3388d5 !important;
+	        box-shadow: 0 0 2px #3388d5 !important;
+	border: 1px #3388d5 solid !important;
+}
+
+
+/***** Payment end  *****/
+
+
+
+/***** Button *****/
+
+
+button {
+	width: 205px;
+	height: 50px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#6fce30), to(#3fa401));
+	background: -webkit-linear-gradient(top, #6fce30, #3fa401);
+	background: -moz-linear-gradient(top, #6fce30, #3fa401);
+	background: linear-gradient(to bottom, #71d032 -30%, #3ea401);
+	border: none;
+	border-radius: 5px/5px;
+	margin: 10px 0 0 4%;
+	color: white;
+	font-size: 1.2em;
+	-webkit-box-shadow: 0 3px 0 #207000;
+	        box-shadow: 0 3px 0 #207000;
+	cursor: pointer;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+	font-family: "ProximaNova-Light";
+}
+
+button:hover {
+	background: -webkit-gradient(linear, left top, left bottom, from(#3fa401), to(#6fce30));
+	background: -webkit-linear-gradient(top, #3fa401, #6fce30);
+	background: -moz-linear-gradient(top, #3fa401, #6fce30);
+	background: linear-gradient(to bottom, #3fa401, #6fce30);
+}
+
+
+/***** Button end *****/

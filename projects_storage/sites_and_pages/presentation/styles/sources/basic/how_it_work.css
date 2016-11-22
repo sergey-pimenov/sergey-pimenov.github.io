@@ -1,0 +1,311 @@
+.how_it_work {
+	position: relative;
+	background: #1f3991;
+	color: white;
+}
+
+.how_it_work:before {
+	content: "";
+	width: 1200vw;
+	height: 100vh;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background: #1f3991;
+	animation: gradient_anim 8s infinite linear alternate;
+}
+
+@keyframes gradient_anim {
+	50% {
+		background: #73245a;
+	}
+	100% {
+		background: #7406a2;
+	}
+}
+
+.how_it_work > p {
+	position: relative;
+	top: 35vh;
+	font-size: 2.1vw;
+	text-align: center;
+	transition: all 3s;
+}
+
+.translate_start {
+	animation: translate_start_anim 1s forwards;
+}
+
+@keyframes translate_start_anim {
+	30% {
+		opacity: 0;
+	}
+	41% {
+		transform: translateY(0);
+	}
+	42% {
+		transform: translateY(-31vh);
+		opacity: 0;
+	}
+	43% {
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(-31vh);
+		opacity: 1;
+	}
+}
+
+.how_it_work form {
+	position: relative;
+	z-index: 5;
+	text-align: center;
+}
+
+.how_it_work form button {
+	width: 10vw;
+	height: 2.5vw;
+	position: absolute;
+	left: 45vw;
+	top: 38vh;
+	border: 1px white solid;
+	outline: none;
+	background: transparent;
+	font-size: 1.5vw;
+	cursor: pointer;
+	vertical-align: middle;
+	animation: start_button_anim 2.5s infinite linear;
+	transition: all 1s;
+}
+
+.hide_button {
+	opacity: 0;
+}
+
+@keyframes start_button_anim {
+	40% {
+		border-radius: 0vw;
+	}
+	80% {
+		border-radius: 0;
+	}
+	100% {
+		border-radius: 0;
+	}
+}
+
+.tour_block {
+	width: 100vw;
+	height: 38vw;
+	max-height: 75vh;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+}
+
+.tour_block div {
+	width: 15%;
+	min-height: 50%;
+	padding-top: 10%;
+	position: absolute;
+	color: white;
+	text-align: center;
+}
+
+.tour_block div h3 {
+	font-size: 1.3vw;
+	text-align: center !important;
+	opacity: 0;
+}
+
+.tour_block div p {
+	margin-top: 0.2vw;
+	font-size: 1.1vw;
+	opacity: 0;
+}
+
+.tour_block div object {
+	width: 100%;
+	height: 50%;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.tour_block .polls {
+	left: 2%;
+	top: 0;
+}
+
+.tour_block .talents {
+	left: 23%;
+	bottom: 2vw;
+	z-index: 100;
+}
+
+.tour_block .photo_album {
+	left: 43%;
+	top: 0;
+}
+
+.tour_block .competitions {
+	left: 63%;
+	bottom: 2vw;
+}
+
+.tour_block .my_city {
+	left: 83%;
+	top: 0;
+}
+
+/* Lines */
+
+.show_line.polls_line:after {
+	content: "";
+	width: 1px;
+	height: 8vw;
+	position: absolute;
+	right: 0;
+	top: 100%;
+	background: white;
+	transform: rotateZ(-45deg) scaleY(0);
+	transform-origin: 0 0;
+	animation: line_anim_1 1s forwards;
+}
+
+@keyframes line_anim_1 {
+	100% {
+		transform: rotateZ(-45deg) scaleY(1);
+	}
+}
+
+.show_line.talents_line:after {
+	content: "";
+	width: 1px;
+	height: 8vw;
+	position: absolute;
+	right: 15%;
+	top: -50%;
+	background: white;
+	transform: rotateZ(45deg) scaleY(0);
+	transform-origin: 0 100%;
+	animation: line_anim_2 1s forwards;
+}
+
+@keyframes line_anim_2 {
+	100% {
+		transform: rotateZ(45deg) scaleY(1);
+	}
+}
+
+.show_line.photo_line:after {
+	content: "";
+	width: 1px;
+	height: 8vw;
+	position: absolute;
+	right: 0;
+	top: 100%;
+	background: white;
+	transform: rotateZ(-45deg) scaleY(0);
+	transform-origin: 0 0;
+	animation: line_anim_3 1s forwards;
+}
+
+@keyframes line_anim_3 {
+	100% {
+		transform: rotateZ(-45deg) scaleY(1);
+	}
+}
+
+.show_line.my_city:after {
+	content: "";
+	width: 1px;
+	height: 8vw;
+	position: absolute;
+	left: -48%;
+	bottom: 18%;
+	background: white;
+	transform: rotateZ(45deg) scaleY(0);
+	transform-origin: 0 100%;
+	animation: line_anim_4 1s forwards;
+} 
+
+@keyframes line_anim_4 {
+	100% {
+		transform: rotateZ(45deg) scaleY(1);
+	}
+}
+
+.show_line.competitions:before {
+	content: "";
+	width: 1px;
+	height: 15vw;
+	position: absolute;
+	left: -35%;
+	top: 75%;
+	background: white;
+	transform: rotateZ(90deg) scaleY(0);
+	transform-origin: 0 0;
+	animation: line_anim_5 1s forwards;
+}
+
+@keyframes line_anim_5 {
+	100% {
+		transform: rotateZ(90deg) scaleY(1);
+	}
+}
+
+.tap {
+	display: block;
+	position: absolute;
+	left: 5vw !important;
+	top: 6vw !important;
+	opacity: 0;
+}
+
+.show_tap .tap {
+	animation: tap_anim 1s 2.5s forwards;
+}
+
+@keyframes tap_anim {
+	100% {
+		opacity: 1;
+	}
+}
+
+.show_block h3 {
+	animation: show_block 1s 0.7s forwards;
+}
+
+.tour_block .show_block p {
+	animation: show_block 2s 1.5s forwards;
+}
+
+@keyframes show_block {
+	100% {
+		opacity: 1;
+	}
+}
+
+.tour_block .show_block .tap {
+	opacity: 1;
+	animation: tab_block 1s forwards;
+}
+
+@keyframes tab_block {
+	100% {
+		opacity: 0;
+	}
+}
+
+.start_area {
+	width: 100% !important;
+	height: 100% !important;
+	display: block !important;
+	position: absolute !important;
+	left: 0 !important;
+	top: 0 !important;
+	cursor: pointer;
+	z-index: -5;
+}
+

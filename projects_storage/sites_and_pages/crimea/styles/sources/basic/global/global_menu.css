@@ -1,0 +1,313 @@
+.menu_block {
+	width: 70px;
+	height: 100vh;
+	position: fixed;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 50;
+	background: #2e3046;
+	color: white;
+	transition: all 0.5s;
+	transform: translateZ(0);
+	-webkit-will-change: width, height;
+	will-change: width, height;
+}
+
+.menu_block * {
+	transform: translateZ(0);
+	-webkit-will-change: width, height;
+	will-change: width, height;
+}
+
+.menu_logo {
+	width: 100%;
+	height: 60px;
+	cursor: pointer;
+}
+
+.menu_logo:before {
+	content: '';
+	width: 100%;
+	height: 1px;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	background: #434559;
+}
+
+.menu_block > ul > li {
+	width: 100%;
+	min-height: 60px;
+	cursor: pointer;
+	position: relative;;
+}
+
+.menu_block > ul > li:before {
+	content: '';
+	width: 100%;
+	height: 1px;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	background: #434559;
+}
+
+.menu_block > ul > li:hover:before {
+	display: none;
+}
+
+.menu_block > ul > li:after {
+	content: '';
+	width: 28px;
+	height: 28px;
+	position: absolute;
+	left: 20px;
+	top: 15px;
+	background: url('../../images/global/icons/coffee.png') no-repeat;
+	background-position: 0 0 !important;
+	z-index: 10;
+}
+
+.menu_block > ul > li:hover:after {
+	background-position: 0 -28px !important;
+}
+
+.menu_block > ul > li:nth-of-type(1):after {
+	background: url('../../images/global/icons/info.png') no-repeat center center;
+}
+
+.menu_block > ul > li:nth-of-type(2):after {
+	background: url('../../images/global/icons/home.png') no-repeat center center;
+}
+
+.menu_block > ul > li:nth-of-type(3):after {
+	background: url('../../images/global/icons/coffee.png') no-repeat center center;
+}
+
+.menu_block > ul > li:nth-of-type(4):after {
+	background: url('../../images/global/icons/star.png') no-repeat center center;
+}
+
+.menu_block > ul > li:nth-of-type(5):after {
+	background: url('../../images/global/icons/nature.png') no-repeat center center;
+}
+
+.menu_block > ul > li:nth-of-type(6):after {
+	background: url('../../images/global/icons/paralells.png') no-repeat center center;
+}
+
+.menu_block ul li h5 {
+	height: 60px;
+	line-height: 60px;
+	display: none;
+	background: white;
+	font-size: 13px;
+	text-align: center;
+	color: black;
+	cursor: default;
+}
+
+.open_menu ul li h5 {
+	cursor: pointer;
+	text-align: left;
+	padding: 0 0 0 70px;
+}
+
+.menu_block > ul > li:hover {
+	background-color: #e18432;
+}
+
+.menu_block ul li:hover h5 {
+	width: 158px;
+	display: block;
+	position: relative;
+	left: 70px;
+	line-height: 60px;
+}
+
+.menu_block ul li:hover h5:after {
+	content: '';
+	width: 0;
+	height: 0;
+	position: absolute;
+	left: -10px;
+	top: 20px;
+	border-style: solid;
+	border-width: 10px 10px 10px 0;
+	border-color: transparent white transparent transparent;
+}
+
+.menu_block ul li ul li {
+	min-height: 30px;
+	background: white !important;
+	text-align: center;
+	line-height: 30px;
+	font-size: 13px;
+	text-align: left;
+	padding: 0 0 0 70px;
+}
+
+.menu_block ul li ul li a {
+	width: 100%;
+	height: 100%;
+	display: none;
+	color: black;
+}
+
+.open_menu ul li ul li a {
+	display: inline-block;
+}
+
+.menu_block ul li ul li:hover a {
+	color: #e18432 !important;
+}
+
+.open_menu {
+	width: 262px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.open_menu h5 {
+	display: block !important;
+	width: 100%;
+	position: relative;
+	left: 0 !important;
+	background: red;
+}
+
+.open_menu h5:after {
+	content: '';
+	width: 100%;
+	height: 1px;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	background: #434559;
+}
+
+.open_menu h5 {
+	background: #2e3046 !important;
+	color: white !important;
+}
+
+.open_menu ul li:hover h5 {
+	width: 262px;
+	display: block;
+	position: relative;
+	left: 0 !important;
+	background: #e18432;
+}
+
+.open_menu h5:hover:after {
+	display: none;
+}
+
+.open_menu ul li:hover h5:after {
+	content: '';
+	border: none;
+}
+
+.menu_block > ul li ul li {
+	height: 0;
+	min-height: 0;
+	transition: all 0.5s;
+}
+
+.menu_block ul li ul li {
+	opacity: 0;
+	line-height: 30px;
+	color: black;
+}
+
+.open_menu .open_sub_item + ul li {
+	height: 30px;
+	min-height: 30px;
+	opacity: 1;
+}
+
+.open_menu .open_sub_item + ul li:first-of-type {
+	height: 40px;
+	min-height: 40px;
+	padding-top: 10px;
+}
+
+.open_menu .open_sub_item + ul li:last-of-type {
+	height: 40px;
+	min-height: 40px;
+	padding-bottom: 10px;
+}
+
+html body .open_menu .open_sub_item {
+	background-color: #e18432 !important;
+}
+
+html body .open_menu .open_sub_item:after {
+	display: none;
+}
+
+.menu_logo span {
+	width: 27px;
+	height: 2px;
+	margin-left: -13.5px;
+	display: inline-block;
+	position: absolute;
+	right: 21px;
+	background: #959bd0;
+	transition: all 0.5s;
+	transform-origin: 0 1px;
+}
+
+.menu_logo:hover span {
+	background: #e18432;
+}
+
+.menu_logo span:nth-of-type(1) {
+	top: 18px;
+}
+
+.menu_logo span:nth-of-type(2) {
+	top: 28px;
+}
+
+.menu_logo span:nth-of-type(3) {
+	top: 38px;
+}
+
+.open_menu .menu_logo span:nth-of-type(1) {
+	transform: rotateZ(-45deg) translate(-7px, 7px) scale(0.5, 0.8);
+}
+
+.open_menu .menu_logo span:nth-of-type(3) {
+	transform: rotateZ(45deg) translate(-7px, -7px) scale(0.5, 0.8);
+}
+
+.open_menu ul li h5:before {
+	content: '';
+	width: 13px;
+	height: 7px;
+	position: absolute;
+	right: 21px;
+	top: 47%;
+	background: url('../../images/global/icons/select_arrow.png') no-repeat;
+	background-size: 100% auto;
+	transition: transform 0.5s;
+}
+
+.open_menu > ul > li:hover h5 {
+	background: #e18432 !important;
+}
+
+.open_sub_item:before {
+	transform: scale(1, -1);
+}
+
+.open_menu h5:hover {
+	background: #e18432 !important;
+}
+
+html body .open_menu .addBg:after {
+	background-position: 0 -50% !important;
+}
