@@ -1,0 +1,75 @@
+.sportsmen_1 {
+	background: url('../../images/backgrounds/sport_1.jpg') no-repeat;
+	background-size: 100% auto;
+	color: white;
+}
+
+.sportsmen_1:after {
+	content: "";
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background: rgba(45, 93, 146, 0.5);
+}
+
+.sportsmen_1_container {
+	height: 53vh;
+	padding: 4vh 0 10vh 0;
+	position: relative;
+	top: 20vh;
+	background: rgba(0, 0, 0, 0.4);
+}
+
+.sportsmen_1 * {
+	position: relative;
+	z-index: 5;
+}
+
+.sportsmen_1 h2 {
+	font-size: 2vw;
+	text-align: center;
+}
+
+.sportsmen_1 p {
+	width: 33vw;
+	font-size: 1.35vw;
+}
+
+.sportsmen_1 p:first-of-type {
+	float: left;
+	margin: 5vh 0 0 15vw;
+}
+
+.sportsmen_1 p:last-of-type {
+	float: right;
+	margin: 5vh 15vw 0 0;
+}
+
+.sportsmen_1 p span {
+	color: #a2d7f8;
+}
+
+.sportsmen_1 h3:before {
+	content: "";
+	width: 100%;
+	display: block;
+	clear: both;
+}
+
+.sportsmen_1 h3 {
+	width: 70%;
+	position: relative;
+	left: 39vw;
+	top: 4vh;
+	font-size: 1.7vw;
+	text-align: center;
+	line-height: 1.2;
+	color: #a2d7f8;
+}
+
+.sportsmen_1 h3 span {
+	display: inline-block;
+	margin: 0 0 0 12vw;
+}

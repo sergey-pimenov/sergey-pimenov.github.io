@@ -1,0 +1,210 @@
+@media all and (max-width: 1314px) {
+
+	.header_top_bar {
+		height: 60px;
+		padding: 0 3vw;
+		line-height: 60px;
+	}
+
+	.header_top_bar .weather_data {
+		padding: 0 30px 0 48px;
+		display: inline-block;
+		background: url('../../images/global/icons/weather_cloud_and_suny.png') left 42% no-repeat;
+	}
+
+	.header_top_bar .search_icon {
+		min-width: 17px;
+		margin-right: 5.13%;
+		float: right;
+		background: url('../../images/global/icons/search.png') no-repeat center center;
+		cursor: pointer;
+	}
+
+	.header_top_bar .logo {
+		width: 133px;
+		height: 60px;
+		margin: 0;
+		background: url('../../images/global/logo.png') no-repeat left center;
+		background-size: 100% auto;
+		float: left;
+	}
+
+	.header_top_bar .weather_and_city {
+		min-width: 16.07%;
+		margin-right: 6.41%;
+		float: right;
+	}
+
+	.header_top_bar .city {
+		display: inline-block;
+		float: right;
+		cursor: pointer;
+	}
+
+	header .back_and_current {
+		padding: 0 25px;
+	}
+
+}
+
+@media all and (max-width: 767px) {
+
+	.header_top_bar {
+		width: 100%;
+		height: 60px;
+		margin: 0;
+		left: 0;
+		padding: 0 15px 0 0;
+		line-height: 60px;
+		border-bottom: 1px rgba(250, 250, 250, 0.3) solid;
+	}
+
+	.header_top_bar .weather_data {
+		padding: 0 30px 0 48px;
+		display: inline-block;
+		background: url('../../images/global/icons/weather_cloud_and_suny.png') left 42% no-repeat;
+	}
+
+	.header_top_bar .search_icon {
+		min-width: 17px;
+		margin-right: 5.13%;
+		float: right;
+		background: url('../../images/global/icons/search.png') no-repeat center center;
+		cursor: pointer;
+	}
+
+	.header_top_bar .logo {
+		width: 133px;
+		height: 60px;
+		margin: -5px 0 0 60px;
+		background: url('../../images/global/logo.png') no-repeat left center;
+		background-size: 100% auto;
+		float: left;
+	}
+
+	.header_top_bar .weather_and_city {
+		min-width: 16.07%;
+		margin-right: 6.41%;
+		float: right;
+	}
+
+	.header_top_bar .city {
+		display: inline-block;
+		float: right;
+		cursor: pointer;
+	}
+
+}
+
+@media all and (max-width: 530px) {
+
+	.header_top_bar {
+		padding: 0 15px 0 0;
+		font-size: 11px;
+	}
+
+	.header_top_bar .weather_and_city {
+		min-width: auto;
+		width: 130px;
+		padding: 0;
+		margin: 0 15px 0 0;
+	}
+
+	.header_top_bar .weather_data {
+		padding: 0 0 0 25px;
+		margin: 0;
+		background-size: auto 15px !important;
+		background-position: 0 45%;
+	}
+
+	.header_top_bar .search_icon {
+		margin-right: 15px;
+	}
+
+	.header_top_bar .logo {
+		width: 75px;
+		margin: -2px 0 0 60px;
+	}
+
+}
+
+
+@media all and (max-width: 380px) {
+
+	.header_top_bar .weather_and_city {
+		min-width: auto;
+		width: 110px;
+		padding: 0;
+		margin: 0 15px 0 0;
+	}
+
+	.header_top_bar .weather_data {
+		padding: 0;
+		margin: 0;
+		background: none;
+	}
+
+
+}
+
+
+@media all and (max-width: 350px) {
+
+	.header_top_bar {
+		font-size: 9px;
+	}
+
+	.header_top_bar .weather_and_city {
+		min-width: auto;
+		width: 80px;
+		padding: 0;
+		margin: 0 15px 0 0;
+	}
+
+
+
+}
+
+
+
+
+.header_top_bar .login {
+	min-width: 2.99%;
+	float: right;
+	cursor: pointer;
+}
+
+.header_top_bar .search_form {
+	width: 100%;
+	height: 50px;
+	position: absolute;
+	left: 0;
+	bottom: -50px;
+	background: white;
+	transform-style: preserve-3d;
+	transform: perspective(900px) rotateX(-90deg);
+	transform-origin: 50% 0;
+	transition: transform 0.5s;
+}
+
+.header_top_bar .search_form_display {
+	transform: perspective(900px) rotateX(0);
+}
+
+.header_top_bar .search_form * {
+	display: block;
+	float: right;
+}
+
+.header_top_bar .search_form [type=search] {
+	width: calc(100% - 70px);
+	height: 100%;
+}
+
+.header_top_bar .search_form [type=submit] {
+	width: 70px;
+	height: 100%;
+	background: white url('../../images/global/icons/search_icon_input.svg') no-repeat center center;
+	background-size: auto 40%;
+	cursor: pointer;
+}

@@ -1,0 +1,28 @@
+@media all and (min-width: 1315px) {
+	.about_page header {
+		background: url('../../images/main_page/backgrounds/header_bg_1.jpg') center top no-repeat;
+	}
+}
+
+.about_page header {
+	width: calc(100vw - 60px);
+	min-height: 625px;
+	padding: 0;
+	position: relative;
+	left: 63px !important;
+	background-size: auto 100%;
+	background-color: #959bd0;
+}
+
+.about_page .header_content {
+	width: 1170px;
+	height: 100%;
+	margin: 0 auto;
+}
+
+.about_page .header_content h1 {
+	margin: 225px 0;
+	font-size: 50px;
+	font-weight: 100;
+	text-align: center;
+}

@@ -1,0 +1,359 @@
+///------ Text ------///
+
+// Basic text color (btc)
+$btc: black
+
+// Basic invert color (bic)
+$bic: invert($btc)
+
+// Accent text color (atc)
+$atc: #ccc
+
+
+///------ Elements ------///
+
+// Basic element color (bec)
+$bec: black
+
+// Hover element color (hec)
+$hec: lighten($bec, 20)
+
+// Secondary element color (sec)
+$sec: white
+
+// Background color 1 (bc1)
+$bc1: lightgrey
+
+// Background color 2 (bc2)
+$bc2: #9443b1
+
+// Background color 2 hover (bc2h)
+$bc2h: darken($bc2, 5)
+
+
+///------ Borders ------///
+
+// Basic border color (bbc)
+$bbc: $bec
+@import 'https://fonts.googleapis.com/css?family=Lato:300,400,700'
+
+*	
+	box-sizing: border-box
+
+// Forms
+
+button
+	padding: 14px 80px
+	outline: none
+	border: none
+	background: $bc2
+	color: $bic
+	cursor: pointer
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, 
+td,article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video
+	margin: 0
+	padding: 0
+html
+	color: $btc
+	font-family: 'Lato', sans-serif
+	text-align: center
+
+h1
+	font-size: 54px
+
+h2
+	font-size: 34px
+	font-weight: 700
+
+p
+	font-size: 16px
+	line-height: 1.8
+
+a
+	color: inherit
+	text-decoration: none
+
+li
+	list-style: none
+	margin-top: 1em
+.main_page
+	text-align: center
+
+.main_page > section
+	padding: 100px 0
+
+.main_page header
+	min-height: 100vh
+	padding: 0 0 30px 0
+	position: relative
+	color: $bic
+	background: red
+
+.main_page .header_intro
+	position: relative
+	top: calc(50vh - 250px)
+
+.main_page h1
+	padding: 92px 0 24px 0
+
+.main_page h1 + p
+	font-size: 15px
+
+.main_page .mouse_icon
+	width: 35px
+	height: 35px
+	margin: calc(50vh - 150px) auto 0 auto
+	background: $sec
+
+.main_page .rights
+	padding: 0 0 45px 0
+	margin-top: -50px
+
+.main_page .rights h6
+	position: relative
+
+.sub_page header
+	padding: 100px 0
+	background: #9443b1
+	color: $bic
+
+.sub_page h1
+	margin: 0 0 30px 0
+
+.sub_page main
+	margin: 100px auto
+
+.sub_page header p
+	width: 50%
+	margin: 0 auto 15px auto
+
+.sub_page .lists_block
+	padding: 50px 0 75px 0
+	background: $bc2
+	color: $bic
+
+.sub_page .lists_block:after
+	content: ''
+	display: block
+	clear: both
+
+.sub_page .lists_block h2
+	margin-bottom: 40px
+
+.sub_page .lists_block ul
+	width: calc(100% / 3)
+	float: left
+
+.rights
+	padding: 35px 0
+
+.rights h6
+	position: relative
+
+
+
+.ellipse_block
+	width: 900px
+	margin: 0 auto
+	padding: 50px 0
+	position: relative
+	border-right: 1px $bbc solid
+	border-left: 1px $bbc solid
+	border-bottom: 1px $bbc solid
+
+.ellipse_block:before,
+.ellipse_block:after
+	content: ''
+	width: 240px
+	height: 1px
+	position: absolute
+	left: 0
+	top: 0
+	background: $bbc
+
+.ellipse_block:after
+	left: auto
+	right: 0
+
+.ellipse_block h2
+	position: relative
+	margin-top: calc(128px / -2 - 7px)
+
+.ellipse_block h3
+	margin: calc(112px + 90px) 0 0 0
+	position: relative
+
+.ellipse_block h3:before
+	content: ''
+	width: 80px
+	height: 80px
+	position: absolute
+	left: calc(50% - 40px)
+	top: calc(-90px - 43px)
+	background-size: 100% auto
+	background-position: center
+	background-repeat: no-repeat
+
+.ellipse_block p
+	padding: 35px 170px 5px 170px
+	font-weight: 300
+
+.ellipse_block h3 + p
+
+.ellipse_block form
+	margin-top: 30px
+
+
+.masonry
+	width: 100%
+	margin-top: 10px
+	padding: 0 10px
+	font-size: 0
+	box-sizing: border-box
+	text-align: center
+
+.masonry li
+	width: calc((100% - 40%) / 2)
+	height: 13vw
+	margin-bottom: 10px
+	display: inline-block
+	position: relative
+	background: $bc1
+
+.masonry li:nth-of-type(3n + 2)
+	width: calc(40% - 20px)
+	margin: 0 10px 10px 10px
+
+.masonry a
+	width: 100%
+	height: 100%
+	display: block
+	position: relative
+
+.masonry a h6
+	position: absolute
+	left: 20px
+	bottom: 20px
+	font-size: 20px
+// Header
+
+.main_page header
+	background: url(../images/main_page/header_bg.png)
+	background-size: auto 100%
+	background-position: center
+
+.main_page .logo
+	background: url(../images/icons/logo.svg) no-repeat center
+	background-size: 100%
+
+.main_page .mouse_icon
+	background: url(../images/icons/mouse.svg) no-repeat center
+	background-size: 100% auto
+
+
+// Services
+
+.main_page .services
+	color: $bic
+	background: url(../images/main_page/services.png)
+	background-size: auto 100%
+	background-position: center
+
+
+// What we do
+
+.main_page .what_we_do .ellipse_block h3:nth-of-type(1):before
+	background-image: url(../images/icons/design.png)
+
+.main_page .what_we_do .ellipse_block h3:nth-of-type(2):before
+	background-image: url(../images/icons/development.png)
+
+.main_page .what_we_do .ellipse_block h3:nth-of-type(3):before
+	background-image: url(../images/icons/list.png)
+
+
+// Ellipses block
+
+.main_page .services .ellipse_block
+	border-right: 1px $bic solid
+	border-left: 1px $bic solid
+	border-bottom: 1px $bic solid
+
+.main_page .services .ellipse_block:before,
+.main_page .services .ellipse_block:after
+	background: $bic
+
+
+// Masonry
+
+.main_page .masonry li
+	color: $bic
+	background-repeat: no-repeat !important
+	background-size: auto 100% !important
+	background-position: center !important
+
+.masonry li:nth-of-type(3n + 2)
+	background-size: 100% auto !important
+
+.main_page .masonry li:nth-of-type(1)
+	background: url(../images/main_page/masonry_1.jpg)
+
+.main_page .masonry li:nth-of-type(2)
+	background: url(../images/main_page/masonry_2.jpg)
+
+.main_page .masonry li:nth-of-type(3)
+	background: url(../images/main_page/masonry_3.jpg)
+
+.main_page .masonry li:nth-of-type(4)
+	background: url(../images/main_page/masonry_4.jpg)
+
+.main_page .masonry li:nth-of-type(5)
+	background: url(../images/main_page/masonry_5.jpg)
+
+.main_page .masonry li:nth-of-type(6)
+	background: url(../images/main_page/masonry_6.jpg)
+
+.sub_page aside:first-of-type
+	background: #9443b1
+	color: $bic
+
+.sub_page aside:last-of-type
+	align-items: center
+// Basic transition time (btt)
+$btt: 0.3s
+
+// Forms
+
+button
+	transition: background $btt
+
+button:hover
+	background: $bc2h
+
+// Masonry
+
+.masonry a:after
+	content: ''
+	width: 100%
+	height: 100%
+	display: block
+	position: absolute
+	left: 0
+	top: 0
+	opacity: 0
+	transition: opacity $btt
+
+.masonry a:hover:after
+	background: $bec
+	opacity: 0.1
