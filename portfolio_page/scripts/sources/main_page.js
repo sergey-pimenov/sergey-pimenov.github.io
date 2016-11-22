@@ -5,7 +5,7 @@ var works = document.getElementById('works');
 var page_lang = document.getElementsByTagName('body');
 
 if(w <= '1024' && page_lang[0].classList.contains('ru_version')) {
-	works.setAttribute('href', 'Portfolio_page/pages/work/index.html');
+	works.setAttribute('href', 'portfolio_page/pages/work/index.html');
 }
 
 if(w <= '1024' && page_lang[0].classList.contains('eng_version')
@@ -55,7 +55,7 @@ if(w > '1024') {
 		} else if ( page_lang[0].classList.contains('ua_version') ) {
 			works_frame.setAttribute('src', 'work.html');
 		} else if ( page_lang[0].classList.contains('ru_version') ) {
-			works_frame.setAttribute('src', 'Portfolio_page/pages/work/index.html');
+			works_frame.setAttribute('src', 'portfolio_page/pages/work/index.html');
 		}
 		works_frame.style.display = 'block';
 		works_frame.classList.toggle('display_this_block');
