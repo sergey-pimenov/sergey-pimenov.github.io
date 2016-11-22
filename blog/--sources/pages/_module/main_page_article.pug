@@ -1,0 +1,6 @@
+mixin article(name, date, description, link_to)
+	article
+		div Tag: #{name}
+		div Date: #{date}
+		p #{description}
+		a(href= link_to)= link_to

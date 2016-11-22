@@ -1,0 +1,20 @@
+doctype html
+html(lang="ru")
+	block page_data
+	include ../_module/main_page_article.pug
+
+	head
+		title= page_name
+
+		block styles
+
+	body(class= page_name)
+
+		include particles/header.pug
+
+		main
+			block content
+
+		include particles/footer.pug
+
+		block scripts
