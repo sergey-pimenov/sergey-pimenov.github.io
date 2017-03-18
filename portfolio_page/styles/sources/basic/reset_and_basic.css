@@ -36,10 +36,6 @@ html {
     font-size: 2.38vh;
 }
 
-::selection {
-    background: rgba(250, 250, 250, 0.3);
-}
-
 h2, h3 {
     font-size: inherit;
     font-weight: inherit;
