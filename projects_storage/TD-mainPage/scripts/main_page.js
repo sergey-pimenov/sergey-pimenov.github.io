@@ -581,9 +581,6 @@ function initTutorial() {
 		setTimeout(function() {
 			circleWrapper.classList.add('showCircleWrapper');
 			linesWrapper.classList.add('showLinesWrapper');
-			tutorialIcon[0].classList.add('showIcon');
-			slideContent[0].style.opacity = '1';
-			slideContent[0].style.transform = 'translateZ(0) translateY(0)';
 		}, 500)
 	}
 
@@ -618,6 +615,10 @@ function initTutorial() {
 			indicator = document.getElementsByClassName('indicator'),
 			slideBg = document.getElementsByClassName('slideBg'),
 			tutorialIcon = document.getElementsByClassName('tutorialIcon');
+
+	tutorialIcon[0].classList.add('showIcon');
+	slideContent[0].style.opacity = '1';
+	slideContent[0].style.transform = 'translateZ(0) translateY(0)';
 
 	window.addEventListener('resize', refreshDynamicVariables);
 
