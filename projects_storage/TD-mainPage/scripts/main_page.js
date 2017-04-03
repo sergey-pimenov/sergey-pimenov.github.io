@@ -215,26 +215,11 @@ function initScreen() {
 
 	// Set parallax for nodes
 	function parallaxAnim() {
-		yOffset = window.pageYOffset;
-		// parallax(ball, 42, -300, 500);
-		// parallax(player_1, 50, -300, 500);
-		// parallax(player_2, 180, -450, 500);
-		// parallax(bg_players, 250, -600, 500);
-		// parallax(bg, 80, -600, 500);
-
 		scaleElement(grass, 0.1);
 		scaleElement(ball, 0.11);
 		scaleElement(player_1, 0.09);
 		scaleElement(player_2, 0.05);
 		scaleElement(bg_players, 0.01);
-
-		// Init again scroll to slider
-		// if ( window.pageYOffset <= (document.documentElement.clientHeight * 3)) {
-		// 	if(scrollState == true) {
-		// 		scrollState = false;
-		// 	}
-		// }
-
 	}
 
 	function scaleElement(element, scaleShift) {
@@ -245,12 +230,12 @@ function initScreen() {
 	}
 
 	// Magic parallax function
-	function parallax(element, x, y, z) {
-		// Detect scroll
-		yOffset = window.pageYOffset;
-		// Move elements x/y/z axis
-		element.style.transform = 'translate3d('+ yOffset / x + 'px,' + yOffset / y + 'px,' + yOffset / z + 'px)';
-	}
+	// function parallax(element, x, y, z) {
+	// 	// Detect scroll
+	// 	yOffset = window.pageYOffset;
+	// 	// Move elements x/y/z axis
+	// 	element.style.transform = 'translate3d('+ yOffset / x + 'px,' + yOffset / y + 'px,' + yOffset / z + 'px)';
+	// }
 
 	setTimeout(function() {
 			window.scrollTo(0, document.documentElement.clientHeight);
@@ -288,54 +273,7 @@ function initScreen() {
 			toning.style.opacity = currentOpacity;
 		}
 
-		// // Scroll once time
-		// if( scrollState == false) {
-		// 	scrollToSlider();
-		// }
-		// // Disable scroll func
-		// scrollState = true;
-
 	}
-
-	// var scrollPos = document.getElementById('scrollPos');
-
-	// function showScreen() {
-	// 	if( window.pageYOffset < windowHeight * 4 ) {
-	// 		doScrolling(scrollPos, 1800);
-	// 		console.log('SOOOOOOOOOO')
-	// 	}
-	// }
-
-	// function scrollToSlider() {
-	// 	// doScrolling(initSlider, 800);
-
-	// 	// // Disable scroll
-	// 	// disableScroll();
-	// 	// setTimeout(enableScroll, 800);
-	// }
-
-	// var scrollIcon = document.getElementsByClassName('scrollIcon')[0];
-
-	// scrollIcon.addEventListener('click', function(){
-	// 	// Disable scroll
-	// 	disableScroll();
-	// 	setTimeout(enableScroll, 3000);
-	// 	alert('1')
-	// 	doScrolling(initSlider, 3000);
-
-	// });
-
-	// var counterX = 0;
-
-	// window.addEventListener('click', function() {
-
-	//   if( counterX % 2 ) {
-	//   	scrollUnderSlider();
-	//   } else scrollToSlider();
-
-	//   counterX++;
-
-	// })
 
 	var currentYScroll,
 			stateOfScrollX = 'init';
@@ -348,31 +286,11 @@ function initScreen() {
 			doScrollingToPos(initSlider.offsetTop, 500, callback);
 	}
 
-	// window.addEventListener('scroll', scrollSwitcher);
-
-	// function scrollSwitcher() {
-	// 	currentYScroll = window.pageYOffset;
-
-	// 	if(currentYScroll < initSlider.offsetTop) {
-	// 		scrollAboveSlider();
-	// 	}
-
-	// 	// if(currentYScroll > initSlider.offsetTop - initSlider.getBoundingClientRect().height) {
-	// 	// 	console.log('123123')
-	// 	// }
-
-	// 	// We see slider and scroll to it
-	// 	if(currentYScroll > initSlider.offsetTop - initSlider.getBoundingClientRect().height) {
-	// 		scrollToSlider();
-	// 		console.log(stateOfScrollX);
-	// 	}
-	// }
-
 	window.addEventListener('wheel', swithScrollPos);
   
 	function swithScrollPos(wheelEvent) {
 		currentYScroll = window.pageYOffset;
-		if(currentYScroll > initSlider.offsetTop - windowHeight - 100 && currentYScroll < initSlider.offsetTop) {
+		if(currentYScroll > initSlider.offsetTop - windowHeight - 300 && currentYScroll < initSlider.offsetTop) {
 			if(wheelEvent.deltaY > 0 ) {
 				window.removeEventListener('wheel', swithScrollPos);
 				disableScroll();
@@ -393,16 +311,6 @@ function initScreen() {
 				});
 			}
 		}
-		// if(currentYScroll > initSlider.offsetTop - initSlider.getBoundingClientRect().height) {
-
-		// 	if(wheelEvent.deltaY > 0 ) {
-		// 		scrollToSlider();
-		// 	}
-		// 	if(wheelEvent.deltaY < 0 ) {
-		// 		scrollAboveSlider();
-		// 	}
-
-		// }
 	}
 
 }

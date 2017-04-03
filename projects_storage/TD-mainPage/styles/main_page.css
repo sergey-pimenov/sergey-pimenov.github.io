@@ -57,9 +57,8 @@ a {
 
 /***** Reset styles end *****/
 /***** Basic *****/
-.serviceLayer {
-  margin-top: 400vh;
-  background-color: red; }
+button {
+  outline: none; }
 
 /***** Basic end ****
 /***** Tupography *****/
@@ -290,6 +289,7 @@ body {
 /***** Init slider *****/
 .initSlider {
   height: 90vh;
+  margin-top: 400vh;
   display: flex;
   position: relative;
   /***** Svg ******/
