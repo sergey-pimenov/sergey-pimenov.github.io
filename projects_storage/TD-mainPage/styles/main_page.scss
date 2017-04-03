@@ -152,14 +152,14 @@ a {
 	color: inherit;
 	text-decoration: none;
 }
+button {
+	outline: none;
+}
 
 /***** Reset styles end *****/
 
 /***** Basic *****/
 
-button {
-	outline: none;
-}
 
 /***** Basic end ****
 /***** Tupography *****/
@@ -744,10 +744,9 @@ body {
 	left: 0;
 	top: 0;
 	background-color: #191919;
-	// z-index: 6;
-	// opacity: 1;
 	z-index: -1;
 	opacity: 0;
+	transition: opacity 0.3s;
 
 	&.showTutorial {
 		z-index: 6;
@@ -1053,13 +1052,13 @@ body {
 .tournamentList {
 	width: 100vw;
 	height: 100vh;
-	display: flex;
 	position: fixed;
 	left: 0;
-	top: 0;
+	bottom: 0;
 	z-index: 5;
-	//display: flex !important;
 	display: none;
+	transform-style: preserve-3d;
+	perspective: 900px;
 
 	&.showTournamentList {
 		display: flex;
@@ -1101,6 +1100,7 @@ body {
 		background-color: #191919;
 		overflow: auto;
 		transform: translateZ(0);
+		perspective: 500px;
 	}
 
 	.tournament {
@@ -1113,12 +1113,15 @@ body {
 		text-transform: uppercase;
 		font-family: $font-light;
 		letter-spacing: 1px;
+		cursor: pointer;
+		transition: transform 0.5s;
 
 		&:last-of-type {
 			border-bottom: none;
 		}
 
-		&:hover {
+		&:hover,
+		&:focus {
 			background: url('
 				data:image/svg+xml;utf8,
 				<svg xmlns="http://www.w3.org/2000/svg"
@@ -1126,10 +1129,12 @@ body {
 				<path stroke="rgb(255, 174, 0)" fill="none" d="M1.925,0.500 L9.500,9.000 L1.925,17.500 "/>
 				</svg>') 
 			no-repeat calc(100% - 100px) center;
+			outline: none;
 
 			&:before {
 				background-color: $elements-color;
 			}
+
 		}
 
 		&::before {

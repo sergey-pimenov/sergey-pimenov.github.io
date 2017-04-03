@@ -50,7 +50,6 @@ function doScrolling(elementY, duration) {
   })
 }
 
-
 // Scroll to position
 function doScrollingToPos(yPos, duration, callback) { 
   var startingY = window.pageYOffset;
@@ -71,90 +70,10 @@ function doScrollingToPos(yPos, duration, callback) {
     if (time < duration) {
       window.requestAnimationFrame(step)
     } else {
-      callback();
+      callback && callback();
     }
   })
 }
-
-
-// Reserve scroll func
-/***
-    Smoothly scroll element to the given target (element.scrollTop)
-    for the given duration
-
-    Returns a promise that's fulfilled when done, or rejected if
-    interrupted
- ***/
-var smooth_scroll_to = function(element, target, duration) {
-    target = Math.round(target);
-    duration = Math.round(duration);
-    if (duration < 0) {
-        return Promise.reject("bad duration");
-    }
-    if (duration === 0) {
-        element.scrollTop = target;
-        return Promise.resolve();
-    }
-
-    var start_time = Date.now();
-    var end_time = start_time + duration;
-
-    var start_top = element.scrollTop;
-    var distance = target - start_top;
-
-    // based on http://en.wikipedia.org/wiki/Smoothstep
-    var smooth_step = function(start, end, point) {
-        if(point <= start) { return 0; }
-        if(point >= end) { return 1; }
-        var x = (point - start) / (end - start); // interpolation
-        return x*x*(3 - 2*x);
-    }
-
-    return new Promise(function(resolve, reject) {
-        // This is to keep track of where the element's scrollTop is
-        // supposed to be, based on what we're doing
-        var previous_top = element.scrollTop;
-
-        // This is like a think function from a game loop
-        var scroll_frame = function() {
-            if(element.scrollTop != previous_top) {
-                reject("interrupted");
-                return;
-            }
-
-            // set the scrollTop for this frame
-            var now = Date.now();
-            var point = smooth_step(start_time, end_time, now);
-            var frameTop = Math.round(start_top + (distance * point));
-            element.scrollTop = frameTop;
-
-            // check if we're done!
-            if(now >= end_time) {
-                resolve();
-                return;
-            }
-
-            // If we were supposed to scroll but didn't, then we
-            // probably hit the limit, so consider it done; not
-            // interrupted.
-            if(element.scrollTop === previous_top
-                && element.scrollTop !== frameTop) {
-                resolve();
-                return;
-            }
-            previous_top = element.scrollTop;
-
-            // schedule next frame for execution
-            setTimeout(scroll_frame, 0);
-        }
-
-        // boostrap the animation process
-        setTimeout(scroll_frame, 0);
-    });
-}
-
-
-// smooth_scroll_to(document.body, 3600, 2000);
 // Disable/enable scroll
 
 var keys = {37: 1, 38: 1, 39: 1, 40: 1};
@@ -215,33 +134,36 @@ function initScreen() {
 
 	// Set parallax for nodes
 	function parallaxAnim() {
+		yOffset = window.pageYOffset;
+
 		scaleElement(grass, 0.1);
 		scaleElement(ball, 0.11);
 		scaleElement(player_1, 0.09);
 		scaleElement(player_2, 0.05);
 		scaleElement(bg_players, 0.01);
+
 	}
 
 	function scaleElement(element, scaleShift) {
-		shift = (yOffset - start) * (scaleShift - defaultScale) / end;
+		shift = ( yOffset - start) * ( scaleShift - defaultScale) / end;
 		currentScale = defaultScale + shift;
 		// Magic value '5px' need for fix bug in FF
 		element.style.transform = 'translateZ(0) scale(' + (1 + currentScale) + ')';
 	}
 
 	// Magic parallax function
-	// function parallax(element, x, y, z) {
-	// 	// Detect scroll
-	// 	yOffset = window.pageYOffset;
-	// 	// Move elements x/y/z axis
-	// 	element.style.transform = 'translate3d('+ yOffset / x + 'px,' + yOffset / y + 'px,' + yOffset / z + 'px)';
-	// }
+	function parallax(element, x, y, z) {
+		// Detect scroll
+		yOffset = window.pageYOffset;
+		// Move elements x/y/z axis
+		element.style.transform = 'translate3d('+ yOffset / x + 'px,' + yOffset / y + 'px,' + yOffset / z + 'px)';
+	}
 
-	setTimeout(function() {
-			window.scrollTo(0, document.documentElement.clientHeight);
-			setTimeout(function() {
-				parallaxBlock.style.transition = 'transform 0.25s ease-out';
-			}, 2300);
+	setTimeout( function() {
+		doScrollingToPos( document.documentElement.clientHeight, 800);
+		setTimeout( function() {
+			parallaxBlock.style.transition = 'transform 0.25s ease-out';
+		}, 2300);
 	}, 0);
 
 	// Hide slider
@@ -251,10 +173,10 @@ function initScreen() {
 			currentYOffset,
 			scrollPosition = 'onSlider';
 
-	detectVisibility(initSlider, hideInitScreen, 'initSliderListener');
+	detectVisibility( initSlider, hideInitScreen, 'initSliderListener');
 
 	function hideInitScreen() {
-		window.addEventListener('scroll', hideScreen);
+		window.addEventListener( 'scroll', hideScreen);
 		// window.addEventListener('scroll', showScreen);
 	}
 
@@ -267,47 +189,45 @@ function initScreen() {
 
 	function hideScreen() {
 		currentYOffset = window.pageYOffset;
-		opacityShift = (currentYOffset - fadeOutStartYOffset) * (finalOpacity - defaultOpacity) / fadeOutDurationOffset;
+		opacityShift = ( currentYOffset - fadeOutStartYOffset) * ( finalOpacity - defaultOpacity) / fadeOutDurationOffset;
 		currentOpacity = defaultOpacity + opacityShift;
 		if( currentOpacity >= defaultOpacity) {
 			toning.style.opacity = currentOpacity;
 		}
-
 	}
 
-	var currentYScroll,
-			stateOfScrollX = 'init';
+	var currentYScroll;
 
 	function scrollAboveSlider(callback) {
-		doScrollingToPos(initSlider.offsetTop - windowHeight, 500, callback);
+		doScrollingToPos( initSlider.offsetTop - windowHeight, 0, callback);
 	}
 
 	function scrollToSlider(callback) {
-			doScrollingToPos(initSlider.offsetTop, 500, callback);
+			doScrollingToPos( initSlider.offsetTop, 0, callback);
 	}
 
-	window.addEventListener('wheel', swithScrollPos);
+	window.addEventListener( 'wheel', swithScrollPos);
   
 	function swithScrollPos(wheelEvent) {
 		currentYScroll = window.pageYOffset;
-		if(currentYScroll > initSlider.offsetTop - windowHeight - 300 && currentYScroll < initSlider.offsetTop) {
-			if(wheelEvent.deltaY > 0 ) {
-				window.removeEventListener('wheel', swithScrollPos);
+		if( currentYScroll > initSlider.offsetTop - windowHeight - 300 && currentYScroll < initSlider.offsetTop) {
+			if( wheelEvent.deltaY > 0 ) {
+				window.removeEventListener( 'wheel', swithScrollPos);
 				disableScroll();
 				scrollToSlider(function() {
 					enableScroll();
-					window.addEventListener('wheel', swithScrollPos);
+					window.addEventListener( 'wheel', swithScrollPos);
 				});
 			}
 		}
 
-		if(currentYScroll > initSlider.offsetTop - windowHeight && currentYScroll < initSlider.offsetTop + 50) {
-			if(wheelEvent.deltaY < 0 ) {
-				window.removeEventListener('wheel', swithScrollPos);
+		if( currentYScroll > initSlider.offsetTop - windowHeight && currentYScroll < initSlider.offsetTop + 50) {
+			if( wheelEvent.deltaY < 0 ) {
+				window.removeEventListener( 'wheel', swithScrollPos);
 				disableScroll();
 				scrollAboveSlider(function() {
 					enableScroll();
-					window.addEventListener('wheel', swithScrollPos);
+					window.addEventListener( 'wheel', swithScrollPos);
 				});
 			}
 		}
@@ -451,17 +371,15 @@ close.addEventListener('click', closeTournaments);
 selectButton.addEventListener('click', openTournaments);
 
 function openTournaments() {
+	tournamentOpened = true;
 	tournamentList.classList.toggle('showTournamentList');
-	if(tournamentList.classList.contains('showTournamentList')) {
-		document.body.style.overflow = 'hidden';
-	}
+	document.body.style.overflow = 'hidden';
 }
 
 function closeTournaments() {
+	tournamentOpened = false;
 	tournamentList.classList.toggle('showTournamentList');
-	if(!tournamentList.classList.contains('showTournamentList')) {
-		document.body.style.overflow = 'visible';
-	}
+	document.body.style.overflow = 'visible';
 }
 
 window.addEventListener('load', initTutorial);
@@ -480,11 +398,12 @@ function initTutorial() {
 	window.addEventListener('keydown', hideTutorialEsc);
 
 	function showTutorial() {
-		document.body.style.overflow = 'hidden';
+		setTimeout(function() {
+			document.body.style.overflow = 'hidden';
+		}, 300)
 
 		// Remove transition after pop-up open,
 		// because with transition we see scroll lags
-		// parallaxBlock.style.transition = 'none';
 
 		tutorial.classList.add('showTutorial');
 		tutorialOpen = true;
@@ -497,7 +416,7 @@ function initTutorial() {
 	}
 
 	function hideTutorial() {
-		document.body.style.overflow = 'visible';
+		document.body.style.overflow = 'hidden';
 
 		tutorial.classList.remove('showTutorial');
 		tutorialOpen = false;
@@ -747,41 +666,3 @@ function initTournamentList() {
 		})
 	}
 }
-// window.addEventListener('load', initTournament);
-
-// function initTournament() {
-
-// 	var windowHeight,
-// 			elementHeight,
-// 			tournamentBlock = document.getElementsByClassName('tournamentBlock')[0],
-// 			tournament = document.getElementsByClassName('tournament'),
-// 			line = document.getElementsByClassName('line')[0],
-// 			lineHeightX = 0,
-// 			scrollHeight,
-// 			itemsWrapper = document.getElementById('itemsWrapper');
-
-// 	tournamentBlock.addEventListener('wheel', function() {
-
-// 		setTimeout(function() {
-// 			windowHeight = document.documentElement.clientHeight;
-// 			scrollHeight = tournamentBlock.scrollTop + windowHeight;
-
-// 			lineHeightX = windowHeight * scrollHeight / parseInt(getComputedStyle(itemsWrapper).height, 10);
-
-// 			line.style.height = lineHeightX + 'px';
-
-// 			console.log(windowHeight);
-// 			console.log(scrollHeight);
-// 			console.log(parseInt(getComputedStyle(itemsWrapper).height, 10));
-// 			console.log('========' + lineHeightX);
-// 			console.log('-------------------------');
-
-// 			// console.log(getComputedStyle(tournamentBlock).height);
-// 			// tournamentBlock.style.backgroundColor = 'red';
-// 			// console.log(windowHeight * windowHeight);
-
-// 		}, 2000)
-
-// 	});
-
-// }
