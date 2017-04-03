@@ -42,6 +42,7 @@ function doScrolling(elementY, duration) {
     var percent = Math.min(time / duration, 1)
 
     window.scrollTo(0, startingY + diff * percent)
+    console.log(1)
 
     // Proceed with animation as long as we wanted it to.
     if (time < duration) {
