@@ -41,7 +41,7 @@ function doScrolling(elementY, duration) {
     // Get percent of completion in range [0, 1].
     var percent = Math.min(time / duration, 1)
 
-    window.scrollTo(0, startingY + diff * percent)
+    //window.scrollTo(0, startingY + diff * percent)
     console.log(1)
 
     // Proceed with animation as long as we wanted it to.
