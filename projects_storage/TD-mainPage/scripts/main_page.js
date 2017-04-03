@@ -206,7 +206,7 @@ function initScreen() {
 			doScrollingToPos( initSlider.offsetTop, 0, callback);
 	}
 
-	window.addEventListener( 'wheel', swithScrollPos);
+	//window.addEventListener( 'wheel', swithScrollPos);
   
 	function swithScrollPos(wheelEvent) {
 		currentYScroll = window.pageYOffset;
@@ -232,6 +232,10 @@ function initScreen() {
 			}
 		}
 	}
+
+	document.addEventListener('click', function() {
+		doScrolling(initSlider, 2000)
+	});
 
 }
 /**** Slider script *****/
