@@ -52,7 +52,7 @@ function doScrolling(elementY, duration) {
 
 
 // Scroll to position
-function doScrollingToPos(yPos, duration) { 
+function doScrollingToPos(yPos, duration, callback) { 
   var startingY = window.pageYOffset;
   var diff = yPos - startingY;
   var start;
@@ -70,6 +70,8 @@ function doScrollingToPos(yPos, duration) {
     // Proceed with animation as long as we wanted it to.
     if (time < duration) {
       window.requestAnimationFrame(step)
+    } else {
+      callback();
     }
   })
 }
@@ -338,12 +340,12 @@ function initScreen() {
 	var currentYScroll,
 			stateOfScrollX = 'init';
 
-	function scrollAboveSlider() {
-		doScrollingToPos(initSlider.offsetTop - windowHeight, 500);
+	function scrollAboveSlider(callback) {
+		doScrollingToPos(initSlider.offsetTop - windowHeight, 500, callback);
 	}
 
-	function scrollToSlider() {
-			doScrollingToPos(initSlider.offsetTop, 500);
+	function scrollToSlider(callback) {
+			doScrollingToPos(initSlider.offsetTop, 500, callback);
 	}
 
 	// window.addEventListener('scroll', scrollSwitcher);
@@ -367,26 +369,28 @@ function initScreen() {
 	// }
 
 	window.addEventListener('wheel', swithScrollPos);
-
+  
 	function swithScrollPos(wheelEvent) {
 		currentYScroll = window.pageYOffset;
 		if(currentYScroll > initSlider.offsetTop - windowHeight - 100 && currentYScroll < initSlider.offsetTop) {
 			if(wheelEvent.deltaY > 0 ) {
-				scrollToSlider();
+				window.removeEventListener('wheel', swithScrollPos);
 				disableScroll();
-				setTimeout(function() {
+				scrollToSlider(function() {
 					enableScroll();
-				}, 1000)
+					window.addEventListener('wheel', swithScrollPos);
+				});
 			}
 		}
 
-		if(currentYScroll > initSlider.offsetTop - windowHeight && currentYScroll < initSlider.offsetTop + 100) {
+		if(currentYScroll > initSlider.offsetTop - windowHeight && currentYScroll < initSlider.offsetTop + 50) {
 			if(wheelEvent.deltaY < 0 ) {
-				scrollAboveSlider();
+				window.removeEventListener('wheel', swithScrollPos);
 				disableScroll();
-				setTimeout(function() {
+				scrollAboveSlider(function() {
 					enableScroll();
-				}, 1000)
+					window.addEventListener('wheel', swithScrollPos);
+				});
 			}
 		}
 		// if(currentYScroll > initSlider.offsetTop - initSlider.getBoundingClientRect().height) {
@@ -835,41 +839,41 @@ function initTournamentList() {
 		})
 	}
 }
-window.addEventListener('load', initTournament);
+// window.addEventListener('load', initTournament);
 
-function initTournament() {
+// function initTournament() {
 
-	var windowHeight,
-			elementHeight,
-			tournamentBlock = document.getElementsByClassName('tournamentBlock')[0],
-			tournament = document.getElementsByClassName('tournament'),
-			line = document.getElementsByClassName('line')[0],
-			lineHeightX = 0,
-			scrollHeight,
-			itemsWrapper = document.getElementById('itemsWrapper');
+// 	var windowHeight,
+// 			elementHeight,
+// 			tournamentBlock = document.getElementsByClassName('tournamentBlock')[0],
+// 			tournament = document.getElementsByClassName('tournament'),
+// 			line = document.getElementsByClassName('line')[0],
+// 			lineHeightX = 0,
+// 			scrollHeight,
+// 			itemsWrapper = document.getElementById('itemsWrapper');
 
-	tournamentBlock.addEventListener('wheel', function() {
+// 	tournamentBlock.addEventListener('wheel', function() {
 
-		setTimeout(function() {
-			windowHeight = document.documentElement.clientHeight;
-			scrollHeight = tournamentBlock.scrollTop + windowHeight;
+// 		setTimeout(function() {
+// 			windowHeight = document.documentElement.clientHeight;
+// 			scrollHeight = tournamentBlock.scrollTop + windowHeight;
 
-			lineHeightX = windowHeight * scrollHeight / parseInt(getComputedStyle(itemsWrapper).height, 10);
+// 			lineHeightX = windowHeight * scrollHeight / parseInt(getComputedStyle(itemsWrapper).height, 10);
 
-			line.style.height = lineHeightX + 'px';
+// 			line.style.height = lineHeightX + 'px';
 
-			console.log(windowHeight);
-			console.log(scrollHeight);
-			console.log(parseInt(getComputedStyle(itemsWrapper).height, 10));
-			console.log('========' + lineHeightX);
-			console.log('-------------------------');
+// 			console.log(windowHeight);
+// 			console.log(scrollHeight);
+// 			console.log(parseInt(getComputedStyle(itemsWrapper).height, 10));
+// 			console.log('========' + lineHeightX);
+// 			console.log('-------------------------');
 
-			// console.log(getComputedStyle(tournamentBlock).height);
-			// tournamentBlock.style.backgroundColor = 'red';
-			// console.log(windowHeight * windowHeight);
+// 			// console.log(getComputedStyle(tournamentBlock).height);
+// 			// tournamentBlock.style.backgroundColor = 'red';
+// 			// console.log(windowHeight * windowHeight);
 
-		}, 2000)
+// 		}, 2000)
 
-	});
+// 	});
 
-}
+// }
