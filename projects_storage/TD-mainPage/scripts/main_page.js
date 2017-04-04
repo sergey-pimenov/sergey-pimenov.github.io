@@ -207,36 +207,37 @@ function initScreen() {
 			doScrollingToPos( initSlider.offsetTop, 0, callback);
 	}
 
-	//window.addEventListener( 'wheel', swithScrollPos);
+	window.addEventListener( 'scroll', switchScrollPos);
+	var secondLayer = document.getElementsByClassName('secondLayer')[0];
   
-	function swithScrollPos(wheelEvent) {
+	var timeoutId;
+  var direction = 0;
+	function switchScrollPos(wheelEvent) {
 		currentYScroll = window.pageYOffset;
-		if( currentYScroll > initSlider.offsetTop - windowHeight - 300 && currentYScroll < initSlider.offsetTop) {
-			if( wheelEvent.deltaY > 0 ) {
-				window.removeEventListener( 'wheel', swithScrollPos);
-				disableScroll();
-				scrollToSlider(function() {
-					enableScroll();
-					window.addEventListener( 'wheel', swithScrollPos);
-				});
-			}
+
+		if ( timeoutId ) {
+			clearTimeout(timeoutId );  
 		}
 
-		if( currentYScroll > initSlider.offsetTop - windowHeight && currentYScroll < initSlider.offsetTop + 50) {
-			if( wheelEvent.deltaY < 0 ) {
-				window.removeEventListener( 'wheel', swithScrollPos);
+		if ( currentYScroll > windowHeight * 3 && currentYScroll < windowHeight * 4 ) {
+
+			timeoutId = setTimeout(function() {
+
+				window.removeEventListener( 'scroll', switchScrollPos);
 				disableScroll();
-				scrollAboveSlider(function() {
+
+				doScrollingToPos( direction ? windowHeight * 3 : windowHeight * 4, 500, function() {
 					enableScroll();
-					window.addEventListener( 'wheel', swithScrollPos);
+					window.addEventListener( 'scroll', switchScrollPos);
 				});
-			}
+
+				direction = !direction;
+
+			}, 0);
 		}
+
 	}
 
-	document.addEventListener('click', function() {
-		doScrolling(initSlider, 5000)
-	});
 
 }
 /**** Slider script *****/

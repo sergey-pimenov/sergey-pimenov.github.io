@@ -60,6 +60,25 @@ button {
 
 /***** Reset styles end *****/
 /***** Basic *****/
+body {
+  position: relative; }
+
+.serviceLayer {
+  width: 100%;
+  margin: 400vh 0 0 0;
+  display: block;
+  z-index: 1000;
+  position: relative;
+  overflow: hidden; }
+
+.secondLayer {
+  width: 100%;
+  z-index: 1000;
+  transition: transform 1s; }
+
+.secondLayer.active {
+  transform: translateZ(0) translateY(0); }
+
 /***** Basic end ****
 /***** Tupography *****/
 @font-face {
@@ -204,13 +223,13 @@ body {
       -webkit-will-change: transform;
       will-change: transform; }
   .initScreen .bg {
-    width: 103%;
+    width: 113%;
     height: 102%;
     background: black url(../images/initScreen-bg.jpg) no-repeat center bottom;
     background-size: 100% auto;
     position: absolute;
     left: -3%;
-    top: -1%; }
+    top: -2%; }
     .initScreen .bg::after {
       content: '';
       width: 100%;
@@ -289,7 +308,6 @@ body {
 /***** Init slider *****/
 .initSlider {
   height: 90vh;
-  margin-top: 400vh;
   display: flex;
   position: relative;
   /***** Svg ******/

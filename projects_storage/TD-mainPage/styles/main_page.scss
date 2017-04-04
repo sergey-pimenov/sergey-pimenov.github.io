@@ -160,6 +160,35 @@ button {
 
 /***** Basic *****/
 
+body {
+	//height: 100vh;
+	position: relative;
+}
+
+.serviceLayer {
+	width: 100%;
+	margin: 400vh 0 0 0;
+	// padding-bottom: calc(791px + 270px + 55px);
+	display: block;
+	z-index: 1000;
+	position: relative;
+	overflow: hidden;
+}
+
+.secondLayer {
+	width: 100%;
+	z-index: 1000;
+	//transform: translateZ(0) translateY(100vh);
+	transition: transform 1s;
+}
+
+.secondLayer.active {
+	transform: translateZ(0) translateY(0);
+}
+
+// body:hover .secondLayer {
+// 	transform: translateZ(0) translateY(0);
+// }
 
 /***** Basic end ****
 /***** Tupography *****/
@@ -360,13 +389,13 @@ body {
 	}
 	
 	.bg {
-		width: 103%;
+		width: 113%;
 		height: 102%;
 		background: black url(../images/initScreen-bg.jpg) no-repeat center bottom;
 		background-size: 100% auto;
 		position: absolute;
 		left: -3%;
-		top: -1%;
+		top: -2%;
 
 		&::after {
 			content: '';
@@ -465,7 +494,7 @@ body {
 
 .initSlider {
 	height: 90vh;
-	margin-top: 400vh;
+	// margin-top: 400vh;
 	display: flex;
 	position: relative;
 
