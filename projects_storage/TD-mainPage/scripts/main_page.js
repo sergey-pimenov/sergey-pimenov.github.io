@@ -143,11 +143,12 @@ function initScreen() {
 	var start = 0;
 	var end = windowHeight * 4;
 
-	// window.addEventListener('click', function(){
-	// 	doScrollingToPos(3700, 2000);
-	// });
+	window.addEventListener('click', function(){
+		//doScrollingToPos(3700, 2000);
+		srollToShit(3000)
+	});
 
-	window.addEventListener('scroll', throttle(parallaxAnim, 16));
+	//window.addEventListener('scroll', throttle(parallaxAnim, 16));
 
 	// Set parallax for nodes
 	function parallaxAnim() {
@@ -177,7 +178,7 @@ function initScreen() {
 	}
 
 	setTimeout( function() {
-		doScrollingToPos( document.documentElement.clientHeight, 800);
+		//doScrollingToPos( document.documentElement.clientHeight, 800);
 		setTimeout( function() {
 			parallaxBlock.style.transition = 'transform 0.25s ease-out';
 		}, 2300);
@@ -190,7 +191,7 @@ function initScreen() {
 			currentYOffset,
 			scrollPosition = 'onSlider';
 
-	detectVisibility( initSlider, hideInitScreen, 'initSliderListener');
+	//detectVisibility( initSlider, hideInitScreen, 'initSliderListener');
 
 	function hideInitScreen() {
 		window.addEventListener('scroll', throttle(hideScreen, 16));
@@ -224,36 +225,85 @@ function initScreen() {
 			doScrollingToPos( initSlider.offsetTop, 0, callback);
 	}
 
+	var assVar;
+
+	window.addEventListener("wheel", function(e) {
+		assVar = e.deltaY;
+		console.log(assVar)
+	});
+
+	var footer = document.getElementById('footer');
+
 	window.addEventListener( 'scroll', switchScrollPos);
-	var secondLayer = document.getElementsByClassName('secondLayer')[0];
   
-	var timeoutId;
-  var direction = 0;
 	function switchScrollPos(wheelEvent) {
 		currentYScroll = window.pageYOffset;
 
-		if ( timeoutId ) {
-			clearTimeout(timeoutId );  
-		}
+		if ( currentYScroll > windowHeight * 2.8 && currentYScroll < windowHeight * 4 ) {
 
-		if ( currentYScroll > windowHeight * 3 && currentYScroll < windowHeight * 4 ) {
+				if(assVar > 0) {
+					window.removeEventListener( 'scroll', switchScrollPos);
+					disableScroll();
 
-			timeoutId = setTimeout(function() {
+					var init = 0;
 
-				window.removeEventListener( 'scroll', switchScrollPos);
-				disableScroll();
+			    var smallDick = setInterval(function() {
+			        if(window.pageYOffset >= windowHeight * 4) {
+			            clearInterval(smallDick);
+			        }
 
-				doScrollingToPos( direction ? windowHeight * 3 : windowHeight * 4, 500, function() {
-					enableScroll();
-					window.addEventListener( 'scroll', switchScrollPos);
-				});
+			        window.scrollTo(0, window.pageYOffset + init);
+			        init++;
+			    }, 16);
 
-				direction = !direction;
+					var fuckX = setTimeout(function() {
+						clearTimeout(fuckX);
+						enableScroll();
+					  window.addEventListener( 'scroll', switchScrollPos);
+					}, 600)
+					console.log('dick')
+				}
 
-			}, 0);
+				// if(assVar < 0) {
+				// 	window.removeEventListener( 'scroll', switchScrollPos);
+				// 	disableScroll();
+
+				// 	var init = 0;
+
+			 //    var bigDick = setInterval(function() {
+			 //        if(window.pageYOffset >= windowHeight * 3) {
+			 //            clearInterval(bigDick);
+			 //        }
+
+			 //        window.scrollTo(0, window.pageYOffset - init);
+			 //        init++;
+			 //    }, 16);
+
+				// 	var fuckY = setTimeout(function() {
+				// 		enableScroll();
+				// 	  window.addEventListener( 'scroll', switchScrollPos);
+				// 	}, 600)
+				// 	console.log('asshole')
+				// }
+
+				console.log(assVar)
 		}
 
 	}
+
+	// function srollToShit(pos) {
+
+ //    var init = 0;
+
+ //    setInterval(function() {
+ //        if(window.pageYOffset >= pos) {
+ //            return;
+ //        }
+
+ //        window.scrollTo(0, window.pageYOffset + init);
+ //        init++;
+ //    }, 16);
+	// }
 
 
 }
