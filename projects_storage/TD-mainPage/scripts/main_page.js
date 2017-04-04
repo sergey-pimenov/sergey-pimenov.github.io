@@ -66,6 +66,7 @@ function doScrollingToPos(yPos, duration, callback) {
     var percent = Math.min(time / duration, 1)
 
     window.scrollTo(0, startingY + diff * percent)
+    console.log(percent);
 
     // Proceed with animation as long as we wanted it to.
     if (time < duration) {
@@ -144,8 +145,7 @@ function initScreen() {
 	var end = windowHeight * 4;
 
 	window.addEventListener('click', function(){
-		//doScrollingToPos(3700, 2000);
-		srollToShit(3000)
+		doScrollingToPos(3700, 2000);
 	});
 
 	//window.addEventListener('scroll', throttle(parallaxAnim, 16));
@@ -178,7 +178,7 @@ function initScreen() {
 	}
 
 	setTimeout( function() {
-		//doScrollingToPos( document.documentElement.clientHeight, 800);
+		doScrollingToPos( document.documentElement.clientHeight, 800);
 		setTimeout( function() {
 			parallaxBlock.style.transition = 'transform 0.25s ease-out';
 		}, 2300);
@@ -225,85 +225,36 @@ function initScreen() {
 			doScrollingToPos( initSlider.offsetTop, 0, callback);
 	}
 
-	var assVar;
-
-	window.addEventListener("wheel", function(e) {
-		assVar = e.deltaY;
-		console.log(assVar)
-	});
-
-	var footer = document.getElementById('footer');
-
 	window.addEventListener( 'scroll', switchScrollPos);
+	var secondLayer = document.getElementsByClassName('secondLayer')[0];
   
+	var timeoutId;
+  var direction = 0;
 	function switchScrollPos(wheelEvent) {
 		currentYScroll = window.pageYOffset;
 
-		if ( currentYScroll > windowHeight * 2.8 && currentYScroll < windowHeight * 4 ) {
+		if ( timeoutId ) {
+			clearTimeout(timeoutId );  
+		}
 
-				if(assVar > 0) {
-					window.removeEventListener( 'scroll', switchScrollPos);
-					disableScroll();
+		if ( currentYScroll > windowHeight * 3 && currentYScroll < windowHeight * 4 ) {
 
-					var init = 0;
+			timeoutId = setTimeout(function() {
 
-			    var smallDick = setInterval(function() {
-			        if(window.pageYOffset >= windowHeight * 4) {
-			            clearInterval(smallDick);
-			        }
+				window.removeEventListener( 'scroll', switchScrollPos);
+				disableScroll();
 
-			        window.scrollTo(0, window.pageYOffset + init);
-			        init++;
-			    }, 16);
+				doScrollingToPos( direction ? windowHeight * 3 : windowHeight * 4, 500, function() {
+					enableScroll();
+					window.addEventListener( 'scroll', switchScrollPos);
+				});
 
-					var fuckX = setTimeout(function() {
-						clearTimeout(fuckX);
-						enableScroll();
-					  window.addEventListener( 'scroll', switchScrollPos);
-					}, 600)
-					console.log('dick')
-				}
+				direction = !direction;
 
-				// if(assVar < 0) {
-				// 	window.removeEventListener( 'scroll', switchScrollPos);
-				// 	disableScroll();
-
-				// 	var init = 0;
-
-			 //    var bigDick = setInterval(function() {
-			 //        if(window.pageYOffset >= windowHeight * 3) {
-			 //            clearInterval(bigDick);
-			 //        }
-
-			 //        window.scrollTo(0, window.pageYOffset - init);
-			 //        init++;
-			 //    }, 16);
-
-				// 	var fuckY = setTimeout(function() {
-				// 		enableScroll();
-				// 	  window.addEventListener( 'scroll', switchScrollPos);
-				// 	}, 600)
-				// 	console.log('asshole')
-				// }
-
-				console.log(assVar)
+			}, 50);
 		}
 
 	}
-
-	// function srollToShit(pos) {
-
- //    var init = 0;
-
- //    setInterval(function() {
- //        if(window.pageYOffset >= pos) {
- //            return;
- //        }
-
- //        window.scrollTo(0, window.pageYOffset + init);
- //        init++;
- //    }, 16);
-	// }
 
 
 }
