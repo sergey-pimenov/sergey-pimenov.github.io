@@ -113,6 +113,19 @@ function enableScroll() {
 
 window.addEventListener('load', initScreen);
 
+function throttle(fn, delay) {
+	var timer = null;
+
+	return function() {
+		if (timer) return;
+
+		timer = setTimeout(function() {
+			fn();
+			timer = null;
+		}, delay);
+	}
+}
+
 function initScreen() {
 
 	// Parallaxed nodes
@@ -130,8 +143,11 @@ function initScreen() {
 	var start = 0;
 	var end = windowHeight * 4;
 
+	// window.addEventListener('click', function(){
+	// 	doScrollingToPos(3700, 2000);
+	// });
 
-	window.addEventListener('scroll', parallaxAnim);
+	window.addEventListener('scroll', throttle(parallaxAnim, 16));
 
 	// Set parallax for nodes
 	function parallaxAnim() {
@@ -177,7 +193,7 @@ function initScreen() {
 	detectVisibility( initSlider, hideInitScreen, 'initSliderListener');
 
 	function hideInitScreen() {
-		window.addEventListener( 'scroll', hideScreen);
+		window.addEventListener('scroll', throttle(hideScreen, 16));
 		// window.addEventListener('scroll', showScreen);
 	}
 
@@ -189,6 +205,7 @@ function initScreen() {
 	var scrollState = false;
 
 	function hideScreen() {
+		console.log('hide screen');
 		currentYOffset = window.pageYOffset;
 		opacityShift = ( currentYOffset - fadeOutStartYOffset) * ( finalOpacity - defaultOpacity) / fadeOutDurationOffset;
 		currentOpacity = defaultOpacity + opacityShift;
