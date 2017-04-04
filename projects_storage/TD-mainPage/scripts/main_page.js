@@ -148,7 +148,7 @@ function initScreen() {
 		doScrollingToPos(3700, 2000);
 	});
 
-	//window.addEventListener('scroll', throttle(parallaxAnim, 16));
+	window.addEventListener('scroll', throttle(parallaxAnim, 16));
 
 	// Set parallax for nodes
 	function parallaxAnim() {
@@ -191,7 +191,7 @@ function initScreen() {
 			currentYOffset,
 			scrollPosition = 'onSlider';
 
-	//detectVisibility( initSlider, hideInitScreen, 'initSliderListener');
+	detectVisibility( initSlider, hideInitScreen, 'initSliderListener');
 
 	function hideInitScreen() {
 		window.addEventListener('scroll', throttle(hideScreen, 16));
