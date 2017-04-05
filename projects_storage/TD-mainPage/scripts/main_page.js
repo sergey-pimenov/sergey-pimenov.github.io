@@ -148,7 +148,7 @@ function initScreen() {
 	}
 
 	function scaleElement(element, scaleShift) {
-		shift = ( yOffset - start) * ( scaleShift - defaultScale) / end;
+		shift = (yOffset - start) * (scaleShift - defaultScale) / end;
 		currentScale = defaultScale + shift;
 		// Magic value '5px' need for fix bug in FF
 		element.style.transform = 'translateZ(0) scale(' + (1 + currentScale) + ')';
@@ -166,19 +166,15 @@ function initScreen() {
 		if(window.pageYOffset == 0) {
 			console.log(window.pageYOffset)
 			if(!isSafari) {
-				doScrollingToPos( document.documentElement.clientHeight, 800);
+				doScrollingToPos(document.documentElement.clientHeight, 800);
 			} else {
-				doScrollingToPos( document.documentElement.clientHeight, 0);
+				window.scrollTo(0, document.documentElement.clientHeight);
 			}
 		}
 
-		if(isSafari) { // For safari we change transition on start
-			parallaxBlock.style.transition = 'transform 0.25s ease-out';
-		} else {
-			setTimeout( function() { // Change transition when we do initial scroll
+		setTimeout(function() { // Change transition when we do initial scroll
 				parallaxBlock.style.transition = 'transform 0.25s ease-out';
-			}, 2300);
-		}
+		}, 2300)
 	}, 0);
 
 	// Hide slider
@@ -186,10 +182,24 @@ function initScreen() {
 			initScreen = document.getElementsByClassName('initScreen')[0],
 			toning = document.getElementsByClassName('toning')[0],
 			currentYOffset,
-			scrollPosition = 'onSlider';
+			scrollPosition = 'onSlider',
+			scrollIcon = document.getElementsByClassName('scrollIcon')[0],
+			scrollWithScrollIcon = false;
+
+	if(!isSafari) {
+		scrollIcon.addEventListener('click', function() {
+			scrollWithScrollIcon = true;
+			doScrolling(initSlider, 1000);
+			setTimeout(function() {
+				scrollWithScrollIcon = false;
+			}, 1100)
+		});
+	} else {
+		scrollWithScrollIcon.style.cursor = 'auto';
+	}
 
 	// Run toning function when we see slider
-	detectVisibility( initSlider, hideInitScreen, 'initSliderListener');
+	detectVisibility(initSlider, hideInitScreen, 'initSliderListener');
 
 	function hideInitScreen() {
 		// Set throttle for limit hideScreen function
@@ -205,9 +215,9 @@ function initScreen() {
 
 	function toningScreen() {
 		currentYOffset = window.pageYOffset;
-		opacityShift = ( currentYOffset - fadeOutStartYOffset) * ( finalOpacity - defaultOpacity) / fadeOutDurationOffset;
+		opacityShift = (currentYOffset - fadeOutStartYOffset) * (finalOpacity - defaultOpacity) / fadeOutDurationOffset;
 		currentOpacity = defaultOpacity + opacityShift;
-		if( currentOpacity >= defaultOpacity) {
+		if(currentOpacity >= defaultOpacity) {
 			toning.style.opacity = currentOpacity;
 		}
 	}
@@ -218,21 +228,24 @@ function initScreen() {
 	var lastScrollTop = 0;
 
 	function goToSlider() {
+		if(scrollWithScrollIcon) {
+			return;
+		}
 		var st = window.pageYOffset || document.documentElement.scrollTop;
-	   if (st > lastScrollTop){ // Detect scroll down
-	   	 	if ( st > windowHeight * 3 && st < windowHeight * 4 ) {
-	   	 		console.log('scroll down');
+		if (st > lastScrollTop){ // Detect scroll down
+			 	if (st > windowHeight * 3 && st < windowHeight * 4) {
+			 		console.log('scroll down');
 
-	   	 		window.removeEventListener( 'scroll', goToSlider);
+			 		window.removeEventListener('scroll', goToSlider);
 					disableScroll();
 					doScrollingToPos(windowHeight * 4, 500)
 
 					setTimeout(function(){
 						enableScroll();
-						window.addEventListener( 'scroll', goToSlider);
+						window.addEventListener('scroll', goToSlider);
 					}, 500)
-	   	 	}
-	   }
+			 	}
+   	}
 	   lastScrollTop = st;
 	}
 
@@ -409,29 +422,25 @@ function initTutorial() {
 			parallaxBlock = document.getElementsByClassName('parallax')[0],
 			tutorialOpen = false,
 			slideContent = document.getElementsByClassName('slideContent'),
-			initIcon = document.getElementsByClassName('initIcon')[0];
+			initIcon = document.getElementsByClassName('initIcon')[0],
+			slideTitle = document.getElementsByClassName('slideTitle');
 
 	howToButton.addEventListener('click', showTutorial);
 	close.addEventListener('click', hideTutorial);
 	window.addEventListener('keydown', hideTutorialEsc);
 
 	function showTutorial() {
-		setTimeout(function() {
-			document.body.style.overflow = 'hidden';
-		}, 0)
-
-		// Remove transition after pop-up open,
-		// because with transition we see scroll lags
-
 		tutorial.classList.add('showTutorial');
+		document.body.style.overflow = 'hidden';
 		tutorialOpen = true;
+		slideTitle[0].style.transform = 'translateZ(0) translateY(0)';
 
 		// Anit animation
 		setTimeout(function() {
 			circleWrapper.classList.add('showCircleWrapper');
 			linesWrapper.classList.add('showLinesWrapper');
 			initIcon.classList.add('showInitIcon');
-		}, 500)
+		}, 500);
 	}
 
 	function hideTutorial() {
@@ -581,18 +590,13 @@ function initTutorial() {
 		tutorialIcon[i - 1].classList.remove('showIcon');
 		tutorialIcon[i].classList.add('showIcon');
 
-		// Some shit
-		// setTimeout(function() {
-		// 	slideContent[i].classList.add('show');
-		// }, 500)
-		// slideContent[i - 1].classList.remove('show');
 		setTimeout(function() {
 			slideContent[i].style.opacity = '1';
-			slideContent[i].style.transform = 'translateZ(0) translateY(0)';
+			slideTitle[i].style.transform = 'translateZ(0) translateY(0)';
 		}, 500);
 		slideContent[i - 1].style.opacity = '0';
 		setTimeout(function() {
-			slideContent[i - 1].style.transform = 'translateZ(0) translateY(0px)';
+			slideTitle[i - 1].style.transform = 'translateZ(0) translateY(-10px)';
 		}, 500);
 	}
 
@@ -613,14 +617,13 @@ function initTutorial() {
 		tutorialIcon[i + 1].classList.remove('currentIcon');
 		tutorialIcon[i + 1].classList.remove('showIcon');
 
-		// Some shit
 		setTimeout(function() {
 			slideContent[i].style.opacity = '1';
-			slideContent[i].style.transform = 'translateZ(0) translateY(0)';
+			slideTitle[i].style.transform = 'translateZ(0) translateY(0)';
 		}, 500)
 		slideContent[i + 1].style.opacity = '0';
 		setTimeout(function() {
-			slideContent[i + 1].style.transform = 'translateZ(0) translateY(0px)';
+			slideTitle[i + 1].style.transform = 'translateZ(0) translateY(10px)';
 		}, 500);
 	}
 
