@@ -60,25 +60,6 @@ button {
 
 /***** Reset styles end *****/
 /***** Basic *****/
-body {
-  position: relative; }
-
-.serviceLayer {
-  width: 100%;
-  margin: 400vh 0 0 0;
-  display: block;
-  z-index: 1000;
-  position: relative;
-  overflow: hidden; }
-
-.secondLayer {
-  width: 100%;
-  z-index: 1000;
-  transition: transform 1s; }
-
-.secondLayer.active {
-  transform: translateZ(0) translateY(0); }
-
 /***** Basic end ****
 /***** Tupography *****/
 @font-face {
@@ -219,9 +200,7 @@ body {
       background-repeat: no-repeat;
       transform: translateZ(0);
       transform-origin: 50% 50%;
-      transition: inherit;
-      -webkit-will-change: transform;
-      will-change: transform; }
+      transition: inherit; }
   .initScreen .bg {
     width: 113%;
     height: 102%;
@@ -229,7 +208,9 @@ body {
     background-size: 100% auto;
     position: absolute;
     left: -3%;
-    top: -2%; }
+    top: -2%;
+    -webkit-will-change: transform;
+    will-change: transform; }
     .initScreen .bg::after {
       content: '';
       width: 100%;
@@ -248,7 +229,9 @@ body {
     background-size: auto 100%;
     z-index: 2;
     transform-origin: 100% 50%;
-    transform-origin: calc(50vw - 10vw) calc(-50vh + 1.5vh + 87.065vh); }
+    transform-origin: calc(50vw - 10vw) calc(-50vh + 1.5vh + 87.065vh);
+    -webkit-will-change: transform;
+    will-change: transform; }
   .initScreen .player-2 {
     width: 51.866vh;
     height: 89.18vh;
@@ -257,7 +240,9 @@ body {
     background-image: url(../images/initScreen-player-2.png);
     background-size: auto 100%;
     z-index: 1;
-    transform-origin: calc(50vw - 39.5vw) calc(-50vh + 7.5vh + 89.18vh); }
+    transform-origin: calc(50vw - 39.5vw) calc(-50vh + 7.5vh + 89.18vh);
+    -webkit-will-change: transform;
+    will-change: transform; }
   .initScreen .ball {
     width: 13.5vh;
     height: 13.5vh;
@@ -266,7 +251,9 @@ body {
     background-image: url(../images/initScreen-ball.png);
     background-size: auto 100%;
     z-index: 2;
-    transform-origin: calc(50vw - 18.7vw) calc(-50vh + 1.8vh + 13.5vh); }
+    transform-origin: calc(50vw - 18.7vw) calc(-50vh + 1.8vh + 13.5vh);
+    -webkit-will-change: transform;
+    will-change: transform; }
   .initScreen .bg-players {
     width: 103.982vh;
     height: 82.588vh;
@@ -292,7 +279,9 @@ body {
     background-color: black;
     opacity: 0.5;
     transform: translateZ(0);
-    z-index: 3; }
+    z-index: 3;
+    -webkit-will-change: opacity;
+    will-change: opacity; }
   .initScreen .scrollIcon {
     width: 11px;
     height: 33px;
@@ -308,6 +297,7 @@ body {
 /***** Init slider *****/
 .initSlider {
   height: 90vh;
+  margin-top: 400vh;
   display: flex;
   position: relative;
   /***** Svg ******/
@@ -536,6 +526,11 @@ body {
     animation: animPath 1s forwards; }
   .tutorial .showLinesWrapper * {
     animation: animPath 0.5s 2s forwards; }
+  .tutorial .initIcon * {
+    opacity: 0;
+    transition: opacity 1s; }
+  .tutorial .initIcon.showInitIcon * {
+    opacity: 1; }
 
 @keyframes animPath {
   to {

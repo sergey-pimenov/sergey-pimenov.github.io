@@ -160,35 +160,7 @@ button {
 
 /***** Basic *****/
 
-body {
-	//height: 100vh;
-	position: relative;
-}
 
-.serviceLayer {
-	width: 100%;
-	margin: 400vh 0 0 0;
-	// padding-bottom: calc(791px + 270px + 55px);
-	display: block;
-	z-index: 1000;
-	position: relative;
-	overflow: hidden;
-}
-
-.secondLayer {
-	width: 100%;
-	z-index: 1000;
-	//transform: translateZ(0) translateY(100vh);
-	transition: transform 1s;
-}
-
-.secondLayer.active {
-	transform: translateZ(0) translateY(0);
-}
-
-// body:hover .secondLayer {
-// 	transform: translateZ(0) translateY(0);
-// }
 
 /***** Basic end ****
 /***** Tupography *****/
@@ -383,8 +355,6 @@ body {
 			transform: translateZ(0);
 			transform-origin: 50% 50%;
 			transition: inherit;
-			-webkit-will-change: transform;
-			will-change: transform;
 		}
 	}
 	
@@ -396,6 +366,8 @@ body {
 		position: absolute;
 		left: -3%;
 		top: -2%;
+		-webkit-will-change: transform;
+		will-change: transform;
 
 		&::after {
 			content: '';
@@ -419,6 +391,8 @@ body {
 		z-index: 2;
 		transform-origin: 100% 50%;
 		transform-origin: calc(50vw - 10vw) calc(-50vh + 1.5vh + 87.065vh);
+		-webkit-will-change: transform;
+		will-change: transform;
 	}
 
 	.player-2 {
@@ -430,6 +404,8 @@ body {
 		background-size: auto 100%;
 		z-index: 1;
 		transform-origin: calc(50vw - 39.5vw) calc(-50vh + 7.5vh + 89.18vh);
+		-webkit-will-change: transform;
+		will-change: transform;
 	}
 
 	.ball {
@@ -441,6 +417,8 @@ body {
 		background-size: auto 100%;
 		z-index: 2;
 		transform-origin: calc(50vw - 18.7vw) calc(-50vh + 1.8vh + 13.5vh);
+		-webkit-will-change: transform;
+		will-change: transform;
 	}
 
 	.bg-players {
@@ -473,6 +451,8 @@ body {
 		opacity: 0.5;
 		transform: translateZ(0);
 		z-index: 3;
+		-webkit-will-change: opacity;
+		will-change: opacity;
 	}
 
 	.scrollIcon {
@@ -494,7 +474,7 @@ body {
 
 .initSlider {
 	height: 90vh;
-	// margin-top: 400vh;
+	margin-top: 400vh;
 	display: flex;
 	position: relative;
 
@@ -811,6 +791,7 @@ body {
 	.showCircleWrapper path {
 		opacity: 1;
 	}
+	
 
 	.tutorialIcon:not(.currentIcon) {
 		opacity: 0;
@@ -822,6 +803,15 @@ body {
 
 	.showLinesWrapper * {
 		animation: animPath 0.5s 2s forwards;
+	}
+
+	.initIcon * {
+		opacity: 0;
+		transition: opacity 1s;
+	}
+
+	.initIcon.showInitIcon * {
+		opacity: 1;
 	}
 
 	@keyframes animPath {

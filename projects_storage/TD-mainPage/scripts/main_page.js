@@ -66,7 +66,6 @@ function doScrollingToPos(yPos, duration, callback) {
     var percent = Math.min(time / duration, 1)
 
     window.scrollTo(0, startingY + diff * percent)
-    console.log(percent);
 
     // Proceed with animation as long as we wanted it to.
     if (time < duration) {
@@ -114,20 +113,10 @@ function enableScroll() {
 
 window.addEventListener('load', initScreen);
 
-function throttle(fn, delay) {
-	var timer = null;
-
-	return function() {
-		if (timer) return;
-
-		timer = setTimeout(function() {
-			fn();
-			timer = null;
-		}, delay);
-	}
-}
-
 function initScreen() {
+
+	// Detect Safari
+	var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || safari.pushNotification);
 
 	// Parallaxed nodes
 	var player_1 = document.getElementsByClassName('player-1')[0],
@@ -143,10 +132,6 @@ function initScreen() {
 	var windowHeight = document.documentElement.clientHeight;
 	var start = 0;
 	var end = windowHeight * 4;
-
-	window.addEventListener('click', function(){
-		doScrollingToPos(3700, 2000);
-	});
 
 	window.addEventListener('scroll', throttle(parallaxAnim, 16));
 
@@ -178,10 +163,22 @@ function initScreen() {
 	}
 
 	setTimeout( function() {
-		doScrollingToPos( document.documentElement.clientHeight, 800);
-		setTimeout( function() {
+		if(window.pageYOffset == 0) {
+			console.log(window.pageYOffset)
+			if(!isSafari) {
+				doScrollingToPos( document.documentElement.clientHeight, 800);
+			} else {
+				doScrollingToPos( document.documentElement.clientHeight, 0);
+			}
+		}
+
+		if(isSafari) { // For safari we change transition on start
 			parallaxBlock.style.transition = 'transform 0.25s ease-out';
-		}, 2300);
+		} else {
+			setTimeout( function() { // Change transition when we do initial scroll
+				parallaxBlock.style.transition = 'transform 0.25s ease-out';
+			}, 2300);
+		}
 	}, 0);
 
 	// Hide slider
@@ -191,11 +188,12 @@ function initScreen() {
 			currentYOffset,
 			scrollPosition = 'onSlider';
 
+	// Run toning function when we see slider
 	detectVisibility( initSlider, hideInitScreen, 'initSliderListener');
 
 	function hideInitScreen() {
-		window.addEventListener('scroll', throttle(hideScreen, 16));
-		// window.addEventListener('scroll', showScreen);
+		// Set throttle for limit hideScreen function
+		window.addEventListener('scroll', throttle(toningScreen, 16));
 	}
 
 	var currentOpacity, defaultOpacity = 0.5, finalOpacity = 0.9;
@@ -205,8 +203,7 @@ function initScreen() {
 	var yStep = 0;
 	var scrollState = false;
 
-	function hideScreen() {
-		console.log('hide screen');
+	function toningScreen() {
 		currentYOffset = window.pageYOffset;
 		opacityShift = ( currentYOffset - fadeOutStartYOffset) * ( finalOpacity - defaultOpacity) / fadeOutDurationOffset;
 		currentOpacity = defaultOpacity + opacityShift;
@@ -215,47 +212,43 @@ function initScreen() {
 		}
 	}
 
+	if(!isSafari) window.addEventListener("scroll", goToSlider, false);
+
 	var currentYScroll;
+	var lastScrollTop = 0;
 
-	function scrollAboveSlider(callback) {
-		doScrollingToPos( initSlider.offsetTop - windowHeight, 0, callback);
+	function goToSlider() {
+		var st = window.pageYOffset || document.documentElement.scrollTop;
+	   if (st > lastScrollTop){ // Detect scroll down
+	   	 	if ( st > windowHeight * 3 && st < windowHeight * 4 ) {
+	   	 		console.log('scroll down');
+
+	   	 		window.removeEventListener( 'scroll', goToSlider);
+					disableScroll();
+					doScrollingToPos(windowHeight * 4, 500)
+
+					setTimeout(function(){
+						enableScroll();
+						window.addEventListener( 'scroll', goToSlider);
+					}, 500)
+	   	 	}
+	   }
+	   lastScrollTop = st;
 	}
 
-	function scrollToSlider(callback) {
-			doScrollingToPos( initSlider.offsetTop, 0, callback);
-	}
+	// Function that limit call count
+	function throttle(fn, delay) {
+		var timer = null;
 
-	window.addEventListener( 'scroll', switchScrollPos);
-	var secondLayer = document.getElementsByClassName('secondLayer')[0];
-  
-	var timeoutId;
-  var direction = 0;
-	function switchScrollPos(wheelEvent) {
-		currentYScroll = window.pageYOffset;
+		return function() {
+			if (timer) return;
 
-		if ( timeoutId ) {
-			clearTimeout(timeoutId );  
+			timer = setTimeout(function() {
+				fn();
+				timer = null;
+			}, delay);
 		}
-
-		if ( currentYScroll > windowHeight * 3 && currentYScroll < windowHeight * 4 ) {
-
-			timeoutId = setTimeout(function() {
-
-				window.removeEventListener( 'scroll', switchScrollPos);
-				disableScroll();
-
-				doScrollingToPos( direction ? windowHeight * 3 : windowHeight * 4, 500, function() {
-					enableScroll();
-					window.addEventListener( 'scroll', switchScrollPos);
-				});
-
-				direction = !direction;
-
-			}, 50);
-		}
-
 	}
-
 
 }
 /**** Slider script *****/
@@ -415,7 +408,8 @@ function initTutorial() {
 			close = document.getElementsByClassName('close')[0],
 			parallaxBlock = document.getElementsByClassName('parallax')[0],
 			tutorialOpen = false,
-			slideContent = document.getElementsByClassName('slideContent');
+			slideContent = document.getElementsByClassName('slideContent'),
+			initIcon = document.getElementsByClassName('initIcon')[0];
 
 	howToButton.addEventListener('click', showTutorial);
 	close.addEventListener('click', hideTutorial);
@@ -424,7 +418,7 @@ function initTutorial() {
 	function showTutorial() {
 		setTimeout(function() {
 			document.body.style.overflow = 'hidden';
-		}, 300)
+		}, 0)
 
 		// Remove transition after pop-up open,
 		// because with transition we see scroll lags
@@ -436,18 +430,19 @@ function initTutorial() {
 		setTimeout(function() {
 			circleWrapper.classList.add('showCircleWrapper');
 			linesWrapper.classList.add('showLinesWrapper');
+			initIcon.classList.add('showInitIcon');
 		}, 500)
 	}
 
 	function hideTutorial() {
-		document.body.style.overflow = 'hidden';
+		document.body.style.overflow = 'visible';
 
 		tutorial.classList.remove('showTutorial');
 		tutorialOpen = false;
 
-		circleWrapper.classList.remove('showCircleWrapper');
-		linesWrapper.classList.remove('showLinesWrapper');
-		tutorialIcon[0].classList.remove('showIcon');
+		// circleWrapper.classList.remove('showCircleWrapper');
+		// linesWrapper.classList.remove('showLinesWrapper');
+		// tutorialIcon[0].classList.remove('showIcon');
 	}
 
 	function hideTutorialEsc(closeEvent) {
