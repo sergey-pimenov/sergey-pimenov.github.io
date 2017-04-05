@@ -502,6 +502,8 @@ body {
 		background-size: auto 100%;
 		transform: translateZ(0);
 		transform-origin: calc(-50vw + 103.982vh - 20px) calc(50vh - 2px);
+		-webkit-will-change: transform;
+		will-change: transform;
 	}
 
 	.grass {
@@ -513,6 +515,8 @@ body {
 		background: url(../images/initScreen-grass.png) no-repeat center bottom;
 		background-size: 100% auto;
 		transform: translateZ(0);
+		-webkit-will-change: transform;
+		will-change: transform;
 	}
 
 	.toning {
@@ -540,6 +544,8 @@ body {
 		transform: translateZ(0);
 		z-index: 1000;
 		pointer-events: none;
+		-webkit-will-change: opacity;
+		will-change: opacity;
 	}
 
 	.scrollIcon {
