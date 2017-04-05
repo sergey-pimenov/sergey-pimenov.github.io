@@ -1,0 +1,972 @@
+/***** Variables *****/
+/***** Variables end *****/
+/***** Icons *****/
+/***** Icons end *****/
+/***** Extends *****/
+/***** Extends end *****/
+/***** Mixins *****/
+/***** Mixins end *****/
+/**** Reset styles *****/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  box-sizing: border-box; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+a {
+  color: inherit;
+  text-decoration: none; }
+
+button {
+  outline: none; }
+
+/***** Reset styles end *****/
+/***** Basic *****/
+/***** Basic end ****
+/***** Tupography *****/
+@font-face {
+  font-family: 'ProximaNova-Regular';
+  src: url("../fonts/ProximaNova-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/ProximaNova-Regular.otf") format("opentype"), url("../fonts/ProximaNova-Regular.woff") format("woff"), url("../fonts/ProximaNova-Regular.ttf") format("truetype"), url("../fonts/ProximaNova-Regular.svg#ProximaNova-Regular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'ProximaNova-Bold';
+  src: url("../fonts/ProximaNova-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/ProximaNova-Bold.otf") format("opentype"), url("../fonts/ProximaNova-Bold.woff") format("woff"), url("../fonts/ProximaNova-Bold.ttf") format("truetype"), url("../fonts/ProximaNova-Bold.svg#ProximaNova-Bold") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'ProximaNova-Light';
+  src: url("../fonts/ProximaNova-Light.eot?#iefix") format("embedded-opentype"), url("../fonts/ProximaNova-Light.otf") format("opentype"), url("../fonts/ProximaNova-Light.woff") format("woff"), url("../fonts/ProximaNova-Light.ttf") format("truetype"), url("../fonts/ProximaNova-Light.svg#ProximaNova-Light") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+body {
+  font-family: 'ProximaNova-Regular', sans-serif;
+  color: white; }
+
+/***** Tupography end *****/
+/***** Header *****/
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 20px 40px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1; }
+  .header .logoWrapper {
+    display: flex;
+    align-items: center; }
+  .header .logoTitle {
+    margin-left: 30px; }
+  .header .logo {
+    min-width: 50px; }
+  .header .lobby {
+    margin-left: 60px;
+    color: #a4a4a4; }
+  .header .enter {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    color: #a4a4a4; }
+    .header .enter::before {
+      content: url('\a 				data:image/svg+xml;utf8,\a 				<svg viewBox="0 0 30 30" width="20" height="20" stroke="white" xmlns="http://www.w3.org/2000/svg">\a 					<polyline fill="none" stroke-width="2" points="6.9 19.6 6.9 26.6 28.9 \a 					26.6 28.9 3.4 6.9 3.4 6.9 10.4 "/>\a 					<polygon fill="#ffffff" points="11.6 20.3 13.1 22 19.6 15.1 19.6 15.1 \a 					19.6 15.1 13.1 8 11.6 9.7 15.4 13.9 1.1 13.9 1.1 16.2 15 16.2 "/>\a 				</svg>');
+      margin-right: 13px; }
+
+/***** Header end *****/
+/***** Init screen *****/
+.initScreen {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: fixed;
+  top: 0;
+  transform: translateZ(0); }
+  .initScreen .textBlock {
+    width: 50%;
+    padding-left: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    z-index: 5;
+    opacity: 0;
+    transform: translateZ(0);
+    animation: showTextBlock 1.5s 1.5s ease-out forwards; }
+
+@keyframes showTextBlock {
+  100% {
+    opacity: 1; } }
+  .initScreen .textBlock > * {
+    max-width: 500px; }
+  .initScreen .textTitle {
+    margin-bottom: 30px;
+    font-size: 26px;
+    text-transform: uppercase;
+    line-height: 1.6;
+    letter-spacing: 4px; }
+  .initScreen .textDescription {
+    margin-bottom: 60px;
+    line-height: 1.8;
+    color: #a4a4a4; }
+  .initScreen .howToButton {
+    min-height: 52px;
+    padding: 0 50px;
+    text-align: center;
+    font-family: "ProximaNova-Light";
+    font-size: 16px;
+    text-transform: uppercase;
+    line-height: 0.9;
+    border-radius: 50px/50px;
+    outline: none;
+    cursor: pointer;
+    min-width: 195px;
+    position: relative;
+    border: none;
+    background: transparent url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMMAAAA0CAMAAAAANnw5AAABpFBMVEUAAAABAAAAAAAAAAAAAAD/cAD/rQALBAAAAAD/jwD/rgD/rAD7qQD/bgD+rQD+cAD/cQD+cADypAD8bQD9qwC2aABLJgD/rAD/rgD/bgD+rAD+bQD+bwD/rgD7bAD8bQD7cAD7bAD7qQDyaQD/rgD2awD/cAD6qAD2pgD2awD/rgD/bgD/cwBCIQD/rgD/hgD+cwD/cQD/cgD/cgD/rQD6bgD7rAH/qwD/cgD5pgD/rQD9qwD/cADlmQDpZgDonQDuZgDbkgHcYAD/rQCZTQD/dAD/bwD/cQD/qAD+cwD/rgD/bgD9cgD7qgD/rgD/bgD/cwH/rgD/cAD/rAHoZQH1pAD0agDvoAHjYQD/qgD/qwH/bgD/qQAwFQB7QgD/qQD/bgD8pwH+qQD9rQD/rAHtngHvagDflwDmnAD/mwD/hQD/dQD/pwD/kwD/ggD/eAD/pAD/nwD/fQD/eQD/lwD/iQD/hwD/kQH/pQD/jwD/ogH/mQH/jQH/gAH/ewH/oQD/nQD/lQD/iwD/fwD/ngH/jAH/qQD/lgD/jgD/fAD/rgD/bgCHr1YdAAAAaXRSTlMABAkLA+zrDAcB4Neg39GgO9paWEQRBvHl5NvQwqCfmHVsaGBaU0Q+MTEkJB0PDgvv4NbSwqWYlJN2bl5cSUNAPjo6ORcRB/jk5MvLyKeBgWRRTk1NSUc5Lh4bExEKCPfzyca/mWM3Li192TjoAAACWElEQVR4AUzBNw7CMBQAUJAYmbkLJwAkdkYkNnqHxL2XW8f+30Pem8zAdGSxW84P630IF9QVD0AIkVI+gXNKqWNDKf1UMWqtr+hf9EVKjDHvjTHf6ledmhvinFtrXyBnIcQb3NG5WW22Q7d2tpU2FIVx/HOfJgESBmRAUAEFBFQE50FBQbTzrHZodbWrQ/ss7Us3xSWEaHudL/8rb38rAif77Gjxe3rC0b1BcAuqlm5uz1fffQzCWwVPlmMvdtZa0U7apcAY4WrfjOy+h5dbLq6vla7GEHA+hHNzIwnvtzATv3A+Coz+Tj0NvQZHr1Y3UxPDRoZa7msTLDUL8fptw7leBlMHWsVtmNSPwVVMS4wbknoNbNW1C6ehplfBV0yrjwwpcx+MHcRTQ4M1C86i+RvD4dQKODvJHl0b0pEyWEtMpweGyUfg7XFiYIi8BG+V6b+GN6EgeAuGj2zD1jMw97xgG6YWwdxSdgI/Q+Au/Bbzs+AuOoetPXA3V8CXJLhbmEFoEdwthZFZAXcfPuEXyDv97QPDfR/8L2m++Exv+OC71aL/jcv74qzxwwdnvgD92TuAAP07kG04zJG/i9oGIZ8JSAAi3LOZkghELqlnZJcDg/DOKpvZjlwbhHhmLDcG3tl9f2iQrn5MeYfSk5FB2pR3WWfiNAjjnWJJxg02ogymElpF3Abp5rabYOl0Z7Untw3Sp9p16MtdBlHtHMvOyZmSOw1KqcY3M7JHsPvTUEr9w2BntK2Ml3ew1lubHUOp/xsMo9HdtT4/yHhuF6718Em+2GsYhtvwB+MTv8hmZBd+AAAAAElFTkSuQmCC") no-repeat;
+    background-size: 100% 100%;
+    color: white;
+    transition: border-color 0.1s; }
+    .initScreen .howToButton::after {
+      content: '';
+      width: 100%;
+      height: 100%;
+      border-radius: 50px/50px;
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      background: linear-gradient(to right, #fead00, #e16f1a);
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.1s; }
+    .initScreen .howToButton:hover {
+      border-color: transparent; }
+    .initScreen .howToButton:hover::after {
+      opacity: 1; }
+  .initScreen .parallax {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    perspective: 900px;
+    transform: translateZ(0);
+    transition: transform 1s ease-out; }
+    .initScreen .parallax * {
+      position: absolute;
+      background-repeat: no-repeat;
+      transform: translateZ(0);
+      transform-origin: 50% 50%;
+      transition: inherit; }
+  .initScreen .bg {
+    width: 113%;
+    height: 102%;
+    background: black url(../images/initScreen-bg.jpg) no-repeat center bottom;
+    background-size: 100% auto;
+    position: absolute;
+    left: -3%;
+    top: -2%;
+    -webkit-will-change: transform;
+    will-change: transform; }
+    .initScreen .bg::after {
+      content: '';
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      background-color: black;
+      opacity: 0.7; }
+  .initScreen .player-1 {
+    width: 63.806vh;
+    height: 87.065vh;
+    left: 10vw;
+    bottom: 1.5vh;
+    background-image: url(../images/initScreen-player-1.png);
+    background-size: auto 100%;
+    z-index: 2;
+    transform-origin: 100% 50%;
+    transform-origin: calc(50vw - 10vw) calc(-50vh + 1.5vh + 87.065vh);
+    -webkit-will-change: transform;
+    will-change: transform; }
+  .initScreen .player-2 {
+    width: 51.866vh;
+    height: 89.18vh;
+    left: 39.5vw;
+    bottom: 7.5vh;
+    background-image: url(../images/initScreen-player-2.png);
+    background-size: auto 100%;
+    z-index: 1;
+    transform-origin: calc(50vw - 39.5vw) calc(-50vh + 7.5vh + 89.18vh);
+    -webkit-will-change: transform;
+    will-change: transform; }
+  .initScreen .ball {
+    width: 13.5vh;
+    height: 13.5vh;
+    left: 18.7vw;
+    bottom: 1.8vh;
+    background-image: url(../images/initScreen-ball.png);
+    background-size: auto 100%;
+    z-index: 2;
+    transform-origin: calc(50vw - 18.7vw) calc(-50vh + 1.8vh + 13.5vh);
+    -webkit-will-change: transform;
+    will-change: transform; }
+  .initScreen .bg-players {
+    width: 103.982vh;
+    height: 82.588vh;
+    right: -20px;
+    top: -2px;
+    background-image: url(../images/initScreen-bg-players.png);
+    background-size: auto 100%;
+    transform-origin: calc(-50vw + 103.982vh - 20px) calc(50vh - 2px); }
+  .initScreen .grass {
+    width: 110%;
+    height: 100%;
+    position: absolute;
+    left: -5%;
+    bottom: 0;
+    background: url(../images/initScreen-grass.png) no-repeat center bottom;
+    background-size: 100% auto; }
+  .initScreen .toning {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: black;
+    opacity: 0.5;
+    transform: translateZ(0);
+    z-index: 3;
+    -webkit-will-change: opacity;
+    will-change: opacity; }
+  .initScreen .scrollIcon {
+    width: 11px;
+    height: 33px;
+    background: url('\a 				data:image/svg+xml;utf8,\a 				<svg fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\a 			    <path d="M5.5,2.84217094e-14 C2.462,2.84217094e-14 0,2.462 0,5.5 L0,11.5 C0,14.538\a 			    2.462,17 5.5,17 C8.538,17 11,14.538 11,11.5 L11,5.5 C11,2.462 8.538,2.84217094e-14\a 			    5.5,2.84217094e-14 M5.5,1 C7.981,1 10,3.019 10,5.5 L10,11.5 C10,13.981 7.981,16\a 			    5.5,16 C3.019,16 1,13.981 1,11.5 L1,5.5 C1,3.019 3.019,1 5.5,1" fill="white"/>\a 			    <polyline stroke="white" points="9 28 5.5 31.467 2 28"/>\a 			    <path d="M5.5,23.5 L5.5,31.5" stroke="white"/>\a 			    <path d="M5.5,4.5 L5.5,8.5" stroke="white"/>\a 				</svg>');
+    position: absolute;
+    left: calc(50% - 5px);
+    bottom: 30px;
+    transform: translateZ(0);
+    z-index: 10;
+    cursor: pointer; }
+
+/***** Init screen end *****/
+/***** Init slider *****/
+.initSlider {
+  height: 90vh;
+  margin-top: 400vh;
+  display: flex;
+  position: relative;
+  /***** Svg ******/
+  /***** Svg end ******/ }
+  .initSlider .sliderPicture {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #161616; }
+  .initSlider .sliderIcon {
+    transition: opacity 0.15s 0.15s; }
+  .initSlider .iconWraper {
+    transition: opacity 1s; }
+    .initSlider .iconWraper * {
+      opacity: 0; }
+    .initSlider .iconWraper.showWraper * {
+      opacity: 1; }
+  .initSlider .showIcon * {
+    animation: animPath 1s forwards; }
+
+@keyframes animPath {
+  to {
+    stroke-dashoffset: 0; } }
+  .initSlider .sliderIcon:not(.showIcon) {
+    opacity: 0;
+    transition: opacity 0.15s; }
+  .initSlider .circles path:nth-of-type(1) {
+    transition: opacity linear 1s 1.2s; }
+  .initSlider .circles path:nth-of-type(2) {
+    transition: opacity linear 1s 1.5s; }
+  .initSlider .circles path:nth-of-type(3) {
+    transition: opacity linear 1s 1.8s; }
+  .initSlider .circles path:nth-of-type(4) {
+    transition: opacity linear 1s 2.1s; }
+  .initSlider .showVerticalLines * {
+    animation: animPath 0.5s 2.3s forwards; }
+  .initSlider .starsAndCircles * {
+    transition: all 2.5s 3s; }
+  .initSlider .sliderContent {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #1b1b1b; }
+  .initSlider .contentTitle {
+    width: 320px;
+    margin: 200px 0 65px 0;
+    font-size: 26px;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateZ(0) translateY(70px);
+    transition: opacity 4s, transform 1s; }
+  .initSlider .sliderDescriptions {
+    width: 320px;
+    position: relative;
+    opacity: 0;
+    transform: translateZ(0) translateY(70px);
+    transition: opacity 4s, transform 1s; }
+  .initSlider .showSlideContent {
+    opacity: 1;
+    transform: translateZ(0) translateY(0); }
+  .initSlider .descriptionBlock {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: opacity 0.15s 0.15s linear; }
+  .initSlider .descriptionBlock:not(.currentDescription) {
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.15s linear; }
+  .initSlider .descriptionTitle {
+    margin-bottom: 30px;
+    font-size: 22px;
+    color: #a4a4a4; }
+  .initSlider .description {
+    color: #a4a4a4;
+    line-height: 1.5; }
+  .initSlider .sliderControls {
+    position: relative;
+    top: 230px;
+    font-size: 0; }
+  .initSlider .sliderControl {
+    width: 11px;
+    height: 11px;
+    margin-right: 12px;
+    padding: 0 !important;
+    display: inline-block;
+    font-size: 0;
+    background-color: #fead00;
+    border: 1px transparent solid;
+    border-radius: 50%;
+    transition: background-color 0.15s, border 0.15s;
+    cursor: pointer; }
+    .initSlider .sliderControl:last-of-type {
+      margin-right: 0; }
+    .initSlider .sliderControl:not(.active) {
+      background-color: transparent;
+      border: 1px #594313 solid;
+      cursor: pointer; }
+    .initSlider .sliderControl:not(.active):hover {
+      border: 1px #ad8225 solid; }
+  .initSlider .scrollPos {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    left: 0;
+    top: -100vh;
+    background-color: red;
+    z-index: 300; }
+
+/***** Init slider end *****/
+/***** Select tournaments *****/
+.selectTournament {
+  height: 270px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center; }
+  @media all and (min-width: 769px) {
+    .selectTournament {
+      background-image: url(../images/selectTournamentBg.jpg); } }
+  @media all and (max-width: 768px) {
+    .selectTournament {
+      background-image: url(../images/selectTournamentBg-mob.jpg); } }
+  .selectTournament .selectButton {
+    min-height: 52px;
+    padding: 0 50px;
+    text-align: center;
+    font-family: "ProximaNova-Light";
+    font-size: 16px;
+    text-transform: uppercase;
+    line-height: 0.9;
+    border-radius: 50px/50px;
+    outline: none;
+    cursor: pointer;
+    background: linear-gradient(to right, #fead00, #e16f1a);
+    border: none;
+    color: white;
+    position: relative;
+    z-index: 3; }
+    .selectTournament .selectButton::after {
+      content: '';
+      width: 100%;
+      height: 100%;
+      border-radius: 50px/50px;
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      background: linear-gradient(to right, #e16f1a, #fead00);
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.1s; }
+    .selectTournament .selectButton:hover::after {
+      opacity: 1; }
+
+/***** Select tournaments end *****/
+/***** Footer *****/
+.footer {
+  height: 55px;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  background-color: #1f1f1f;
+  text-transform: uppercase;
+  color: #565656;
+  font-size: 12px; }
+  .footer .owner {
+    margin-right: 40px; }
+  .footer img {
+    height: 24px;
+    margin-right: 33px; }
+    .footer img:last-of-type {
+      margin-right: 0; }
+    .footer img.getSmaller {
+      height: 19px; }
+  .footer .navigation {
+    margin-left: auto; }
+    .footer .navigation a {
+      margin-right: 29px; }
+    .footer .navigation :last-child {
+      margin-right: 0; }
+
+/***** Footer end *****/
+.tutorial {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: #191919;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s; }
+  .tutorial.showTutorial {
+    z-index: 6;
+    opacity: 1; }
+  .tutorial .icons {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.5); }
+  .tutorial .icon {
+    z-index: 2; }
+  .tutorial .circleWrapper path {
+    opacity: 0; }
+    .tutorial .circleWrapper path:nth-of-type(1) {
+      transition: all 1s 1s; }
+    .tutorial .circleWrapper path:nth-of-type(2) {
+      transition: all 1s 1.5s; }
+  .tutorial .showCircleWrapper path {
+    opacity: 1; }
+  .tutorial .tutorialIcon:not(.currentIcon) {
+    opacity: 0; }
+  .tutorial .showIcon * {
+    animation: animPath 1s forwards; }
+  .tutorial .showLinesWrapper * {
+    animation: animPath 0.5s 2s forwards; }
+  .tutorial .initIcon * {
+    opacity: 0;
+    transition: opacity 1s; }
+  .tutorial .initIcon.showInitIcon * {
+    opacity: 1; }
+
+@keyframes animPath {
+  to {
+    stroke-dashoffset: 0; } }
+  .tutorial .slideBg {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center bottom;
+    opacity: 0;
+    transform: translateZ(0);
+    transition: opacity 1s; }
+    .tutorial .slideBg.show {
+      z-index: 1;
+      opacity: 1; }
+  .tutorial .selectTornament {
+    background-image: url(../images/tutorialBg-1.jpg);
+    opacity: 1; }
+  .tutorial .assembleTeam {
+    background-image: url(../images/tutorialBg-2.jpg); }
+  .tutorial .getPoints {
+    background-image: url(../images/tutorialBg-3.jpg); }
+  .tutorial .goToLeaders {
+    background-image: url(../images/tutorialBg-4.jpg); }
+  .tutorial .track {
+    width: calc( 50% + 17px);
+    height: 400vh;
+    position: relative;
+    background-color: #1b1b1b;
+    transform: translateZ(0);
+    transition: all 1s; }
+  .tutorial .slideContent {
+    width: 100%;
+    height: 100vh;
+    padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 1px;
+    position: absolute;
+    opacity: 0;
+    transform: translateZ(0) translateY(0px);
+    transition: all 0.5s; }
+    .tutorial .slideContent:first-of-type {
+      justify-content: flex-end; }
+  .tutorial .show {
+    opacity: 1;
+    transform: translateZ(0) translateY(0); }
+  .tutorial .mainTitle {
+    font-size: 26px;
+    text-transform: uppercase; }
+  .tutorial .sliderNumber {
+    min-width: 66px;
+    min-height: 66px;
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEIAAABCCAMAAADUivDaAAABy1BMVEUAAAD/lwD/eAD/qAD/rQD/rgD/rAD/cQD/dAD/qAD/dwD/iQD/cAD/dQD/mgD/qgD/rQD/cgD/rAD/jwD/cQD/iQD/cgD/pQD/cAD/dAD/fgD/mgD/bwD/dgD/qgD/cgD/iAD/qgD/qAD/dwD/cAD/dwD/qAD/kAD/cAD/hQD/egD/pAD/bwD/lgD/eQD/ogD/fQD/rAD/qAD/mwD/fgD/qwD/qQD/qAD/dgD/oAD/lgD/rgD/bwD/qAD/nwD/igD/fwD/fQD/qAD/rQD/pwD/kgD/gQD/pAD/egD/qgD/jwD/eAD/cwD/pgD/jwD/bwD/rgD/ggD/rQD/cAD/rgD/iQD/bwD/qgD/cwD/hwD/rQD/bwD/pQD/egD/qwD/cgD/mgD/hAD/ngD/cAD/cAD/ogD/iAD/gAD/rAD/oAD/lgD/iAD/fgD/cQD/rQD/bwD/qQD/mgD/hAD/cAD/lwD/lQD/dwD/rQD/pwD/dQD/rQD/mwD/ggD/qgD/owD/dQD/qAD/rQD/kwD/iwD/jwD/cwD/jgD/oQD/oQD/mAD/jAD/jAD/mwD/mwD/lAD/ogD/ogD/pQD/qAD/qAD/bwD/bwD/hQD/jwD/bwC4X3hfAAAAl3RSTlMADQsL7eKcnFIdEwXt6uPhijElIiAcHBPj4I2IiHZ0WllYUT0nJCLz6OTj4uGtnZybjS8tLCgbFhYQCPn27e3t7evp6Obl5N3c0NDQ0M/Pzs3Nx8ewsLCvr6yrqqeloqKbm46NjIuJiIODgoKCgnt7eHRzclpZVlJQUEhERD49NzUzMzMoEPrs6+vk3c7MsKKYk1xbSUcv1CE2VwAAAgxJREFUeNqt2IdSE2EUhuE3TdN7ISQQEAgQCEV6RFEECyr23gUbVhTsBRG7YhcvV3eEGcyk7O7Z5wJ2ds/+5XyHokKziez4aOPSUuP78cOXakJo9Pic9112amY+YgJT5GXNteNDzeefoFpvwvtxuos8v+7s33Y5ghrp9k0Xuiiou3JzRwPlWC6+uRqjKOf1LZVmSlrX8iVGSc6OjJ3icu3bn1FW3Y62HEU49pwyoYLp9K4oBa0fqUalqkyAAuaGa1Htnud5gXfY+AANHnoC5HH4vqFJKp5XD8vO22hUtdvMamuOotmxtf+tKN8Amr2K21d9hu8pOtRVmFnhP4MuZydZFrT2oUu/u2GlllfQ6cZyRR3WGDo53VEU/k50m0gCuLYG0a2+yQU8OoDAwZ9KMasRuKsU1NaDQH0rpG2IVISpPYHIyRT+m4jcSnLoPiL2I+x7gUhgL7ZeRKJNWE2ImAfZgNBv8SNcg+IPcbrF5Qy3GvFT5UvLiAUu32ZGbHb5kSM/+OTH7w8DLgHpVTSZNOBClF/LxjUHdOptUSYMaJTk7Zq8aTS6dSU9/B1NUp6w8W08zI1IwwT0tKiPNPFucbAKU0Tuq8p4Zy4ZMj/3UVJ/W8ZeLuq+lUVdRVAauBWOhPfT9AJ5Fv7Ffi3DB292anY+YsE1EFKGD83K8EGj0ExicezvCOT10IexkiOQP3AWXF2M9gOLAAAAAElFTkSuQmCC") center center;
+    background-size: 100% auto;
+    font-family: "ProximaNova-Light"; }
+  .tutorial .slideTitle {
+    max-width: 300px;
+    margin: 60px 0 56px 0;
+    text-transform: uppercase;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: center;
+    font-family: "ProximaNova-Light"; }
+  .tutorial .trackLine {
+    width: 1px;
+    height: 170px;
+    background-color: grey;
+    position: relative; }
+    .tutorial .trackLine.downArrow {
+      margin-bottom: 60px; }
+    .tutorial .trackLine.downArrow::after {
+      content: url('\a 				data:image/svg+xml;utf8,\a 				<svg xmlns="http://www.w3.org/2000/svg" width="7" height="8">\a 				<path fill-rule="evenodd"  fill="grey"\a 				 d="M7.000,4.533 L3.500,8.000 L-0.000,4.533 L3.000,4.533 L3.000,-0.000 L4.000,-0.000 L4.000,4.533 L7.000,4.533 Z"/>\a 				</svg>');
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      left: -15px;
+      bottom: -60px;
+      text-align: center; }
+    .tutorial .trackLine.upArrow {
+      margin-top: 60px; }
+    .tutorial .trackLine.upArrow::before {
+      content: url('\a 				data:image/svg+xml;utf8,\a 				<svg xmlns="http://www.w3.org/2000/svg" width="7" height="8">\a 				<path fill-rule="evenodd"  fill="grey"\a 				 d="M7.000,4.533 L3.500,8.000 L-0.000,4.533 L3.000,4.533 L3.000,-0.000 L4.000,-0.000 L4.000,4.533 L7.000,4.533 Z"/>\a 				</svg>');
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      left: -15px;
+      top: -60px;
+      text-align: center;
+      transform: rotateZ(180deg); }
+  .tutorial .scrollIcon {
+    width: 11px;
+    height: 33px;
+    margin-top: 30px;
+    font-size: 0;
+    background: url('\a 				data:image/svg+xml;utf8,\a 				<svg fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\a 			    <path d="M5.5,2.84217094e-14 C2.462,2.84217094e-14 0,2.462 0,5.5 L0,11.5 C0,14.538\a 			    2.462,17 5.5,17 C8.538,17 11,14.538 11,11.5 L11,5.5 C11,2.462 8.538,2.84217094e-14\a 			    5.5,2.84217094e-14 M5.5,1 C7.981,1 10,3.019 10,5.5 L10,11.5 C10,13.981 7.981,16\a 			    5.5,16 C3.019,16 1,13.981 1,11.5 L1,5.5 C1,3.019 3.019,1 5.5,1" fill="white"/>\a 			    <polyline stroke="white" points="9 28 5.5 31.467 2 28"/>\a 			    <path d="M5.5,23.5 L5.5,31.5" stroke="white"/>\a 			    <path d="M5.5,4.5 L5.5,8.5" stroke="white"/>\a 				</svg>'); }
+  .tutorial .select {
+    min-height: 52px;
+    padding: 0 50px;
+    text-align: center;
+    font-family: "ProximaNova-Light";
+    font-size: 16px;
+    text-transform: uppercase;
+    line-height: 0.9;
+    border-radius: 50px/50px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    margin: 60px 0 30px 0;
+    background-color: transparent;
+    border: none;
+    color: white; }
+  .tutorial .select:before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    border-radius: 50px/50px;
+    background-image: -webkit-gradient(radial, right top, 10, 90% 0%, 150, from(#d86a1a), to(#ebac28));
+    background-image: radial-gradient(right top, 150px 230px, #d86a1a, #ebac28);
+    background-image: -moz-radial-gradient(right top, farthest-corner, #d86a1a 0%, #ebac28 72%);
+    z-index: -2; }
+  .tutorial .select:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #1b1b1b;
+    z-index: -1;
+    border-radius: 50px/50px;
+    transition: background-color 0.1s; }
+  .tutorial .select:hover:after {
+    background-color: transparent; }
+  .tutorial .progressLine {
+    width: 2px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 1; }
+  .tutorial .progressStep {
+    width: 100%;
+    margin-bottom: 2px;
+    flex: 1;
+    display: flex;
+    position: relative;
+    align-items: center;
+    text-indent: 22px;
+    font-size: 11px;
+    font-family: "ProximaNova-Light";
+    background-color: #2f2f2f; }
+    .tutorial .progressStep:last-of-type {
+      margin-bottom: 0; }
+  .tutorial .indicator {
+    width: 100%;
+    height: 100%;
+    background-color: #fead00;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: scaleY(0);
+    transform-origin: 0 0;
+    transition: transform 1s, background-color 1s; }
+    .tutorial .indicator.active {
+      transform: scaleY(1); }
+    .tutorial .indicator.previous {
+      background-color: #8b5808; }
+    .tutorial .indicator + .slideNumber {
+      transition: color 1s;
+      color: #a4a4a4; }
+    .tutorial .indicator.active + .slideNumber {
+      color: white; }
+    .tutorial .indicator.previous + .slideNumber {
+      color: #a4a4a4; }
+  .tutorial .close {
+    width: 20px;
+    height: 20px;
+    display: block;
+    border: none;
+    position: absolute;
+    right: 40px;
+    top: 30px;
+    background: url('\a 				data:image/svg+xml;utf8,\a 				<svg stroke="rgb(255, 174, 0)" fill="none" \a 						 xmlns="http://www.w3.org/2000/svg">\a 				<path d="M1.521,1.268 L20.500,20.500 "/>\a 				<path d="M20.500,1.268 L1.236,20.500 "/>\a 				</svg>');
+    cursor: pointer;
+    z-index: 1; }
+    .tutorial .close:focus {
+      -webkit-filter: drop-shadow(0 0 10px white) drop-shadow(0 0 15px #ffae00);
+      filter: drop-shadow(0 0 10px white) drop-shadow(0 0 10px #ffae00); }
+
+/***** Tournament list *****/
+.tournamentList {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 5;
+  display: none;
+  transform-style: preserve-3d;
+  perspective: 900px; }
+  .tournamentList.showTournamentList {
+    display: flex; }
+  .tournamentList .introduction {
+    min-width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: url(../images/tournamentsList-bg.jpg) no-repeat center bottom;
+    background-size: 100% auto; }
+  .tournamentList .logo {
+    position: absolute;
+    left: 40px;
+    top: 20px; }
+  .tournamentList .title {
+    margin-bottom: 40px;
+    font-size: 26px;
+    text-transform: uppercase;
+    text-align: center; }
+  .tournamentList .description {
+    line-height: 1.7;
+    text-align: center;
+    color: #a4a4a4; }
+  .tournamentList .list {
+    flex: 1;
+    position: relative;
+    background-color: #191919;
+    overflow: auto;
+    transform: translateZ(0);
+    perspective: 500px; }
+  .tournamentList .tournament {
+    height: 20vh;
+    padding-left: 15%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-bottom: 1px #222222 solid;
+    text-transform: uppercase;
+    font-family: "ProximaNova-Light";
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: transform 0.5s; }
+    .tournamentList .tournament:last-of-type {
+      border-bottom: none; }
+    .tournamentList .tournament:hover, .tournamentList .tournament:focus {
+      background: url('\a 				data:image/svg+xml;utf8,\a 				<svg xmlns="http://www.w3.org/2000/svg"\a 						 width="10.5px" height="18.5px">\a 				<path stroke="rgb(255, 174, 0)" fill="none" d="M1.925,0.500 L9.500,9.000 L1.925,17.500 "/>\a 				</svg>') no-repeat calc(100% - 100px) center;
+      outline: none; }
+      .tournamentList .tournament:hover:before, .tournamentList .tournament:focus:before {
+        background-color: #fead00; }
+    .tournamentList .tournament::before {
+      content: '';
+      width: 1px;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      background-color: transparent; }
+  .tournamentList .tournamentIcon {
+    max-width: 63px;
+    margin-right: 10%;
+    object-fit: contain; }
+  .tournamentList .closeTournaments {
+    width: 20px;
+    height: 20px;
+    display: block;
+    border: none;
+    position: absolute;
+    right: 40px;
+    top: 30px;
+    background: url('\a 				data:image/svg+xml;utf8,\a 				<svg stroke="rgb(255, 174, 0)" fill="none" \a 						 xmlns="http://www.w3.org/2000/svg">\a 					<path d="M1.521,1.268 L20.500,20.500 "/>\a 					<path d="M20.500,1.268 L1.236,20.500 "/>\a 				</svg>');
+    cursor: pointer;
+    z-index: 5; }
+    .tournamentList .closeTournaments:focus {
+      -webkit-filter: drop-shadow(0 0 10px white) drop-shadow(0 0 15px #ffae00);
+      filter: drop-shadow(0 0 10px white) drop-shadow(0 0 10px #ffae00); }
+  .tournamentList .tournamentTitle {
+    font-size: 16px;
+    text-transform: uppercase;
+    font-family: "ProximaNova-Light";
+    text-align: center; }
+    .tournamentList .tournamentTitle .icon {
+      width: 120px;
+      height: 120px; }
+    .tournamentList .tournamentTitle .name {
+      margin-top: 40px; }
+  .tournamentList .goBack {
+    width: 50px;
+    height: 21px;
+    display: none;
+    position: absolute;
+    left: 40px;
+    top: 120px;
+    border: none;
+    background: url('\a 				data:image/svg+xml;utf8,\a 				<svg stroke="rgb(255, 174, 0)" fill="none" xmlns="http://www.w3.org/2000/svg">\a 					<path stroke-width="1.3" d="M8.638,20.500 L0.500,10.500 L8.638,0.500 "/>\a 				</svg>') no-repeat left center;
+    cursor: pointer;
+    z-index: 6;
+    transition: transform 0.15s; }
+    .tournamentList .goBack:hover {
+      transform: translateX(-3px); }
+    .tournamentList .goBack:focus {
+      transform: translateX(-3px); }
+
+/***** Tournament list end *****/
+.tournamentBlock {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #191919;
+  z-index: 5;
+  overflow: auto;
+  display: none; }
+  .tournamentBlock .progress {
+    width: 1px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #2f2f2f;
+    z-index: 11;
+    transform: translateZ(0); }
+    .tournamentBlock .progress .line {
+      width: 1px;
+      background-color: #fead00;
+      transform: translateZ(0);
+      transition: all 1s; }
+  .tournamentBlock .tournamentItem {
+    width: 700px;
+    margin: 0 auto 0 auto; }
+  .tournamentBlock .timeBefore {
+    margin: 0 0 35px 0;
+    padding: 30px 0 30px 0;
+    text-align: center;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background: linear-gradient(to bottom, #191919 70%, rgba(25, 25, 25, 0.4));
+    z-index: 10; }
+  .tournamentBlock .roomes {
+    width: 350px; }
+  .tournamentBlock .room {
+    padding: 4px 30px 70px 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    font-size: 14px;
+    text-transform: uppercase; }
+    .tournamentBlock .room::after {
+      content: '';
+      width: 1px;
+      height: 100%;
+      position: absolute;
+      right: 0;
+      top: 0;
+      background-color: #fead00; }
+    .tournamentBlock .room::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      position: absolute;
+      right: -3px;
+      top: 0px;
+      border-radius: 50%;
+      background-color: #fead00;
+      z-index: 1; }
+    .tournamentBlock .room:last-of-type::after {
+      display: none; }
+  .tournamentBlock .date {
+    margin-bottom: 15px;
+    display: inline-block;
+    font-size: 12px;
+    color: #a4a4a4; }
+  .tournamentBlock .roomTitle {
+    margin-bottom: 15px; }
+  .tournamentBlock .parameters {
+    display: flex; }
+  .tournamentBlock .parameters > * {
+    margin-right: 17px;
+    display: flex;
+    align-items: center; }
+    .tournamentBlock .parameters > *:last-of-type {
+      margin-right: 0; }
+    .tournamentBlock .parameters > * .itemIcon {
+      margin-right: 7px; }
+  .tournamentBlock .goToRoom {
+    width: 140px;
+    height: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    font-size: 12px;
+    border: 1px white solid;
+    border-radius: 50px/50px; }
+  .tournamentBlock .matches {
+    width: 350px;
+    padding: 0 0 170px 30px;
+    float: right;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 75px; }
+    .tournamentBlock .matches::after {
+      content: '';
+      width: 100%;
+      display: block;
+      clear: both; }
+  .tournamentBlock .match {
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    text-transform: uppercase; }
+    .tournamentBlock .match .flag:first-of-type {
+      margin-left: 20px; }
+    .tournamentBlock .match .flag:last-of-type {
+      margin-right: 20px; }
+  .tournamentBlock .country {
+    padding-top: 2px; }
+  .tournamentBlock .startTime {
+    margin: 0 28px;
+    font-size: 14px;
+    color: #a4a4a4; }
