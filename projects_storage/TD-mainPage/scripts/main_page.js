@@ -180,7 +180,7 @@ function initScreen() {
 	// Hide slider
 	var initSlider = document.getElementById('initSlider'),
 			initScreen = document.getElementsByClassName('initScreen')[0],
-			toning = document.getElementsByClassName('toning')[0],
+			toning = document.getElementsByClassName('secondToning')[0],
 			currentYOffset,
 			scrollPosition = 'onSlider',
 			scrollIcon = document.getElementsByClassName('scrollIcon')[0],
@@ -206,7 +206,7 @@ function initScreen() {
 		window.addEventListener('scroll', throttle(toningScreen, 16));
 	}
 
-	var currentOpacity, defaultOpacity = 0.5, finalOpacity = 0.9;
+	var currentOpacity, defaultOpacity = 0, finalOpacity = 1;
 	var windowHeight = document.documentElement.clientHeight;
 	var fadeOutStartYOffset = windowHeight * 2.5;
 	var fadeOutDurationOffset = windowHeight * 1.5;
