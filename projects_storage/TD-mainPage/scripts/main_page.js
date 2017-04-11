@@ -493,13 +493,13 @@ function initTutorial() {
 			initIcon = document.getElementsByClassName('initIcon')[0],
 			slideTitle = document.getElementsByClassName('slideTitle'),
 			sliderNumber = document.getElementsByClassName('sliderNumber'),
-			initSlide = document.getElementById('initSlide'),
-			slideBgIcon = document.querySelectorAll('.slideBg .icon'),
-			slideBgIcon1 = document.querySelectorAll('.slideBg .icon')[0],
-			slideBgIcon2 = document.querySelectorAll('.slideBg .icon')[1],
-			slideBgIcon3 = document.querySelectorAll('.slideBg .icon')[2],
-			slideBgIcon4 = document.querySelectorAll('.slideBg .icon')[3],
-			slideBgIcon5 = document.querySelectorAll('.slideBg .icon')[4];
+			initSlide = document.getElementById('initSlide');
+			//slideBgIcon = document.querySelectorAll('.slideBg .icon')
+			// slideBgIcon1 = document.querySelectorAll('.slideBg .icon')[0],
+			// slideBgIcon2 = document.querySelectorAll('.slideBg .icon')[1],
+			// slideBgIcon3 = document.querySelectorAll('.slideBg .icon')[2],
+			// slideBgIcon4 = document.querySelectorAll('.slideBg .icon')[3],
+			// slideBgIcon5 = document.querySelectorAll('.slideBg .icon')[4];
 
 	function moveSlideBgIcon(event) {
 		slideBgIcon1.style.transform = 'translateZ(0) translate(' + event.clientX / -150 + 'px,' + event.clientY / -150 + 'px)';
@@ -526,9 +526,9 @@ function initTutorial() {
 			initIcon.classList.add('showInitIcon');
 		}, 500);
 
-		setTimeout(function() {
-			initSlide.classList.add('showBgIcons');
-		}, 10);
+		// setTimeout(function() {
+		// 	initSlide.classList.add('showBgIcons');
+		// }, 10);
 
 		setTimeout(function() {
 			for( i = 0; i < slideBgIcon.length; i++ ) {
