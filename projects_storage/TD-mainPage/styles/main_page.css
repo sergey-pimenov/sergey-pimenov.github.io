@@ -208,6 +208,13 @@ body {
       transform: translateZ(0);
       transform-origin: 50% 50%;
       transition: inherit; }
+  .initScreen .translateWrapper {
+    width: 100%;
+    height: 100%;
+    transform: translateZ(0);
+    transition: transform 0.5s linear;
+    -webkit-will-change: transform;
+    will-change: transform; }
   .initScreen .bg {
     width: 113%;
     height: 102%;
@@ -349,6 +356,8 @@ body {
     align-items: center;
     justify-content: center;
     background-color: #161616; }
+  .initSlider .initSliderBg {
+    margin-left: 10%; }
   .initSlider .sliderIcon {
     transition: opacity 0.15s 0.15s; }
   .initSlider .iconWraper {
@@ -357,6 +366,11 @@ body {
       opacity: 0; }
     .initSlider .iconWraper.showWraper * {
       opacity: 1; }
+  .initSlider .circles * {
+    transition: opacity 1s;
+    opacity: 0; }
+  .initSlider .showWraper + .layer3 .circles * {
+    opacity: 1 !important; }
   .initSlider .showIcon * {
     animation: animPath 1s forwards; }
 
@@ -367,17 +381,22 @@ body {
     opacity: 0;
     transition: opacity 0.15s; }
   .initSlider .circles path:nth-of-type(1) {
-    transition: opacity linear 1s 1.2s; }
+    transition: opacity linear 0.5s 1.2s; }
   .initSlider .circles path:nth-of-type(2) {
-    transition: opacity linear 1s 1.5s; }
+    transition: opacity linear 0.5s 1.3s; }
   .initSlider .circles path:nth-of-type(3) {
-    transition: opacity linear 1s 1.8s; }
+    transition: opacity linear 0.5s 1.4s; }
   .initSlider .circles path:nth-of-type(4) {
-    transition: opacity linear 1s 2.1s; }
+    transition: opacity linear 0.5s 1.5s; }
   .initSlider .showVerticalLines * {
-    animation: animPath 0.5s 2.3s forwards; }
+    animation: animPath 0.5s 1.6s forwards; }
   .initSlider .starsAndCircles * {
-    transition: all 2.5s 3s; }
+    transition: all 2s 2s; }
+  .initSlider .translateLayer {
+    transform: translateZ(0);
+    transition: transform 0.1s linear !important;
+    -webkit-will-change: transform;
+    will-change: transform; }
   .initSlider .sliderContent {
     width: 50%;
     height: 100%;
@@ -385,16 +404,9 @@ body {
     flex-direction: column;
     align-items: center;
     background-color: #1b1b1b; }
-  .initSlider .contentTitle {
-    width: 320px;
-    margin: 200px 0 65px 0;
-    font-size: 26px;
-    text-transform: uppercase;
-    opacity: 0;
-    transform: translateZ(0) translateY(70px);
-    transition: opacity 4s, transform 1s; }
   .initSlider .sliderDescriptions {
     width: 320px;
+    display: flex;
     position: relative;
     opacity: 0;
     transform: translateZ(0) translateY(70px);
@@ -405,22 +417,22 @@ body {
   .initSlider .descriptionBlock {
     position: absolute;
     left: 0;
-    top: 0;
-    transition: opacity 0.15s 0.15s linear; }
-  .initSlider .descriptionBlock:not(.currentDescription) {
-    opacity: 0;
+    top: calc(50vh - 133px);
+    transform: translateY(10px);
+    transition: transform 0.3s linear, opacity 0.6s linear;
     z-index: -1;
-    transition: opacity 0.15s linear; }
+    opacity: 0; }
   .initSlider .descriptionTitle {
-    margin-bottom: 30px;
-    font-size: 22px;
-    color: #a4a4a4; }
+    width: 320px;
+    margin: 0 0 35px 0;
+    font-size: 26px;
+    color: white; }
   .initSlider .description {
     color: #a4a4a4;
     line-height: 1.5; }
   .initSlider .sliderControls {
-    position: relative;
-    top: 230px;
+    position: absolute;
+    bottom: 130px;
     font-size: 0; }
   .initSlider .sliderControl {
     width: 11px;
@@ -541,6 +553,11 @@ body {
   .tutorial.showTutorial {
     z-index: 6;
     opacity: 1; }
+  .tutorial .logo {
+    position: absolute;
+    left: 40px;
+    top: 20px;
+    z-index: 12; }
   .tutorial .icons {
     width: 50%;
     height: 100%;
@@ -554,9 +571,9 @@ body {
   .tutorial .circleWrapper path {
     opacity: 0; }
     .tutorial .circleWrapper path:nth-of-type(1) {
-      transition: all 1s 1s; }
+      transition: all 1s 0.5s; }
     .tutorial .circleWrapper path:nth-of-type(2) {
-      transition: all 1s 1.5s; }
+      transition: all 1s 1s; }
   .tutorial .showCircleWrapper path {
     opacity: 1; }
   .tutorial .tutorialIcon:not(.currentIcon) {
@@ -564,7 +581,7 @@ body {
   .tutorial .showIcon * {
     animation: animPath 1s forwards; }
   .tutorial .showLinesWrapper * {
-    animation: animPath 0.5s 2s forwards; }
+    animation: animPath 0.5s 1.5s forwards; }
   .tutorial .initIcon * {
     opacity: 0;
     transition: opacity 1s; }
@@ -589,9 +606,54 @@ body {
     .tutorial .slideBg.show {
       z-index: 1;
       opacity: 1; }
+    .tutorial .slideBg.showBgIcons .icon {
+      transform: scale(1);
+      opacity: 1; }
   .tutorial .selectTornament {
-    background-image: url(../images/tutorialBg-1.jpg);
+    background: linear-gradient(to bottom, black 40%, #1b2114);
     opacity: 1; }
+    .tutorial .selectTornament .icon {
+      position: absolute;
+      transform: translateZ(0);
+      background-size: 100% auto;
+      background-repeat: no-repeat;
+      transform: scale(0.8);
+      transition: transform 18s linear; }
+    .tutorial .selectTornament .icon1 {
+      width: 215px;
+      height: 215px;
+      left: 40%;
+      transform-origin: 0 50vh;
+      background-image: url(../images/tutorial-initIcon1.png); }
+    .tutorial .selectTornament .icon2 {
+      width: 311px;
+      height: 248px;
+      left: -65px;
+      top: 18%;
+      transform-origin: 100% 50%;
+      background-image: url(../images/tutorial-initIcon2.png);
+      background-size: auto 100%; }
+    .tutorial .selectTornament .icon3 {
+      width: 285px;
+      height: 285px;
+      right: 3%;
+      bottom: 5%;
+      transform-origin: 0 0;
+      background-image: url(../images/tutorial-initIcon3.png); }
+    .tutorial .selectTornament .icon4 {
+      width: 307px;
+      height: 307px;
+      right: -5%;
+      top: 15%;
+      transform-origin: 0 0;
+      background-image: url(../images/tutorial-initIcon4.png); }
+    .tutorial .selectTornament .icon5 {
+      width: 286px;
+      height: 373px;
+      left: 5%;
+      bottom: 5%;
+      transform-origin: 100% 0;
+      background-image: url(../images/tutorial-initIcon5.png); }
   .tutorial .assembleTeam {
     background-image: url(../images/tutorialBg-2.jpg); }
   .tutorial .getPoints {
@@ -635,7 +697,9 @@ body {
     align-items: center;
     background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEIAAABCCAMAAADUivDaAAABy1BMVEUAAAD/lwD/eAD/qAD/rQD/rgD/rAD/cQD/dAD/qAD/dwD/iQD/cAD/dQD/mgD/qgD/rQD/cgD/rAD/jwD/cQD/iQD/cgD/pQD/cAD/dAD/fgD/mgD/bwD/dgD/qgD/cgD/iAD/qgD/qAD/dwD/cAD/dwD/qAD/kAD/cAD/hQD/egD/pAD/bwD/lgD/eQD/ogD/fQD/rAD/qAD/mwD/fgD/qwD/qQD/qAD/dgD/oAD/lgD/rgD/bwD/qAD/nwD/igD/fwD/fQD/qAD/rQD/pwD/kgD/gQD/pAD/egD/qgD/jwD/eAD/cwD/pgD/jwD/bwD/rgD/ggD/rQD/cAD/rgD/iQD/bwD/qgD/cwD/hwD/rQD/bwD/pQD/egD/qwD/cgD/mgD/hAD/ngD/cAD/cAD/ogD/iAD/gAD/rAD/oAD/lgD/iAD/fgD/cQD/rQD/bwD/qQD/mgD/hAD/cAD/lwD/lQD/dwD/rQD/pwD/dQD/rQD/mwD/ggD/qgD/owD/dQD/qAD/rQD/kwD/iwD/jwD/cwD/jgD/oQD/oQD/mAD/jAD/jAD/mwD/mwD/lAD/ogD/ogD/pQD/qAD/qAD/bwD/bwD/hQD/jwD/bwC4X3hfAAAAl3RSTlMADQsL7eKcnFIdEwXt6uPhijElIiAcHBPj4I2IiHZ0WllYUT0nJCLz6OTj4uGtnZybjS8tLCgbFhYQCPn27e3t7evp6Obl5N3c0NDQ0M/Pzs3Nx8ewsLCvr6yrqqeloqKbm46NjIuJiIODgoKCgnt7eHRzclpZVlJQUEhERD49NzUzMzMoEPrs6+vk3c7MsKKYk1xbSUcv1CE2VwAAAgxJREFUeNqt2IdSE2EUhuE3TdN7ISQQEAgQCEV6RFEECyr23gUbVhTsBRG7YhcvV3eEGcyk7O7Z5wJ2ds/+5XyHokKziez4aOPSUuP78cOXakJo9Pic9112amY+YgJT5GXNteNDzeefoFpvwvtxuos8v+7s33Y5ghrp9k0Xuiiou3JzRwPlWC6+uRqjKOf1LZVmSlrX8iVGSc6OjJ3icu3bn1FW3Y62HEU49pwyoYLp9K4oBa0fqUalqkyAAuaGa1Htnud5gXfY+AANHnoC5HH4vqFJKp5XD8vO22hUtdvMamuOotmxtf+tKN8Amr2K21d9hu8pOtRVmFnhP4MuZydZFrT2oUu/u2GlllfQ6cZyRR3WGDo53VEU/k50m0gCuLYG0a2+yQU8OoDAwZ9KMasRuKsU1NaDQH0rpG2IVISpPYHIyRT+m4jcSnLoPiL2I+x7gUhgL7ZeRKJNWE2ImAfZgNBv8SNcg+IPcbrF5Qy3GvFT5UvLiAUu32ZGbHb5kSM/+OTH7w8DLgHpVTSZNOBClF/LxjUHdOptUSYMaJTk7Zq8aTS6dSU9/B1NUp6w8W08zI1IwwT0tKiPNPFucbAKU0Tuq8p4Zy4ZMj/3UVJ/W8ZeLuq+lUVdRVAauBWOhPfT9AJ5Fv7Ffi3DB292anY+YsE1EFKGD83K8EGj0ExicezvCOT10IexkiOQP3AWXF2M9gOLAAAAAElFTkSuQmCC") center center;
     background-size: 100% auto;
-    font-family: "ProximaNova-Light"; }
+    font-family: "ProximaNova-Light";
+    transform: translateY(10px);
+    transition: transform 0.5s; }
   .tutorial .slideTitle {
     max-width: 300px;
     margin: 60px 0 56px 0;
@@ -779,7 +843,7 @@ body {
 
 /***** Tournament list *****/
 .tournamentList {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   position: fixed;
   left: 0;
@@ -834,7 +898,8 @@ body {
     .tournamentList .tournament:last-of-type {
       border-bottom: none; }
     .tournamentList .tournament:hover, .tournamentList .tournament:focus {
-      background: url('\a 				data:image/svg+xml;utf8,\a 				<svg xmlns="http://www.w3.org/2000/svg"\a 						 width="10.5px" height="18.5px">\a 				<path stroke="rgb(255, 174, 0)" fill="none" d="M1.925,0.500 L9.500,9.000 L1.925,17.500 "/>\a 				</svg>') no-repeat calc(100% - 100px) center;
+      border-bottom: 1px #1d1d1d solid;
+      background: #1d1d1d url('\a 				data:image/svg+xml;utf8,\a 				<svg xmlns="http://www.w3.org/2000/svg"\a 						 width="10.5px" height="18.5px">\a 				<path stroke="rgb(255, 174, 0)" fill="none" d="M1.925,0.500 L9.500,9.000 L1.925,17.500 "/>\a 				</svg>') no-repeat calc(100% - 100px) center;
       outline: none; }
       .tournamentList .tournament:hover:before, .tournamentList .tournament:focus:before {
         background-color: #fead00; }
@@ -904,26 +969,11 @@ body {
   z-index: 5;
   overflow: auto;
   display: none; }
-  .tournamentBlock .progress {
-    width: 1px;
-    height: 100vh;
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    background-color: #2f2f2f;
-    z-index: 11;
-    transform: translateZ(0); }
-    .tournamentBlock .progress .line {
-      width: 1px;
-      background-color: #fead00;
-      transform: translateZ(0);
-      transition: all 1s; }
   .tournamentBlock .tournamentItem {
     width: 700px;
     margin: 0 auto 0 auto; }
   .tournamentBlock .timeBefore {
-    margin: 0 0 35px 0;
+    margin: 200px 0 35px 0;
     padding: 30px 0 30px 0;
     text-align: center;
     position: -webkit-sticky;

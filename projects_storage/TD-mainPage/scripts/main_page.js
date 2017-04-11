@@ -118,20 +118,38 @@ function initScreen() {
 	// Detect Safari
 	var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || safari.pushNotification);
 
-	// Parallaxed nodes
 	var player_1 = document.getElementsByClassName('player-1')[0],
 			bg = document.getElementsByClassName('bg')[0],
 			player_2 = document.getElementsByClassName('player-2')[0],
 			ball = document.getElementsByClassName('ball')[0],
 			bg_players = document.getElementsByClassName('bg-players')[0],
 			grass = document.getElementsByClassName('grass')[0],
-			parallaxBlock = document.getElementsByClassName('parallax')[0];
+			parallaxBlock = document.getElementsByClassName('parallax')[0],
+			initScreen = document.getElementsByClassName('initScreen')[0],
+			translateWrapper = document.getElementsByClassName('translateWrapper'),
+			paralaxedNode = document.getElementsByClassName('paralaxedNode');
 
 	var yOffset;
 	var currentScale, defaultScale = 0;
 	var windowHeight = document.documentElement.clientHeight;
 	var start = 0;
 	var end = windowHeight * 4;
+
+	// Reset variables that depend on window size
+	window.addEventListener('resize', function() {
+		Offset = window.pageYOffset;
+		windowHeight = document.documentElement.clientHeight;
+		end = windowHeight * 4;
+	});
+
+	//initScreen.addEventListener('mousemove', moveInitScreenElements);
+
+	function moveInitScreenElements(event) {
+		translateWrapper[1].style.transform = 'translateZ(0) translate(' + event.clientX / -170 + 'px,' + event.clientY / -110 + 'px)';
+		translateWrapper[3].style.transform = 'translateZ(0) translate(' + event.clientX / -150 + 'px,' + event.clientY / -100 + 'px)';
+		translateWrapper[4].style.transform = 'translateZ(0) translate(' + event.clientX / 150 + 'px,' + event.clientY / 100 + 'px)';
+		translateWrapper[5].style.transform = 'translateZ(0) translate(' + event.clientX / -100 + 'px,' + event.clientY / -90 + 'px)';
+	}
 
 	window.addEventListener('scroll', throttle(parallaxAnim, 16));
 
@@ -173,13 +191,14 @@ function initScreen() {
 		}
 
 		setTimeout(function() { // Change transition when we do initial scroll
-				parallaxBlock.style.transition = 'transform 0.25s ease-out';
+			for( i = 0; i < paralaxedNode.length; i++ ) {
+				paralaxedNode[i].style.transition = 'transform 0.25s ease-out';
+			}
 		}, 2300)
 	}, 0);
 
 	// Hide slider
 	var initSlider = document.getElementById('initSlider'),
-			initScreen = document.getElementsByClassName('initScreen')[0],
 			toning = document.getElementsByClassName('secondToning')[0],
 			currentYOffset,
 			scrollPosition = 'onSlider',
@@ -304,7 +323,9 @@ function initSliders() {
 	function setSliderState() {
 		// Initial initial state for slider objects
 		sliderControl[currentSlider].classList.add('active');
-		descriptionBlocks[currentSlider].classList.add('currentDescription');
+		descriptionBlocks[currentSlider].style.transform = 'translateY(0)';
+    descriptionBlocks[currentSlider].style.zIndex = '1';
+    descriptionBlocks[currentSlider].style.opacity = '1';
 		sliderIcons[currentSlider].classList.add('currentIcon');
 
 		// Set initial active objects
@@ -327,12 +348,22 @@ function initSliders() {
 
 		// Remove active/visible state from last checked slide
 		activeControl.classList.remove('active');
-    activeDescription.classList.remove('currentDescription');
+    activeDescription.style.transition = 'transform 0.3s 0.3s linear, opacity 0.3s linear';
+    activeDescription.style.transform = 'translateY(10px)';
+    activeDescription.style.zIndex = '-1';
+    activeDescription.style.opacity = '0';
     activeIcon.classList.remove('showIcon');
 
 		// Add active state for control and show new slide content
 		this.classList.add('active');
-    descriptionBlocks[currentSlider].classList.add('currentDescription');
+
+    /////////descriptionBlocks[currentSlider].classList.add('currentDescription');
+    setTimeout(function() {
+    	activeDescription.style.transition = 'transform 0.3s linear, opacity 0.3s linear';
+    	descriptionBlocks[currentSlider].style.transform = 'translateY(0)';
+    	descriptionBlocks[currentSlider].style.zIndex = '1';
+    	descriptionBlocks[currentSlider].style.opacity = '1';
+    }, 300)
 
     // sliderIcons[currentSlider].classList.add('currentIcon');
     sliderIcon[currentSlider].classList.add('showIcon');
@@ -390,26 +421,63 @@ function initSliders() {
 	// 	}
 	// });
 
+
+	var starsAndCircles = document.getElementsByClassName('starsAndCircles')[0],
+			layer0 = document.getElementsByClassName('layer0')[0],
+			layer1 = document.getElementsByClassName('layer1')[0],
+			layer2 = document.getElementsByClassName('layer2')[0],
+			layer3 = document.getElementsByClassName('layer3')[0],
+			translateLayer = document.getElementsByClassName('translateLayer');
+
+	initSlider.addEventListener('mousemove', moveSliderSvg);
+
+	function moveSliderSvg(event) {
+		layer0.style.transform = 'translateZ(0) translate(' + event.clientX / -120 + 'px,' + event.clientY / -90 + 'px)';
+		layer1.style.transform = 'translateZ(0) translate(' + event.clientX / -100 + 'px,' + event.clientY / -70 + 'px)';
+		layer2.style.transform = 'translateZ(0) translate(' + event.clientX / -80 + 'px,' + event.clientY / -50 + 'px)';
+		layer3.style.transform = 'translateZ(0) translate(' + event.clientX / -70 + 'px,' + event.clientY / -40 + 'px)';
+	}
+
+
 }
 
 /**** Slider script end *****/
-var selectButton = document.getElementsByClassName('selectButton')[0],
-		close = document.getElementsByClassName('closeTournaments')[0],
-		tournamentList = document.getElementsByClassName('tournamentList')[0];
+window.addEventListener('load', initSelectTournament);
 
-close.addEventListener('click', closeTournaments);
-selectButton.addEventListener('click', openTournaments);
+function initSelectTournament() {
 
-function openTournaments() {
-	tournamentOpened = true;
-	tournamentList.classList.toggle('showTournamentList');
-	document.body.style.overflow = 'hidden';
-}
+	var selectButton = document.getElementsByClassName('selectButton')[0],
+			close = document.getElementsByClassName('closeTournaments')[0],
+			tournamentList = document.getElementsByClassName('tournamentList')[0],
+			tournamentOpened = false;
 
-function closeTournaments() {
-	tournamentOpened = false;
-	tournamentList.classList.toggle('showTournamentList');
-	document.body.style.overflow = 'visible';
+	close.addEventListener('click', closeTournaments);
+	selectButton.addEventListener('click', openTournaments);
+
+	function openTournaments() {
+		tournamentOpened = true;
+		tournamentList.classList.toggle('showTournamentList');
+		document.body.style.overflow = 'hidden';
+	}
+
+	function closeTournaments() {
+		tournamentOpened = false;
+		tournamentList.classList.toggle('showTournamentList');
+		document.body.style.overflow = 'visible';
+	}
+
+	function hideTournamentsEsc(closeEvent) {
+		// Do something only when tutorial open
+		if(tournamentOpened == false) {
+			return false;
+		}
+		if( closeEvent.keyCode == 27) {
+			closeTournaments();
+		}
+	}
+
+	window.addEventListener('keydown', hideTournamentsEsc);
+
 }
 
 window.addEventListener('load', initTutorial);
@@ -423,7 +491,23 @@ function initTutorial() {
 			tutorialOpen = false,
 			slideContent = document.getElementsByClassName('slideContent'),
 			initIcon = document.getElementsByClassName('initIcon')[0],
-			slideTitle = document.getElementsByClassName('slideTitle');
+			slideTitle = document.getElementsByClassName('slideTitle'),
+			sliderNumber = document.getElementsByClassName('sliderNumber'),
+			initSlide = document.getElementById('initSlide'),
+			slideBgIcon = document.querySelectorAll('.slideBg .icon'),
+			slideBgIcon1 = document.querySelectorAll('.slideBg .icon')[0],
+			slideBgIcon2 = document.querySelectorAll('.slideBg .icon')[1],
+			slideBgIcon3 = document.querySelectorAll('.slideBg .icon')[2],
+			slideBgIcon4 = document.querySelectorAll('.slideBg .icon')[3],
+			slideBgIcon5 = document.querySelectorAll('.slideBg .icon')[4];
+
+	function moveSlideBgIcon(event) {
+		slideBgIcon1.style.transform = 'translateZ(0) translate(' + event.clientX / -150 + 'px,' + event.clientY / -150 + 'px)';
+		slideBgIcon2.style.transform = 'translateZ(0) translate(' + event.clientX / -140 + 'px,' + event.clientY / -130 + 'px)';
+		slideBgIcon3.style.transform = 'translateZ(0) translate(' + event.clientX / -130 + 'px,' + event.clientY / 120 + 'px)';
+		slideBgIcon4.style.transform = 'translateZ(0) translate(' + event.clientX / -120 + 'px,' + event.clientY / 100 + 'px)';
+		slideBgIcon5.style.transform = 'translateZ(0) translate(' + event.clientX / -110 + 'px,' + event.clientY / 90 + 'px)';
+	}
 
 	howToButton.addEventListener('click', showTutorial);
 	close.addEventListener('click', hideTutorial);
@@ -435,12 +519,23 @@ function initTutorial() {
 		tutorialOpen = true;
 		slideTitle[0].style.transform = 'translateZ(0) translateY(0)';
 
-		// Anit animation
+		// Init animation
 		setTimeout(function() {
 			circleWrapper.classList.add('showCircleWrapper');
 			linesWrapper.classList.add('showLinesWrapper');
 			initIcon.classList.add('showInitIcon');
 		}, 500);
+
+		setTimeout(function() {
+			initSlide.classList.add('showBgIcons');
+		}, 10);
+
+		setTimeout(function() {
+			for( i = 0; i < slideBgIcon.length; i++ ) {
+				slideBgIcon[i].style.transition = 'transform 0.3s linear';
+			}
+			// window.addEventListener('mousemove', moveSlideBgIcon);
+		}, 4000)
 	}
 
 	function hideTutorial() {
@@ -593,10 +688,12 @@ function initTutorial() {
 		setTimeout(function() {
 			slideContent[i].style.opacity = '1';
 			slideTitle[i].style.transform = 'translateZ(0) translateY(0)';
+			sliderNumber[i].style.transform = 'translateZ(0) translateY(0)';
 		}, 500);
 		slideContent[i - 1].style.opacity = '0';
 		setTimeout(function() {
 			slideTitle[i - 1].style.transform = 'translateZ(0) translateY(-10px)';
+			sliderNumber[i - 1].style.transform = 'translateZ(0) translateY(-10px)';
 		}, 500);
 	}
 
@@ -620,10 +717,12 @@ function initTutorial() {
 		setTimeout(function() {
 			slideContent[i].style.opacity = '1';
 			slideTitle[i].style.transform = 'translateZ(0) translateY(0)';
+			sliderNumber[i].style.transform = 'translateZ(0) translateY(0)';
 		}, 500)
 		slideContent[i + 1].style.opacity = '0';
 		setTimeout(function() {
 			slideTitle[i + 1].style.transform = 'translateZ(0) translateY(10px)';
+			sliderNumber[i + 1].style.transform = 'translateZ(0) translateY(10px)';
 		}, 500);
 	}
 
