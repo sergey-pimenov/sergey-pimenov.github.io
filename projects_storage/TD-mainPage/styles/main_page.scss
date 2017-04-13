@@ -537,6 +537,7 @@ body {
 		background-color: black;
 		opacity: 0.5;
 		transform: translateZ(0);
+		transition: opacity 0.1s linear;
 		z-index: 3;
 		-webkit-will-change: opacity;
 		will-change: opacity;
@@ -589,6 +590,7 @@ body {
 
 	.initSliderBg {
 		margin-left: 10%;
+		transform: translateZ(0);
 	}
 
 	.sliderIcon {
@@ -656,10 +658,7 @@ body {
 	}
 
 	.translateLayer {
-		transform: translateZ(0);
 		transition: transform 0.1s linear !important;
-		-webkit-will-change: transform;
-		will-change: transform;
 	}
 
 	/***** Svg end ******/
@@ -670,6 +669,7 @@ body {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		position: relative;
 		background-color: #1b1b1b;
 	}
 
@@ -684,7 +684,7 @@ body {
 	// }
 
 	.sliderDescriptions {
-		width: 320px;
+		width: 50%;
 		display: flex;
 		position: relative;
 		opacity: 0;
@@ -714,9 +714,11 @@ body {
 	// }
 
 	.descriptionTitle {
-		width: 320px;
+		width: 100%;
 		margin: 0 0 35px 0;
 		font-size: $big-title;
+		text-transform: uppercase;
+		letter-spacing: 4px;
 		color: $basic-color;
 	}
 
@@ -726,7 +728,11 @@ body {
 	}
 
 	.sliderControls {
+		width: 100%;
+		display: flex;
+		justify-content: center;
 		position: absolute;
+		left: 0;
 		bottom: 130px;
 		font-size: 0;
 	}
@@ -973,8 +979,7 @@ body {
 	}
 
 	.selectTornament {
-		background: url(../images/tutorialBg-1.jpg) center center;
-		background-size: 100% auto;
+		background-image: url(../images/tutorialBg-1.jpg);
 		opacity: 1;
 
 		.icon {
@@ -1265,7 +1270,7 @@ body {
 		justify-content: center;
 		position: relative;
 		background: url(../images/tournamentsList-bg.jpg) no-repeat center bottom;
-		background-size: 100% auto;
+		background-size: cover;
 	}
 
 	.logo {

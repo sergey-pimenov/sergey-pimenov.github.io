@@ -110,13 +110,30 @@ function enableScroll() {
     window.ontouchmove = null;  
     document.onkeydown = null;  
 }
+// Function that limit call count
+	function throttle(fn, delay) {
+		var timer = null;
+
+		return function() {
+			if (timer) return;
+
+			var args = arguments;
+			timer = setTimeout(function() {
+				fn.apply(undefined, args);
+				timer = null;
+			}, delay);
+		}
+	}
 
 window.addEventListener('load', initScreen);
 
 function initScreen() {
 
 	// Detect Safari
-	var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || safari.pushNotification);
+	//var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || safari.pushNotification);
+	//var isSafariTwo = /constructor/i.test(function HTMLElementConstructor() {});
+
+	var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
 	var player_1 = document.getElementsByClassName('player-1')[0],
 			bg = document.getElementsByClassName('bg')[0],
@@ -192,7 +209,7 @@ function initScreen() {
 
 		setTimeout(function() { // Change transition when we do initial scroll
 			for( i = 0; i < paralaxedNode.length; i++ ) {
-				paralaxedNode[i].style.transition = 'transform 0.25s ease-out';
+				paralaxedNode[i].style.transition = 'transform 0.25s linear';
 			}
 		}, 2300)
 	}, 0);
@@ -214,7 +231,7 @@ function initScreen() {
 			}, 1100)
 		});
 	} else {
-		scrollWithScrollIcon.style.cursor = 'auto';
+		scrollIcon.style.cursor = 'auto';
 	}
 
 	// Run toning function when we see slider
@@ -266,20 +283,6 @@ function initScreen() {
 			 	}
    	}
 	   lastScrollTop = st;
-	}
-
-	// Function that limit call count
-	function throttle(fn, delay) {
-		var timer = null;
-
-		return function() {
-			if (timer) return;
-
-			timer = setTimeout(function() {
-				fn();
-				timer = null;
-			}, delay);
-		}
 	}
 
 }
@@ -429,13 +432,27 @@ function initSliders() {
 			layer3 = document.getElementsByClassName('layer3')[0],
 			translateLayer = document.getElementsByClassName('translateLayer');
 
-	initSlider.addEventListener('mousemove', moveSliderSvg);
+	initSlider.addEventListener('mousemove', throttle(moveSliderSvg, 16));
+
+	var xPos,
+			yPos;
+
+	function translate(x, y) {
+		// 'rotate' - for FF subpixel animations, see for more info:
+		// https://jsfiddle.net/ryanwheale/xkxwN/
+		// and http://webcache.googleusercontent.com/search?q=cache:http://gielberkers.com/how-to-fix-shaking-css-transitions-in-firefox/&gws_rd=cr&ei=ee2zVPKYLMaVuATV-IDQBw
+		return 'translate(' + x + 'px,' + y + 'px) rotate(.0001deg)';
+	}
 
 	function moveSliderSvg(event) {
-		layer0.style.transform = 'translateZ(0) translate(' + event.clientX / -120 + 'px,' + event.clientY / -90 + 'px)';
-		layer1.style.transform = 'translateZ(0) translate(' + event.clientX / -100 + 'px,' + event.clientY / -70 + 'px)';
-		layer2.style.transform = 'translateZ(0) translate(' + event.clientX / -80 + 'px,' + event.clientY / -50 + 'px)';
-		layer3.style.transform = 'translateZ(0) translate(' + event.clientX / -70 + 'px,' + event.clientY / -40 + 'px)';
+		xPos = event.clientX;
+		yPos = event.clientY;
+		console.log(yPos);
+
+		layer0.style.transform = translate(xPos / -120, yPos / -90);
+		layer1.style.transform = translate(xPos / -100, yPos / -70);
+		layer2.style.transform = translate(xPos / -80, yPos / -50);
+		layer3.style.transform = translate(xPos / -70, yPos / -40);
 	}
 
 
