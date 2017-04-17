@@ -1,3 +1,228 @@
+// Robert Penner's easeInOutQuad
+
+// find the rest of his easing functions here: http://robertpenner.com/easing/
+// find them exported for ES6 consumption here: https://github.com/jaxgeller/ez.js
+
+const easeInOutQuad = (t, b, c, d) => {
+  t /= d / 2
+  if (t < 1) return c / 2 * t * t + b
+  t--
+  return -c / 2 * (t * (t - 2) - 1) + b
+}
+
+const outInX = (t, b, c, d) => {
+  ts=(t/=d)*t
+  tc=ts*t
+  return b+c*(tc + -3*ts + 3*t)
+}
+
+
+const jumper = () => {
+  // private variable cache
+  // no variables are created during a jump, preventing memory leaks
+
+  let element         // element to scroll to                   (node)
+
+  let start           // where scroll starts                    (px)
+  let stop            // where scroll stops                     (px)
+
+  let offset          // adjustment from the stop position      (px)
+  let easing          // easing function                        (function)
+  let a11y            // accessibility support flag             (boolean)
+
+  let distance        // distance of scroll                     (px)
+  let duration        // scroll duration                        (ms)
+
+  let timeStart       // time scroll started                    (ms)
+  let timeElapsed     // time spent scrolling thus far          (ms)
+
+  let next            // next scroll position                   (px)
+
+  let callback        // to call when done scrolling            (function)
+
+  // scroll position helper
+
+  function location () {
+    return window.scrollY || window.pageYOffset
+  }
+
+  // element offset helper
+
+  function top (element) {
+    return element.getBoundingClientRect().top + start
+  }
+
+  // rAF loop helper
+
+  function loop (timeCurrent) {
+    // store time scroll started, if not started already
+    if (!timeStart) {
+      timeStart = timeCurrent
+    }
+
+    // determine time spent scrolling so far
+    timeElapsed = timeCurrent - timeStart
+
+    // calculate next scroll position
+    next = easing(timeElapsed, start, distance, duration)
+
+    // scroll to it
+    window.scrollTo(0, next)
+
+    // check progress
+    timeElapsed < duration
+      ? window.requestAnimationFrame(loop)       // continue scroll loop
+      : done()                                   // scrolling is done
+  }
+
+  // scroll finished helper
+
+  function done () {
+    // account for rAF time rounding inaccuracies
+    window.scrollTo(0, start + distance)
+
+    // if scrolling to an element, and accessibility is enabled
+    if (element && a11y) {
+      // add tabindex indicating programmatic focus
+      element.setAttribute('tabindex', '-1')
+
+      // focus the element
+      element.focus()
+    }
+
+    // if it exists, fire the callback
+    if (typeof callback === 'function') {
+      callback()
+    }
+
+    // reset time for next jump
+    timeStart = false
+  }
+
+  // API
+
+  function jump (target, options = {}) {
+    // resolve options, or use defaults
+    duration = options.duration || 1000
+    offset = options.offset || 0
+    callback = options.callback                       // "undefined" is a suitable default, and won't be called
+    easing = options.easing || easeInOutQuad
+    a11y = options.a11y || false
+
+    // cache starting position
+    start = location()
+
+    // resolve target
+    switch (typeof target) {
+      // scroll from current position
+      case 'number':
+        element = undefined           // no element to scroll to
+        a11y = false                  // make sure accessibility is off
+        stop = start + target
+        break
+
+      // scroll to element (node)
+      // bounding rect is relative to the viewport
+      case 'object':
+        element = target
+        stop = top(element)
+        break
+
+      // scroll to element (selector)
+      // bounding rect is relative to the viewport
+      case 'string':
+        element = document.querySelector(target)
+        stop = top(element)
+        break
+    }
+
+    // resolve scroll distance, accounting for offset
+    distance = stop - start + offset
+
+    // resolve duration
+    switch (typeof options.duration) {
+      // number in ms
+      case 'number':
+        duration = options.duration
+        break
+
+      // function passed the distance of the scroll
+      case 'function':
+        duration = options.duration(distance)
+        break
+    }
+
+    // start the loop
+    window.requestAnimationFrame(loop)
+  }
+
+  // expose only the jump method
+  return jump
+}
+
+// export singleton
+
+const jumpTo = jumper()
+// Detect Safari
+var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+window.addEventListener('resize', setDynamicVariables);
+
+function setDynamicVariables() {
+	windowHeight = document.documentElement.clientHeight;
+}
+setDynamicVariables();
+
+var scrollDirection;
+var keyDownValue;
+
+window.addEventListener('wheel', function(e) {
+	scrollDirection = e.deltaY;
+});
+window.addEventListener('keydown', function(e) {
+	keyDownValue = e.keyCode;
+	setTimeout(function() {
+		keyDownValue = 0;
+	}, 50)
+})
+
+// Scroll effects
+
+var windowHeight,
+		yOffset,
+		st;
+
+window.addEventListener('scroll', scrollEffects);
+
+var endParallax = windowHeight * 4;
+var startToning = windowHeight * 3;
+var endToning = windowHeight * 4;
+var goToSliderStart = windowHeight * 3;
+var goToSliderEnd = windowHeight * 4;
+
+function scrollEffects() {
+	yOffset = window.pageYOffset;
+
+	if(yOffset <= endParallax) {
+		throttle(parallaxAnim(yOffset), 16);
+	}
+
+	if(yOffset >= startToning && yOffset <= endToning) {
+		throttle(toningScreen(yOffset, startToning), 16);
+	}
+}
+
+var delay = 50;
+var timeout = null;
+window.addEventListener('scroll', function(){
+	clearTimeout(timeout);
+  timeout = setTimeout(function(){
+		if(yOffset >= goToSliderStart && yOffset <= goToSliderEnd) {
+			goToSlider();
+		}
+  }, delay);
+});
+
 /***** Detect visibility *****/
 
 function checkVisible(elm) {
@@ -27,6 +252,10 @@ function detectVisibility(element, doWhenVisible, listenerName) {
 }
 
 /***** Detect visibility end *****/
+
+
+/***** Scroll functions *****/
+
 // Scroll to element
 function doScrolling(elementY, duration) { 
   var startingY = window.pageYOffset;
@@ -75,7 +304,11 @@ function doScrollingToPos(yPos, duration, callback) {
     }
   })
 }
-// Disable/enable scroll
+
+/***** Scroll functions end *****/
+
+
+/***** Disable/enable scroll *****/
 
 var keys = {37: 1, 38: 1, 39: 1, 40: 1};
 
@@ -110,30 +343,30 @@ function enableScroll() {
     window.ontouchmove = null;  
     document.onkeydown = null;  
 }
+
+/***** Disable/enable scroll end *****/
+/***** Throttle *****/
+
 // Function that limit call count
-	function throttle(fn, delay) {
-		var timer = null;
+function throttle(fn, delay) {
+	var timer = null;
 
-		return function() {
-			if (timer) return;
+	return function() {
+		if (timer) return;
 
-			var args = arguments;
-			timer = setTimeout(function() {
-				fn.apply(undefined, args);
-				timer = null;
-			}, delay);
-		}
+		var args = arguments;
+		timer = setTimeout(function() {
+			fn.apply(undefined, args);
+			timer = null;
+		}, delay);
 	}
+}
 
-window.addEventListener('load', initScreen);
+/***** Throttle end *****/
 
-function initScreen() {
 
-	// Detect Safari
-	//var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || safari.pushNotification);
-	//var isSafariTwo = /constructor/i.test(function HTMLElementConstructor() {});
 
-	var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+/***** Init screen *****/
 
 	var player_1 = document.getElementsByClassName('player-1')[0],
 			bg = document.getElementsByClassName('bg')[0],
@@ -146,34 +379,28 @@ function initScreen() {
 			translateWrapper = document.getElementsByClassName('translateWrapper'),
 			paralaxedNode = document.getElementsByClassName('paralaxedNode');
 
-	var yOffset;
 	var currentScale, defaultScale = 0;
-	var windowHeight = document.documentElement.clientHeight;
 	var start = 0;
 	var end = windowHeight * 4;
 
 	// Reset variables that depend on window size
 	window.addEventListener('resize', function() {
-		Offset = window.pageYOffset;
-		windowHeight = document.documentElement.clientHeight;
 		end = windowHeight * 4;
 	});
 
 	//initScreen.addEventListener('mousemove', moveInitScreenElements);
 
-	function moveInitScreenElements(event) {
-		translateWrapper[1].style.transform = 'translateZ(0) translate(' + event.clientX / -170 + 'px,' + event.clientY / -110 + 'px)';
-		translateWrapper[3].style.transform = 'translateZ(0) translate(' + event.clientX / -150 + 'px,' + event.clientY / -100 + 'px)';
-		translateWrapper[4].style.transform = 'translateZ(0) translate(' + event.clientX / 150 + 'px,' + event.clientY / 100 + 'px)';
-		translateWrapper[5].style.transform = 'translateZ(0) translate(' + event.clientX / -100 + 'px,' + event.clientY / -90 + 'px)';
-	}
+	// function moveInitScreenElements(event) {
+	// 	translateWrapper[1].style.transform = 'translateZ(0) translate(' + event.clientX / -170 + 'px,' + event.clientY / -110 + 'px)';
+	// 	translateWrapper[3].style.transform = 'translateZ(0) translate(' + event.clientX / -150 + 'px,' + event.clientY / -100 + 'px)';
+	// 	translateWrapper[4].style.transform = 'translateZ(0) translate(' + event.clientX / 150 + 'px,' + event.clientY / 100 + 'px)';
+	// 	translateWrapper[5].style.transform = 'translateZ(0) translate(' + event.clientX / -100 + 'px,' + event.clientY / -90 + 'px)';
+	// }
 
-	window.addEventListener('scroll', throttle(parallaxAnim, 16));
+	// window.addEventListener('scroll', throttle(parallaxAnim, 16));
 
 	// Set parallax for nodes
-	function parallaxAnim() {
-		yOffset = window.pageYOffset;
-
+	function parallaxAnim(yOffset) {
 		scaleElement(grass, 0.1);
 		scaleElement(ball, 0.11);
 		scaleElement(player_1, 0.09);
@@ -185,25 +412,21 @@ function initScreen() {
 	function scaleElement(element, scaleShift) {
 		shift = (yOffset - start) * (scaleShift - defaultScale) / end;
 		currentScale = defaultScale + shift;
-		// Magic value '5px' need for fix bug in FF
-		element.style.transform = 'translateZ(0) scale(' + (1 + currentScale) + ')';
+		element.style.transform = 'rotate(.0001deg) translateZ(0) scale(' + (1 + currentScale) + ')';
 	}
 
 	// Magic parallax function
 	function parallax(element, x, y, z) {
-		// Detect scroll
-		yOffset = window.pageYOffset;
 		// Move elements x/y/z axis
 		element.style.transform = 'translate3d('+ yOffset / x + 'px,' + yOffset / y + 'px,' + yOffset / z + 'px)';
 	}
 
 	setTimeout( function() {
 		if(window.pageYOffset == 0) {
-			console.log(window.pageYOffset)
 			if(!isSafari) {
-				doScrollingToPos(document.documentElement.clientHeight, 800);
+				doScrollingToPos(windowHeight, 800);
 			} else {
-				window.scrollTo(0, document.documentElement.clientHeight);
+				window.scrollTo(0, windowHeight);
 			}
 		}
 
@@ -217,7 +440,6 @@ function initScreen() {
 	// Hide slider
 	var initSlider = document.getElementById('initSlider'),
 			toning = document.getElementsByClassName('secondToning')[0],
-			currentYOffset,
 			scrollPosition = 'onSlider',
 			scrollIcon = document.getElementsByClassName('scrollIcon')[0],
 			scrollWithScrollIcon = false;
@@ -225,68 +447,61 @@ function initScreen() {
 	if(!isSafari) {
 		scrollIcon.addEventListener('click', function() {
 			scrollWithScrollIcon = true;
-			doScrolling(initSlider, 1000);
-			setTimeout(function() {
-				scrollWithScrollIcon = false;
-			}, 1100)
+			jumpTo(initSlider, {
+			  duration: 1000,
+			  offset: 0,
+			  callback: function() {
+			  	disableScrollToSlider = false;
+			  	scrollWithScrollIcon = false;
+				},
+			  easing: easeInOutQuad,
+			  a11y: false
+			})
 		});
 	} else {
 		scrollIcon.style.cursor = 'auto';
 	}
 
-	// Run toning function when we see slider
-	detectVisibility(initSlider, hideInitScreen, 'initSliderListener');
-
-	function hideInitScreen() {
-		// Set throttle for limit hideScreen function
-		window.addEventListener('scroll', throttle(toningScreen, 16));
-	}
-
 	var currentOpacity, defaultOpacity = 0, finalOpacity = 1;
-	var windowHeight = document.documentElement.clientHeight;
-	var fadeOutStartYOffset = windowHeight * 2.5;
-	var fadeOutDurationOffset = windowHeight * 1.5;
-	var yStep = 0;
-	var scrollState = false;
 
-	function toningScreen() {
-		currentYOffset = window.pageYOffset;
-		opacityShift = (currentYOffset - fadeOutStartYOffset) * (finalOpacity - defaultOpacity) / fadeOutDurationOffset;
+	function toningScreen(currentYOffset, start) {
+		opacityShift = (currentYOffset - start) * (finalOpacity - defaultOpacity) / windowHeight;
 		currentOpacity = defaultOpacity + opacityShift;
 		if(currentOpacity >= defaultOpacity) {
 			toning.style.opacity = currentOpacity;
 		}
 	}
 
-	if(!isSafari) window.addEventListener("scroll", goToSlider, false);
-
 	var currentYScroll;
 	var lastScrollTop = 0;
+	var disableScrollToSlider = false;
 
 	function goToSlider() {
+		if(disableScrollToSlider) {
+			return;
+		}
 		if(scrollWithScrollIcon) {
 			return;
 		}
-		var st = window.pageYOffset || document.documentElement.scrollTop;
-		if (st > lastScrollTop){ // Detect scroll down
-			 	if (st > windowHeight * 3 && st < windowHeight * 4) {
-			 		console.log('scroll down');
+		if (scrollDirection > 0 || keyDownValue == 40){ // Detect scroll down
+	 		disableScrollToSlider = true;
 
-			 		window.removeEventListener('scroll', goToSlider);
-					disableScroll();
-					doScrollingToPos(windowHeight * 4, 500)
-
-					setTimeout(function(){
-						enableScroll();
-						window.addEventListener('scroll', goToSlider);
-					}, 500)
-			 	}
-   	}
-	   lastScrollTop = st;
+	 		jumpTo(initSlider, {
+			  duration: 500,
+			  offset: 0,
+			  callback: function() {
+			  	disableScrollToSlider = false;
+				},
+			  easing: outInX,
+			  a11y: false
+			})
+		}
 	}
 
-}
-/**** Slider script *****/
+/***** Init screen end *****/
+
+
+/***** Init sclider *****/
 
 window.addEventListener('load', initSliders);
 
@@ -385,17 +600,21 @@ function initSliders() {
 	var sliderControls = document.getElementById('sliderControls');
 
 	// Show slider content when user scroll to it
-	detectVisibility(sliderControls, animateInitSlider, 'sliderControlsListener');
+	window.addEventListener('scroll', animateInitSlider);
+	//detectVisibility(sliderControls, animateInitSlider, 'sliderControlsListener');
 
 	function animateInitSlider() {
-		for( i = 0; i < sliderContent.length; i++ ) {
-			sliderContent[i].classList.add('showSlideContent');
+		Offset = window.pageYOffset;
+		if(Offset >= windowHeight * 3) {
+			window.removeEventListener('scroll', animateInitSlider);
+			for( i = 0; i < sliderContent.length; i++ ) {
+				sliderContent[i].classList.add('showSlideContent');
+			}
+			// initSliderBg.classList.add('showSliderBg');
+			sliderIcon[0].classList.add('showIcon');
+			verticalLines[0].classList.add('showVerticalLines');
+			iconWraper.classList.add('showWraper');
 		}
-		// initSliderBg.classList.add('showSliderBg');
-		sliderIcon[0].classList.add('showIcon');
-		verticalLines[0].classList.add('showVerticalLines');
-		iconWraper.classList.add('showWraper');
-
 	}
 
 	// Slider animation
@@ -458,7 +677,10 @@ function initSliders() {
 
 }
 
-/**** Slider script end *****/
+/***** Init screen end *****/
+
+/***** Select tournaments *****/
+
 window.addEventListener('load', initSelectTournament);
 
 function initSelectTournament() {
@@ -497,6 +719,12 @@ function initSelectTournament() {
 
 }
 
+/***** Select tournaments end *****/
+
+
+
+/***** Tutorial *****/
+
 window.addEventListener('load', initTutorial);
 
 function initTutorial() {
@@ -510,8 +738,10 @@ function initTutorial() {
 			initIcon = document.getElementsByClassName('initIcon')[0],
 			slideTitle = document.getElementsByClassName('slideTitle'),
 			sliderNumber = document.getElementsByClassName('sliderNumber'),
-			initSlide = document.getElementById('initSlide');
-			//slideBgIcon = document.querySelectorAll('.slideBg .icon')
+			selectButton = document.getElementsByClassName('select')[0],
+			initSlide = document.getElementById('initSlide'),
+			sliderCount = slideContent.length;
+			// slideBgIcon = document.querySelectorAll('.slideBg .icon')
 			// slideBgIcon1 = document.querySelectorAll('.slideBg .icon')[0],
 			// slideBgIcon2 = document.querySelectorAll('.slideBg .icon')[1],
 			// slideBgIcon3 = document.querySelectorAll('.slideBg .icon')[2],
@@ -542,17 +772,6 @@ function initTutorial() {
 			linesWrapper.classList.add('showLinesWrapper');
 			initIcon.classList.add('showInitIcon');
 		}, 500);
-
-		// setTimeout(function() {
-		// 	initSlide.classList.add('showBgIcons');
-		// }, 10);
-
-		setTimeout(function() {
-			for( i = 0; i < slideBgIcon.length; i++ ) {
-				slideBgIcon[i].style.transition = 'transform 0.3s linear';
-			}
-			// window.addEventListener('mousemove', moveSlideBgIcon);
-		}, 4000)
 	}
 
 	function hideTutorial() {
@@ -560,10 +779,6 @@ function initTutorial() {
 
 		tutorial.classList.remove('showTutorial');
 		tutorialOpen = false;
-
-		// circleWrapper.classList.remove('showCircleWrapper');
-		// linesWrapper.classList.remove('showLinesWrapper');
-		// tutorialIcon[0].classList.remove('showIcon');
 	}
 
 	function hideTutorialEsc(closeEvent) {
@@ -597,7 +812,17 @@ function initTutorial() {
 		windowHeight = document.documentElement.clientHeight;
 	}
 
-	tutorial.addEventListener('wheel', wheelChangeSlide);
+	var delayX = 50;
+	var timeoutX = null;
+	tutorial.addEventListener('wheel', function(eventY){
+		clearTimeout(timeoutX);
+	  timeoutX = setTimeout(function(){
+	  	this.eventY = eventY;
+	  	wheelChangeSlide(eventY);
+	  }, delayX);
+	});
+
+	// tutorial.addEventListener('wheel', wheelChangeSlide);
 	// Detect when slider stoped and unblocking scroll
 	// track.addEventListener('transitionend', trackStoped);
 	// Work only when slider open
@@ -608,8 +833,10 @@ function initTutorial() {
 		if(tutorialOpen == false) {
 			return false;
 		}
+
 		// Manipulate slider only when slider not move
 		if(itNotMove) {
+			tutorial.removeEventListener('wheel', wheelChangeSlide);
 			// If we scroll down
 			if(wheelEvent.deltaY > 0 ) {
 				if(sliderCounter >= 3) {
@@ -673,17 +900,8 @@ function initTutorial() {
 		itNotMove = false;
 		setTimeout(function() {
 			itNotMove = true;
-		}, 1000)
-	}
-
-	function scrollUp() {
-		//scrollTotal = scrollTotal - windowHeight;
-		//track.style.transform = 'translateY(-' + scrollTotal + 'px)';
-	}
-
-	function scrollDown() {
-		//scrollTotal = scrollTotal + windowHeight;
-		//track.style.transform = 'translateZ(0) translateY(-' + scrollTotal + 'px)';
+			tutorial.addEventListener('wheel', wheelChangeSlide);
+		}, 1000);
 	}
 
 	function goAhead(i) {
@@ -712,6 +930,11 @@ function initTutorial() {
 			slideTitle[i - 1].style.transform = 'translateZ(0) translateY(-10px)';
 			sliderNumber[i - 1].style.transform = 'translateZ(0) translateY(-10px)';
 		}, 500);
+
+		if ((sliderCounter + 1) == sliderCount) {
+			selectButton.style.transform = 'translateY(0)';
+		}
+
 	}
 
 	function goBack(i) {
@@ -741,6 +964,10 @@ function initTutorial() {
 			slideTitle[i + 1].style.transform = 'translateZ(0) translateY(10px)';
 			sliderNumber[i + 1].style.transform = 'translateZ(0) translateY(10px)';
 		}, 500);
+
+		if ((sliderCounter) == sliderCount - 2) {
+			selectButton.style.transform = 'translateY(20px)';
+		}
 	}
 
 	// Icon animation
@@ -762,6 +989,12 @@ function initTutorial() {
 	}
 
 }
+
+/***** Tutorial end *****/
+
+
+/***** Tournament list *****/
+
 window.addEventListener('load', initTournamentList);
 
 function initTournamentList() {
@@ -804,3 +1037,7 @@ function initTournamentList() {
 		})
 	}
 }
+
+/***** Tournament list end *****/
+
+
