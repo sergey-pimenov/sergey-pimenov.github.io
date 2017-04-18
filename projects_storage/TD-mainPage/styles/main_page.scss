@@ -59,8 +59,8 @@ $borderGradient: url('
 }
 
 @mixin closeIcon {
-	width: 20px;
-	height: 20px;
+	width: 60px;
+	height: 60px;
 	display: block;
 	border: none;
 	position: absolute;
@@ -70,7 +70,7 @@ $borderGradient: url('
 					 xmlns="http://www.w3.org/2000/svg">
 				<path d="M1.521,1.268 L20.500,20.500 "/>
 				<path d="M20.500,1.268 L1.236,20.500 "/>
-			</svg>');
+			</svg>') no-repeat 20px 10px;
 	cursor: pointer;
 	z-index: 5;
 	-webkit-filter: drop-shadow(0 0 10px transparent) drop-shadow(0 0 15px transparent);
@@ -221,9 +221,35 @@ button {
 	outline: none;
 }
 
+::-webkit-scrollbar {
+    width: 4px;
+}
+::-webkit-scrollbar-track {
+    background-color: #1b1b1b;
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
 /***** Reset styles end *****/
 
 
+/***** Global *****/
+
+.popupsToning {
+	width: 100vw;
+	height: 100vh;
+	background-color: #1b1b1b;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity 0.15s linear;
+}
+
+/***** Global end *****/
 /***** Tipography *****/
 
 @font-face {
@@ -801,7 +827,6 @@ body {
 		border: none;
 		color: $basic-color;
 		position: relative;
-		z-index: 3;
 
 		&::after {
 			content: '';
@@ -887,6 +912,7 @@ body {
 	background-color: #191919;
 	z-index: -1;
 	opacity: 0;
+	transition: all 0.15s linear;
 
 	&.showTutorial {
 		z-index: 6;
@@ -969,7 +995,7 @@ body {
 		background-position: center bottom;
 		opacity: 0;
 		transform: translateZ(0);
-		transition: opacity 1s;
+		transition: opacity 0.5s;
 
 		&.show {
 			z-index: 1;
@@ -1059,7 +1085,7 @@ body {
 		position: relative;
 		background-color: #1b1b1b;
 		transform: translateZ(0);
-		transition: all 1s;
+		transition: all 0.25s;
 	}
 
 	.slideContent {
@@ -1074,7 +1100,7 @@ body {
 		position: absolute;
 		opacity: 0;
 		transform: translateZ(0) translateY(0px);
-		transition: all 0.5s;
+		transition: all 0.25s;
 
 		&:first-of-type {
 			justify-content: flex-end;
@@ -1102,7 +1128,7 @@ body {
 		background-size: 100% auto;
 		font-family: $font-light;
 		transform: translateY(10px);
-		transition: transform 0.5s;
+		transition: transform 0.25s;
 	}
 
 	.slideTitle {
@@ -1114,7 +1140,7 @@ body {
 		text-align: center;
 		font-family: $font-light;
 		transform: translateY(10px);
-		transition: transform 0.5s;
+		transition: transform 0.25s;
 	}
 
 	.trackLine {
@@ -1176,7 +1202,7 @@ body {
 		border: none;
 		color: $basic-color;
 		transform: translateY(20px);
-		transition: transform 0.5s 0.5s;
+		transition: transform 0.25s 0.25s;
 	}
 
 	@include setBordergradient('.select', #1b1b1b);
@@ -1216,7 +1242,7 @@ body {
 		top: 0;
 		transform: scaleY(0);
 		transform-origin: 0 0;
-		transition: transform 1s, background-color 1s;
+		transition: transform 0.5s, background-color 0.5s;
 
 		&.active {
 			transform: scaleY(1);
@@ -1242,7 +1268,7 @@ body {
 
 	.close {
 		@include closeIcon;
-		right: 40px;
+		right: 20px;
 		top: 30px;
 	}
 
@@ -1299,9 +1325,10 @@ body {
 	}
 
 	.list {
-		flex: 1;
-		position: relative;
-		background-color: #191919;
+		width: 100%;
+		height: 100vh;
+		padding-left: 40%;
+		position: absolute;
 		overflow: auto;
 		transform: translateZ(0);
 		perspective: 500px;
@@ -1314,11 +1341,12 @@ body {
 		align-items: center;
 		position: relative;
 		border-bottom: 1px #222222 solid;
+		background: #1f1f1f no-repeat calc(100% - 115px) center;
 		text-transform: uppercase;
 		font-family: $font-light;
 		letter-spacing: 1px;
 		cursor: pointer;
-		transition: transform 0.5s;
+		transition: background 0.15s, border 0.15s;
 
 		&:last-of-type {
 			border-bottom: none;
@@ -1339,7 +1367,6 @@ body {
 			&:before {
 				background-color: $elements-color;
 			}
-
 		}
 
 		&::before {
@@ -1349,6 +1376,7 @@ body {
 			position: absolute;
 			left: 0;
 			background-color: transparent;
+			transition: background-color 0.3s;
 		}
 	}
 
@@ -1382,21 +1410,22 @@ body {
 
 	.goBack {
 		width: 50px;
-		height: 21px;
+		height: 51px;
+		padding-right: 100px;
 		display: none;
 		position: absolute;
 		left: 40px;
 		top: 120px;
 		border: none;
-		background:  url('
+		background: url('
 				data:image/svg+xml;utf8,
 				<svg stroke="rgb(255, 174, 0)" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path stroke-width="1.3" d="M8.638,20.500 L0.500,10.500 L8.638,0.500 "/>
-				</svg>')
-				no-repeat left center;
+				</svg>') no-repeat;
+		background-position: 20px 13px;
 		cursor: pointer;
 		z-index: 6;
-		transition: transform 0.15s;
+		transition: transform 0.1s;
 
 		&:hover {
 			transform: translateX(-3px);
@@ -1416,14 +1445,27 @@ body {
 /***** Tournament block *****/
 .tournamentBlock {
 	width: 100%;
+	padding-left: 40vw;
 	height: 100vh;
 	position: absolute;
-	left: 0;
+	right: 0;
 	top: 0;
-	background-color: #191919;
 	z-index: 5;
 	overflow: auto;
 	display: none;
+	background: linear-gradient(to right, transparent 40%, #191919 40%); // It's realy need
+	transform: translateZ(0);
+
+	// ::before {
+	// 	content: '';
+	// 	width: 60%;
+	// 	height: 100vw;
+	// 	position: fixed;
+	// 	right: 0;
+	// 	top: 0;
+	// 	background-color: #191919;
+	// 	z-index: -100;
+	// }
 
 	.tournamentItem {
 		width: 700px;
@@ -1564,6 +1606,37 @@ body {
 		margin: 0 28px;
 		font-size: 14px;
 		color: $secondary-color;
+	}
+
+	.progressLine {
+		width: 1px;
+		height: 100vh;
+		position: fixed;
+		top: 0;
+		left: 40vw;
+		z-index: 500;
+
+		.line {
+			width: 100%;
+			height: 50%;
+			position: relative;
+			background-color: #fead00;
+		}
+
+		.line::after {
+			content: attr(data-title);
+			width: 100px;
+			padding: 8px 0;
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			font-size: 12px;
+			text-align: center;
+			// color: $secondary-color;
+			color: white;
+			//background-color: #fead00;
+			//border-bottom: 1px #fead00 solid;
+		}
 	}
 
 }

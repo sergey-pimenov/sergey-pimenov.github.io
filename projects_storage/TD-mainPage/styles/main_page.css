@@ -61,7 +61,30 @@ a {
 button {
   outline: none; }
 
+::-webkit-scrollbar {
+  width: 4px; }
+
+::-webkit-scrollbar-track {
+  background-color: #1b1b1b; }
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2); }
+
 /***** Reset styles end *****/
+/***** Global *****/
+.popupsToning {
+  width: 100vw;
+  height: 100vh;
+  background-color: #1b1b1b;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s linear; }
+
+/***** Global end *****/
 /***** Tipography *****/
 @font-face {
   font-family: 'ProximaNova-Regular';
@@ -491,8 +514,7 @@ body {
     background: linear-gradient(to right, #fead00, #e16f1a);
     border: none;
     color: white;
-    position: relative;
-    z-index: 3; }
+    position: relative; }
     .selectTournament .selectButton::after {
       content: '';
       width: 100%;
@@ -547,7 +569,8 @@ body {
   top: 0;
   background-color: #191919;
   z-index: -1;
-  opacity: 0; }
+  opacity: 0;
+  transition: all 0.15s linear; }
   .tutorial.showTutorial {
     z-index: 6;
     opacity: 1; }
@@ -600,7 +623,7 @@ body {
     background-position: center bottom;
     opacity: 0;
     transform: translateZ(0);
-    transition: opacity 1s; }
+    transition: opacity 0.5s; }
     .tutorial .slideBg.show {
       z-index: 1;
       opacity: 1; }
@@ -664,7 +687,7 @@ body {
     position: relative;
     background-color: #1b1b1b;
     transform: translateZ(0);
-    transition: all 1s; }
+    transition: all 0.25s; }
   .tutorial .slideContent {
     width: 100%;
     height: 100vh;
@@ -677,7 +700,7 @@ body {
     position: absolute;
     opacity: 0;
     transform: translateZ(0) translateY(0px);
-    transition: all 0.5s; }
+    transition: all 0.25s; }
     .tutorial .slideContent:first-of-type {
       justify-content: flex-end; }
   .tutorial .show {
@@ -697,7 +720,7 @@ body {
     background-size: 100% auto;
     font-family: "ProximaNova-Light";
     transform: translateY(10px);
-    transition: transform 0.5s; }
+    transition: transform 0.25s; }
   .tutorial .slideTitle {
     max-width: 300px;
     margin: 60px 0 56px 0;
@@ -707,7 +730,7 @@ body {
     text-align: center;
     font-family: "ProximaNova-Light";
     transform: translateY(10px);
-    transition: transform 0.5s; }
+    transition: transform 0.25s; }
   .tutorial .trackLine {
     width: 1px;
     height: 170px;
@@ -757,7 +780,7 @@ body {
     border: none;
     color: white;
     transform: translateY(20px);
-    transition: transform 0.5s 0.5s; }
+    transition: transform 0.25s 0.25s; }
   .tutorial .select:before {
     content: "";
     position: absolute;
@@ -811,7 +834,7 @@ body {
     top: 0;
     transform: scaleY(0);
     transform-origin: 0 0;
-    transition: transform 1s, background-color 1s; }
+    transition: transform 0.5s, background-color 0.5s; }
     .tutorial .indicator.active {
       transform: scaleY(1); }
     .tutorial .indicator.previous {
@@ -824,18 +847,18 @@ body {
     .tutorial .indicator.previous + .slideNumber {
       color: #a4a4a4; }
   .tutorial .close {
-    width: 20px;
-    height: 20px;
+    width: 60px;
+    height: 60px;
     display: block;
     border: none;
     position: absolute;
-    background: url('\a 			data:image/svg+xml;utf8,\a 			<svg stroke="rgb(255, 174, 0)" fill="none" \a 					 xmlns="http://www.w3.org/2000/svg">\a 				<path d="M1.521,1.268 L20.500,20.500 "/>\a 				<path d="M20.500,1.268 L1.236,20.500 "/>\a 			</svg>');
+    background: url('\a 			data:image/svg+xml;utf8,\a 			<svg stroke="rgb(255, 174, 0)" fill="none" \a 					 xmlns="http://www.w3.org/2000/svg">\a 				<path d="M1.521,1.268 L20.500,20.500 "/>\a 				<path d="M20.500,1.268 L1.236,20.500 "/>\a 			</svg>') no-repeat 20px 10px;
     cursor: pointer;
     z-index: 5;
     -webkit-filter: drop-shadow(0 0 10px transparent) drop-shadow(0 0 15px transparent);
     filter: drop-shadow(0 0 10px transparent) drop-shadow(0 0 10px transparent);
     transition: filter 0.3s;
-    right: 40px;
+    right: 20px;
     top: 30px; }
     .tutorial .close:focus, .tutorial .close:hover {
       -webkit-filter: drop-shadow(0 0 10px white) drop-shadow(0 0 15px #ffae00);
@@ -878,9 +901,10 @@ body {
     text-align: center;
     color: #a4a4a4; }
   .tournamentList .list {
-    flex: 1;
-    position: relative;
-    background-color: #191919;
+    width: 100%;
+    height: 100vh;
+    padding-left: 40%;
+    position: absolute;
     overflow: auto;
     transform: translateZ(0);
     perspective: 500px; }
@@ -891,11 +915,12 @@ body {
     align-items: center;
     position: relative;
     border-bottom: 1px #222222 solid;
+    background: #1f1f1f no-repeat calc(100% - 115px) center;
     text-transform: uppercase;
     font-family: "ProximaNova-Light";
     letter-spacing: 1px;
     cursor: pointer;
-    transition: transform 0.5s; }
+    transition: background 0.15s, border 0.15s; }
     .tournamentList .tournament:last-of-type {
       border-bottom: none; }
     .tournamentList .tournament:hover, .tournamentList .tournament:focus {
@@ -910,18 +935,19 @@ body {
       height: 100%;
       position: absolute;
       left: 0;
-      background-color: transparent; }
+      background-color: transparent;
+      transition: background-color 0.3s; }
   .tournamentList .tournamentIcon {
     max-width: 63px;
     margin-right: 10%;
     object-fit: contain; }
   .tournamentList .closeTournaments {
-    width: 20px;
-    height: 20px;
+    width: 60px;
+    height: 60px;
     display: block;
     border: none;
     position: absolute;
-    background: url('\a 			data:image/svg+xml;utf8,\a 			<svg stroke="rgb(255, 174, 0)" fill="none" \a 					 xmlns="http://www.w3.org/2000/svg">\a 				<path d="M1.521,1.268 L20.500,20.500 "/>\a 				<path d="M20.500,1.268 L1.236,20.500 "/>\a 			</svg>');
+    background: url('\a 			data:image/svg+xml;utf8,\a 			<svg stroke="rgb(255, 174, 0)" fill="none" \a 					 xmlns="http://www.w3.org/2000/svg">\a 				<path d="M1.521,1.268 L20.500,20.500 "/>\a 				<path d="M20.500,1.268 L1.236,20.500 "/>\a 			</svg>') no-repeat 20px 10px;
     cursor: pointer;
     z-index: 5;
     -webkit-filter: drop-shadow(0 0 10px transparent) drop-shadow(0 0 15px transparent);
@@ -944,16 +970,18 @@ body {
       margin-top: 40px; }
   .tournamentList .goBack {
     width: 50px;
-    height: 21px;
+    height: 51px;
+    padding-right: 100px;
     display: none;
     position: absolute;
     left: 40px;
     top: 120px;
     border: none;
-    background: url('\a 				data:image/svg+xml;utf8,\a 				<svg stroke="rgb(255, 174, 0)" fill="none" xmlns="http://www.w3.org/2000/svg">\a 					<path stroke-width="1.3" d="M8.638,20.500 L0.500,10.500 L8.638,0.500 "/>\a 				</svg>') no-repeat left center;
+    background: url('\a 				data:image/svg+xml;utf8,\a 				<svg stroke="rgb(255, 174, 0)" fill="none" xmlns="http://www.w3.org/2000/svg">\a 					<path stroke-width="1.3" d="M8.638,20.500 L0.500,10.500 L8.638,0.500 "/>\a 				</svg>') no-repeat;
+    background-position: 20px 13px;
     cursor: pointer;
     z-index: 6;
-    transition: transform 0.15s; }
+    transition: transform 0.1s; }
     .tournamentList .goBack:hover {
       transform: translateX(-3px); }
     .tournamentList .goBack:focus {
@@ -963,14 +991,16 @@ body {
 /***** Tournament block *****/
 .tournamentBlock {
   width: 100%;
+  padding-left: 40vw;
   height: 100vh;
   position: absolute;
-  left: 0;
+  right: 0;
   top: 0;
-  background-color: #191919;
   z-index: 5;
   overflow: auto;
-  display: none; }
+  display: none;
+  background: linear-gradient(to right, transparent 40%, #191919 40%);
+  transform: translateZ(0); }
   .tournamentBlock .tournamentItem {
     width: 700px;
     margin: 0 auto 0 auto; }
@@ -1069,5 +1099,27 @@ body {
     margin: 0 28px;
     font-size: 14px;
     color: #a4a4a4; }
+  .tournamentBlock .progressLine {
+    width: 1px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 40vw;
+    z-index: 500; }
+    .tournamentBlock .progressLine .line {
+      width: 100%;
+      height: 50%;
+      position: relative;
+      background-color: #fead00; }
+    .tournamentBlock .progressLine .line::after {
+      content: attr(data-title);
+      width: 100px;
+      padding: 8px 0;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      font-size: 12px;
+      text-align: center;
+      color: white; }
 
 /***** Tournament block end *****/

@@ -187,7 +187,6 @@ window.addEventListener('keydown', function(e) {
 })
 
 // Scroll effects
-
 var windowHeight,
 		yOffset,
 		st;
@@ -212,7 +211,7 @@ function scrollEffects() {
 	}
 }
 
-var delay = 50;
+var delay = 0;
 var timeout = null;
 window.addEventListener('scroll', function(){
 	clearTimeout(timeout);
@@ -222,6 +221,7 @@ window.addEventListener('scroll', function(){
 		}
   }, delay);
 });
+
 
 /***** Detect visibility *****/
 
@@ -668,10 +668,10 @@ function initSliders() {
 		yPos = event.clientY;
 		console.log(yPos);
 
-		layer0.style.transform = translate(xPos / -120, yPos / -90);
-		layer1.style.transform = translate(xPos / -100, yPos / -70);
-		layer2.style.transform = translate(xPos / -80, yPos / -50);
-		layer3.style.transform = translate(xPos / -70, yPos / -40);
+		layer0.style.transform = translate(xPos / 120, yPos / 90);
+		layer1.style.transform = translate(xPos / 100, yPos / 70);
+		layer2.style.transform = translate(xPos / 80, yPos / 50);
+		layer3.style.transform = translate(xPos / 70, yPos / 40);
 	}
 
 
@@ -688,21 +688,35 @@ function initSelectTournament() {
 	var selectButton = document.getElementsByClassName('selectButton')[0],
 			close = document.getElementsByClassName('closeTournaments')[0],
 			tournamentList = document.getElementsByClassName('tournamentList')[0],
+			popupsToning = document.getElementsByClassName('popupsToning')[0],
 			tournamentOpened = false;
 
 	close.addEventListener('click', closeTournaments);
 	selectButton.addEventListener('click', openTournaments);
 
 	function openTournaments() {
+		popupsToning.style.opacity = '1';
+
+		setTimeout(function() {
+			document.body.style.overflow = 'hidden';
+		}, 150);
+
+		// Init animation
+		setTimeout(function() {
+			tournamentList.classList.toggle('showTournamentList');
+		}, 200);
+
 		tournamentOpened = true;
-		tournamentList.classList.toggle('showTournamentList');
-		document.body.style.overflow = 'hidden';
 	}
 
 	function closeTournaments() {
+		setTimeout(function() {
+			popupsToning.style.opacity = '0';
+			document.body.style.overflow = 'visible';
+		}, 150);
+
 		tournamentOpened = false;
 		tournamentList.classList.toggle('showTournamentList');
-		document.body.style.overflow = 'visible';
 	}
 
 	function hideTournamentsEsc(closeEvent) {
@@ -739,6 +753,7 @@ function initTutorial() {
 			slideTitle = document.getElementsByClassName('slideTitle'),
 			sliderNumber = document.getElementsByClassName('sliderNumber'),
 			selectButton = document.getElementsByClassName('select')[0],
+			popupsToning = document.getElementsByClassName('popupsToning')[0],
 			initSlide = document.getElementById('initSlide'),
 			sliderCount = slideContent.length;
 			// slideBgIcon = document.querySelectorAll('.slideBg .icon')
@@ -761,21 +776,33 @@ function initTutorial() {
 	window.addEventListener('keydown', hideTutorialEsc);
 
 	function showTutorial() {
-		tutorial.classList.add('showTutorial');
-		document.body.style.overflow = 'hidden';
 		tutorialOpen = true;
 		slideTitle[0].style.transform = 'translateZ(0) translateY(0)';
+		popupsToning.style.opacity = '1';
+
+		setTimeout(function() {
+			document.body.style.overflow = 'hidden';
+		}, 150);
 
 		// Init animation
+		setTimeout(function() {
+			tutorial.classList.add('showTutorial');
+		}, 200);
+
 		setTimeout(function() {
 			circleWrapper.classList.add('showCircleWrapper');
 			linesWrapper.classList.add('showLinesWrapper');
 			initIcon.classList.add('showInitIcon');
-		}, 500);
+		}, 800);
 	}
 
 	function hideTutorial() {
-		document.body.style.overflow = 'visible';
+
+		setTimeout(function() {
+			popupsToning.style.opacity = '0';
+			document.body.style.overflow = 'visible';
+		}, 150);
+
 
 		tutorial.classList.remove('showTutorial');
 		tutorialOpen = false;
@@ -901,7 +928,7 @@ function initTutorial() {
 		setTimeout(function() {
 			itNotMove = true;
 			tutorial.addEventListener('wheel', wheelChangeSlide);
-		}, 1000);
+		}, 500);
 	}
 
 	function goAhead(i) {
@@ -924,12 +951,12 @@ function initTutorial() {
 			slideContent[i].style.opacity = '1';
 			slideTitle[i].style.transform = 'translateZ(0) translateY(0)';
 			sliderNumber[i].style.transform = 'translateZ(0) translateY(0)';
-		}, 500);
+		}, 250);
 		slideContent[i - 1].style.opacity = '0';
 		setTimeout(function() {
 			slideTitle[i - 1].style.transform = 'translateZ(0) translateY(-10px)';
 			sliderNumber[i - 1].style.transform = 'translateZ(0) translateY(-10px)';
-		}, 500);
+		}, 250);
 
 		if ((sliderCounter + 1) == sliderCount) {
 			selectButton.style.transform = 'translateY(0)';
@@ -946,7 +973,7 @@ function initTutorial() {
 		// Timeout need for transition effect
 		setTimeout(function() {
 			slideBg[i + 1].style.zIndex = '0';
-		}, 500)
+		}, 250)
 		slideBg[i + 1].style.opacity = '0';
 
 		tutorialIcon[i].classList.add('currentIcon');
@@ -958,12 +985,12 @@ function initTutorial() {
 			slideContent[i].style.opacity = '1';
 			slideTitle[i].style.transform = 'translateZ(0) translateY(0)';
 			sliderNumber[i].style.transform = 'translateZ(0) translateY(0)';
-		}, 500)
+		}, 250)
 		slideContent[i + 1].style.opacity = '0';
 		setTimeout(function() {
 			slideTitle[i + 1].style.transform = 'translateZ(0) translateY(10px)';
 			sliderNumber[i + 1].style.transform = 'translateZ(0) translateY(10px)';
-		}, 500);
+		}, 250);
 
 		if ((sliderCounter) == sliderCount - 2) {
 			selectButton.style.transform = 'translateY(20px)';
@@ -1011,7 +1038,7 @@ function initTournamentList() {
 			tournamentBlock.style.display = 'block';
 			introText.style.display = 'none';
 			introduction.innerHTML += '<div class="tournamentTitle">' +
-																	'<img class="icon" src="images/icon.png">' +
+																	'<img class="icon" src="images/icon0.png">' +
 																	'<h3 class="name"> Английская премьер лига </h3>' +
 																'</div>';
 			list.style.overflow = 'hidden';
