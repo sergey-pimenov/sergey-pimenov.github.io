@@ -1,5 +1,176 @@
+// Robert Penner's easeInOutQuad
+
+// find the rest of his easing functions here: http://robertpenner.com/easing/
+// find them exported for ES6 consumption here: https://github.com/jaxgeller/ez.js
+
+const easeInOutQuad = (t, b, c, d) => {
+  t /= d / 2
+  if (t < 1) return c / 2 * t * t + b
+  t--
+  return -c / 2 * (t * (t - 2) - 1) + b
+}
+
+const outInX = (t, b, c, d) => {
+  ts=(t/=d)*t
+  tc=ts*t
+  return b+c*(tc + -3*ts + 3*t)
+}
+
+
+const jumper = () => {
+  // private variable cache
+  // no variables are created during a jump, preventing memory leaks
+
+  let element         // element to scroll to                   (node)
+
+  let start           // where scroll starts                    (px)
+  let stop            // where scroll stops                     (px)
+
+  let offset          // adjustment from the stop position      (px)
+  let easing          // easing function                        (function)
+  let a11y            // accessibility support flag             (boolean)
+
+  let distance        // distance of scroll                     (px)
+  let duration        // scroll duration                        (ms)
+
+  let timeStart       // time scroll started                    (ms)
+  let timeElapsed     // time spent scrolling thus far          (ms)
+
+  let next            // next scroll position                   (px)
+
+  let callback        // to call when done scrolling            (function)
+
+  // scroll position helper
+
+  function location () {
+    return window.scrollY || window.pageYOffset
+  }
+
+  // element offset helper
+
+  function top (element) {
+    return element.getBoundingClientRect().top + start
+  }
+
+  // rAF loop helper
+
+  function loop (timeCurrent) {
+    // store time scroll started, if not started already
+    if (!timeStart) {
+      timeStart = timeCurrent
+    }
+
+    // determine time spent scrolling so far
+    timeElapsed = timeCurrent - timeStart
+
+    // calculate next scroll position
+    next = easing(timeElapsed, start, distance, duration)
+
+    // scroll to it
+    window.scrollTo(0, next)
+
+    // check progress
+    timeElapsed < duration
+      ? window.requestAnimationFrame(loop)       // continue scroll loop
+      : done()                                   // scrolling is done
+  }
+
+  // scroll finished helper
+
+  function done () {
+    // account for rAF time rounding inaccuracies
+    window.scrollTo(0, start + distance)
+
+    // if scrolling to an element, and accessibility is enabled
+    if (element && a11y) {
+      // add tabindex indicating programmatic focus
+      element.setAttribute('tabindex', '-1')
+
+      // focus the element
+      element.focus()
+    }
+
+    // if it exists, fire the callback
+    if (typeof callback === 'function') {
+      callback()
+    }
+
+    // reset time for next jump
+    timeStart = false
+  }
+
+  // API
+
+  function jump (target, options = {}) {
+    // resolve options, or use defaults
+    duration = options.duration || 1000
+    offset = options.offset || 0
+    callback = options.callback                       // "undefined" is a suitable default, and won't be called
+    easing = options.easing || easeInOutQuad
+    a11y = options.a11y || false
+
+    // cache starting position
+    start = location()
+
+    // resolve target
+    switch (typeof target) {
+      // scroll from current position
+      case 'number':
+        element = undefined           // no element to scroll to
+        a11y = false                  // make sure accessibility is off
+        stop = start + target
+        break
+
+      // scroll to element (node)
+      // bounding rect is relative to the viewport
+      case 'object':
+        element = target
+        stop = top(element)
+        break
+
+      // scroll to element (selector)
+      // bounding rect is relative to the viewport
+      case 'string':
+        element = document.querySelector(target)
+        stop = top(element)
+        break
+    }
+
+    // resolve scroll distance, accounting for offset
+    distance = stop - start + offset
+
+    // resolve duration
+    switch (typeof options.duration) {
+      // number in ms
+      case 'number':
+        duration = options.duration
+        break
+
+      // function passed the distance of the scroll
+      case 'function':
+        duration = options.duration(distance)
+        break
+    }
+
+    // start the loop
+    window.requestAnimationFrame(loop)
+  }
+
+  // expose only the jump method
+  return jump
+}
+
+// export singleton
+
+const jumpTo = jumper()
 // Detect Safari
 var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+var isMac = navigator.platform.toUpperCase().indexOf('MAC')>=0;
+var html = document.getElementsByTagName('html')[0];
+
+if (!isMac) {
+	html.classList.add('castomScroll');
+}
 
 window.addEventListener('resize', setDynamicVariables);
 
@@ -45,21 +216,23 @@ function scrollEffects() {
 		throttle(toningScreen(yOffset, startToning), 16);
 	}
 
-	if(yOffset >= goToSliderStart && yOffset <= goToSliderEnd) {
+	if(!isMac && yOffset >= goToSliderStart && yOffset <= goToSliderEnd) {
 		goToSlider();
 	}
 }
- 
-// var delay = 0;
-// var timeout = null;
-// window.addEventListener('scroll', function(){
-// 	clearTimeout(timeout);
-//   timeout = setTimeout(function(){
-// 		if(yOffset >= goToSliderStart && yOffset <= goToSliderEnd) {
-// 			goToSlider();
-// 		}
-//   }, delay);
-// });
+
+if(isMac && !isSafari) {
+	var delay = 0;
+	var timeout = null;
+	window.addEventListener('scroll', function(){
+		clearTimeout(timeout);
+	  timeout = setTimeout(function(){
+			if(yOffset >= goToSliderStart && yOffset <= goToSliderEnd) {
+				goToSliderMac();
+			}
+	  }, delay);
+	});
+}
 
 
 /***** Detect visibility *****/
@@ -227,15 +400,6 @@ function throttle(fn, delay) {
 		end = windowHeight * 4;
 	});
 
-	//initScreen.addEventListener('mousemove', moveInitScreenElements);
-
-	// function moveInitScreenElements(event) {
-	// 	translateWrapper[1].style.transform = 'translateZ(0) translate(' + event.clientX / -170 + 'px,' + event.clientY / -110 + 'px)';
-	// 	translateWrapper[3].style.transform = 'translateZ(0) translate(' + event.clientX / -150 + 'px,' + event.clientY / -100 + 'px)';
-	// 	translateWrapper[4].style.transform = 'translateZ(0) translate(' + event.clientX / 150 + 'px,' + event.clientY / 100 + 'px)';
-	// 	translateWrapper[5].style.transform = 'translateZ(0) translate(' + event.clientX / -100 + 'px,' + event.clientY / -90 + 'px)';
-	// }
-
 	// window.addEventListener('scroll', throttle(parallaxAnim, 16));
 
 	// Set parallax for nodes
@@ -245,7 +409,6 @@ function throttle(fn, delay) {
 		scaleElement(player_1, 0.09);
 		scaleElement(player_2, 0.05);
 		scaleElement(bg_players, 0.01);
-
 	}
 
 	function scaleElement(element, scaleShift) {
@@ -283,11 +446,19 @@ function throttle(fn, delay) {
 			scrollIcon = document.getElementsByClassName('scrollIcon')[0],
 			scrollWithScrollIcon = false;
 
-	if(!isSafari) {
+	if(!isMac) {
 		scrollIcon.addEventListener('click', function() {
 			disableScroll();
 			scrollWithScrollIcon = true;
-			doScrollingToPos(windowHeight * 4, 500);
+			jumpTo(initSlider, {
+			  duration: 500,
+			  offset: 0,
+			  callback: function() {
+			  	disableScrollToSlider = false;
+				},
+			  easing: outInX,
+			  a11y: false
+			})
 			setTimeout(function() {
 				enableScroll();
 				scrollWithScrollIcon = false;
@@ -343,27 +514,27 @@ function throttle(fn, delay) {
 	   lastScrollTop = st;
 	}
 
-	// function goToSlider() {
-	// 	if(disableScrollToSlider) {
-	// 		return;
-	// 	}
-	// 	if(scrollWithScrollIcon) {
-	// 		return;
-	// 	}
-	// 	if (scrollDirection > 0 || keyDownValue == 40){ // Detect scroll down
-	//  		disableScrollToSlider = true;
+	function goToSliderMac() {
+		if(disableScrollToSlider) {
+			return;
+		}
+		if(scrollWithScrollIcon) {
+			return;
+		}
+		if (scrollDirection > 0 || keyDownValue == 40){ // Detect scroll down
+	 		disableScrollToSlider = true;
 
-	//  		jumpTo(initSlider, {
-	// 		  duration: 500,
-	// 		  offset: 0,
-	// 		  callback: function() {
-	// 		  	disableScrollToSlider = false;
-	// 			},
-	// 		  easing: outInX,
-	// 		  a11y: false
-	// 		})
-	// 	}
-	// }
+	 		jumpTo(initSlider, {
+			  duration: 500,
+			  offset: 0,
+			  callback: function() {
+			  	disableScrollToSlider = false;
+				},
+			  easing: outInX,
+			  a11y: false
+			})
+		}
+	}
 
 /***** Init screen end *****/
 
@@ -566,12 +737,8 @@ function initSelectTournament() {
 
 		setTimeout(function() {
 			document.body.style.overflow = 'hidden';
-		}, 150);
-
-		// Init animation
-		setTimeout(function() {
 			tournamentList.classList.toggle('showTournamentList');
-		}, 200);
+		}, 100);
 
 		tournamentOpened = true;
 	}
@@ -580,7 +747,7 @@ function initSelectTournament() {
 		setTimeout(function() {
 			popupsToning.style.opacity = '0';
 			document.body.style.overflow = 'visible';
-		}, 150);
+		}, 100);
 
 		tournamentOpened = false;
 		tournamentList.classList.toggle('showTournamentList');
@@ -649,12 +816,8 @@ function initTutorial() {
 
 		setTimeout(function() {
 			document.body.style.overflow = 'hidden';
-		}, 150);
-
-		// Init animation
-		setTimeout(function() {
 			tutorial.classList.add('showTutorial');
-		}, 200);
+		}, 100);
 
 		setTimeout(function() {
 			circleWrapper.classList.add('showCircleWrapper');
@@ -668,8 +831,7 @@ function initTutorial() {
 		setTimeout(function() {
 			popupsToning.style.opacity = '0';
 			document.body.style.overflow = 'visible';
-		}, 150);
-
+		}, 100);
 
 		tutorial.classList.remove('showTutorial');
 		tutorialOpen = false;
