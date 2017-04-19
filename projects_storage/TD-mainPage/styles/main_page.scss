@@ -59,8 +59,8 @@ $borderGradient: url('
 }
 
 @mixin closeIcon {
-	width: 20px;
-	height: 20px;
+	width: 60px;
+	height: 60px;
 	display: block;
 	border: none;
 	position: absolute;
@@ -70,7 +70,7 @@ $borderGradient: url('
 					 xmlns="http://www.w3.org/2000/svg">
 				<path d="M1.521,1.268 L20.500,20.500 "/>
 				<path d="M20.500,1.268 L1.236,20.500 "/>
-			</svg>');
+			</svg>') no-repeat 20px 20px;
 	cursor: pointer;
 	z-index: 5;
 	-webkit-filter: drop-shadow(0 0 10px transparent) drop-shadow(0 0 15px transparent);
@@ -234,6 +234,10 @@ button {
 
 
 /***** Global *****/
+
+body {
+	background-color: #1f1f1f;
+}
 
 .popupsToning {
 	width: 100vw;
@@ -1268,7 +1272,7 @@ body {
 	.close {
 		@include closeIcon;
 		right: 20px;
-		top: 30px;
+		top: 10px;
 		z-index: 3000;
 	}
 
@@ -1388,8 +1392,8 @@ body {
 
 	.closeTournaments {
 		@include closeIcon;
-		right: 40px;
-		top: 30px;
+		right: 20px;
+		top: 10px;
 	}
 
 	.tournamentTitle {

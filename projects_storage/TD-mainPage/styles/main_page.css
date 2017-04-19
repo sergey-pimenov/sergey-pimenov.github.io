@@ -72,6 +72,9 @@ button {
 
 /***** Reset styles end *****/
 /***** Global *****/
+body {
+  background-color: #1f1f1f; }
+
 .popupsToning {
   width: 100vw;
   height: 100vh;
@@ -846,19 +849,19 @@ body {
     .tutorial .indicator.previous + .slideNumber {
       color: #a4a4a4; }
   .tutorial .close {
-    width: 20px;
-    height: 20px;
+    width: 60px;
+    height: 60px;
     display: block;
     border: none;
     position: absolute;
-    background: url('\a 			data:image/svg+xml;utf8,\a 			<svg stroke="rgb(255, 174, 0)" fill="none" \a 					 xmlns="http://www.w3.org/2000/svg">\a 				<path d="M1.521,1.268 L20.500,20.500 "/>\a 				<path d="M20.500,1.268 L1.236,20.500 "/>\a 			</svg>');
+    background: url('\a 			data:image/svg+xml;utf8,\a 			<svg stroke="rgb(255, 174, 0)" fill="none" \a 					 xmlns="http://www.w3.org/2000/svg">\a 				<path d="M1.521,1.268 L20.500,20.500 "/>\a 				<path d="M20.500,1.268 L1.236,20.500 "/>\a 			</svg>') no-repeat 20px 20px;
     cursor: pointer;
     z-index: 5;
     -webkit-filter: drop-shadow(0 0 10px transparent) drop-shadow(0 0 15px transparent);
     filter: drop-shadow(0 0 10px transparent) drop-shadow(0 0 10px transparent);
     transition: filter 0.3s;
     right: 20px;
-    top: 30px;
+    top: 10px;
     z-index: 3000; }
     .tutorial .close:focus, .tutorial .close:hover {
       -webkit-filter: drop-shadow(0 0 10px white) drop-shadow(0 0 15px #ffae00);
@@ -942,19 +945,19 @@ body {
     margin-right: 10%;
     object-fit: contain; }
   .tournamentList .closeTournaments {
-    width: 20px;
-    height: 20px;
+    width: 60px;
+    height: 60px;
     display: block;
     border: none;
     position: absolute;
-    background: url('\a 			data:image/svg+xml;utf8,\a 			<svg stroke="rgb(255, 174, 0)" fill="none" \a 					 xmlns="http://www.w3.org/2000/svg">\a 				<path d="M1.521,1.268 L20.500,20.500 "/>\a 				<path d="M20.500,1.268 L1.236,20.500 "/>\a 			</svg>');
+    background: url('\a 			data:image/svg+xml;utf8,\a 			<svg stroke="rgb(255, 174, 0)" fill="none" \a 					 xmlns="http://www.w3.org/2000/svg">\a 				<path d="M1.521,1.268 L20.500,20.500 "/>\a 				<path d="M20.500,1.268 L1.236,20.500 "/>\a 			</svg>') no-repeat 20px 20px;
     cursor: pointer;
     z-index: 5;
     -webkit-filter: drop-shadow(0 0 10px transparent) drop-shadow(0 0 15px transparent);
     filter: drop-shadow(0 0 10px transparent) drop-shadow(0 0 10px transparent);
     transition: filter 0.3s;
-    right: 40px;
-    top: 30px; }
+    right: 20px;
+    top: 10px; }
     .tournamentList .closeTournaments:focus, .tournamentList .closeTournaments:hover {
       -webkit-filter: drop-shadow(0 0 10px white) drop-shadow(0 0 15px #ffae00);
       filter: drop-shadow(0 0 10px white) drop-shadow(0 0 10px #ffae00); }
