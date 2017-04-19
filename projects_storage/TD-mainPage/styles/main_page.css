@@ -1071,9 +1071,28 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 30px;
+    position: relative;
     font-size: 12px;
     border: 1px white solid;
-    border-radius: 50px/50px; }
+    border-radius: 50px/50px;
+    box-shadow: 0 1px 1px transparent;
+    transition: box-shadow 0.15s; }
+    .tournamentBlock .goToRoom::after {
+      content: '';
+      width: 13px;
+      height: 13px;
+      position: absolute;
+      top: 11px;
+      font-size: 12px;
+      background: url('\a 				data:image/svg+xml;utf8,\a 				<svg xmlns="http://www.w3.org/2000/svg"\a 						 viewBox="0 0 30 30"\a 						 width="13px"\a 						 height="13px"\a 						 fill="none"\a 						 stroke="white"\a 						 stroke-width="2px">\a 						 <path d="M2.5,15.4h25.7"/>\a 						 <path d="M10.2,6.3l-8.4,9l8.4,9"/>\a 				</svg>');
+      right: 25px;
+      transform: rotateZ(-180deg) scaleX(0);
+      transform-origin: 100% 50%;
+      transition: transform 0.05s, opacity 0.05s;
+      opacity: 0; }
+    .tournamentBlock .goToRoom:hover::after {
+      transform: rotateZ(-180deg) scaleX(1);
+      opacity: 1; }
   .tournamentBlock .matches {
     width: 350px;
     padding: 0 0 170px 30px;
