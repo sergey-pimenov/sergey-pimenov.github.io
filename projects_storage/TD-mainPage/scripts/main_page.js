@@ -209,18 +209,22 @@ function scrollEffects() {
 	if(yOffset >= startToning && yOffset <= endToning) {
 		throttle(toningScreen(yOffset, startToning), 16);
 	}
+
+	if(yOffset >= goToSliderStart && yOffset <= goToSliderEnd) {
+		goToSlider();
+	}
 }
 
-var delay = 0;
-var timeout = null;
-window.addEventListener('scroll', function(){
-	clearTimeout(timeout);
-  timeout = setTimeout(function(){
-		if(yOffset >= goToSliderStart && yOffset <= goToSliderEnd) {
-			goToSlider();
-		}
-  }, delay);
-});
+// var delay = 0;
+// var timeout = null;
+// window.addEventListener('scroll', function(){
+// 	clearTimeout(timeout);
+//   timeout = setTimeout(function(){
+// 		if(yOffset >= goToSliderStart && yOffset <= goToSliderEnd) {
+// 			goToSlider();
+// 		}
+//   }, delay);
+// });
 
 
 /***** Detect visibility *****/
@@ -472,31 +476,63 @@ function throttle(fn, delay) {
 		}
 	}
 
-	var currentYScroll;
+	var currentYScroll = 'not scroll';
 	var lastScrollTop = 0;
 	var disableScrollToSlider = false;
 
+	//if(!isSafari) window.addEventListener("scroll", goToSlider);
+
+	var lastScrollTop = 0;
+
 	function goToSlider() {
-		if(disableScrollToSlider) {
-			return;
-		}
 		if(scrollWithScrollIcon) {
 			return;
 		}
-		if (scrollDirection > 0 || keyDownValue == 40){ // Detect scroll down
-	 		disableScrollToSlider = true;
 
-	 		jumpTo(initSlider, {
-			  duration: 500,
-			  offset: 0,
-			  callback: function() {
-			  	disableScrollToSlider = false;
-				},
-			  easing: outInX,
-			  a11y: false
-			})
+		if(currentYScroll != 'not scroll') {
+			return;
 		}
+
+		var st = window.pageYOffset || document.documentElement.scrollTop;
+		if (st > lastScrollTop){ // Detect scroll down
+			 	if (st > windowHeight * 3 && st < windowHeight * 4) {
+			 		currentYScroll = 'scroll';
+
+			 		window.removeEventListener('scroll', goToSlider);
+					disableScroll();
+					doScrollingToPos(windowHeight * 4, 300)
+
+					setTimeout(function(){
+						currentYScroll = 'not scroll';
+						enableScroll();
+						window.addEventListener('scroll', goToSlider);
+					}, 310)
+			 	}
+   	}
+	   lastScrollTop = st;
 	}
+
+	// function goToSlider() {
+	// 	if(disableScrollToSlider) {
+	// 		return;
+	// 	}
+	// 	if(scrollWithScrollIcon) {
+	// 		return;
+	// 	}
+	// 	if (scrollDirection > 0 || keyDownValue == 40){ // Detect scroll down
+	//  		disableScrollToSlider = true;
+
+	//  		jumpTo(initSlider, {
+	// 		  duration: 500,
+	// 		  offset: 0,
+	// 		  callback: function() {
+	// 		  	disableScrollToSlider = false;
+	// 			},
+	// 		  easing: outInX,
+	// 		  a11y: false
+	// 		})
+	// 	}
+	// }
 
 /***** Init screen end *****/
 
