@@ -163,10 +163,11 @@ const jumper = () => {
 // export singleton
 
 const jumpTo = jumper()
-// Detect Safari
 var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 var isMac = navigator.platform.toUpperCase().indexOf('MAC')>=0;
 var html = document.getElementsByTagName('html')[0];
+
+var tutorialState;
 
 if (!isMac) {
 	html.classList.add('castomScroll');
@@ -202,7 +203,7 @@ window.addEventListener('scroll', scrollEffects);
 var endParallax = windowHeight * 4;
 var startToning = windowHeight * 3;
 var endToning = windowHeight * 4;
-var goToSliderStart = windowHeight * 3;
+var goToSliderStart = windowHeight * 3.8;
 var goToSliderEnd = windowHeight * 4;
 
 function scrollEffects() {
@@ -283,7 +284,6 @@ function doScrolling(elementY, duration) {
     var percent = Math.min(time / duration, 1)
 
     window.scrollTo(0, startingY + diff * percent)
-    console.log(1)
 
     // Proceed with animation as long as we wanted it to.
     if (time < duration) {
@@ -476,6 +476,9 @@ function throttle(fn, delay) {
 		if(currentOpacity >= defaultOpacity) {
 			toning.style.opacity = currentOpacity;
 		}
+		if(window.pageYOffset <= (windowHeight * 3)) {
+			toning.style.opacity = 0;
+		}
 	}
 
 	var currentYScroll = 'not scroll';
@@ -497,7 +500,7 @@ function throttle(fn, delay) {
 
 		var st = window.pageYOffset || document.documentElement.scrollTop;
 		if (st > lastScrollTop){ // Detect scroll down
-			 	if (st > windowHeight * 3 && st < windowHeight * 4) {
+			 	if (st > windowHeight * 3.8 && st < windowHeight * 4) {
 			 		currentYScroll = 'scroll';
 
 			 		window.removeEventListener('scroll', goToSlider);
@@ -535,6 +538,176 @@ function throttle(fn, delay) {
 			})
 		}
 	}
+
+	// Infographic animation
+
+	var pathFromBallCircle = document.getElementsByClassName('pathFromBallCircle')[0],
+			pathFromBallCircleLength = Math.ceil(pathFromBallCircle.getTotalLength()),
+			ballCircle = document.getElementsByClassName('ballCircle')[0],
+			textCircle1 = document.getElementsByClassName('textCircle1')[0],
+			textCircle2 = document.getElementsByClassName('textCircle2')[0],
+			dotCircle = document.getElementsByClassName('dotCircle')[0],
+			pulse = document.getElementsByClassName('pulse')[0],
+			pulseValue = document.getElementsByClassName('pulseValue')[0],
+			circle1 = document.getElementsByClassName('circle1')[0],
+			circle1Dot = document.getElementsByClassName('circle1Dot')[0],
+			lineFromCircle1 = document.getElementsByClassName('lineFromCircle1')[0],
+			circle2 = document.getElementsByClassName('circle2')[0],
+			lineFromCircle2 = document.getElementsByClassName('lineFromCircle2')[0],
+			circle3 = document.getElementsByClassName('circle3')[0],
+			lineFromCircle3 = document.getElementsByClassName('lineFromCircle3')[0],
+			circle4 = document.getElementsByClassName('circle4')[0],
+			circle4Dot = document.getElementsByClassName('circle4Dot')[0],
+			lineToNumbers = document.getElementsByClassName('lineToNumbers')[0],
+			numbers = document.getElementsByClassName('numbers')[0];
+
+	var currentYOffset = 0;
+
+	window.addEventListener('scroll', function() {
+
+		currentYOffset = (window.pageYOffset - windowHeight);
+
+		// First infographic
+		if (window.pageYOffset >= windowHeight && window.pageYOffset <= windowHeight + 50) {
+			ballCircle.style.opacity = 1 * (currentYOffset / 50);
+		} if (window.pageYOffset <= windowHeight) {
+			ballCircle.style.opacity = '0';
+		} if (window.pageYOffset >= windowHeight + 50) {
+			ballCircle.style.opacity = '1';
+		}
+
+		if (window.pageYOffset > windowHeight + 50 && window.pageYOffset <= windowHeight + 150) {
+			dotCircle.style.opacity = 1 * ((currentYOffset + 50) / 150);
+		} if (window.pageYOffset <= windowHeight + 50) {
+			dotCircle.style.opacity = '0';
+		} if (window.pageYOffset >= windowHeight + 150) {
+			dotCircle.style.opacity = '1';
+		}
+
+		if (window.pageYOffset > windowHeight + 150 && window.pageYOffset <= windowHeight + 250) {
+			pathFromBallCircle.style.strokeDashoffset = '0';
+		} if (window.pageYOffset <= windowHeight + 150) {
+			pathFromBallCircle.style.strokeDashoffset = '192px';
+		}  if (window.pageYOffset >= windowHeight + 250) {
+			pathFromBallCircle.style.strokeDashoffset = '0';
+		}
+
+		if (window.pageYOffset > windowHeight + 250 && window.pageYOffset <= windowHeight + 400) {
+			textCircle1.style.opacity = 1 * ((currentYOffset + 250) / 400);
+		} if (window.pageYOffset <= windowHeight + 250) {
+			textCircle1.style.opacity = '0';
+		} if (window.pageYOffset >= windowHeight + 400) {
+			textCircle1.style.opacity = '1';
+		}
+
+		if (window.pageYOffset > windowHeight + 400 && window.pageYOffset <= windowHeight + 550) {
+			textCircle2.style.opacity = 1 * ((currentYOffset + 400) / 550);
+		} if (window.pageYOffset <= windowHeight + 400) {
+			textCircle2.style.opacity = '0';
+		} if (window.pageYOffset >= windowHeight + 550) {
+			textCircle2.style.opacity = '1';
+		}
+
+		// Second infographic
+		if (window.pageYOffset > windowHeight + 250 && window.pageYOffset <= windowHeight + 400) {
+			circle1.style.opacity = 1 * ((currentYOffset + 250) / 400);
+		} if (window.pageYOffset <= windowHeight + 250) {
+			circle1.style.opacity = '0';
+		} if (window.pageYOffset >= windowHeight + 400) {
+			circle1.style.opacity = '1';
+		}
+
+		if (window.pageYOffset > windowHeight + 400 && window.pageYOffset <= windowHeight + 550) {
+			circle1Dot.style.opacity = 1 * ((currentYOffset + 400) / 550);
+		} if (window.pageYOffset <= windowHeight + 400) {
+			circle1Dot.style.opacity = '0';
+		} if (window.pageYOffset >= windowHeight + 550) {
+			circle1Dot.style.opacity = '1';
+		}
+
+		if (window.pageYOffset > windowHeight + 550 && window.pageYOffset <= windowHeight + 700) {
+			lineFromCircle1.style.strokeDashoffset = '0';
+		} if (window.pageYOffset <= windowHeight + 550) {
+			lineFromCircle1.style.strokeDashoffset = '163px';
+		}  if (window.pageYOffset >= windowHeight + 700) {
+			lineFromCircle1.style.strokeDashoffset = '0';
+		}
+
+		if (window.pageYOffset > windowHeight + 700 && window.pageYOffset <= windowHeight + 850) {
+			circle2.style.opacity = 1 * ((currentYOffset + 700) / 850);
+		} if (window.pageYOffset <= windowHeight + 700) {
+			circle2.style.opacity = '0';
+		} if (window.pageYOffset >= windowHeight + 850) {
+			circle2.style.opacity = '1';
+		}
+
+		if (window.pageYOffset > windowHeight + 850 && window.pageYOffset <= windowHeight + 1000) {
+			lineFromCircle2.style.strokeDashoffset = '0';
+		} if (window.pageYOffset <= windowHeight + 850) {
+			lineFromCircle2.style.strokeDashoffset = '-221px';
+		}  if (window.pageYOffset >= windowHeight + 1000) {
+			lineFromCircle2.style.strokeDashoffset = '0';
+		}
+
+		if (window.pageYOffset > windowHeight + 1000 && window.pageYOffset <= windowHeight + 1150) {
+			circle3.style.opacity = 1 * ((currentYOffset + 1000) / 1150);
+		} if (window.pageYOffset <= windowHeight + 1000) {
+			circle3.style.opacity = '0';
+		} if (window.pageYOffset >= windowHeight + 1150) {
+			circle3.style.opacity = '1';
+		}
+
+		if (window.pageYOffset > windowHeight + 1150 && window.pageYOffset <= windowHeight + 1300) {
+			lineFromCircle3.style.strokeDashoffset = '0';
+			lineToNumbers.style.strokeDashoffset = '0';
+		} if (window.pageYOffset <= windowHeight + 1150) {
+			lineFromCircle3.style.strokeDashoffset = '150px';
+			lineToNumbers.style.strokeDashoffset = '218px';
+		}  if (window.pageYOffset >= windowHeight + 1300) {
+			lineFromCircle3.style.strokeDashoffset = '0';
+			lineToNumbers.style.strokeDashoffset = '0';
+		}
+
+		if (window.pageYOffset > windowHeight + 1300 && window.pageYOffset <= windowHeight + 1450) {
+			circle4Dot.style.opacity = '1';
+			circle4.style.opacity = '1';
+			numbers.style.opacity = '1';
+		} if (window.pageYOffset <= windowHeight + 1300) {
+			circle4Dot.style.opacity = '0';
+			circle4.style.opacity = '0';
+			numbers.style.opacity = '0';
+		}  if (window.pageYOffset >= windowHeight + 1450) {
+			circle4Dot.style.opacity = '1';
+			circle4.style.opacity = '1';
+			numbers.style.opacity = '1';
+		}
+
+	})
+
+
+	setInterval(function() {
+
+			setTimeout(function() {
+				pulse.setAttribute('d', 'M 266, 10.5 l6, 6 l1-4 l11, 11 l15-23 h5');
+				pulseValue.innerHTML = '76';
+			}, 500)
+
+			setTimeout(function() {
+				pulse.setAttribute('d', 'M 266, 10.5 l5, 5 l1-3 l10, 10 l14-21 h5');
+				pulseValue.innerHTML = '77';
+			}, 1000)
+
+			setTimeout(function() {
+				pulse.setAttribute('d', 'M 266, 10.5 l7, 7 l2-6 l12, 10 l14-20 h6');
+				pulseValue.innerHTML = '76';
+			}, 1500)
+
+			setTimeout(function() {
+				pulse.setAttribute('d', 'M 266, 10.5 l6, 6 l1-5 l10, 9 l14-17 h6');
+				pulseValue.innerHTML = '75';
+			}, 2000)
+
+	}, 2000);
 
 /***** Init screen end *****/
 
@@ -652,6 +825,7 @@ function initSliders() {
 			sliderIcon[0].classList.add('showIcon');
 			verticalLines[0].classList.add('showVerticalLines');
 			iconWraper.classList.add('showWraper');
+			initSlider.addEventListener('mousemove', throttle(moveSliderSvg, 16));
 		}
 	}
 
@@ -681,15 +855,12 @@ function initSliders() {
 	// 	}
 	// });
 
-
 	var starsAndCircles = document.getElementsByClassName('starsAndCircles')[0],
 			layer0 = document.getElementsByClassName('layer0')[0],
 			layer1 = document.getElementsByClassName('layer1')[0],
 			layer2 = document.getElementsByClassName('layer2')[0],
 			layer3 = document.getElementsByClassName('layer3')[0],
 			translateLayer = document.getElementsByClassName('translateLayer');
-
-	initSlider.addEventListener('mousemove', throttle(moveSliderSvg, 16));
 
 	var xPos,
 			yPos;
@@ -704,8 +875,7 @@ function initSliders() {
 	function moveSliderSvg(event) {
 		xPos = event.clientX;
 		yPos = event.clientY;
-		console.log(yPos);
-
+console.log(xPos + ' ' + yPos);
 		layer0.style.transform = translate(xPos / 120, yPos / 90);
 		layer1.style.transform = translate(xPos / 100, yPos / 70);
 		layer2.style.transform = translate(xPos / 80, yPos / 50);
@@ -727,10 +897,20 @@ function initSelectTournament() {
 			close = document.getElementsByClassName('closeTournaments')[0],
 			tournamentList = document.getElementsByClassName('tournamentList')[0],
 			popupsToning = document.getElementsByClassName('popupsToning')[0],
-			tournamentOpened = false;
+			tournamentOpened = false,
+			openTournamentsButton = document.getElementById('openTournaments');
 
 	close.addEventListener('click', closeTournaments);
 	selectButton.addEventListener('click', openTournaments);
+
+	openTournamentsButton.addEventListener('click', openTournamentsFromTutorial);
+
+	function openTournamentsFromTutorial() {
+		tournamentList.classList.toggle('showTournamentList');
+		tournamentList.style.zIndex = '100';
+		tournamentOpened = true;
+		tutorialState = 'opened';
+	}
 
 	function openTournaments() {
 		popupsToning.style.opacity = '1';
@@ -745,8 +925,10 @@ function initSelectTournament() {
 
 	function closeTournaments() {
 		setTimeout(function() {
-			popupsToning.style.opacity = '0';
-			document.body.style.overflow = 'visible';
+			if(tutorialState != 'opened') {
+				popupsToning.style.opacity = '0';
+				document.body.style.overflow = 'visible';
+			}
 		}, 100);
 
 		tournamentOpened = false;
@@ -835,6 +1017,7 @@ function initTutorial() {
 
 		tutorial.classList.remove('showTutorial');
 		tutorialOpen = false;
+		tutorialState = 'closed';
 	}
 
 	function hideTutorialEsc(closeEvent) {
@@ -845,6 +1028,7 @@ function initTutorial() {
 		if( closeEvent.keyCode == 27) {
 			hideTutorial();
 		}
+		tutorialState = 'closed';
 	}
 
 	var tutorial = document.getElementsByClassName('tutorial')[0],
@@ -1060,36 +1244,41 @@ function initTournamentList() {
 			introduction = document.getElementsByClassName('introduction')[0],
 			list = document.getElementsByClassName('list')[0],
 			goBack = document.getElementsByClassName('goBack')[0],
-			tournamentTitle = document.getElementsByClassName('tournamentTitle')[0];
+			tournamentTitle = document.getElementsByClassName('tournamentTitle')[0],
+			selectTournamentTitle = document.getElementsByClassName('selectTournamentTitle');
+
+	// for ( i = 0; i < tournament.length; i++ ) {
+	// 	tournament[i].addEventListener('click', function() {
+	// 		tournamentBlock.style.height = '100vh';
+	// 		introText.style.display = 'none';
+	// 		introduction.innerHTML += '<div class="tournamentTitle">' +
+	// 																'<img class="icon" src="images/icon0.png">' +
+	// 																'<h3 class="name"> Английская премьер лига </h3>' +
+	// 															'</div>';
+	// 		// Redefine nodes
+	// 		tournament = document.getElementsByClassName('tournament'),
+	// 		tournamentBlock = document.getElementsByClassName('tournamentBlock')[0],
+	// 		introText = document.getElementById('introText'),
+	// 		introduction = document.getElementsByClassName('introduction')[0],
+	// 		list = document.getElementsByClassName('list')[0],
+	// 		goBack = document.getElementsByClassName('goBack')[0],
+	// 		tournamentTitle = document.getElementsByClassName('tournamentTitle')[0];
+
+	// 		goBack.style.display = 'block';
+
+	// 		goBack.addEventListener('click', function() {
+	// 			tournamentBlock.style.height = '0';
+	// 			introText.style.display = 'block';
+	// 			tournamentTitle.remove();
+	// 			goBack.style.display = 'none';
+	// 		})
+	// 	})
+	// }
 
 	for ( i = 0; i < tournament.length; i++ ) {
-		tournament[i].addEventListener('click', function() {
-			tournamentBlock.style.display = 'block';
-			introText.style.display = 'none';
-			introduction.innerHTML += '<div class="tournamentTitle">' +
-																	'<img class="icon" src="images/icon0.png">' +
-																	'<h3 class="name"> Английская премьер лига </h3>' +
-																'</div>';
-			list.style.overflow = 'hidden';
-
-			// Redefine nodes
-			tournament = document.getElementsByClassName('tournament'),
-			tournamentBlock = document.getElementsByClassName('tournamentBlock')[0],
-			introText = document.getElementById('introText'),
-			introduction = document.getElementsByClassName('introduction')[0],
-			list = document.getElementsByClassName('list')[0],
-			goBack = document.getElementsByClassName('goBack')[0],
-			tournamentTitle = document.getElementsByClassName('tournamentTitle')[0];
-
-			goBack.style.display = 'block';
-
-			goBack.addEventListener('click', function() {
-				tournamentBlock.style.display = 'none';
-				introText.style.display = 'block';
-				tournamentTitle.remove();
-				list.style.overflow = 'auto';
-				goBack.style.display = 'none';
-			})
+		selectTournamentTitle[i].addEventListener('click', function() {
+			this.classList.toggle('open');
+			this.parentNode.classList.toggle('goToTop');
 		})
 	}
 }
