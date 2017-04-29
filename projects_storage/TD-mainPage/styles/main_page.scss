@@ -609,7 +609,7 @@ body {
 		.pathFromBallCircle {
 			stroke-dashoffset: 192px;
 			stroke-dasharray: 192px;
-			transition: stroke-dashoffset 0.7s;
+			transition: stroke-dashoffset 0.3s;
 		}
 
 		.textCircle1 {
@@ -642,9 +642,9 @@ body {
 		}
 
 		.lineFromCircle1 {
-			stroke-dashoffset: 163px;
+			stroke-dashoffset: -163px;
 			stroke-dasharray: 163px;
-			transition: stroke-dashoffset 0.7s;
+			transition: stroke-dashoffset 0.3s;
 		}
 
 		.circle2 {
@@ -655,7 +655,7 @@ body {
 		.lineFromCircle2 {
 			stroke-dashoffset: -221px;
 			stroke-dasharray: 221px;
-			transition: stroke-dashoffset 0.7s;
+			transition: stroke-dashoffset 0.3s;
 		}
 
 		.circle3 {
@@ -666,13 +666,13 @@ body {
 		.lineFromCircle3 {
 			stroke-dashoffset: 150px;
 			stroke-dasharray: 150px;
-			transition: stroke-dashoffset 0.7s;
+			transition: stroke-dashoffset 0.3s;
 		}
 
 		.lineToNumbers {
 			stroke-dashoffset: 218px;
 			stroke-dasharray: 218px;
-			transition: stroke-dashoffset 0.7s;
+			transition: stroke-dashoffset 0.3s;
 		}
 
 		.circle4Dot {
@@ -799,6 +799,7 @@ body {
 		align-items: center;
 		position: relative;
 		background-color: #1b1b1b;
+		cursor: pointer;
 	}
 
 	// .contentTitle {
@@ -830,7 +831,7 @@ body {
 		left: 0;
 		top: calc(50vh - 133px);
 		transform: translateY(10px);
-		transition: transform 0.3s linear, opacity 0.6s linear;
+		transition: transform 0.3s ease-out, opacity 0.6s ease-out;
 		z-index: -1;
 		opacity: 0;
 	}
@@ -1401,16 +1402,17 @@ body {
 		width: 150px;
 		height: 70px;
 		position: absolute;
-		left: 0;
+		left: -150px;
 		top: calc(50% - 35px);
 		z-index: 1;
 		border: none;
 		background: transparent url('
 				data:image/svg+xml;utf8,
 				<svg xmlns="http://www.w3.org/2000/svg"
-						 width="10.5px" height="18.5px">
+						 width="10.5px" height="18.5px" stroke-width="0.9">
 				<path stroke="rgb(255, 174, 0)" fill="none" d="M1.925,0.500 L9.500,9.000 L1.925,17.500 "/>
 				</svg>') no-repeat;
+		background-size: auto 22px;
 		background-position: 50% 50%;
 		transform: rotateZ(180deg);
 		opacity: 0;
@@ -1466,7 +1468,6 @@ body {
 		position: static;
 		right: 0;
 		top: 0;
-		overflow: hidden;
 		transform: translateZ(0);
 		perspective: 500px;
 	}
@@ -1501,14 +1502,14 @@ body {
 
 		&.goToTop {
 			top: 0;
-			z-index: 10;
 		}
 	}
 
 	.selectTournamentTitle {
 		height: 20vh;
-		padding-left: 15%;
+		//padding-left: 15%;
 		display: flex;
+		justify-content: center;
 		align-items: center;
 		position: relative;
 		border-bottom: 1px #1d1d1d solid;
@@ -1519,6 +1520,8 @@ body {
 		cursor: pointer;
 		transition: height 0.3s, background 0.15s, border 0.15s;
 		z-index: 123123;
+		-webkit-will-change: height;
+		will-change: height;
 
 		&.open {
 			height: 12vh;
@@ -1530,19 +1533,31 @@ body {
 
 		&.open + .tournamentBlock {
 			height: 88vh;
+			opacity: 1;
 		}
 
 		.tournamentName {
-			width: 100%;
-			position: absolute;
-			left: 0;
-			transform: translateX(-5%);
-			text-align: center;
-			transition: transform 0.3s;
+			width: 300px;
+			transform: translateX(calc(-8vw + 63px)) translateZ(0);
+			// position: absolute;
+			// left: 0;
+			//text-indent: 13vw;
+			//text-indent: 30%;
+			// transition: text-align 0.3s;
+			transition: all 0.3s;
+			-webkit-will-change: transform, width;
+			will-change: transform, width;
 		}
 
 		&.open .tournamentName {
-			transform: translateX(0);
+			transform: translateX(0) translateZ(0);
+			width: auto;
+			// text-align: center;
+			// text-indent: 0;
+		}
+
+		&.open .tournamentIcon {
+			transform: translateX(8vw) translateZ(0);
 		}
 
 		&:last-of-type {
@@ -1579,14 +1594,21 @@ body {
 	.tournamentIcon {
 		max-width: 63px;
 		margin-right: 10%;
+		position: absolute;
+		left: 7vw;
 		object-fit: contain;
-		-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select:none;
+		user-select:none;
+		transition: all 0.3s;
+		transform: translateZ(0);
 	}
 
 	.closeTournaments {
 		@include closeIcon;
 		right: 20px;
-		top: 10px;
+		top: 17px;
 	}
 
 	.tournamentTitle {
@@ -1646,8 +1668,11 @@ body {
 	z-index: 5;
 	overflow: auto;
 	transform: translateZ(0);
-	transition: height 0.3s;
+	transition: height 0.3s, opacity 0.3s;
 	background-color: #1f1f1f;
+	opacity: 0;
+	-webkit-will-change: height;
+	will-change: height;
 
 	.tournamentItem {
 		width: 700px;
@@ -1656,12 +1681,12 @@ body {
 
 	.timeBefore {
 		margin: 0 0 35px 0;
-		padding: 0 0 30px 0;
+		padding: 0 0 60px 0;
 		text-align: center;
-		position: -webkit-sticky;
-    position: sticky;
+		// position: -webkit-sticky;
+  	// position: sticky;
     top: 0;
-    background: linear-gradient(to bottom, #1f1f1f 70%, rgba(25, 25, 25, 0.2) );
+    // background: linear-gradient(to bottom, #1f1f1f 70%, rgba(25, 25, 25, 0.2) );
     z-index: 10;
 	}
 
