@@ -66,21 +66,24 @@ $borderGradient: url('
 	position: absolute;
 	background: url('
 			data:image/svg+xml;utf8,
-			<svg stroke="rgb(255, 174, 0)" fill="none" 
+			<svg stroke="#989898" fill="none" 
 					 xmlns="http://www.w3.org/2000/svg">
 				<path d="M1.521,1.268 L20.500,20.500 "/>
 				<path d="M20.500,1.268 L1.236,20.500 "/>
 			</svg>') no-repeat 20px 20px;
 	cursor: pointer;
 	z-index: 5;
-	-webkit-filter: drop-shadow(0 0 10px transparent) drop-shadow(0 0 15px transparent);
-   filter: drop-shadow(0 0 10px transparent) drop-shadow(0 0 10px transparent);
-	transition: filter 0.3s;
+	transition: background 0.15s;
 
 	&:focus,
 	&:hover {
-		-webkit-filter: drop-shadow(0 0 10px white) drop-shadow(0 0 15px rgb(255, 174, 0));
-		filter: drop-shadow(0 0 10px white) drop-shadow(0 0 10px rgb(255, 174, 0));
+		background: url('
+			data:image/svg+xml;utf8,
+			<svg stroke="rgb(255, 174, 0)" fill="none" 
+					 xmlns="http://www.w3.org/2000/svg">
+				<path d="M1.521,1.268 L20.500,20.500 "/>
+				<path d="M20.500,1.268 L1.236,20.500 "/>
+			</svg>') no-repeat 20px 20px;
 	}
 }
 
@@ -253,6 +256,8 @@ body {
 }
 
 /***** Global end *****/
+
+
 /***** Tipography *****/
 
 @font-face {
@@ -334,7 +339,7 @@ body {
 		align-items: center;
 		color: $secondary-color;
 
-		&::before { // Inter icon
+		&::before { // Enter icon
 			content: url('
 				data:image/svg+xml;utf8,
 				<svg viewBox="0 0 30 30" width="20" height="20" stroke="white" xmlns="http://www.w3.org/2000/svg">
@@ -553,17 +558,6 @@ body {
 		will-change: transform;
 	}
 
-	// .toning {
-	// 	width: 100%;
-	// 	height: 100%;
-	// 	position: absolute;
-	// 	left: 0;
-	// 	top: 0;
-	// 	//background-color: black;
-	// 	opacity: 0.5;
-	// 	z-index: 3;
-	// }
-
 	.secondToning {
 		width: 100%;
 		height: 100%;
@@ -689,7 +683,6 @@ body {
 			opacity: 0;
 			transition: opacity 1s;
 		}
-
 
 	}
 
@@ -927,7 +920,7 @@ body {
 	}
 	@media all and (max-width: 768px) {
 		background-image: url(../images/selectTournamentBg-mob.jpg);
-	}	
+	}
 
 	.selectButton {
 		@include setButton;
@@ -972,7 +965,6 @@ body {
 	text-transform: uppercase;
 	color: #565656;
 	font-size: 12px;
-	//transform: translateZ(0);
 
 	.owner {
 		margin-right: 40px;
@@ -1391,6 +1383,7 @@ body {
 .tournamentList {
 	width: 100vw;
 	height: 100vh;
+	display: flex;
 	position: fixed;
 	right: 0;
 	top: 0;
@@ -1402,7 +1395,7 @@ body {
 		width: 150px;
 		height: 70px;
 		position: absolute;
-		left: -150px;
+		right: 20px;
 		top: calc(50% - 35px);
 		z-index: 1;
 		border: none;
@@ -1414,14 +1407,10 @@ body {
 				</svg>') no-repeat;
 		background-size: auto 22px;
 		background-position: 50% 50%;
-		transform: rotateZ(180deg);
+		transform: rotateZ(90deg);
 		opacity: 0;
 		transition: opacity 0.3s, transform 0.15s;
 		cursor: pointer;
-
-		&:hover {
-			transform: rotateZ(180deg) translateX(10px);
-		}
 	}
 
 	* {
@@ -1433,13 +1422,13 @@ body {
 	}
 
 	.introduction {
-		min-width: 40%;
+		min-width: 50vw;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 		position: relative;
-		background: url(../images/tournamentsList-bg.jpg) no-repeat center bottom;
+		background: url(../images/tournamentsList-bg.jpg) no-repeat left center;
 		background-size: cover;
 	}
 
@@ -1450,26 +1439,29 @@ body {
 	}
 
 	.title {
-		margin-bottom: 40px;
+		margin-bottom: 35px;
 		font-size: 26px;
 		text-transform: uppercase;
 		text-align: center;
+		letter-spacing: 3px;
 	}
 
 	.description {
 		line-height: 1.7;
 		text-align: center;
-		color: $secondary-color;
+		letter-spacing: 1px;
+		color: rgba(250, 250, 250, 0.6);
 	}
 
 	.list {
-		width: 60%;
+		width: 50vw;
 		height: 100vh;
 		position: static;
 		right: 0;
 		top: 0;
 		transform: translateZ(0);
 		perspective: 500px;
+		background-color: #191919;
 	}
 
 	.eng {
@@ -1507,13 +1499,11 @@ body {
 
 	.selectTournamentTitle {
 		height: 20vh;
-		//padding-left: 15%;
 		display: flex;
-		justify-content: center;
 		align-items: center;
 		position: relative;
-		border-bottom: 1px #1d1d1d solid;
-		background: #1f1f1f no-repeat calc(100% - 115px) center;
+		border-bottom: 1px #222222 solid;
+		background: #191919 no-repeat calc(100% - 115px) center;
 		text-transform: uppercase;
 		font-family: $font-light;
 		letter-spacing: 1px;
@@ -1524,10 +1514,11 @@ body {
 		will-change: height;
 
 		&.open {
-			height: 12vh;
-			border-bottom: 1px #1f1f1f solid;
+			height: 16vh;
+			border-bottom: 1px #191919 solid;
 			.goBackButton {
 				opacity: 1;
+				transform: rotateZ(90deg) scaleX(-1);
 			}
 		}
 
@@ -1537,46 +1528,28 @@ body {
 		}
 
 		.tournamentName {
-			width: 300px;
-			transform: translateX(calc(-8vw + 63px)) translateZ(0);
-			// position: absolute;
-			// left: 0;
-			//text-indent: 13vw;
-			//text-indent: 30%;
-			// transition: text-align 0.3s;
+			transform: translateX(calc(-4vw + 63px)) translateZ(0);
 			transition: all 0.3s;
 			-webkit-will-change: transform, width;
 			will-change: transform, width;
 		}
 
-		&.open .tournamentName {
-			transform: translateX(0) translateZ(0);
-			width: auto;
-			// text-align: center;
-			// text-indent: 0;
-		}
-
-		&.open .tournamentIcon {
-			transform: translateX(8vw) translateZ(0);
-		}
-
 		&:last-of-type {
 			//border-bottom: none;
 		}
+
 		&:not(.open):hover,
 		&:not(.open):focus {
 			border-bottom: 1px #1d1d1d solid;
-			background: #1d1d1d url('
-				data:image/svg+xml;utf8,
-				<svg xmlns="http://www.w3.org/2000/svg"
-						 width="10.5px" height="18.5px">
-				<path stroke="rgb(255, 174, 0)" fill="none" d="M1.925,0.500 L9.500,9.000 L1.925,17.500 "/>
-				</svg>') 
-			no-repeat calc(100% - 100px) center;
+			background-color: #1d1d1d;
 			outline: none;
 
-			&:before {
+			&::before {
 				background-color: $elements-color;
+			}
+
+			.goBackButton {
+				opacity: 1;
 			}
 		}
 
@@ -1585,18 +1558,23 @@ body {
 			width: 1px;
 			height: 100%;
 			position: absolute;
+			top: 0;
 			left: 0;
 			background-color: transparent;
 			transition: background-color 0.3s;
 		}
 	}
 
+	.iconWrapper {
+		width: 63px;
+		margin: 0 60px 0 120px;
+		text-align: center;
+	}
+
 	.tournamentIcon {
 		max-width: 63px;
 		margin-right: 10%;
-		position: absolute;
-		left: 7vw;
-		object-fit: contain;
+		object-fit: cover;
 		-moz-user-select: none;
 		-webkit-user-select: none;
 		-ms-user-select:none;
@@ -1633,7 +1611,7 @@ body {
 		padding-right: 100px;
 		display: none;
 		position: absolute;
-		left: 40px;
+		left: 0;
 		top: 120px;
 		border: none;
 		background: url('
@@ -1669,7 +1647,7 @@ body {
 	overflow: auto;
 	transform: translateZ(0);
 	transition: height 0.3s, opacity 0.3s;
-	background-color: #1f1f1f;
+	background-color: #191919;
 	opacity: 0;
 	-webkit-will-change: height;
 	will-change: height;
@@ -1680,13 +1658,12 @@ body {
 	}
 
 	.timeBefore {
-		margin: 0 0 35px 0;
+		margin: 130px 0 15px 0;
 		padding: 0 0 60px 0;
+		font-size: 14px;
 		text-align: center;
-		// position: -webkit-sticky;
-  	// position: sticky;
+		text-transform: uppercase;
     top: 0;
-    // background: linear-gradient(to bottom, #1f1f1f 70%, rgba(25, 25, 25, 0.2) );
     z-index: 10;
 	}
 
