@@ -1213,6 +1213,7 @@ body {
 	}
 
 	.mainTitle {
+		margin-top: 105px;
 		font-size: 26px;
 		text-transform: uppercase;
 	}
@@ -1288,7 +1289,8 @@ body {
 
 	.scrollIcon {
 		width: 11px;
-		height: 33px;
+		flex-basis: 30px;
+		min-height: 33px;
 		margin-top: 30px;
 		font-size: 0;
 		background: $scroll;
@@ -1392,11 +1394,9 @@ body {
 	overflow: hidden;
 
 	.goBackButton {
-		width: 150px;
+		width: 50px;
 		height: 70px;
-		position: absolute;
-		right: 20px;
-		top: calc(50% - 35px);
+		margin: 0 6%;
 		z-index: 1;
 		border: none;
 		background: transparent url('
@@ -1422,7 +1422,7 @@ body {
 	}
 
 	.introduction {
-		min-width: 50vw;
+		flex: 1;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -1450,10 +1450,11 @@ body {
 		line-height: 1.7;
 		text-align: center;
 		letter-spacing: 1px;
-		color: rgba(250, 250, 250, 0.6);
+		color: rgba(255, 255, 255, 0.5);
 	}
 
 	.list {
+		min-width: 620px;
 		width: 50vw;
 		height: 100vh;
 		position: static;
@@ -1487,7 +1488,6 @@ body {
 	.tournament {
 		width: 100%;
 		height: auto;
-		border-bottom: 1px #222222 solid;
 		position: absolute;
 		transition: all 0.3s;
 		z-index: 0;
@@ -1515,7 +1515,6 @@ body {
 
 		&.open {
 			height: 16vh;
-			border-bottom: 1px #191919 solid;
 			.goBackButton {
 				opacity: 1;
 				transform: rotateZ(90deg) scaleX(-1);
@@ -1532,10 +1531,6 @@ body {
 			transition: all 0.3s;
 			-webkit-will-change: transform, width;
 			will-change: transform, width;
-		}
-
-		&:last-of-type {
-			//border-bottom: none;
 		}
 
 		&:not(.open):hover,
@@ -1567,7 +1562,7 @@ body {
 
 	.iconWrapper {
 		width: 63px;
-		margin: 0 60px 0 120px;
+		margin: 0 8% 0 0;
 		text-align: center;
 	}
 
@@ -1669,6 +1664,12 @@ body {
 
 	.roomes {
 		width: 350px;
+	}
+
+	@media all and (max-width: 1350px) {
+		.roomes {
+			width: 230px;
+		}
 	}
 
 	.room {
@@ -1797,6 +1798,16 @@ body {
     	display: block;
     	clear: both;
     }
+	}
+
+	@media all and (max-width: 1350px) {
+		.tournamentItem {
+			width: 580px;
+			margin: 0 auto;
+		}
+		.matches {
+			float: right;
+		}
 	}
 
 	.match {
