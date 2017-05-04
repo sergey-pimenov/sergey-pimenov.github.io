@@ -557,6 +557,10 @@ function throttle(fn, delay) {
 
 		currentYOffset = (window.pageYOffset - windowHeight);
 
+		if(window.pageYOffset >= windowHeight + 1250) {
+			return;
+		}
+
 		// First infographic
 		if (window.pageYOffset >= windowHeight && window.pageYOffset <= windowHeight + 50) {
 			ballCircle.style.opacity = 1 * (currentYOffset / 50);

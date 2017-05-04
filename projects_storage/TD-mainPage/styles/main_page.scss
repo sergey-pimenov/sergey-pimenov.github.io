@@ -698,6 +698,7 @@ body {
 	margin-top: 400vh;
 	display: flex;
 	position: relative;
+	overflow: hidden;
 
 	.sliderPicture {
 		width: 50%;
@@ -711,6 +712,7 @@ body {
 	/***** Svg ******/
 
 	.initSliderBg {
+		max-height: 90%;
 		transform: translateZ(0);
 	}
 
@@ -795,19 +797,9 @@ body {
 		cursor: pointer;
 	}
 
-	// .contentTitle {
-	// 	width: 320px;
-	// 	margin: 200px 0 65px 0;
-	// 	font-size: $big-title;
-	// 	text-transform: uppercase;
-	// 	opacity: 0;
-	// 	transform: translateZ(0) translateY(70px);
-	// 	transition: opacity 4s, transform 1s;
-	// }
-
 	.sliderDescriptions {
 		width: 60%;
-		display: flex;
+		height: 100%;
 		position: relative;
 		opacity: 0;
 		transform: translateZ(0) translateY(70px);
@@ -820,8 +812,9 @@ body {
 	}
 
 	.descriptionBlock {
+		max-width: 400px;
 		position: absolute;
-		left: 0;
+		left: calc(50% - 200px);
 		top: calc(50vh - 133px);
 		transform: translateY(10px);
 		transition: transform 0.3s ease-out, opacity 0.6s ease-out;
@@ -829,23 +822,16 @@ body {
 		opacity: 0;
 	}
 
-	// .descriptionBlock.currentDescription {
-	// 	opacity: 1;
-	// 	z-index: 1;
-	// 	transform: translateY(10px);
-	// }
-
 	.descriptionTitle {
 		width: 100%;
 		margin: 0 0 35px 0;
-		font-size: $big-title;
+		font-size: 22px;
 		text-transform: uppercase;
 		letter-spacing: 4px;
 		color: $basic-color;
 	}
 
 	.description {
-		width: 80%;
 		color: $secondary-color;
 		line-height: 1.5;
 	}
@@ -928,6 +914,7 @@ body {
 		border: none;
 		color: $basic-color;
 		position: relative;
+		z-index: 1;
 
 		&::after {
 			content: '';
@@ -940,7 +927,7 @@ body {
 			background: linear-gradient(to right, #e16f1a, #fead00);
 			z-index: -1;
 			opacity: 0;
-			transition: opacity 0.1s;
+			transition: opacity 0.15s;
 		}
 
 		&:hover::after {
@@ -1213,7 +1200,7 @@ body {
 	}
 
 	.mainTitle {
-		margin-top: 105px;
+		margin-top: 95px;
 		font-size: 26px;
 		text-transform: uppercase;
 	}
