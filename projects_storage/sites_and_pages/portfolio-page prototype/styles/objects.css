@@ -1,0 +1,319 @@
+/*****
+
+   Attention! This just prototype, so here spaghetti code
+
+*****/
+
+#scene-wrapper {
+  perspective: 800px;
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  font-size: 45px;
+}
+.face {
+  box-shadow: inset 0 0 0 1px rgb(81, 153, 170);
+}
+.scene, .shape, .face, .face-wrapper, .cr {
+  position: absolute;
+  transform-style: preserve-3d;
+}
+.shape {
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform-origin: 50%;
+}
+.face, .face-wrapper {
+  overflow: hidden;
+  transform-origin: 0 0;
+  backface-visibility: hidden;
+  /* hidden by default, prevent blinking and other weird rendering glitchs */
+}
+.face {
+  background-size: 100% 100%!important;
+  background-position: center;
+}
+.face-wrapper .face {
+  left: 100%;
+  width: 100%;
+  height: 100%
+}
+.photon-shader {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%
+}
+.side {
+  left: 50%;
+}
+.cr, .cr .side {
+  height: 100%;
+  background-color: rgb(81, 153, 170) !important;
+}
+[class*="cuboid"] .ft, [class*="cuboid"] .bk {
+  width: 100%;
+  height: 100%;
+}
+[class*="cuboid"] .bk {
+  left: 100%;
+}
+[class*="cuboid"] .rt {
+  transform: rotateY(-90deg) translateX(-50%);
+}
+[class*="cuboid"] .lt {
+  transform: rotateY(90deg) translateX(-50%);
+  background-color: rgb(81, 153, 170) !important;
+  box-shadow: inset 0 0 0 1px rgb(81, 153, 170) !important;
+}
+[class*="cuboid"] .tp {
+  transform: rotateX(90deg) translateY(-50%);
+}
+[class*="cuboid"] .bm {
+  transform: rotateX(-90deg) translateY(-50%);
+}
+[class*="cuboid"] .lt {
+  left: 100%;
+}
+[class*="cuboid"] .bm {
+  top: 100%;
+}
+[class*="prism"] .ft, [class*="prism"] .bk {
+  width: 100%;
+  height: 100%;
+}
+[class*="prism"] .ft {
+  background-color: rgb(81, 153, 170) !important;
+}
+[class*="prism"] .bk {
+  left: 100%;
+}
+[class*="prism"] .rt {
+  transform: rotateY(-90deg) translateX(-50%);
+}
+[class*="prism"] .lt {
+  transform: rotateY(90deg) translateX(-50%);
+}
+[class*="prism"] .bm {
+  transform: rotateX(-90deg) translateY(-50%);
+}
+[class*="prism"] .lt {
+  left: 100%;
+}
+[class*="prism"] .bm {
+  top: 100%;
+}
+[class*="prism"] .rt .face {
+  left: -100%;
+  transform-origin: 100% 0;
+}
+/* .cub-1 styles */
+.cub-1 {
+  transform:translate3D(-0.033333333333333326em, 0.5em, 1.5em) rotateX(90deg) rotateY(0deg) rotateZ(0deg);
+  opacity:1;
+  width:5em;
+  height:5em;
+  margin:-2.5em 0 0 -2.5em;
+}
+.scene .cub-1 .ft {
+  transform:translateZ(2em);
+  background-color: rgb(41, 113, 130) !important;
+}
+.cub-1 .bk {
+  transform:translateZ(-2em) rotateY(180deg);
+}
+.cub-1 .rt, .cub-1 .lt {
+  width:4em;
+  height:5em;
+}
+.cub-1 .tp, .cub-1 .bm {
+  width:5em;
+  height:4em;
+  background-color: rgb(81, 153, 170) !important;
+}
+.cub-1 .face {
+  background-color:#FFFFFF;
+}
+.cub-1 .ft {
+  width:4.5em;
+  margin-left:0.25em;
+}
+.cub-1 .bk {
+  width:4.5em;
+  margin-left:-0.25em;
+}
+.cub-1 .rt, .cub-1 .lt {
+  width:3.5em;
+}
+.cub-1 .tp, .cub-1 .bm, .cub-1 .tp .photon-shader, .cub-1 .bm .photon-shader {
+  border-radius:0.25em;
+}
+.cub-1 .cr {
+  width:0.25em;
+  left:0.125em;
+  background-color: rgb(81, 153, 170) !important;
+}
+.cub-1 .cr-0 {
+  transform: translate3D(4.5em, 0, 1.75em);
+}
+.cub-1 .cr-1 {
+  transform: translate3D(4.5em, 0, -1.75em);
+}
+.cub-1 .cr-2 {
+  transform: translate3D(0, 0, -1.75em);
+}
+.cub-1 .cr-3 {
+  transform: translate3D(0, 0, 1.75em);
+}
+.cub-1 .cr-0 .s0 {
+  transform: rotateY(15deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-1 .cr-0 .s1 {
+  transform: rotateY(45deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-1 .cr-0 .s2 {
+  transform: rotateY(75deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-1 .cr-1 .s0 {
+  transform: rotateY(105deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-1 .cr-1 .s1 {
+  transform: rotateY(135deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-1 .cr-1 .s2 {
+  transform: rotateY(165deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-1 .cr-2 .s0 {
+  transform: rotateY(195deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-1 .cr-2 .s1 {
+  transform: rotateY(225deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-1 .cr-2 .s2 {
+  transform: rotateY(255deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-1 .cr-3 .s0 {
+  transform: rotateY(285deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-1 .cr-3 .s1 {
+  transform: rotateY(315deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-1 .cr-3 .s2 {
+  transform: rotateY(345deg) translate3D(-50%, 0, 0.225em);
+}
+.cub-1 .side {
+  width:0.15897459621556134em;
+  box-shadow: inset 0 0 0 1px rgb(81, 153, 170) !important;
+}
+/* .cub-2 styles */
+.cub-2 {
+  transform:translate3D(0em, 3em, 1.5em) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  opacity:1;
+  width:5em;
+  height:1em;
+  margin:-0.5em 0 0 -2.5em;
+}
+.cub-2 .ft {
+  transform:translateZ(2.5em);
+  background-color: rgb(81, 153, 170) !important;
+  box-shadow: inset 0 0 0 1px rgb(81, 153, 170) !important;
+}
+.cub-2 .bk {
+  transform:translateZ(-2.5em) rotateY(180deg);
+}
+.cub-2 .rt, .cub-2 .lt {
+  width:5em;
+  height:1em;
+  background-color: rgb(81, 153, 170) !important;
+}
+.cub-2 .tp, .cub-2 .bm {
+  width:5em;
+  height:5em;
+  background-color: rgb(81, 153, 170) !important;
+  display: none;
+}
+.cub-2 .face {
+  background-color:#FFFFFF;
+}
+/* .pri-1 styles */
+.pri-1 {
+  transform:translate3D(0em, 2.7666666666666666em, 5.266666666666667em) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  opacity:1;
+  width:5em;
+  height:0.5em;
+  margin:-0.25em 0 0 -2.5em;
+}
+.pri-1 .rt .face {
+  transform:rotateZ(-78.69006752597979deg);
+}
+.pri-1 .lt .face {
+  transform:rotateZ(78.69006752597979deg);
+}
+.scene .pri-1 .ft {
+  height:2.5495097567963922em;
+  transform:translateZ(-1.25em) rotateX(78.69006752597979deg);
+  background-color: rgb(111, 183, 200) !important;
+  box-shadow: inset 0 0 0 1px rgb(111, 183, 200) !important;
+}
+.pri-1 .bk {
+  transform:translateZ(-1.25em) rotateY(180deg);
+}
+.pri-1 .rt, .pri-1 .lt {
+  width:2.5em;
+  height:0.5em;
+}
+.pri-1 .rt .face, .pri-1 .lt .face {
+  height:2.5495097567963922em;
+}
+.pri-1 .bm {
+  width:5em;
+  height:2.5em;
+}
+.pri-1 .face {
+  background-color:#FFFFFF;
+  width: 99.5%;
+  right: 0.2%;
+  background-color: rgb(81, 153, 170) !important;
+  box-shadow: inset 0 0 0 1px rgb(81, 153, 170) !important;
+}
+/* .cub-3 styles */
+.cub-3 {
+  transform:translate3D(6.938893903907228e-18em, 3.266666666666666em, 5.233333333333333em) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  opacity:1;
+  width:5em;
+  height:0.5em;
+  margin:-0.25em 0 0 -2.5em;
+  background-color: rgb(81, 153, 170) !important;
+}
+.scene .cub-3 .ft {
+  transform:translateZ(1.25em);
+  background-color: rgb(51, 123, 140) !important;
+  box-shadow: inset 0 0 0 1px rgb(51, 123, 140) !important;
+}
+.cub-3 .bk {
+  transform:translateZ(-1.25em) rotateY(180deg);
+  background-color: rgb(51, 123, 140) !important;
+  box-shadow: inset 0 0 0 1px rgb(51, 123, 140) !important;
+}
+.cub-3 .rt, .cub-3 .lt {
+  width:2.5em;
+  height:0.5em;
+  background-color: rgb(51, 123, 140) !important;
+  box-shadow: inset 0 0 0 1px rgb(51, 123, 140) !important;
+}
+.cub-3 .tp, .cub-3 .bm {
+  width:5em;
+  height:2.5em;
+  background-color: rgb(51, 123, 140) !important;
+  box-shadow: inset 0 0 0 1px rgb(51, 123, 140) !important;
+}
+.cub-3 .face {
+  background-color:#FFFFFF;
+  background-color: rgb(51, 123, 140) !important; background-color: rgb(81, 153, 170) !important;
+  box-shadow: inset 0 0 0 1px rgb(81, 153, 170) !important;
+}
