@@ -61,19 +61,26 @@ a {
 button {
   outline: none; }
 
-html.castomScroll *::-webkit-scrollbar {
+html.customScroll *::-webkit-scrollbar {
   width: 4px; }
 
-html.castomScroll *::-webkit-scrollbar-track {
+html.customScroll *::-webkit-scrollbar-track {
   background-color: #1b1b1b; }
 
-html.castomScroll *::-webkit-scrollbar-thumb {
+html.customScroll *::-webkit-scrollbar-thumb {
   background-color: rgba(255, 255, 255, 0.2); }
 
 /***** Reset styles end *****/
 /***** Global *****/
 body {
+  overflow: hidden;
   background-color: #1f1f1f; }
+
+.secondBlock {
+  height: 100vh;
+  overflow: auto;
+  transition: transform 0.5s;
+  transform: translateZ(0); }
 
 .popupsToning {
   width: 100vw;
@@ -149,7 +156,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  position: fixed;
   top: 0;
   transform: translateZ(0); }
   .initScreen .textBlock {
@@ -161,7 +167,8 @@ body {
     position: relative;
     z-index: 5;
     opacity: 0;
-    transform: translateZ(0);
+    transform: translateZ(0); }
+  .initScreen.initAnimation .textBlock {
     animation: showTextBlock 1.5s 1.5s ease-out forwards; }
 
 @keyframes showTextBlock {
@@ -267,6 +274,20 @@ body {
     transform-origin: calc(50vw - 10vw) calc(-50vh + 1.5vh + 87.065vh);
     -webkit-will-change: transform;
     will-change: transform; }
+  .initScreen .player-1,
+  .initScreen .player-2,
+  .initScreen .ball,
+  .initScreen .bg-players {
+    transform: scale(0.975, 0.975); }
+  .initScreen.initAnimation .player-1,
+  .initScreen.initAnimation .player-2,
+  .initScreen.initAnimation .ball,
+  .initScreen.initAnimation .bg-players {
+    animation: scaleObjects 1.5s ease-out forwards; }
+
+@keyframes scaleObjects {
+  to {
+    transform: scale(1, 1); } }
   .initScreen .player-2 {
     width: 51.866vh;
     height: 89.18vh;
@@ -286,7 +307,6 @@ body {
     background-image: url(../images/initScreen-ball.png);
     background-size: auto 100%;
     z-index: 2;
-    transform: translateZ(0);
     transform-origin: calc(50vw - 18.7vw) calc(-50vh + 1.8vh + 13.5vh);
     -webkit-will-change: transform;
     will-change: transform; }
@@ -354,21 +374,16 @@ body {
     top: -297%;
     transform: translateZ(0); }
     .initScreen .initScreenSvg1 .ballCircle {
-      opacity: 0;
-      transition: opacity 1s; }
+      opacity: 0; }
     .initScreen .initScreenSvg1 .dotCircle {
-      opacity: 0;
-      transition: opacity 1s; }
+      opacity: 0; }
     .initScreen .initScreenSvg1 .pathFromBallCircle {
       stroke-dashoffset: 192px;
-      stroke-dasharray: 192px;
-      transition: stroke-dashoffset 0.3s; }
+      stroke-dasharray: 192px; }
     .initScreen .initScreenSvg1 .textCircle1 {
-      opacity: 0;
-      transition: opacity 1s; }
+      opacity: 0; }
     .initScreen .initScreenSvg1 .textCircle2 {
-      opacity: 0;
-      transition: opacity 1s; }
+      opacity: 0; }
   .initScreen .initScreenSvg2 {
     width: 63%;
     height: 70%;
@@ -377,51 +392,76 @@ body {
     top: 6%;
     transform: translateZ(0); }
     .initScreen .initScreenSvg2 .circle1 {
-      opacity: 0;
-      transition: opacity 1s; }
+      opacity: 0; }
     .initScreen .initScreenSvg2 .circle1Dot {
-      opacity: 0;
-      transition: opacity 1s; }
+      opacity: 0; }
     .initScreen .initScreenSvg2 .lineFromCircle1 {
       stroke-dashoffset: -163px;
-      stroke-dasharray: 163px;
-      transition: stroke-dashoffset 0.3s; }
+      stroke-dasharray: 163px; }
     .initScreen .initScreenSvg2 .circle2 {
-      opacity: 0;
-      transition: opacity 1s; }
+      opacity: 0; }
     .initScreen .initScreenSvg2 .lineFromCircle2 {
       stroke-dashoffset: -221px;
-      stroke-dasharray: 221px;
-      transition: stroke-dashoffset 0.3s; }
+      stroke-dasharray: 221px; }
     .initScreen .initScreenSvg2 .circle3 {
-      opacity: 0;
-      transition: opacity 1s; }
+      opacity: 0; }
     .initScreen .initScreenSvg2 .lineFromCircle3 {
       stroke-dashoffset: 150px;
-      stroke-dasharray: 150px;
-      transition: stroke-dashoffset 0.3s; }
+      stroke-dasharray: 150px; }
     .initScreen .initScreenSvg2 .lineToNumbers {
       stroke-dashoffset: 218px;
-      stroke-dasharray: 218px;
-      transition: stroke-dashoffset 0.3s; }
+      stroke-dasharray: 218px; }
     .initScreen .initScreenSvg2 .circle4Dot {
-      opacity: 0;
-      transition: opacity 1s; }
+      opacity: 0; }
     .initScreen .initScreenSvg2 .circle4 {
-      opacity: 0;
-      transition: opacity 1s; }
+      opacity: 0; }
     .initScreen .initScreenSvg2 .numbers {
-      opacity: 0;
-      transition: opacity 1s; }
+      opacity: 0; }
+  .initScreen.initAnimation .initScreenSvg1 .ballCircle {
+    transition: opacity linear 0.3s 1.5s;
+    opacity: 1; }
+  .initScreen.initAnimation .initScreenSvg1 .dotCircle {
+    transition: opacity linear 0.3s 1.8s;
+    opacity: 1; }
+  .initScreen.initAnimation .initScreenSvg1 .pathFromBallCircle {
+    transition: stroke-dashoffset linear 0.3s 2.1s;
+    stroke-dashoffset: 0; }
+  .initScreen.initAnimation .initScreenSvg1 .textCircle1 {
+    transition: opacity linear 0.5s 2.6s;
+    opacity: 1; }
+  .initScreen.initAnimation .initScreenSvg1 .textCircle2 {
+    transition: opacity linear 0.5s 3.1s;
+    opacity: 1; }
+  .initScreen.initAnimation .initScreenSvg2 .circle2 {
+    transition: opacity linear 0.3s 1s;
+    opacity: 1; }
+  .initScreen.initAnimation .initScreenSvg2 .lineFromCircle1,
+  .initScreen.initAnimation .initScreenSvg2 .lineFromCircle2 {
+    transition: stroke-dashoffset linear 0.3s 1.3s;
+    stroke-dashoffset: 0; }
+  .initScreen.initAnimation .initScreenSvg2 .circle1Dot,
+  .initScreen.initAnimation .initScreenSvg2 .circle1,
+  .initScreen.initAnimation .initScreenSvg2 .circle3 {
+    transition: opacity linear 0.3s 1.6s;
+    opacity: 1; }
+  .initScreen.initAnimation .initScreenSvg2 .lineFromCircle3,
+  .initScreen.initAnimation .initScreenSvg2 .lineToNumbers {
+    transition: stroke-dashoffset 0.3s 1.9s;
+    stroke-dashoffset: 0; }
+  .initScreen.initAnimation .initScreenSvg2 .circle4Dot,
+  .initScreen.initAnimation .initScreenSvg2 .circle4,
+  .initScreen.initAnimation .initScreenSvg2 .numbers {
+    transition: opacity linear 0.3s 2.2s;
+    opacity: 1; }
 
 /***** Init screen end *****/
 /***** Init slider *****/
 .initSlider {
   height: 90vh;
-  margin-top: 400vh;
   display: flex;
   position: relative;
   overflow: hidden;
+  transition: transform 0.5s;
   /***** Svg ******/
   /***** Svg end ******/ }
   .initSlider .sliderPicture {
