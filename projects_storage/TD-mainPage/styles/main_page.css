@@ -396,12 +396,12 @@ body {
     .initScreen .initScreenSvg2 .circle1Dot {
       opacity: 0; }
     .initScreen .initScreenSvg2 .lineFromCircle1 {
-      stroke-dashoffset: -163px;
+      stroke-dashoffset: 163px;
       stroke-dasharray: 163px; }
     .initScreen .initScreenSvg2 .circle2 {
       opacity: 0; }
     .initScreen .initScreenSvg2 .lineFromCircle2 {
-      stroke-dashoffset: -221px;
+      stroke-dashoffset: 221px;
       stroke-dasharray: 221px; }
     .initScreen .initScreenSvg2 .circle3 {
       opacity: 0; }
