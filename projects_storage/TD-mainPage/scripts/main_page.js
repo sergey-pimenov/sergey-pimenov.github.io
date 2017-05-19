@@ -397,11 +397,11 @@ function initInitScreen() {
 	});
 
 	function translateObjects(x, y) {
-		paralaxWrapper[0].style.transform = 'translate(' + (Math.round(x / 180)) + 'px,' + (Math.round(y / 160)) + 'px)';
-		paralaxWrapper[1].style.transform = 'translate(' + (Math.round(x / 150)) + 'px,' + (Math.round(y / 140)) + 'px)';
-		paralaxWrapper[2].style.transform = 'translate(' + (Math.round(x / 140)) + 'px,' + (Math.round(y / 130)) + 'px)';
-		paralaxWrapper[3].style.transform = 'translate(' + (Math.round(x / 100)) + 'px,' + (Math.round(y / 90) )+ 'px)';
-		paralaxWrapper[4].style.transform = 'translate(' + (Math.round(x / 90)) + 'px,' + (Math.round(y / 70) )+ 'px)';
+		paralaxWrapper[0].style.transform = 'translate(' + ((x / 170)) + 'px,' + ((y / 150)) + 'px)';
+		paralaxWrapper[1].style.transform = 'translate(' + ((x / 140)) + 'px,' + ((y / 130)) + 'px)';
+		paralaxWrapper[2].style.transform = 'translate(' + ((x / 130)) + 'px,' + ((y / 120)) + 'px)';
+		paralaxWrapper[3].style.transform = 'translate(' + ((x / 90)) + 'px,' + ((y / 80) )+ 'px)';
+		paralaxWrapper[4].style.transform = 'translate(' + ((x / 80)) + 'px,' + ((y / 60) )+ 'px)';
 	}
 
 }
@@ -750,10 +750,12 @@ function initTutorial() {
 			sliderNumber = document.getElementsByClassName('sliderNumber'),
 			selectButton = document.getElementsByClassName('select')[0],
 			popupsToning = document.getElementsByClassName('popupsToning')[0],
+			icon = document.getElementsByClassName('icon')[0],
 			initSlide = document.getElementById('initSlide'),
 			sliderCount = slideContent.length,
 			iconsBlock = document.getElementsByClassName('icons')[0],
 			translatedIcon = document.getElementsByClassName('translatedIcon'),
+			slideBg = document.getElementsByClassName('slideBg'),
 			x, y,
 			initTransitionState = 'slow';
 
@@ -766,7 +768,7 @@ function initTutorial() {
 		initTransitionState = 'normal';
 		x = e.clientX;
 		y = e.clientY;
-		throttle(translateIcons(x, y), 32)
+		throttle(translateIcons(x, y), 32);
 	})
 
 	function translateIcons(x, y) {
@@ -775,6 +777,13 @@ function initTutorial() {
 		translatedIcon[0].style.transform = 'translateZ(0) translate(' + (x / 140) + 'px,' + (y / 140) + 'px)';
 		translatedIcon[1].style.transform = 'translateZ(0) translate(' + (x / 130) + 'px,' + (y / 130) + 'px)';
 		translatedIcon[4].style.transform = 'translateZ(0) translate(' + (x / 140) + 'px,' + (y / 140) + 'px)';
+
+		slideBg[0].style.transform = 'translateZ(0) translate(' + (x / 140) + 'px,' + (y / 140) + 'px)';
+		slideBg[1].style.transform = 'translateZ(0) translate(' + (x / 140) + 'px,' + (y / 140) + 'px)';
+		slideBg[2].style.transform = 'translateZ(0) translate(' + (x / 140) + 'px,' + (y / 140) + 'px)';
+		slideBg[3].style.transform = 'translateZ(0) translate(' + (x / 140) + 'px,' + (y / 140) + 'px)';
+
+		icon.style.transform = 'translateZ(0) translate(' + (x / 90) + 'px,' + (y / 90) + 'px)';
 	}
 
 	howToButton.addEventListener('click', showTutorial);
@@ -827,7 +836,6 @@ function initTutorial() {
 			trackHeight = parseInt(getComputedStyle(track).height, 10),
 			sliderCounter = 0,
 			indicator = document.getElementsByClassName('indicator'),
-			slideBg = document.getElementsByClassName('slideBg'),
 			tutorialIcon = document.getElementsByClassName('tutorialIcon');
 
 	slideContent[0].style.opacity = '1';
@@ -965,7 +973,9 @@ function initTutorial() {
 		}, 250);
 
 		if ((sliderCounter + 1) == sliderCount) {
-			selectButton.style.transform = 'translateY(0)';
+			setTimeout(function() {
+				selectButton.style.transform = 'translateY(0)';
+			}, 250)
 		}
 
 	}
@@ -1033,14 +1043,28 @@ window.addEventListener('load', initTournamentList);
 function initTournamentList() {
 	var tournament = document.getElementsByClassName('tournament'),
 			tournamentBlock = document.getElementsByClassName('tournamentBlock')[0],
+			tournamentList = document.getElementsByClassName('tournamentList')[0],
 			introText = document.getElementById('introText'),
 			introduction = document.getElementsByClassName('introduction')[0],
 			list = document.getElementsByClassName('list')[0],
 			goBack = document.getElementsByClassName('goBack')[0],
 			tournamentTitle = document.getElementsByClassName('tournamentTitle')[0],
-			selectTournamentTitle = document.getElementsByClassName('selectTournamentTitle');
+			translatedBg = document.getElementsByClassName('translatedBg')[0],
+			selectTournamentTitle = document.getElementsByClassName('selectTournamentTitle'),
+			x, y;
 
 	var tournamentTarget;
+
+	tournamentList.addEventListener('mousemove', function(e) {
+		x = e.clientX;
+		y = e.clientY;
+
+		throttle(translateObjects(x, y), 32)
+	});
+
+	function translateObjects(x, y) {
+		translatedBg.style.transform = 'translate(' + ((x / 170)) + 'px,' + ((y / 150)) + 'px)';
+	}
 
 	for ( i = 0; i < tournament.length; i++ ) {
 		selectTournamentTitle[i].addEventListener('click', function() {
