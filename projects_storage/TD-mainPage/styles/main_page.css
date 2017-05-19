@@ -197,13 +197,11 @@ body {
     border-radius: 50px/50px;
     outline: none;
     cursor: pointer;
-    min-width: 195px;
-    position: relative;
+    background: linear-gradient(to right, #fead00, #e16f1a);
     border: none;
-    background: transparent url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMMAAAA0CAMAAAAANnw5AAABpFBMVEUAAAABAAAAAAAAAAAAAAD/cAD/rQALBAAAAAD/jwD/rgD/rAD7qQD/bgD+rQD+cAD/cQD+cADypAD8bQD9qwC2aABLJgD/rAD/rgD/bgD+rAD+bQD+bwD/rgD7bAD8bQD7cAD7bAD7qQDyaQD/rgD2awD/cAD6qAD2pgD2awD/rgD/bgD/cwBCIQD/rgD/hgD+cwD/cQD/cgD/cgD/rQD6bgD7rAH/qwD/cgD5pgD/rQD9qwD/cADlmQDpZgDonQDuZgDbkgHcYAD/rQCZTQD/dAD/bwD/cQD/qAD+cwD/rgD/bgD9cgD7qgD/rgD/bgD/cwH/rgD/cAD/rAHoZQH1pAD0agDvoAHjYQD/qgD/qwH/bgD/qQAwFQB7QgD/qQD/bgD8pwH+qQD9rQD/rAHtngHvagDflwDmnAD/mwD/hQD/dQD/pwD/kwD/ggD/eAD/pAD/nwD/fQD/eQD/lwD/iQD/hwD/kQH/pQD/jwD/ogH/mQH/jQH/gAH/ewH/oQD/nQD/lQD/iwD/fwD/ngH/jAH/qQD/lgD/jgD/fAD/rgD/bgCHr1YdAAAAaXRSTlMABAkLA+zrDAcB4Neg39GgO9paWEQRBvHl5NvQwqCfmHVsaGBaU0Q+MTEkJB0PDgvv4NbSwqWYlJN2bl5cSUNAPjo6ORcRB/jk5MvLyKeBgWRRTk1NSUc5Lh4bExEKCPfzyca/mWM3Li192TjoAAACWElEQVR4AUzBNw7CMBQAUJAYmbkLJwAkdkYkNnqHxL2XW8f+30Pem8zAdGSxW84P630IF9QVD0AIkVI+gXNKqWNDKf1UMWqtr+hf9EVKjDHvjTHf6ledmhvinFtrXyBnIcQb3NG5WW22Q7d2tpU2FIVx/HOfJgESBmRAUAEFBFQE50FBQbTzrHZodbWrQ/ss7Us3xSWEaHudL/8rb38rAif77Gjxe3rC0b1BcAuqlm5uz1fffQzCWwVPlmMvdtZa0U7apcAY4WrfjOy+h5dbLq6vla7GEHA+hHNzIwnvtzATv3A+Coz+Tj0NvQZHr1Y3UxPDRoZa7msTLDUL8fptw7leBlMHWsVtmNSPwVVMS4wbknoNbNW1C6ehplfBV0yrjwwpcx+MHcRTQ4M1C86i+RvD4dQKODvJHl0b0pEyWEtMpweGyUfg7XFiYIi8BG+V6b+GN6EgeAuGj2zD1jMw97xgG6YWwdxSdgI/Q+Au/Bbzs+AuOoetPXA3V8CXJLhbmEFoEdwthZFZAXcfPuEXyDv97QPDfR/8L2m++Exv+OC71aL/jcv74qzxwwdnvgD92TuAAP07kG04zJG/i9oGIZ8JSAAi3LOZkghELqlnZJcDg/DOKpvZjlwbhHhmLDcG3tl9f2iQrn5MeYfSk5FB2pR3WWfiNAjjnWJJxg02ogymElpF3Abp5rabYOl0Z7Untw3Sp9p16MtdBlHtHMvOyZmSOw1KqcY3M7JHsPvTUEr9w2BntK2Ml3ew1lubHUOp/xsMo9HdtT4/yHhuF6718Em+2GsYhtvwB+MTv8hmZBd+AAAAAElFTkSuQmCC") no-repeat;
-    background-size: 100% 100%;
     color: white;
-    transition: border-color 0.1s; }
+    position: relative;
+    z-index: 1; }
     .initScreen .howToButton::after {
       content: '';
       width: 100%;
@@ -212,12 +210,10 @@ body {
       position: absolute;
       left: 0px;
       top: 0px;
-      background: linear-gradient(to right, #fead00, #e16f1a);
+      background: linear-gradient(to right, #e16f1a, #fead00);
       z-index: -1;
       opacity: 0;
-      transition: opacity 0.1s; }
-    .initScreen .howToButton:hover {
-      border-color: transparent; }
+      transition: opacity 0.15s; }
     .initScreen .howToButton:hover::after {
       opacity: 1; }
   .initScreen .parallax {
@@ -235,13 +231,15 @@ body {
       transform: translateZ(0);
       transform-origin: 50% 50%;
       transition: inherit; }
-  .initScreen .translateWrapper {
+  .initScreen .paralaxWrapper {
     width: 100%;
     height: 100%;
     transform: translateZ(0);
-    transition: transform 0.5s linear;
+    transition: transform 1.5s linear;
     -webkit-will-change: transform;
     will-change: transform; }
+  .initScreen.setSprecialTransition .paralaxWrapper {
+    transition: transform 0.3s linear; }
   .initScreen .bg {
     width: 113%;
     height: 102%;
@@ -417,6 +415,22 @@ body {
       opacity: 0; }
     .initScreen .initScreenSvg2 .numbers {
       opacity: 0; }
+  .initScreen .ballCircle,
+  .initScreen .secondDashedCircle {
+    stroke-dasharray: 6,6;
+    stroke-dashoffset: 0; }
+  .initScreen .ballCircle {
+    animation: ballCircleAnim 300s infinite alternate; }
+  .initScreen .secondDashedCircle {
+    animation: secondDashedCircleAnim 300s infinite alternate; }
+
+@keyframes secondDashedCircleAnim {
+  to {
+    stroke-dashoffset: -500; } }
+
+@keyframes ballCircleAnim {
+  to {
+    stroke-dashoffset: 500; } }
   .initScreen.initAnimation .initScreenSvg1 .ballCircle {
     transition: opacity linear 0.3s 1s;
     opacity: 1; }
@@ -457,7 +471,7 @@ body {
 /***** Init screen end *****/
 /***** Init slider *****/
 .initSlider {
-  height: 90vh;
+  height: 100vh;
   display: flex;
   position: relative;
   overflow: hidden;
@@ -509,18 +523,19 @@ body {
   .initSlider .starsAndCircles * {
     transition: all 2s 1.8s; }
   .initSlider .translateLayer {
-    transition: transform 0.1s linear !important; }
+    transition: transform 0.3s linear !important; }
   .initSlider .sliderContent {
     width: 50%;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     position: relative;
     background-color: #1b1b1b;
     cursor: pointer; }
   .initSlider .sliderDescriptions {
-    width: 60%;
+    width: 100%;
     height: 100%;
     position: relative;
     opacity: 0;
@@ -530,14 +545,17 @@ body {
     opacity: 1;
     transform: translateZ(0) translateY(0); }
   .initSlider .descriptionBlock {
-    max-width: 400px;
+    width: 380px;
     position: absolute;
-    left: calc(50% - 200px);
+    left: calc(50% - 190px);
     top: calc(50vh - 133px);
     transform: translateY(10px);
     transition: transform 0.3s ease-out, opacity 0.6s ease-out;
     z-index: -1;
     opacity: 0; }
+  .initSlider .descriptionBlock:nth-of-type(1) {
+    width: 300px;
+    left: calc(50% - 150px); }
   .initSlider .descriptionTitle {
     width: 100%;
     margin: 0 0 35px 0;
@@ -550,32 +568,38 @@ body {
     line-height: 1.5; }
   .initSlider .sliderControls {
     width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     position: absolute;
     left: 0;
-    bottom: 130px;
+    top: 0;
     font-size: 0; }
   .initSlider .sliderControl {
-    width: 11px;
-    height: 11px;
-    margin-right: 12px;
-    padding: 0 !important;
-    display: inline-block;
-    font-size: 0;
-    background-color: #fead00;
-    border: 1px transparent solid;
-    border-radius: 50%;
-    transition: background-color 0.15s, border 0.15s;
+    width: 20%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    top: 0;
+    background-color: transparent;
+    background-size: 25px auto;
+    background-repeat: no-repeat;
+    border: none;
     cursor: pointer; }
-    .initSlider .sliderControl:last-of-type {
-      margin-right: 0; }
-    .initSlider .sliderControl:not(.active) {
-      background-color: transparent;
-      border: 1px #594313 solid;
-      cursor: pointer; }
-    .initSlider .sliderControl:not(.active):hover {
-      border: 1px #ad8225 solid; }
+    .initSlider .sliderControl.ahead {
+      right: 0;
+      background-position: calc(100% - 25px) center; }
+      .initSlider .sliderControl.ahead svg {
+        width: 25px;
+        pointer-events: none; }
+    .initSlider .sliderControl.back {
+      left: 0;
+      background-position: 25px center; }
+      .initSlider .sliderControl.back svg {
+        width: 25px;
+        pointer-events: none; }
+    .initSlider .sliderControl:hover svg {
+      fill: #fead00; }
   .initSlider .scrollPos {
     width: 10px;
     height: 10px;
@@ -587,51 +611,37 @@ body {
 
 /***** Init slider end *****/
 /***** Select tournaments *****/
-.selectTournament {
-  height: 270px;
-  display: flex;
+.selectTournament .selectButton {
+  min-height: 52px;
+  padding: 0 50px;
+  text-align: center;
+  font-family: "ProximaNova-Light";
+  font-size: 16px;
+  text-transform: uppercase;
+  line-height: 0.9;
+  border-radius: 50px/50px;
+  outline: none;
+  cursor: pointer;
+  margin-bottom: 150px;
+  background: linear-gradient(to right, #fead00, #e16f1a);
+  border: none;
+  color: white;
   position: relative;
-  align-items: center;
-  justify-content: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center; }
-  @media all and (min-width: 769px) {
-    .selectTournament {
-      background-image: url(../images/selectTournamentBg.jpg); } }
-  @media all and (max-width: 768px) {
-    .selectTournament {
-      background-image: url(../images/selectTournamentBg-mob.jpg); } }
-  .selectTournament .selectButton {
-    min-height: 52px;
-    padding: 0 50px;
-    text-align: center;
-    font-family: "ProximaNova-Light";
-    font-size: 16px;
-    text-transform: uppercase;
-    line-height: 0.9;
+  z-index: 1; }
+  .selectTournament .selectButton::after {
+    content: '';
+    width: 100%;
+    height: 100%;
     border-radius: 50px/50px;
-    outline: none;
-    cursor: pointer;
-    background: linear-gradient(to right, #fead00, #e16f1a);
-    border: none;
-    color: white;
-    position: relative;
-    z-index: 1; }
-    .selectTournament .selectButton::after {
-      content: '';
-      width: 100%;
-      height: 100%;
-      border-radius: 50px/50px;
-      position: absolute;
-      left: 0px;
-      top: 0px;
-      background: linear-gradient(to right, #e16f1a, #fead00);
-      z-index: -1;
-      opacity: 0;
-      transition: opacity 0.15s; }
-    .selectTournament .selectButton:hover::after {
-      opacity: 1; }
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    background: linear-gradient(to right, #e16f1a, #fead00);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.15s; }
+  .selectTournament .selectButton:hover::after {
+    opacity: 1; }
 
 /***** Select tournaments end *****/
 /***** Footer *****/
@@ -690,14 +700,16 @@ body {
     align-items: center;
     position: relative;
     background-color: rgba(0, 0, 0, 0.5); }
+    .tutorial .icons.setNormalTransition img {
+      transition: transform 0.3s linear; }
   .tutorial .icon {
     z-index: 2; }
   .tutorial .circleWrapper path {
     opacity: 0; }
     .tutorial .circleWrapper path:nth-of-type(1) {
-      transition: all 1s 0.5s; }
+      transition: all 0.5s 0.6s; }
     .tutorial .circleWrapper path:nth-of-type(2) {
-      transition: all 1s 1s; }
+      transition: all 0.5s 0.9s; }
   .tutorial .showCircleWrapper path {
     opacity: 1; }
   .tutorial .tutorialIcon:not(.currentIcon) {
@@ -705,9 +717,8 @@ body {
   .tutorial .showIcon * {
     animation: animPath 1s forwards; }
   .tutorial .showLinesWrapper * {
-    animation: animPath 0.5s 1.5s forwards; }
+    animation: animPath 0.5s 1.2s forwards; }
   .tutorial .initIcon * {
-    opacity: 0;
     transition: opacity 1s; }
   .tutorial .initIcon.showInitIcon * {
     opacity: 1; }
@@ -734,50 +745,35 @@ body {
       transform: scale(1);
       opacity: 1; }
   .tutorial .selectTornament {
-    background-image: url(../images/tutorialBg-1.jpg);
+    background: linear-gradient(to bottom, #141414, #1a2113);
     opacity: 1; }
-    .tutorial .selectTornament .icon {
+    .tutorial .selectTornament img {
       position: absolute;
       transform: translateZ(0);
       background-size: 100% auto;
       background-repeat: no-repeat;
-      transform: scale(0.8);
-      transition: transform 18s linear; }
-    .tutorial .selectTornament .icon1 {
-      width: 215px;
-      height: 215px;
-      left: 40%;
-      transform-origin: 0 50vh;
-      background-image: url(../images/tutorial-initIcon1.png); }
-    .tutorial .selectTornament .icon2 {
-      width: 311px;
-      height: 248px;
+      transition: transform 1.5s linear;
+      filter: brightness(0.4); }
+    .tutorial .selectTornament img:nth-of-type(1) {
       left: -65px;
-      top: 18%;
+      top: 0px;
       transform-origin: 100% 50%;
-      background-image: url(../images/tutorial-initIcon2.png);
       background-size: auto 100%; }
-    .tutorial .selectTornament .icon3 {
-      width: 285px;
-      height: 285px;
+    .tutorial .selectTornament img:nth-of-type(2) {
       right: 3%;
       bottom: 5%;
-      transform-origin: 0 0;
-      background-image: url(../images/tutorial-initIcon3.png); }
-    .tutorial .selectTornament .icon4 {
-      width: 307px;
-      height: 307px;
-      right: -5%;
-      top: 15%;
-      transform-origin: 0 0;
-      background-image: url(../images/tutorial-initIcon4.png); }
-    .tutorial .selectTornament .icon5 {
-      width: 286px;
-      height: 373px;
+      transform-origin: 0 0; }
+    .tutorial .selectTornament img:nth-of-type(3) {
       left: 5%;
       bottom: 5%;
-      transform-origin: 100% 0;
-      background-image: url(../images/tutorial-initIcon5.png); }
+      transform-origin: 100% 0; }
+    .tutorial .selectTornament img:nth-of-type(4) {
+      right: -5%;
+      top: 15%;
+      transform-origin: 0 0; }
+    .tutorial .selectTornament img:nth-of-type(5) {
+      left: 40%;
+      transform-origin: 0 50vh; }
   .tutorial .assembleTeam {
     background-image: url(../images/tutorialBg-2.jpg); }
   .tutorial .getPoints {
@@ -863,11 +859,27 @@ body {
       transform: rotateZ(180deg); }
   .tutorial .scrollIcon {
     width: 11px;
+    height: 33px;
+    background: url('\a 			data:image/svg+xml;utf8,\a 			<svg fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\a 		    <path d="M5.5,2.84217094e-14 C2.462,2.84217094e-14 0,2.462 0,5.5 L0,11.5 C0,14.538\a 		    2.462,17 5.5,17 C8.538,17 11,14.538 11,11.5 L11,5.5 C11,2.462 8.538,2.84217094e-14\a 		    5.5,2.84217094e-14 M5.5,1 C7.981,1 10,3.019 10,5.5 L10,11.5 C10,13.981 7.981,16\a 		    5.5,16 C3.019,16 1,13.981 1,11.5 L1,5.5 C1,3.019 3.019,1 5.5,1" fill="white"/>\a 		    <polyline stroke="white" points="9 28 5.5 31.467 2 28"/>\a 		    <path d="M5.5,23.5 L5.5,31.5" stroke="white"/>\a 			</svg>');
+    transform: translateZ(0);
+    cursor: pointer;
+    width: 11px;
     flex-basis: 30px;
     min-height: 33px;
     margin-top: 30px;
+    position: relative;
     font-size: 0;
-    background: url('\a 				data:image/svg+xml;utf8,\a 				<svg fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\a 			    <path d="M5.5,2.84217094e-14 C2.462,2.84217094e-14 0,2.462 0,5.5 L0,11.5 C0,14.538\a 			    2.462,17 5.5,17 C8.538,17 11,14.538 11,11.5 L11,5.5 C11,2.462 8.538,2.84217094e-14\a 			    5.5,2.84217094e-14 M5.5,1 C7.981,1 10,3.019 10,5.5 L10,11.5 C10,13.981 7.981,16\a 			    5.5,16 C3.019,16 1,13.981 1,11.5 L1,5.5 C1,3.019 3.019,1 5.5,1" fill="white"/>\a 			    <polyline stroke="white" points="9 28 5.5 31.467 2 28"/>\a 			    <path d="M5.5,23.5 L5.5,31.5" stroke="white"/>\a 			    <path d="M5.5,4.5 L5.5,8.5" stroke="white"/>\a 				</svg>'); }
+    z-index: 10; }
+    .tutorial .scrollIcon:after {
+      content: '';
+      width: 1px;
+      height: 4px;
+      position: absolute;
+      left: 5px;
+      top: 4px;
+      background-color: white;
+      opacity: 0;
+      animation: scrollAnim 0.9s infinite; }
   .tutorial .select {
     min-height: 52px;
     padding: 0 50px;
@@ -879,38 +891,25 @@ body {
     border-radius: 50px/50px;
     outline: none;
     cursor: pointer;
-    position: relative;
-    margin: 60px 0 30px 0;
-    background-color: transparent;
+    background: linear-gradient(to right, #fead00, #e16f1a);
     border: none;
     color: white;
-    transform: translateY(20px);
-    transition: transform 0.25s 0.25s; }
-  .tutorial .select:before {
-    content: "";
-    position: absolute;
-    top: -1px;
-    left: -1px;
-    right: -1px;
-    bottom: -1px;
-    border-radius: 50px/50px;
-    background-image: -webkit-gradient(radial, right top, 10, 90% 0%, 150, from(#d86a1a), to(#ebac28));
-    background-image: radial-gradient(right top, 150px 230px, #d86a1a, #ebac28);
-    background-image: -moz-radial-gradient(right top, farthest-corner, #d86a1a 0%, #ebac28 72%);
-    z-index: -2; }
-  .tutorial .select:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-color: #1b1b1b;
-    z-index: -1;
-    border-radius: 50px/50px;
-    transition: background-color 0.1s; }
-  .tutorial .select:hover:after {
-    background-color: transparent; }
+    position: relative;
+    z-index: 1; }
+    .tutorial .select::after {
+      content: '';
+      width: 100%;
+      height: 100%;
+      border-radius: 50px/50px;
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      background: linear-gradient(to right, #e16f1a, #fead00);
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.15s; }
+    .tutorial .select:hover::after {
+      opacity: 1; }
   .tutorial .progressLine {
     width: 2px;
     height: 100%;
@@ -957,7 +956,7 @@ body {
     display: block;
     border: none;
     position: absolute;
-    background: url('\a 			data:image/svg+xml;utf8,\a 			<svg stroke="#989898" fill="none" \a 					 xmlns="http://www.w3.org/2000/svg">\a 				<path d="M1.521,1.268 L20.500,20.500 "/>\a 				<path d="M20.500,1.268 L1.236,20.500 "/>\a 			</svg>') no-repeat 20px 20px;
+    background: url('\a 			data:image/svg+xml;utf8,\a 			<svg stroke="white" fill="none" \a 					 xmlns="http://www.w3.org/2000/svg">\a 				<path d="M1.521,1.268 L20.500,20.500 "/>\a 				<path d="M20.500,1.268 L1.236,20.500 "/>\a 			</svg>') no-repeat 20px 20px;
     cursor: pointer;
     z-index: 5;
     transition: background 0.15s;
@@ -1113,7 +1112,7 @@ body {
     display: block;
     border: none;
     position: absolute;
-    background: url('\a 			data:image/svg+xml;utf8,\a 			<svg stroke="#989898" fill="none" \a 					 xmlns="http://www.w3.org/2000/svg">\a 				<path d="M1.521,1.268 L20.500,20.500 "/>\a 				<path d="M20.500,1.268 L1.236,20.500 "/>\a 			</svg>') no-repeat 20px 20px;
+    background: url('\a 			data:image/svg+xml;utf8,\a 			<svg stroke="white" fill="none" \a 					 xmlns="http://www.w3.org/2000/svg">\a 				<path d="M1.521,1.268 L20.500,20.500 "/>\a 				<path d="M20.500,1.268 L1.236,20.500 "/>\a 			</svg>') no-repeat 20px 20px;
     cursor: pointer;
     z-index: 5;
     transition: background 0.15s;
@@ -1234,9 +1233,8 @@ body {
     margin-top: 30px;
     position: relative;
     font-size: 12px;
-    border: 1px white solid;
+    border: 1px #fead00 solid;
     border-radius: 50px/50px;
-    box-shadow: 0 1px 1px transparent;
     transition: box-shadow 0.15s; }
     .tournamentBlock .goToRoom::after {
       content: '';
@@ -1245,7 +1243,7 @@ body {
       position: absolute;
       top: 11px;
       font-size: 12px;
-      background: url('\a 				data:image/svg+xml;utf8,\a 				<svg xmlns="http://www.w3.org/2000/svg"\a 						 viewBox="0 0 30 30"\a 						 width="13px"\a 						 height="13px"\a 						 fill="none"\a 						 stroke="white"\a 						 stroke-width="2px">\a 						 <path d="M2.5,15.4h25.7"/>\a 						 <path d="M10.2,6.3l-8.4,9l8.4,9"/>\a 				</svg>');
+      background: url('\a 				data:image/svg+xml;utf8,\a 				<svg xmlns="http://www.w3.org/2000/svg"\a 						 viewBox="0 0 30 30"\a 						 width="13px"\a 						 height="13px"\a 						 fill="none"\a 						 stroke="#fead00"\a 						 stroke-width="2px">\a 						 <path d="M2.5,15.4h25.7"/>\a 						 <path d="M10.2,6.3l-8.4,9l8.4,9"/>\a 				</svg>');
       right: 25px;
       transform: rotateZ(-180deg) scaleX(0);
       transform-origin: 100% 50%;

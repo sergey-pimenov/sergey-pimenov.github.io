@@ -22,7 +22,9 @@ $inactive-color: #594313;
 // Icons
 $scroll: url('
 				data:image/svg+xml;utf8,
-				<svg fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+				<svg fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+					xmlns:xlink="http://www.w3.org/1999/xlink">
 			    <path d="M5.5,2.84217094e-14 C2.462,2.84217094e-14 0,2.462 0,5.5 L0,11.5 C0,14.538
 			    2.462,17 5.5,17 C8.538,17 11,14.538 11,11.5 L11,5.5 C11,2.462 8.538,2.84217094e-14
 			    5.5,2.84217094e-14 M5.5,1 C7.981,1 10,3.019 10,5.5 L10,11.5 C10,13.981 7.981,16
@@ -35,14 +37,23 @@ $scroll: url('
 $borderGradient: url('
 				data:image/svg+xml;utf8,
 				<svg 
-				 xmlns="http://www.w3.org/2000/svg"
-				 xmlns:xlink="http://www.w3.org/1999/xlink"
-				 width="238.5px" height="53.5px">
-				<path fill-rule="evenodd"  stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter" fill-opacity="0" fill="rgb(255, 255, 255)"
-				 d="M26.236,0.500 L211.765,0.500 C225.977,0.500 237.500,12.141 237.500,26.500 C237.500,40.859 225.977,52.500 211.765,52.500 L26.236,52.500 C12.022,52.500 0.500,40.859 0.500,26.500 C0.500,12.141 12.022,0.500 26.236,0.500 Z"/>
+				xmlns="http://www.w3.org/2000/svg"
+				xmlns:xlink="http://www.w3.org/1999/xlink"
+				version="1.1"
+				width="238.5px" height="53.5px">
+					<path fill-rule="evenodd"  stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter" fill-opacity="0" fill="rgb(255, 255, 255)"
+					 d="M26.236,0.500 L211.765,0.500 C225.977,0.500 237.500,12.141 237.500,26.500 C237.500,40.859 225.977,52.500 211.765,52.500 L26.236,52.500 C12.022,52.500 0.500,40.859 0.500,26.500 C0.500,12.141 12.022,0.500 26.236,0.500 Z"/>
 				</svg>');
 
+$aheadIcon: url("data:image/svg+xml;utf8,
+					 		<svg xmlns='http://www.w3.org/2000/svg' width='550' height='550' viewBox='0 0 550 550' fill='#a4a4a4'>
+					 			<path d='M360.731,229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1l215.5,215.5l-215.5,215.5   c-5.3,5.3-5.3,13.8,0,19.1c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-4l225.1-225.1C365.931,242.875,365.931,234.275,360.731,229.075z'/>
+					 		</svg>");
 
+$backIcon: url("data:image/svg+xml;utf8,
+					 		<svg xmlns='http://www.w3.org/2000/svg' width='550' height='550' viewBox='0 0 550 550' fill='#a4a4a4'>
+					 			<path d='M145.188,238.575l215.5-215.5c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-225.1,225.1c-5.3,5.3-5.3,13.8,0,19.1l225.1,225 c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4c5.3-5.3,5.3-13.8,0-19.1L145.188,238.575z'/>
+					 		</svg>");
 // Mixins/extends
 
 @mixin setButton {
@@ -66,7 +77,7 @@ $borderGradient: url('
 	position: absolute;
 	background: url('
 			data:image/svg+xml;utf8,
-			<svg stroke="#989898" fill="none" 
+			<svg stroke="white" fill="none" 
 					 xmlns="http://www.w3.org/2000/svg">
 				<path d="M1.521,1.268 L20.500,20.500 "/>
 				<path d="M20.500,1.268 L1.236,20.500 "/>
@@ -419,13 +430,11 @@ body {
 
 	.howToButton {
 		@include setButton;
-		min-width: 195px;
-		position: relative; // For pseudo-element
+		background: linear-gradient(to right, $elements-color, #e16f1a);
 		border: none;
-		background: transparent url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMMAAAA0CAMAAAAANnw5AAABpFBMVEUAAAABAAAAAAAAAAAAAAD/cAD/rQALBAAAAAD/jwD/rgD/rAD7qQD/bgD+rQD+cAD/cQD+cADypAD8bQD9qwC2aABLJgD/rAD/rgD/bgD+rAD+bQD+bwD/rgD7bAD8bQD7cAD7bAD7qQDyaQD/rgD2awD/cAD6qAD2pgD2awD/rgD/bgD/cwBCIQD/rgD/hgD+cwD/cQD/cgD/cgD/rQD6bgD7rAH/qwD/cgD5pgD/rQD9qwD/cADlmQDpZgDonQDuZgDbkgHcYAD/rQCZTQD/dAD/bwD/cQD/qAD+cwD/rgD/bgD9cgD7qgD/rgD/bgD/cwH/rgD/cAD/rAHoZQH1pAD0agDvoAHjYQD/qgD/qwH/bgD/qQAwFQB7QgD/qQD/bgD8pwH+qQD9rQD/rAHtngHvagDflwDmnAD/mwD/hQD/dQD/pwD/kwD/ggD/eAD/pAD/nwD/fQD/eQD/lwD/iQD/hwD/kQH/pQD/jwD/ogH/mQH/jQH/gAH/ewH/oQD/nQD/lQD/iwD/fwD/ngH/jAH/qQD/lgD/jgD/fAD/rgD/bgCHr1YdAAAAaXRSTlMABAkLA+zrDAcB4Neg39GgO9paWEQRBvHl5NvQwqCfmHVsaGBaU0Q+MTEkJB0PDgvv4NbSwqWYlJN2bl5cSUNAPjo6ORcRB/jk5MvLyKeBgWRRTk1NSUc5Lh4bExEKCPfzyca/mWM3Li192TjoAAACWElEQVR4AUzBNw7CMBQAUJAYmbkLJwAkdkYkNnqHxL2XW8f+30Pem8zAdGSxW84P630IF9QVD0AIkVI+gXNKqWNDKf1UMWqtr+hf9EVKjDHvjTHf6ledmhvinFtrXyBnIcQb3NG5WW22Q7d2tpU2FIVx/HOfJgESBmRAUAEFBFQE50FBQbTzrHZodbWrQ/ss7Us3xSWEaHudL/8rb38rAif77Gjxe3rC0b1BcAuqlm5uz1fffQzCWwVPlmMvdtZa0U7apcAY4WrfjOy+h5dbLq6vla7GEHA+hHNzIwnvtzATv3A+Coz+Tj0NvQZHr1Y3UxPDRoZa7msTLDUL8fptw7leBlMHWsVtmNSPwVVMS4wbknoNbNW1C6ehplfBV0yrjwwpcx+MHcRTQ4M1C86i+RvD4dQKODvJHl0b0pEyWEtMpweGyUfg7XFiYIi8BG+V6b+GN6EgeAuGj2zD1jMw97xgG6YWwdxSdgI/Q+Au/Bbzs+AuOoetPXA3V8CXJLhbmEFoEdwthZFZAXcfPuEXyDv97QPDfR/8L2m++Exv+OC71aL/jcv74qzxwwdnvgD92TuAAP07kG04zJG/i9oGIZ8JSAAi3LOZkghELqlnZJcDg/DOKpvZjlwbhHhmLDcG3tl9f2iQrn5MeYfSk5FB2pR3WWfiNAjjnWJJxg02ogymElpF3Abp5rabYOl0Z7Untw3Sp9p16MtdBlHtHMvOyZmSOw1KqcY3M7JHsPvTUEr9w2BntK2Ml3ew1lubHUOp/xsMo9HdtT4/yHhuF6718Em+2GsYhtvwB+MTv8hmZBd+AAAAAElFTkSuQmCC') no-repeat;
-		background-size: 100% 100%;
 		color: $basic-color;
-		transition: border-color 0.1s;
+		position: relative;
+		z-index: 1;
 
 		&::after {
 			content: '';
@@ -435,14 +444,10 @@ body {
 			position: absolute;
 			left: 0px;
 			top: 0px;
-			background: linear-gradient(to right, #fead00, #e16f1a);
+			background: linear-gradient(to right, #e16f1a, #fead00);
 			z-index: -1;
 			opacity: 0;
-			transition: opacity 0.1s;
-		}
-
-		&:hover {
-			border-color: transparent;
+			transition: opacity 0.15s;
 		}
 
 		&:hover::after {
@@ -468,13 +473,17 @@ body {
 		}
 	}
 
-	.translateWrapper {
+	.paralaxWrapper {
 		width: 100%;
 		height: 100%;
 		transform: translateZ(0);
-		transition: transform 0.5s linear;
+		transition: transform 1.5s linear;
 		-webkit-will-change: transform;
 		will-change: transform;
+	}
+
+	&.setSprecialTransition .paralaxWrapper {
+		transition: transform 0.3s linear;
 	}
 	
 	.bg {
@@ -700,6 +709,32 @@ body {
 		}
 	}
 
+	.ballCircle,
+	.secondDashedCircle {
+		stroke-dasharray: 6,6;
+		stroke-dashoffset: 0;
+	}
+
+	.ballCircle {
+		animation: ballCircleAnim 300s infinite alternate;
+	}
+
+	.secondDashedCircle {
+		animation: secondDashedCircleAnim 300s infinite alternate;
+	}
+
+	@keyframes secondDashedCircleAnim {
+		to {
+			stroke-dashoffset: -500;
+		}
+	}
+
+	@keyframes ballCircleAnim {
+		to {
+			stroke-dashoffset: 500;
+		}
+	}
+
 	&.initAnimation {
 		.initScreenSvg1 {
 			.ballCircle {
@@ -770,8 +805,7 @@ body {
 /***** Init slider *****/
 
 .initSlider {
-	height: 90vh;
-	//margin-top: 400vh;
+	height: 100vh;
 	display: flex;
 	position: relative;
 	overflow: hidden;
@@ -858,7 +892,7 @@ body {
 	}
 
 	.translateLayer {
-		transition: transform 0.1s linear !important;
+		transition: transform 0.3s linear !important;
 	}
 
 	/***** Svg end ******/
@@ -869,13 +903,14 @@ body {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		justify-content: center;
 		position: relative;
 		background-color: #1b1b1b;
 		cursor: pointer;
 	}
 
 	.sliderDescriptions {
-		width: 60%;
+		width: 100%;
 		height: 100%;
 		position: relative;
 		opacity: 0;
@@ -889,14 +924,19 @@ body {
 	}
 
 	.descriptionBlock {
-		max-width: 400px;
+		width: 380px;
 		position: absolute;
-		left: calc(50% - 200px);
+		left: calc(50% - 190px);
 		top: calc(50vh - 133px);
 		transform: translateY(10px);
 		transition: transform 0.3s ease-out, opacity 0.6s ease-out;
 		z-index: -1;
 		opacity: 0;
+	}
+
+	.descriptionBlock:nth-of-type(1) {
+		width: 300px;
+		left: calc(50% - 150px);
 	}
 
 	.descriptionTitle {
@@ -915,41 +955,53 @@ body {
 
 	.sliderControls {
 		width: 100%;
+		height: 100%;
 		display: flex;
 		justify-content: center;
 		position: absolute;
 		left: 0;
-		bottom: 130px;
+		top: 0;
 		font-size: 0;
 	}
 
 	.sliderControl {
-		width: 11px;
-		height: 11px;
-		margin-right: 12px;
-		padding: 0 !important;
-		display: inline-block;
-		font-size: 0;
-		background-color: $elements-color;
-		border: 1px transparent solid;
-		border-radius: 50%;
-		transition: background-color 0.15s, border 0.15s;
+		width: 20%;
+		height: 100%;
+		display: block;
+		position: absolute;
+		top: 0;
+		background-color: transparent;
+		background-size: 25px auto;
+		background-repeat: no-repeat;
+		border: none;
 		cursor: pointer;
 
-		&:last-of-type {
-			margin-right: 0;
+		&.ahead {
+			right: 0;
+			// background-image: $aheadIcon;
+			background-position: calc(100% - 25px) center;
+
+			svg {
+				width: 25px;
+				pointer-events: none;
+			}
 		}
 
-		&:not(.active) {
-			background-color: transparent;
-			border: 1px $inactive-color solid;
-			cursor: pointer;
+		&.back {
+			left: 0;
+			background-position: 25px center;
+
+			svg {
+				width: 25px;
+				pointer-events: none;
+			}
 		}
 
-		&:not(.active):hover {
-			border: 1px lighten($inactive-color, 20%) solid;
+		&:hover {
+			svg {
+				fill: #fead00;
+			}
 		}
-
 	}
 
 	.scrollPos {
@@ -970,23 +1022,10 @@ body {
 /***** Select tournaments *****/
 
 .selectTournament {
-	height: 270px;
-	display: flex;
-	position: relative;
-	align-items: center;
-	justify-content: center;
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center;
-	@media all and (min-width: 769px) {
-		background-image: url(../images/selectTournamentBg.jpg);
-	}
-	@media all and (max-width: 768px) {
-		background-image: url(../images/selectTournamentBg-mob.jpg);
-	}
 
 	.selectButton {
 		@include setButton;
+		margin-bottom: 150px;
 		background: linear-gradient(to right, $elements-color, #e16f1a);
 		border: none;
 		color: $basic-color;
@@ -1098,6 +1137,10 @@ body {
 		align-items: center;
 		position: relative;
 		background-color: rgba(0, 0, 0, 0.5);
+
+		&.setNormalTransition img {
+			transition: transform 0.3s linear;
+		}
 	}
 
 	.icon {
@@ -1108,11 +1151,11 @@ body {
 		opacity: 0;
 
 		&:nth-of-type(1) {
-			transition: all 1s 0.5s;
+			transition: all 0.5s 0.6s;
 		}
 
 		&:nth-of-type(2) {
-			transition: all 1s 1s;
+			transition: all 0.5s 0.9s;
 		}
 	}
 
@@ -1130,11 +1173,10 @@ body {
 	}
 
 	.showLinesWrapper * {
-		animation: animPath 0.5s 1.5s forwards;
+		animation: animPath 0.5s 1.2s forwards;
 	}
 
 	.initIcon * {
-		opacity: 0;
 		transition: opacity 1s;
 	}
 
@@ -1173,61 +1215,46 @@ body {
 	}
 
 	.selectTornament {
-		background-image: url(../images/tutorialBg-1.jpg);
+		background: linear-gradient(to bottom, #141414, #1a2113);
 		opacity: 1;
 
-		.icon {
+		img {
 			position: absolute;
 			transform: translateZ(0);
 			background-size: 100% auto;
 			background-repeat: no-repeat;
-			transform: scale(0.8);
-			transition: transform 18s linear;
+			transition: transform 1.5s linear;
+			filter: brightness(0.4);
 		}
 
-		.icon1 {
-			width: 215px;
-			height: 215px;
-			left: 40%;
-			transform-origin: 0 50vh;
-			background-image: url(../images/tutorial-initIcon1.png);
-		}
-
-		.icon2 {
-			width: 311px;
-			height: 248px;
+		img:nth-of-type(1) {
 			left: -65px;
-			top: 18%;
+			top: 0px;
 			transform-origin: 100% 50%;
-			background-image: url(../images/tutorial-initIcon2.png);
 			background-size: auto 100%;
 		}
 
-		.icon3 {
-			width: 285px;
-			height: 285px;
+		img:nth-of-type(2) {
 			right: 3%;
 			bottom: 5%;
 			transform-origin: 0 0;
-			background-image: url(../images/tutorial-initIcon3.png);
 		}
 
-		.icon4 {
-			width: 307px;
-			height: 307px;
-			right: -5%;
-			top: 15%;
-			transform-origin: 0 0;
-			background-image: url(../images/tutorial-initIcon4.png);
-		}
-
-		.icon5 {
-			width: 286px;
-			height: 373px;
+		img:nth-of-type(3) {
 			left: 5%;
 			bottom: 5%;
 			transform-origin: 100% 0;
-			background-image: url(../images/tutorial-initIcon5.png);
+		}
+
+		img:nth-of-type(4) {
+			right: -5%;
+			top: 15%;
+			transform-origin: 0 0;
+		}
+
+		img:nth-of-type(5) {
+			left: 40%;
+			transform-origin: 0 50vh;
 		}
 	}
 
@@ -1352,26 +1379,44 @@ body {
 	}
 
 	.scrollIcon {
+		@include scrollIcon;
 		width: 11px;
 		flex-basis: 30px;
 		min-height: 33px;
 		margin-top: 30px;
+		position: relative;
 		font-size: 0;
-		background: $scroll;
+		z-index: 10;
 	}
 
 	.select {
 		@include setButton;
-		position: relative; // For pseudo-element
-		margin: 60px 0 30px 0;
-		background-color: transparent;
+		background: linear-gradient(to right, $elements-color, #e16f1a);
 		border: none;
 		color: $basic-color;
-		transform: translateY(20px);
-		transition: transform 0.25s 0.25s;
+		position: relative;
+		z-index: 1;
+
+		&::after {
+			content: '';
+			width: 100%;
+			height: 100%;
+			border-radius: 50px/50px;
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			background: linear-gradient(to right, #e16f1a, #fead00);
+			z-index: -1;
+			opacity: 0;
+			transition: opacity 0.15s;
+		}
+
+		&:hover::after {
+			opacity: 1;
+		}
 	}
 
-	@include setBordergradient('.select', #1b1b1b);
+	//@include setBordergradient('.select', #1b1b1b);
 
 	.progressLine {
 		width: 2px;
@@ -1396,7 +1441,6 @@ body {
 		&:last-of-type {
 			margin-bottom: 0;
 		}
-
 	}
 
 	.indicator {
@@ -1811,9 +1855,8 @@ body {
 		margin-top: 30px;
 		position: relative;
 		font-size: 12px;
-		border: 1px white solid;
+		border: 1px #fead00 solid;
 		border-radius: 50px/50px;
-		box-shadow: 0 1px 1px transparent;
 		transition: box-shadow 0.15s;
 	
 		&::after {
@@ -1830,7 +1873,7 @@ body {
 						 width="13px"
 						 height="13px"
 						 fill="none"
-						 stroke="white"
+						 stroke="#fead00"
 						 stroke-width="2px">
 						 <path d="M2.5,15.4h25.7"/>
 						 <path d="M10.2,6.3l-8.4,9l8.4,9"/>

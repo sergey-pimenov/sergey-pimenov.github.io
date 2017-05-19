@@ -380,12 +380,29 @@ window.addEventListener('load', initInitScreen);
 function initInitScreen() {
 
 	var initScreen = document.getElementsByClassName('initScreen')[0];
+	var paralaxWrapper = document.getElementsByClassName('paralaxWrapper');
+	var x, y;
+	var initTransitionState = 'slow';
+	initScreen.addEventListener('mousemove', function(e) {
+		// First transition must be slow
+		if(initTransitionState == 'slow') {
+			initTransitionState = 'normal';
+			setTimeout(function() {
+				initScreen.classList.add('setSprecialTransition');
+			}, 1550);
+		}
+		x = e.clientX;
+		y = e.clientY;
+		throttle(translateObjects(x, y), 32);
+	});
 
-	function initAnimation() {
-		initScreen.classList.add('initAnimation');
+	function translateObjects(x, y) {
+		paralaxWrapper[0].style.transform = 'translate(' + (Math.round(x / 180)) + 'px,' + (Math.round(y / 160)) + 'px)';
+		paralaxWrapper[1].style.transform = 'translate(' + (Math.round(x / 150)) + 'px,' + (Math.round(y / 140)) + 'px)';
+		paralaxWrapper[2].style.transform = 'translate(' + (Math.round(x / 140)) + 'px,' + (Math.round(y / 130)) + 'px)';
+		paralaxWrapper[3].style.transform = 'translate(' + (Math.round(x / 100)) + 'px,' + (Math.round(y / 90) )+ 'px)';
+		paralaxWrapper[4].style.transform = 'translate(' + (Math.round(x / 90)) + 'px,' + (Math.round(y / 70) )+ 'px)';
 	}
-	
-	initAnimation();
 
 }
 /***** Init sclider *****/
@@ -406,37 +423,20 @@ var sliderControl = document.getElementsByClassName('sliderControl'),
 		sliderIcon = document.getElementsByClassName('sliderIcon'),
 		sliderContent = document.getElementsByClassName('sliderContent')[0];
 
-function animateInitSlider() {
-	// window.removeEventListener('scroll', animateInitSlider);
-	for( i = 0; i < sliderContent.length; i++ ) {
-		sliderContent[i].classList.add('showSlideContent');
-	}
-	sliderIcon[0].classList.add('showIcon');
-	verticalLines[0].classList.add('showVerticalLines');
-	iconWraper.classList.add('showWraper');
-}
-
 var initSlider = document.getElementById('initSlider');
 
 // Arrays for slider nodes
-var sliderControls = [],
-		descriptionBlocks = [],
+var descriptionBlocks = [],
 		sliderIcons = [];
 
 // Variables for remembering last checked slide
-var activeControl,
-		activeDescription,
+var activeDescription,
 		activeIcon;
 
-for( i = 0; i < sliderControl.length; i++ ) {
+for( i = 0; i < descriptionBlock.length; i++ ) {
 	// Save all nodes in array
-	sliderControls.push(sliderControl[i]);
 	descriptionBlocks.push(descriptionBlock[i]);
 	sliderIcons.push(sliderIcon[i]);
-
-	// Set click-listener for all controls
-	sliderControl[i].addEventListener('click', changeSliderContent);
-
 }
 
 // Set current slider
@@ -444,33 +444,43 @@ var currentSlider = 0;
 
 function setSliderState() {
 	// Initial initial state for slider objects
-	sliderControl[currentSlider].classList.add('active');
 	descriptionBlocks[currentSlider].style.transform = 'translateY(0)';
   descriptionBlocks[currentSlider].style.zIndex = '1';
   descriptionBlocks[currentSlider].style.opacity = '1';
 	sliderIcons[currentSlider].classList.add('currentIcon');
 
 	// Set initial active objects
-	activeControl = sliderControl[currentSlider];
 	activeDescription = descriptionBlocks[currentSlider];
 	activeIcon = sliderIcons[currentSlider];
 }
 
 setSliderState();
 
-var lastSlide = sliderControl.length - 1;
+var lastSlide = descriptionBlocks.length - 1;
 var direction = 'ahead';
 
 sliderContent.addEventListener('click', function(event) {
-	if(event.target.classList.contains('sliderControl')) {
+	if( event.target.classList.contains('selectButton') ||
+			event.target.classList.contains('selectTournament') ||
+			event.target.classList.contains('sliderControl')) {
 		return;
 	}
+	if(sliderState != 'not moved') {
+		return;
+	}
+	sliderState = 'moved';
+	setTimeout(function() {
+		sliderState = 'not moved';
+	}, 610)
+
 	if(currentSlider == lastSlide) {
 		direction = 'back';
 	}
+
 	if(direction == 'ahead') {
 		currentSlider++;
 	}
+	
 	if(direction == 'back') {
 		currentSlider--;
 		if(currentSlider == 0) {
@@ -478,14 +488,12 @@ sliderContent.addEventListener('click', function(event) {
 		}
 	}
 	goToSlide(currentSlider);
-	activeControl.classList.remove('active');
-	sliderControl[currentSlider].classList.add('active');
-	activeControl = sliderControl[currentSlider];
 });
 
-var sliderState = 'not moved';
-
 function changeSliderContent(event) {
+	if(event.target.classList.contains('selectButton') || event.target.classList.contains('selectTournament')) {
+		return;
+	}
 	if(sliderState != 'not moved') {
 		return;
 	}
@@ -506,20 +514,14 @@ function changeSliderContent(event) {
   	return;
   }
 	target.classList.add('active');
-	activeControl.classList.remove('active');
-	activeControl = target;
 
 	goToSlide(currentSlider);
 	sliderState = 'moved';
 }
 
+var sliderState = 'not moved';
+
 function goToSlide(currentSlider) {
-	if(sliderState != 'not moved') {
-		return;
-	}
-	setTimeout(function() {
-		sliderState = 'not moved';
-	}, 310)
 	// Remove active/visible state from last checked slide
   activeDescription.style.transition = 'transform 0.3s 0.3s linear, opacity 0.3s linear';
   activeDescription.style.transform = 'translateY(10px)';
@@ -539,27 +541,72 @@ function goToSlide(currentSlider) {
 	// Remember checked slide control and slide content
   activeDescription = descriptionBlocks[currentSlider];
   activeIcon = sliderIcons[currentSlider];
-  sliderState = 'moved';
 }
 
-// Slider left-aside background
+for(i = 0; i < sliderControl.length; i++) {
+	sliderControl[i].addEventListener('click', function(e) {
+		if(sliderState != 'not moved') {
+			return;
+		}
+		sliderState = 'moved';
+		setTimeout(function() {
+			sliderState = 'not moved';
+		}, 610)
+
+		if(e.target.classList.contains('ahead')) {
+			if(currentSlider == (descriptionBlock.length - 1)) {
+				goToSlide(0);
+				currentSlider = 0;
+				return;
+			}
+
+			goToSlide(++currentSlider)
+		}
+
+		if(e.target.classList.contains('back')) {
+			if(currentSlider == 0) {
+				goToSlide(descriptionBlock.length - 1);
+				currentSlider = descriptionBlock.length - 1;
+				return;
+			}
+
+			goToSlide(--currentSlider)
+		}
+	})
+}
+
+
+
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+
+
+
+
+
+function animateInitSlider() {
+	// window.removeEventListener('scroll', animateInitSlider);
+	for( i = 0; i < sliderContent.length; i++ ) {
+		sliderContent[i].classList.add('showSlideContent');
+	}
+	sliderIcon[0].classList.add('showIcon');
+	verticalLines[0].classList.add('showVerticalLines');
+	iconWraper.classList.add('showWraper');
+}
+
 var initSliderBg = document.getElementsByClassName('initSliderBg')[0];
 
 // Slider content nodes
 var sliderContent = document.querySelectorAll('.contentTitle, .sliderDescriptions')
-var sliderControls = document.getElementById('sliderControls');
 
-// Show slider content when user scroll to it
-// window.addEventListener('scroll', animateInitSlider);
-
-
-setTimeout(function() {
-	if(window.pageYOffset >= windowHeight * 3) {
-		animateInitSlider();
-	}
-}, 100)
-
-initSlider.addEventListener('mousemove', throttle(moveSliderSvg, 16));
+// Move vector pictures of slider
+initSlider.addEventListener('mousemove', throttle(moveSliderSvg, 32));
 
 for( i = 0; i < sliderIconPaths.length; i++ ) {
 	pathLength = sliderIconPaths[i].getTotalLength();
@@ -704,14 +751,30 @@ function initTutorial() {
 			selectButton = document.getElementsByClassName('select')[0],
 			popupsToning = document.getElementsByClassName('popupsToning')[0],
 			initSlide = document.getElementById('initSlide'),
-			sliderCount = slideContent.length;
+			sliderCount = slideContent.length,
+			iconsBlock = document.getElementsByClassName('icons')[0],
+			translatedIcon = document.getElementsByClassName('translatedIcon'),
+			x, y,
+			initTransitionState = 'slow';
 
-	function moveSlideBgIcon(event) {
-		slideBgIcon1.style.transform = 'translateZ(0) translate(' + event.clientX / -150 + 'px,' + event.clientY / -150 + 'px)';
-		slideBgIcon2.style.transform = 'translateZ(0) translate(' + event.clientX / -140 + 'px,' + event.clientY / -130 + 'px)';
-		slideBgIcon3.style.transform = 'translateZ(0) translate(' + event.clientX / -130 + 'px,' + event.clientY / 120 + 'px)';
-		slideBgIcon4.style.transform = 'translateZ(0) translate(' + event.clientX / -120 + 'px,' + event.clientY / 100 + 'px)';
-		slideBgIcon5.style.transform = 'translateZ(0) translate(' + event.clientX / -110 + 'px,' + event.clientY / 90 + 'px)';
+	tutorial.addEventListener('mousemove', function(e) {
+		if(initTransitionState == 'slow') {
+			setTimeout(function() {
+				iconsBlock.classList.add('setNormalTransition');
+			}, 1500);
+		}
+		initTransitionState = 'normal';
+		x = e.clientX;
+		y = e.clientY;
+		throttle(translateIcons(x, y), 32)
+	})
+
+	function translateIcons(x, y) {
+		translatedIcon[2].style.transform = 'translateZ(0) translate(' + (x / 90) + 'px,' + (y / 90) + 'px)';
+		translatedIcon[3].style.transform = 'translateZ(0) translate(' + (x / 90) + 'px,' + (y / 90) + 'px)';
+		translatedIcon[0].style.transform = 'translateZ(0) translate(' + (x / 140) + 'px,' + (y / 140) + 'px)';
+		translatedIcon[1].style.transform = 'translateZ(0) translate(' + (x / 130) + 'px,' + (y / 130) + 'px)';
+		translatedIcon[4].style.transform = 'translateZ(0) translate(' + (x / 140) + 'px,' + (y / 140) + 'px)';
 	}
 
 	howToButton.addEventListener('click', showTutorial);
@@ -730,7 +793,7 @@ function initTutorial() {
 		setTimeout(function() {
 			circleWrapper.classList.add('showCircleWrapper');
 			linesWrapper.classList.add('showLinesWrapper');
-			initIcon.classList.add('showInitIcon');
+			tutorialIcon[0].classList.add('showIcon');
 		}, 800);
 	}
 
@@ -767,7 +830,6 @@ function initTutorial() {
 			slideBg = document.getElementsByClassName('slideBg'),
 			tutorialIcon = document.getElementsByClassName('tutorialIcon');
 
-	tutorialIcon[0].classList.add('showIcon');
 	slideContent[0].style.opacity = '1';
 	slideContent[0].style.transform = 'translateZ(0) translateY(0)';
 
@@ -820,6 +882,11 @@ function initTutorial() {
 				sliderCounter--;
 				goBack(sliderCounter);
 			}
+			if(sliderCounter >= 3) {
+				selectButton.style.pointerEvents = 'auto';
+			} else {
+				selectButton.style.pointerEvents = 'none';
+			}
 		}
 	}
 
@@ -854,6 +921,11 @@ function initTutorial() {
 				sliderCounter--;
 				goBack(sliderCounter);
 			}
+		}
+		if(sliderCounter >= 3) {
+			selectButton.style.pointerEvents = 'auto';
+		} else {
+			selectButton.style.pointerEvents = 'none';
 		}
 	}
 

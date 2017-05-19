@@ -5,8 +5,114 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title> TotalDraft </title>
 	<link rel="stylesheet" href="styles/main_page.css">
+	<!-- Preloader styles -->
+	
+	<style>
+		.preloader {
+			width: 100vw;
+			height: 100vh;
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 1101;
+			background-color: white;
+		}
+	
+		.hidePreloader {
+			background-color: transparent;
+		}
+	
+		.preloader::before,
+		.preloader::after {
+			content: '';
+			width: 100%;
+			height: 48vh;
+			position: absolute;
+			background-color: white;
+			left: 0;
+			transition: transform 0.4s;
+		}
+	
+		.preloader::before {
+			top: 0;
+		}
+	
+		.preloader::after {
+			bottom: 0;
+		}
+	
+		.hidePreloader::before {
+			transform: translateY(-100%);
+		}
+	
+		.hidePreloader::after {
+			transform: translateY(100%);
+		}
+	
+		.progress {
+			width: 100vw;
+			height: 4vh;
+			position: absolute;
+			left: 0;
+			top: 48vh;
+			background-color: black;
+			transform: scaleX(0);
+			transform-origin: 0 center;
+			transition: transform 1.5s ease-out, background-color 0.3s;
+		}
+	
+		.hidePreloader .progress {
+			background-color: transparent;
+		}
+	</style>
+	
+	<!-- Preloader styles end -->
+	
 </head>
 <body>
+
+
+		<!-- Preloader -->
+		
+		<div class="preloader" id="preloader">
+			<div class="progress" id="progress"></div>
+		
+			<script>
+				var testProgressState = 0;
+				var progressEnd = document.body.clientWidth;
+		
+				// Hide animation
+				var preloader = document.getElementById('preloader');
+		
+				// Progress
+				var progress = document.getElementById('progress');
+				progress.addEventListener('transitionend', function() {
+					if(progress.style.transform == 'scaleX(1)') {
+						preloader.classList.add('hidePreloader');
+						var initScreen = document.getElementsByClassName('initScreen')[0];
+						setTimeout(function() {
+							initScreen.classList.add('initAnimation');
+						}, 200);
+						setTimeout(function() {
+							preloader.style.display = 'none';
+						}, 400);
+					}
+				})
+		
+				function progressState(progressState) {
+					if(progressState > 100) {
+						preloader.classList.add('hidePreloader');
+						return;
+					}
+					progress.style.transform = 'scaleX(' + (progressState / 100) + ')';
+				}
+		
+				progressState(100);
+			</script>
+		</div>
+		
+		<!-- Preloader end -->
+		
 
 		<!-- Header -->
 		
@@ -63,88 +169,98 @@
 			
 				<div class="parallax" role="presentation">
 			
-						<div class="bg paralaxedNode"> </div>
-						<div class="bg-players paralaxedNode"> </div>
-						<div class="grass paralaxedNode"> </div>
-						<div class="player-2 paralaxedNode"> </div>
-						<div class="player-1 paralaxedNode">
-							<svg class="initScreenSvg2" viewBox="0 0 322 492">
-							
-								<path class="circle1" fill="#EBAC28" fill-opacity="2.000000e-02" stroke="#EAA627" d="M78,460.5
-									c8.3,0,15,6.7,15,15s-6.7,15-15,15s-15-6.7-15-15S69.7,460.5,78,460.5z"/>
-							
-								<path class="circle1Dot" fill="#E58A20" d="M78.5,473.5c1.4,0,2.5,1.1,2.5,2.5s-1.1,2.5-2.5,2.5
-									S76,477.4,76,476S77.1,473.5,78.5,473.5z"/>
-							
-								<path class="lineFromCircle1" style="fill:none;stroke:#ebac28" d="M 189.5,358 78.5,476" id="line38"/>
-							
-								<g class="circle2">
-							
-									<path fill="#E58A20" d="M189.5,355.5c1.4,0,2.5,1.1,2.5,2.5s-1.1,2.5-2.5,2.5
-									s-2.5-1.1-2.5-2.5S188.1,355.5,189.5,355.5z"/>
-									<path fill="#EBAC28" fill-opacity="2.000000e-02" stroke="#EAA627" d="M190,335.5
-									c12.7,0,23,10.3,23,23s-10.3,23-23,23s-23-10.3-23-23S177.3,335.5,190,335.5z"/>
-									<path fill="#EBAC28" fill-opacity="3.100000e-02" stroke="#EAA627" d="M190,291.5
-									c37,0,67,30,67,67s-30,67-67,67s-67-30-67-67S153,291.5,190,291.5z"/>
-									<path fill="none" stroke="#3E3E3E" stroke-dasharray="6,6" d="M189,255.5c56.9,0,103,46.1,103,103s-46.1,103-103,103
-									s-103-46.1-103-103S132.1,255.5,189,255.5z"/>
-							
-								</g>
-							
-								<path class="lineFromCircle2" style="fill:none;stroke:#ebac28" d="m 189.5,358 -15,-220.2" id="line36"/>
-							
-								<path class="circle3" fill="#EBAC28" fill-opacity="2.000000e-02" stroke="#EAA627" d="M174,122.5
-									c8.3,0,15,6.7,15,15s-6.7,15-15,15s-15-6.7-15-15S165.7,122.5,174,122.5z"/>
-							
-								<path class="lineFromCircle3" fill="none" stroke="#E58A20" d="M175,138.5l-141-51"/>
-							
-								<path class="circle4" fill="none" stroke="#EAA627" d="M34.5,52.5
-									C53.6,52.5,69,67.9,69,87s-15.4,34.5-34.5,34.5S0,106.1,0,87S15.4,52.5,34.5,52.5z"/>
-								<path class="circle4Dot" fill="#E58A20" d="M34.5,84.5c1.4,0,2.5,1.1,2.5,2.5s-1.1,2.5-2.5,2.5
-										S32,88.4,32,87S33.1,84.5,34.5,84.5z"/>
-							
-								<path class="lineToNumbers" fill="none" stroke="#E58A20" d="M174,138.5l42-102h108"/>
-							
-								<g class="numbers">
-									<path fill="none" stroke="#FFFFFF" d="M262,14.5h43"/>
-									<path class="pulse" fill="none" stroke="#E58A20" d="M 266, 10.5 l6, 6 l4-4 l11, 11 l15-23 h5"/>
-									<text class="pulseValue" stroke="none" fill="white" font-family="ProximaNova-Light" style="transform:translate(235px, 20px)" font-size="14px">76</text>
-								</g>
-							
-							</svg>
+						<div class="bg"> </div>
+						<div class="paralaxWrapper">
+							<div class="bg-players"> </div>
 						</div>
-						<div class="ball paralaxedNode">
-							<svg class="initScreenSvg1" viewBox="0 0 247 456">
-							
-								<path class="ballCircle" fill="none" stroke="#E58A20" stroke-dasharray="6,6" d="M166,294
-									c44.5,0,80.5,36,80.5,80.5S210.5,455,166,455s-80.5-36-80.5-80.5S121.5,294,166,294z"/>
-							
-								<path class="dotCircle" fill="#E58A20" d="M167,370c1.4,0,2.5,1.1,2.5,2.5s-1.1,2.5-2.5,2.5
-										s-2.5-1.1-2.5-2.5S165.6,370,167,370z"/>
-							
-								<path class="pathFromBallCircle" fill="none" stroke="#E58A20" d="M166.5,372l-81-174"/>
+						<div class="paralaxWrapper">
+							<div class="grass"> </div>
+						</div>
+						<div class="paralaxWrapper">
+							<div class="player-2"> </div>
+						</div>
+						<div class="paralaxWrapper">
+							<div class="player-1">
+								<svg class="initScreenSvg2" viewBox="0 0 322 492">
 								
-								<g class="textCircle1" fill="none">
-									<path stroke="#3E3E3E" stroke-width="2" d="M57.5,98c27.1,0,49,21.9,49,49s-21.9,49-49,49s-49-21.9-49-49
-									S30.4,98,57.5,98z"/>
-									<path stroke="#E58A20" d="M58,90c31.8,0,57.5,25.7,57.5,57.5
-									S89.8,205,58,205c-31.8,0-57.5-25.7-57.5-57.5c0-14,5-26.8,13.3-36.8"/>
-									<path stroke="#E58A20" stroke-width="2" d="M57.5,98c27.1,0,49,21.9,49,49s-21.9,49-49,49s-49-21.9-49-49"/>
-							
-									<text stroke="none" fill="white" font-family="ProximaNova-Light" style="transform: translate(45px, 140px);" font-size="18px">461</text>
-									<text stroke="none" fill="white" font-family="ProximaNova-Light" style="transform: translate(40px, 163px);" font-size="11px">minutes</text>
-								</g>
-							
-								<g class="textCircle2" fill="none">
-									<path stroke="#3E3E3E" d="M58,8c17.4,0,31.5,14.1,31.5,31.5S75.4,71,58,71S26.5,56.9,26.5,39.5S40.6,8,58,8z"/>
-									<path stroke="#E58A20" d="M58,1c21.3,0,38.5,17.2,38.5,38.5S79.3,78,58,78 S19.5,60.8,19.5,39.5"/>
-									<path stroke="#E58A20" d="M58,8c17.4,0,31.5,14.1,31.5,31.5 c0,9.6-4.3,18.2-11.1,24"/>
-							
-									<text fill="white" font-family="'ProximaNova-Light'" style="transform: translate(52px, 36px);" font-size="11.0007px">42</text>
-									<text fill="white" font-family="'ProximaNova-Light'" style="transform: translate(45px, 52px);" font-size="11.0007px">goals</text>
-								</g>
-							
-							</svg>
+									<path class="circle1" fill="#EBAC28" fill-opacity="2.000000e-02" stroke="#EAA627" d="M78,460.5
+										c8.3,0,15,6.7,15,15s-6.7,15-15,15s-15-6.7-15-15S69.7,460.5,78,460.5z"/>
+								
+									<path class="circle1Dot" fill="#E58A20" d="M78.5,473.5c1.4,0,2.5,1.1,2.5,2.5s-1.1,2.5-2.5,2.5
+										S76,477.4,76,476S77.1,473.5,78.5,473.5z"/>
+								
+									<path class="lineFromCircle1" style="fill:none;stroke:#ebac28" d="M 189.5,358 78.5,476" id="line38"/>
+								
+									<g class="circle2">
+								
+										<path fill="#E58A20" d="M189.5,355.5c1.4,0,2.5,1.1,2.5,2.5s-1.1,2.5-2.5,2.5
+										s-2.5-1.1-2.5-2.5S188.1,355.5,189.5,355.5z"/>
+										<path fill="#EBAC28" fill-opacity="2.000000e-02" stroke="#EAA627" d="M190,335.5
+										c12.7,0,23,10.3,23,23s-10.3,23-23,23s-23-10.3-23-23S177.3,335.5,190,335.5z"/>
+										<path fill="#EBAC28" fill-opacity="3.100000e-02" stroke="#EAA627" d="M190,291.5
+										c37,0,67,30,67,67s-30,67-67,67s-67-30-67-67S153,291.5,190,291.5z"/>
+										<path class="secondDashedCircle" fill="none" stroke="#3E3E3E" d="M189,255.5c56.9,0,103,46.1,103,103s-46.1,103-103,103
+										s-103-46.1-103-103S132.1,255.5,189,255.5z"/>
+								
+									</g>
+								
+									<path class="lineFromCircle2" style="fill:none;stroke:#E58A20" d="m 189.5,358 -15,-220.2" id="line36"/>
+								
+									<path class="circle3" fill="#E58A20" fill-opacity="2.000000e-02" stroke="#EAA627" d="M174,122.5
+										c8.3,0,15,6.7,15,15s-6.7,15-15,15s-15-6.7-15-15S165.7,122.5,174,122.5z"/>
+								
+									<path class="lineFromCircle3" fill="none" stroke="#E58A20" d="M175,138.5l-141-51"/>
+								
+									<path class="circle4" fill="none" stroke="#E58A20" d="M34.5,52.5
+										C53.6,52.5,69,67.9,69,87s-15.4,34.5-34.5,34.5S0,106.1,0,87S15.4,52.5,34.5,52.5z"/>
+									<path class="circle4Dot" fill="#E58A20" d="M34.5,84.5c1.4,0,2.5,1.1,2.5,2.5s-1.1,2.5-2.5,2.5
+											S32,88.4,32,87S33.1,84.5,34.5,84.5z"/>
+								
+									<path class="lineToNumbers" fill="none" stroke="#E58A20" d="M174,138.5l42-102h108"/>
+								
+									<g class="numbers">
+										<path fill="none" stroke="#FFFFFF" d="M262,14.5h43"/>
+										<path class="pulse" fill="none" stroke="#E58A20" d="M 266, 10.5 l6, 6 l4-4 l11, 11 l15-23 h5"/>
+										<text class="pulseValue" stroke="none" fill="white" font-family="ProximaNova-Light" style="transform:translate(235px, 20px)" font-size="14px">76</text>
+									</g>
+								
+								</svg>
+							</div>
+						</div>
+						<div class="paralaxWrapper">
+							<div class="ball">
+								<svg class="initScreenSvg1" viewBox="0 0 247 456">
+								
+									<path class="ballCircle" fill="none" stroke="#E58A20" d="M166,294
+										c44.5,0,80.5,36,80.5,80.5S210.5,455,166,455s-80.5-36-80.5-80.5S121.5,294,166,294z"/>
+								
+									<path class="dotCircle" fill="#E58A20" d="M167,370c1.4,0,2.5,1.1,2.5,2.5s-1.1,2.5-2.5,2.5
+											s-2.5-1.1-2.5-2.5S165.6,370,167,370z"/>
+								
+									<path class="pathFromBallCircle" fill="none" stroke="#E58A20" d="M166.5,372l-81-174"/>
+									
+									<g class="textCircle1" fill="none">
+										<path stroke="#3E3E3E" stroke-width="2" d="M57.5,98c27.1,0,49,21.9,49,49s-21.9,49-49,49s-49-21.9-49-49
+										S30.4,98,57.5,98z"/>
+										<path stroke="#E58A20" d="M58,90c31.8,0,57.5,25.7,57.5,57.5
+										S89.8,205,58,205c-31.8,0-57.5-25.7-57.5-57.5c0-14,5-26.8,13.3-36.8"/>
+										<path stroke="#E58A20" stroke-width="2" d="M57.5,98c27.1,0,49,21.9,49,49s-21.9,49-49,49s-49-21.9-49-49"/>
+								
+										<text stroke="none" fill="white" font-family="ProximaNova-Light" style="transform: translate(45px, 140px);" font-size="18px">461</text>
+										<text stroke="none" fill="white" font-family="ProximaNova-Light" style="transform: translate(40px, 163px);" font-size="11px">minutes</text>
+									</g>
+								
+									<g class="textCircle2" fill="none">
+										<path stroke="#3E3E3E" d="M58,8c17.4,0,31.5,14.1,31.5,31.5S75.4,71,58,71S26.5,56.9,26.5,39.5S40.6,8,58,8z"/>
+										<path stroke="#E58A20" d="M58,1c21.3,0,38.5,17.2,38.5,38.5S79.3,78,58,78 S19.5,60.8,19.5,39.5"/>
+										<path stroke="#E58A20" d="M58,8c17.4,0,31.5,14.1,31.5,31.5 c0,9.6-4.3,18.2-11.1,24"/>
+								
+										<text fill="white" font-family="'ProximaNova-Light'" style="transform: translate(52px, 36px);" font-size="11.0007px">42</text>
+										<text fill="white" font-family="'ProximaNova-Light'" style="transform: translate(45px, 52px);" font-size="11.0007px">goals</text>
+									</g>
+								
+								</svg>
+							</div>
 						</div>
 			
 				</div>
@@ -312,27 +428,33 @@
 					</section>
 			
 					<nav class="sliderControls" id="sliderControls">
-						<button class="sliderControl" aria-label="go to slide 1"></button>
-						<button class="sliderControl" aria-label="go to slide 2"></button>
+						<button class="sliderControl ahead" aria-label="go to slide 1">
+							<svg width='550' height='550' viewBox='0 0 550 550' fill='#a4a4a4'>
+					 			<path d='M360.731,229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1l215.5,215.5l-215.5,215.5   c-5.3,5.3-5.3,13.8,0,19.1c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-4l225.1-225.1C365.931,242.875,365.931,234.275,360.731,229.075z'/>
+					 		</svg>
+						</button>
+						<button class="sliderControl back" aria-label="go to slide 2">
+							<svg xmlns='http://www.w3.org/2000/svg' width='550' height='550' viewBox='0 0 550 550' fill='#a4a4a4'>
+					 			<path d='M145.188,238.575l215.5-215.5c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-225.1,225.1c-5.3,5.3-5.3,13.8,0,19.1l225.1,225 c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4c5.3-5.3,5.3-13.8,0-19.1L145.188,238.575z'/>
+					 		</svg>
+						</button>
 					</nav>
+			
+					<!-- Select tournaments -->
 					
+					<section class="selectTournament">
+					
+						<button class="selectButton"> Выбрать турнир </button>
+					
+					</section>
+					
+					<!-- Select tournaments end -->		
 				</aside>
 			
 			</section>
 			
 			<!-- Init slider end -->
 			
-
-
-			<!-- Select tournaments -->
-			
-			<section class="selectTournament">
-			
-				<button class="selectButton"> Выбрать турнир </button>
-			
-			</section>
-			
-			<!-- Select tournaments end -->
 
 			<!-- Footer -->
 			
@@ -424,7 +546,13 @@
 		  </g>
 		</svg> </div>
 		
-				<div class="slideBg selectTornament" id="initSlide"></div>
+				<div class="slideBg selectTornament" id="initSlide">
+					<img src="images/tutorIcon1.png" class="translatedIcon">
+					<img src="images/tutorIcon2.png" class="translatedIcon">
+					<img src="images/tutorIcon3.png" class="translatedIcon">
+					<img src="images/tutorIcon4.png" class="translatedIcon">
+					<img src="images/tutorIcon5.png" class="translatedIcon">
+				</div>
 				<div class="slideBg assembleTeam"> </div>
 				<div class="slideBg getPoints"> </div>
 				<div class="slideBg goToLeaders"> </div>
