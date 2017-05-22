@@ -235,7 +235,7 @@ body {
     width: 100%;
     height: 100%;
     transform: translateZ(0);
-    transition: transform 1.5s linear;
+    transition: transform 0.5s linear;
     -webkit-will-change: transform;
     will-change: transform; }
   .initScreen.setSprecialTransition .paralaxWrapper {
@@ -419,10 +419,6 @@ body {
   .initScreen .secondDashedCircle {
     stroke-dasharray: 6,6;
     stroke-dashoffset: 0; }
-  .initScreen .ballCircle {
-    animation: ballCircleAnim 300s infinite alternate; }
-  .initScreen .secondDashedCircle {
-    animation: secondDashedCircleAnim 300s infinite alternate; }
 
 @keyframes secondDashedCircleAnim {
   to {

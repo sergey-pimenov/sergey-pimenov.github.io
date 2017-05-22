@@ -477,7 +477,7 @@ body {
 		width: 100%;
 		height: 100%;
 		transform: translateZ(0);
-		transition: transform 1.5s linear;
+		transition: transform 0.5s linear;
 		-webkit-will-change: transform;
 		will-change: transform;
 	}
@@ -716,11 +716,9 @@ body {
 	}
 
 	.ballCircle {
-		animation: ballCircleAnim 300s infinite alternate;
 	}
 
 	.secondDashedCircle {
-		animation: secondDashedCircleAnim 300s infinite alternate;
 	}
 
 	@keyframes secondDashedCircleAnim {
