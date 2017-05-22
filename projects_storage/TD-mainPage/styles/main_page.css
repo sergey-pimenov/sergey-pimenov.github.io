@@ -467,7 +467,7 @@ body {
 /***** Init screen end *****/
 /***** Init slider *****/
 .initSlider {
-  height: 100vh;
+  height: calc(100vh - 55px);
   display: flex;
   position: relative;
   overflow: hidden;
