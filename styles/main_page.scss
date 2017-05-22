@@ -1,0 +1,2004 @@
+/***** Mixins/extends *****/
+
+// Variables
+
+// Layout
+$main-indent: 40px;
+
+// Typography
+$big-title: 26px;
+
+$font-normal: 'ProximaNova-regular';
+$font-bold: 'ProximaNova-Bold';
+$font-light: 'ProximaNova-Light'; 
+
+// Colors
+$basic-color: white;
+$secondary-color: #a4a4a4;
+
+$elements-color: #fead00;
+$inactive-color: #594313;
+
+// Icons
+$scroll: url('
+				data:image/svg+xml;utf8,
+				<svg fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+					xmlns:xlink="http://www.w3.org/1999/xlink">
+			    <path d="M5.5,2.84217094e-14 C2.462,2.84217094e-14 0,2.462 0,5.5 L0,11.5 C0,14.538
+			    2.462,17 5.5,17 C8.538,17 11,14.538 11,11.5 L11,5.5 C11,2.462 8.538,2.84217094e-14
+			    5.5,2.84217094e-14 M5.5,1 C7.981,1 10,3.019 10,5.5 L10,11.5 C10,13.981 7.981,16
+			    5.5,16 C3.019,16 1,13.981 1,11.5 L1,5.5 C1,3.019 3.019,1 5.5,1" fill="white"/>
+			    <polyline stroke="white" points="9 28 5.5 31.467 2 28"/>
+			    <path d="M5.5,23.5 L5.5,31.5" stroke="white"/>
+			    <path d="M5.5,4.5 L5.5,8.5" stroke="white"/>
+				</svg>');
+
+$borderGradient: url('
+				data:image/svg+xml;utf8,
+				<svg 
+				xmlns="http://www.w3.org/2000/svg"
+				xmlns:xlink="http://www.w3.org/1999/xlink"
+				version="1.1"
+				width="238.5px" height="53.5px">
+					<path fill-rule="evenodd"  stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter" fill-opacity="0" fill="rgb(255, 255, 255)"
+					 d="M26.236,0.500 L211.765,0.500 C225.977,0.500 237.500,12.141 237.500,26.500 C237.500,40.859 225.977,52.500 211.765,52.500 L26.236,52.500 C12.022,52.500 0.500,40.859 0.500,26.500 C0.500,12.141 12.022,0.500 26.236,0.500 Z"/>
+				</svg>');
+
+$arrowIcon: url("data:image/svg+xml;utf8,
+					 		<svg xmlns='http://www.w3.org/2000/svg' width='550' height='550' viewBox='0 0 550 550' fill='#fead00'>
+					 			<path d='M360.731,229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1l215.5,215.5l-215.5,215.5   c-5.3,5.3-5.3,13.8,0,19.1c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-4l225.1-225.1C365.931,242.875,365.931,234.275,360.731,229.075z'/>
+					 		</svg>");
+
+// Mixins/extends
+
+@mixin setButton {
+	min-height: 52px;
+	padding: 0 50px;
+	text-align: center;
+	font-family: $font-light;
+	font-size: 16px;
+	text-transform: uppercase;
+	line-height: 0.9;
+	border-radius: 50px/50px;
+	outline: none;
+	cursor: pointer;
+}
+
+@mixin closeIcon {
+	width: 60px;
+	height: 60px;
+	display: block;
+	border: none;
+	position: absolute;
+	background: url('
+			data:image/svg+xml;utf8,
+			<svg stroke="white" fill="none" 
+					 xmlns="http://www.w3.org/2000/svg">
+				<path d="M1.521,1.268 L20.500,20.500 "/>
+				<path d="M20.500,1.268 L1.236,20.500 "/>
+			</svg>') no-repeat 20px 20px;
+	cursor: pointer;
+	z-index: 5;
+	transition: background 0.15s;
+
+	&:focus,
+	&:hover {
+		background: url('
+			data:image/svg+xml;utf8,
+			<svg stroke="rgb(255, 174, 0)" fill="none" 
+					 xmlns="http://www.w3.org/2000/svg">
+				<path d="M1.521,1.268 L20.500,20.500 "/>
+				<path d="M20.500,1.268 L1.236,20.500 "/>
+			</svg>') no-repeat 20px 20px;
+	}
+}
+
+@mixin scrollIcon {
+	width: 11px;
+	height: 33px;
+	background: url('
+			data:image/svg+xml;utf8,
+			<svg fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+		    <path d="M5.5,2.84217094e-14 C2.462,2.84217094e-14 0,2.462 0,5.5 L0,11.5 C0,14.538
+		    2.462,17 5.5,17 C8.538,17 11,14.538 11,11.5 L11,5.5 C11,2.462 8.538,2.84217094e-14
+		    5.5,2.84217094e-14 M5.5,1 C7.981,1 10,3.019 10,5.5 L10,11.5 C10,13.981 7.981,16
+		    5.5,16 C3.019,16 1,13.981 1,11.5 L1,5.5 C1,3.019 3.019,1 5.5,1" fill="white"/>
+		    <polyline stroke="white" points="9 28 5.5 31.467 2 28"/>
+		    <path d="M5.5,23.5 L5.5,31.5" stroke="white"/>
+			</svg>');
+	transform: translateZ(0);
+	cursor: pointer;
+
+	&:after {
+		content: '';
+		width: 1px;
+		height: 4px;
+		position: absolute;
+		left: 5px;
+		top: 4px;
+		background-color: white;
+		opacity: 0;
+		animation: scrollAnim 0.9s infinite;
+	}
+}
+
+@keyframes scrollAnim {
+	20% {
+		opacity: 1;
+	}
+	60% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+		transform: translateY(2px);
+	}
+}
+
+
+// Satanic mixin for border-gradient
+// !!!!!!!! Attention !!!!!!!! //
+// !!!!!!!! Wear safety goggles before watch this shit !!!!!!!! //
+@mixin setBordergradient($element, $bgColor) {
+	#{$element}:before {
+		content: "";
+	  position: absolute;
+	  top: -1px;
+	  left: -1px;
+	  right: -1px;
+	  bottom: -1px;
+	  border-radius: 50px/50px;
+	  background-image: -webkit-gradient(radial, right top, 10, 90% 0%, 150, from(#d86a1a), to(#ebac28));
+	  background-image: radial-gradient(right top, 150px 230px, #d86a1a, #ebac28);
+	  background-image: -moz-radial-gradient(right top, farthest-corner, #d86a1a 0%, #ebac28 72%);
+	  z-index: -2;
+	}
+
+	#{$element}:after {
+		content: "";
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  bottom: 0;
+	  right: 0;
+	  background-color: $bgColor;
+	  z-index: -1;
+	  border-radius: 50px/50px;
+	  transition: background-color 0.1s;
+	}
+
+	#{$element}:hover:after {
+		background-color: transparent;
+	}
+}
+
+/***** Mixins/extends end *****/
+
+
+/**** Reset styles *****/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	box-sizing: border-box;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+a {
+	color: inherit;
+	text-decoration: none;
+}
+button {
+	outline: none;
+}
+
+html.customScroll *::-webkit-scrollbar {
+    width: 4px;
+}
+html.customScroll *::-webkit-scrollbar-track {
+    background-color: #1b1b1b;
+}
+html.customScroll *::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/***** Reset styles end *****/
+
+
+/***** Global *****/
+
+body {
+	overflow: hidden;
+	background-color: #1f1f1f;
+}
+
+.secondBlock {
+	height: 100vh;
+	overflow: auto;
+	transition: transform 0.5s;
+	transform: translateZ(0);
+}
+
+.popupsToning {
+	width: 100vw;
+	height: 100vh;
+	background-color: #1b1b1b;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity 0.1s linear;
+}
+
+/***** Global end *****/
+
+
+/***** Tipography *****/
+
+@font-face {
+  font-family: 'ProximaNova-Regular';
+  src:  url('../fonts/ProximaNova-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/ProximaNova-Regular.otf')  format('opentype'),
+        url('../fonts/ProximaNova-Regular.woff') format('woff'),
+        url('../fonts/ProximaNova-Regular.ttf')  format('truetype'),
+        url('../fonts/ProximaNova-Regular.svg#ProximaNova-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ProximaNova-Bold';
+  src:  url('../fonts/ProximaNova-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/ProximaNova-Bold.otf')  format('opentype'),
+      	url('../fonts/ProximaNova-Bold.woff') format('woff'),
+        url('../fonts/ProximaNova-Bold.ttf')  format('truetype'),
+        url('../fonts/ProximaNova-Bold.svg#ProximaNova-Bold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'ProximaNova-Light';
+  src:  url('../fonts/ProximaNova-Light.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/ProximaNova-Light.otf')  format('opentype'),
+        url('../fonts/ProximaNova-Light.woff') format('woff'),
+        url('../fonts/ProximaNova-Light.ttf')  format('truetype'),
+        url('../fonts/ProximaNova-Light.svg#ProximaNova-Light') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+body {
+	font-family: 'ProximaNova-Regular', sans-serif;
+  color: $basic-color;
+}
+
+/***** Tipography end *****/
+
+
+/***** Header *****/
+
+.header {
+	width: 100%;
+	display: flex; 
+	align-items: center;
+	padding: 20px $main-indent;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 1;
+
+	.logoWrapper {
+		display: flex;
+		align-items: center;
+	}
+
+	.logoTitle {
+		margin-left: 30px;
+	}
+
+	.logo {
+		min-width: 50px;
+	}
+
+	.lobby {
+		margin-left: 60px;
+		color: $secondary-color;
+	}
+
+	.enter {
+		margin-left: auto;
+		display: flex;
+		align-items: center;
+		color: $secondary-color;
+
+		&::before { // Enter icon
+			content: url('
+				data:image/svg+xml;utf8,
+				<svg viewBox="0 0 30 30" width="20" height="20" stroke="white" xmlns="http://www.w3.org/2000/svg">
+					<polyline fill="none" stroke-width="2" points="6.9 19.6 6.9 26.6 28.9 
+					26.6 28.9 3.4 6.9 3.4 6.9 10.4 "/>
+					<polygon fill="#ffffff" points="11.6 20.3 13.1 22 19.6 15.1 19.6 15.1 
+					19.6 15.1 13.1 8 11.6 9.7 15.4 13.9 1.1 13.9 1.1 16.2 15 16.2 "/>
+				</svg>');
+			margin-right: 13px;
+		}
+
+	}
+
+}
+
+/***** Header end *****/
+
+
+/***** Init screen *****/
+
+.initScreen {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	top: 0;
+	transform: translateZ(0); // Need for good FPS when we scroll
+
+	.textBlock {
+		width: 50%;
+		padding-left: 50px;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		position: relative;
+		z-index: 5;
+		opacity: 0;
+		transform: translateZ(0);
+	}
+
+	&.initAnimation .textBlock {
+		animation: showTextBlock 2s 2s ease-out forwards;
+	}
+
+	@keyframes showTextBlock {
+		100% {
+			opacity: 1;
+		}
+	}
+
+	.textBlock > * {
+		max-width: 500px;
+	}
+
+	.textTitle {
+		margin-bottom: 30px;
+		font-size: $big-title;
+		text-transform: uppercase;
+		line-height: 1.6;
+		letter-spacing: 1px;
+	}
+
+	.textDescription {
+		margin-bottom: 60px;
+		line-height: 1.8;
+		color: $secondary-color;
+	}
+
+	.howToButton {
+		@include setButton;
+		background: linear-gradient(to right, $elements-color, #e16f1a);
+		border: none;
+		color: $basic-color;
+		position: relative;
+		z-index: 1;
+
+		&::after {
+			content: '';
+			width: 100%;
+			height: 100%;
+			border-radius: 50px/50px;
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			background: linear-gradient(to right, #e16f1a, #fead00);
+			z-index: -1;
+			opacity: 0;
+			transition: opacity 0.15s;
+		}
+
+		&:hover::after {
+			opacity: 1;
+		}
+	}
+
+	.parallax {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
+		perspective: 900px;
+		transform: translateZ(0);
+		transition: transform 1s ease-out;
+		& * {
+			position: absolute;
+			background-repeat: no-repeat;
+			transform: translateZ(0);
+			transform-origin: 50% 50%;
+			transition: inherit;
+		}
+	}
+
+	.paralaxWrapper {
+		width: 100%;
+		height: 100%;
+		transform: translateZ(0);
+		transition: transform 0.5s linear;
+		-webkit-will-change: transform;
+		will-change: transform;
+	}
+
+	&.setSprecialTransition .paralaxWrapper {
+		transition: transform 0.15s ease-out;
+	}
+	
+	.bg {
+		width: 113%;
+		height: 102%;
+		background: black url(../images/initScreen-bg.jpg) no-repeat center bottom;
+		background-size: cover;
+		position: absolute;
+		left: -3%;
+		top: -2%;
+		transform: translateZ(0);
+		-webkit-will-change: transform;
+		will-change: transform;
+
+		&::after {
+			content: '';
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
+			background-color: black;
+			opacity: 0.7;
+		}
+	}
+
+	.player-1 {
+		width: 63.806vh;
+		height: 87.065vh;
+		left: 10vw;
+		bottom: 1.5vh;
+		background-image: url(../images/initScreen-player-1.png);
+		background-size: auto 100%;
+		z-index: 1;
+		transform-origin: 100% 50%;
+		transform-origin: calc(50vw - 10vw) calc(-50vh + 1.5vh + 87.065vh);
+		-webkit-will-change: transform;
+		will-change: transform;
+	}
+
+	.player-1,
+	.player-2,
+	.ball,
+	.bg-players {
+		transform: scale(0.975, 0.975);
+	}
+
+	&.initAnimation {
+		.player-1,
+		.player-2,
+		.ball,
+		.bg-players {
+			animation: scaleObjects 1.5s ease-out forwards;
+		}
+	}
+
+	@keyframes scaleObjects {
+		to {
+			transform: scale(1, 1);
+		}
+	}
+
+	.player-2 {
+		width: 51.866vh;
+		height: 89.18vh;
+		left: 39.5vw;
+		bottom: 7.5vh;
+		background-image: url(../images/initScreen-player-2.png);
+		background-size: auto 100%;
+		z-index: 1;
+		transform-origin: calc(50vw - 39.5vw) calc(-50vh + 7.5vh + 89.18vh);
+		-webkit-will-change: transform;
+		will-change: transform;
+	}
+
+	.ball {
+		width: 13.5vh;
+		height: 13.5vh;
+		left: 18.7vw;
+		bottom: 1.8vh;
+		background-image: url(../images/initScreen-ball.png);
+		background-size: auto 100%;
+		z-index: 2;
+		transform-origin: calc(50vw - 18.7vw) calc(-50vh + 1.8vh + 13.5vh);
+		-webkit-will-change: transform;
+		will-change: transform;
+	}
+
+	.bg-players {
+		width: 103.982vh;
+		height: 82.588vh;
+		right: -20px;
+		top: -2px;
+		background-image: url(../images/initScreen-bg-players.png);
+		background-size: auto 100%;
+		transform: translateZ(0);
+		transform-origin: calc(-50vw + 103.982vh - 20px) calc(50vh - 2px);
+		-webkit-will-change: transform;
+		will-change: transform;
+	}
+
+	.grass {
+		width: 110%;
+		height: 100%;
+		position: absolute;
+		left: -5%;
+		bottom: 0;
+		background: url(../images/initScreen-grass.png) no-repeat center bottom;
+		background-size: 100% auto;
+		transform: translateZ(0);
+		-webkit-will-change: transform;
+		will-change: transform;
+	}
+
+	.secondToning {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
+		background-color: black;
+		opacity: 0;
+		transform: translateZ(0);
+		transition: opacity 0.2s linear;
+		z-index: 1000;
+		pointer-events: none;
+		-webkit-will-change: opacity;
+		will-change: opacity;
+	}
+
+	.scrollIcon {
+		@include scrollIcon;
+		position: absolute;
+		left: calc(50% - 5px);
+		bottom: 30px;
+		z-index: 10;
+	}
+
+	.initScreenSvg1 {
+		width: 229%;
+		height: 422%;
+		position: absolute;
+		left: -105%;
+		top: -297%;
+		transform: translateZ(0);
+
+		.ballCircle {
+			opacity: 0;
+		}
+
+		.dotCircle {
+			opacity: 0;
+		}
+
+		.pathFromBallCircle {
+			stroke-dashoffset: 192px;
+			stroke-dasharray: 192px;
+		}
+
+		.textCircle1 {
+			opacity: 0;
+		}
+
+		.textCircle2 {
+			opacity: 0;
+		}
+	}
+
+	.initScreenSvg2 {
+		width: 63%;
+		height: 70%;
+		position: absolute;
+		left: 27%;
+		top: 6%;
+		transform: translateZ(0);
+	
+		.circle1 {
+			opacity: 0;
+		}
+
+		.circle1Dot {
+			opacity: 0;
+		}
+
+		.lineFromCircle1 {
+			stroke-dashoffset: 163px;
+			stroke-dasharray: 163px;
+		}
+
+		.circle2 {
+			opacity: 0;
+		}
+
+		.lineFromCircle2 {
+			stroke-dashoffset: 221px;
+			stroke-dasharray: 221px;
+		}
+
+		.circle3 {
+			opacity: 0;
+		}
+
+		.lineFromCircle3 {
+			stroke-dashoffset: 150px;
+			stroke-dasharray: 150px;
+		}
+
+		.lineToNumbers {
+			stroke-dashoffset: 218px;
+			stroke-dasharray: 218px;
+		}
+
+		.circle4Dot {
+			opacity: 0;
+		}
+
+		.circle4 {
+			opacity: 0;
+		}
+
+		.numbers {
+			opacity: 0;
+		}
+	}
+
+	.ballCircle,
+	.secondDashedCircle {
+		stroke-dasharray: 6,6;
+		stroke-dashoffset: 0;
+	}
+
+	.ballCircle {
+	}
+
+	.secondDashedCircle {
+	}
+
+	@keyframes secondDashedCircleAnim {
+		to {
+			stroke-dashoffset: -500;
+		}
+	}
+
+	@keyframes ballCircleAnim {
+		to {
+			stroke-dashoffset: 500;
+		}
+	}
+
+	&.initAnimation {
+		.initScreenSvg1 {
+			.ballCircle {
+				transition: opacity linear 0.3s 1s;
+				opacity: 1;
+			}
+
+			.dotCircle {
+				transition: opacity linear 0.3s 1.3s;
+				opacity: 1;
+			}
+
+			.pathFromBallCircle {
+				transition: stroke-dashoffset linear 0.3s 1.3s;
+				stroke-dashoffset: 0;
+			}
+
+			.textCircle1 {
+				transition: opacity linear 0.3s 1.6s;
+				opacity: 1;
+			}
+
+			.textCircle2 {
+				transition: opacity linear 0.3s 1.9s;
+				opacity: 1;
+			}
+		}
+
+		.initScreenSvg2 {
+			.circle2 {
+				transition: opacity linear 0.3s 2s;
+				opacity: 1;
+			}
+
+			.lineFromCircle1,
+			.lineFromCircle2 {
+				transition: stroke-dashoffset linear 0.3s 1.7s;
+				stroke-dashoffset: 0;
+			}
+
+			.circle1Dot,
+			.circle1,
+			.circle3 {
+				transition: opacity linear 0.3s 2s;
+				opacity: 1;
+			}
+
+			.lineFromCircle3,
+			.lineToNumbers {
+				transition: stroke-dashoffset 0.3s 2s;
+				stroke-dashoffset: 0;
+			}
+
+			.circle4Dot,
+			.circle4,
+			.numbers {
+				transition: opacity linear 0.3s 2.3s;
+				opacity: 1;
+			}
+		}
+	}
+
+}
+
+/***** Init screen end *****/
+
+
+/***** Init slider *****/
+
+.initSlider {
+	height: calc(100vh - 55px);
+	display: flex;
+	position: relative;
+	overflow: hidden;
+	transition: transform 0.5s;
+
+	.sliderPicture {
+		width: 50%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: #161616;
+	}
+
+	/***** Svg ******/
+
+	.initSliderBg {
+		max-height: 90%;
+		transform: translateZ(0);
+		display: inline-block;
+	}
+
+	.sliderIcon {
+		transition: opacity 0.15s 0.15s;
+	}
+
+	.iconWraper {
+		transition: opacity 1s;
+
+		& * {
+			opacity: 0;
+		}
+
+		&.showWraper * {
+			opacity: 1;
+		}
+	}
+
+	.circles * {
+		transition: opacity 1s;
+		opacity: 0;
+	}
+
+	.showWraper + .layer3 .circles * {
+		opacity: 1 !important;
+	}
+
+	.showIcon * {
+		animation: animPath 0.8s forwards;
+	}
+
+	@keyframes animPath {
+		to {
+			stroke-dashoffset: 0;
+		}
+	}
+
+	.sliderIcon:not(.showIcon) {
+		opacity: 0;
+		transition: opacity 0.15s;
+	}
+
+	.circles path:nth-of-type(1) {
+		transition: opacity linear 0.5s 1s;
+	}
+
+	.circles path:nth-of-type(2) {
+		transition: opacity linear 0.5s 1.1s;
+	}
+
+	.circles path:nth-of-type(3) {
+		transition: opacity linear 0.5s 1.2s;
+	}
+
+	.circles path:nth-of-type(4) {
+		transition: opacity linear 0.5s 1.3s;
+	}
+
+	.showVerticalLines * {
+		animation: animPath 0.5s 1.4s forwards;
+	}
+
+	.starsAndCircles * {
+		transition: all 2s 1.8s;
+	}
+
+	.translateLayer {
+		transition: transform 0.15s ease-out !important;
+	}
+
+	/***** Svg end ******/
+
+	.sliderContent {
+		width: 50%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		position: relative;
+		background-color: #1b1b1b;
+		cursor: pointer;
+	}
+
+	.sliderDescriptions {
+		width: 400px;
+		height: 130px;
+		margin: auto 0;
+		position: relative;
+		top: 55px;
+		opacity: 0;
+		transform: translateZ(0) translateY(40px);
+		transition: opacity 4s, transform 1s;
+	}
+
+	.showSlideContent {
+		opacity: 1;
+		transform: translateZ(0) translateY(0);
+	}
+
+	.descriptionBlock {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
+		transform: translateX(20px);
+		transition: transform 0.3s ease-out, opacity 0.6s ease-out;
+		z-index: -1;
+		opacity: 0;
+	}
+
+	.descriptionTitle {
+		width: 100%;
+		margin: 0 0 35px 0;
+		font-size: 22px;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		color: $basic-color;
+	}
+
+	.description {
+		color: $secondary-color;
+		line-height: 1.5;
+	}
+
+	.sliderControls {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		position: absolute;
+		left: 0;
+		top: 0;
+		font-size: 0;
+	}
+
+	.sliderControl {
+		width: 15%;
+		height: 100%;
+		display: block;
+		position: absolute;
+		top: -52px;
+		background-color: transparent;
+		background-size: 25px auto;
+		background-repeat: no-repeat;
+		border: none;
+		cursor: pointer;
+
+		svg {
+			width: 25px;
+			pointer-events: none;
+			transition: fill 0.15s ease-out;
+		}
+
+		&.ahead {
+			padding-left: 5%;
+			right: 0;
+		}
+
+		&.back {
+			padding-right: 5%;
+			left: 0;
+		}
+
+		&:hover {
+			svg {
+				fill: #fead00;
+			}
+		}
+	}
+
+	.sliderState {
+		width: 100%;
+		height: 20px;
+		display: flex;
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		text-align: center;
+		cursor: auto;
+
+		.slideOne,
+		.slideTwo {
+			width: 50%;
+			height: 100%;
+			color: rgb(60, 60, 60);
+			border-bottom: 1px rgb(60, 60, 60) solid;
+			line-height: 20px;
+			font-size: 12px;
+			font-family: $font-light;
+			transition: color 0.3s 0.3s ease-out, border-color 0.3s 0.3s ease-out;
+
+			&.activeSlide {
+				border-bottom: 1px #a4a4a4 solid;
+				color: #a4a4a4;
+			}
+		}
+	}
+
+}
+
+/***** Init slider end *****/
+
+
+/***** Select tournaments *****/
+
+.selectTournament {
+
+	.selectButton {
+		@include setButton;
+		margin-bottom: 150px;
+		background: linear-gradient(to right, $elements-color, #e16f1a);
+		border: none;
+		color: $basic-color;
+		position: relative;
+		z-index: 1;
+
+		&::after {
+			content: '';
+			width: 100%;
+			height: 100%;
+			border-radius: 50px/50px;
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			background: linear-gradient(to right, #e16f1a, #fead00);
+			z-index: -1;
+			opacity: 0;
+			transition: opacity 0.15s;
+		}
+
+		&:hover::after {
+			opacity: 1;
+		}
+	}
+
+}
+
+/***** Select tournaments end *****/
+
+
+/***** Footer *****/
+
+.footer {
+	height: 55px;
+	padding: 0 $main-indent;
+	display: flex;
+	align-items: center;
+	position: relative;
+	background-color: #1f1f1f;
+	text-transform: uppercase;
+	color: #565656;
+	font-size: 12px;
+
+	.owner {
+		margin-right: 40px;
+	}
+
+	img {
+		height: 24px;
+		margin-right: 33px;
+
+		&:last-of-type {
+			margin-right: 0;
+		}
+
+		&.getSmaller {
+			height: 19px;
+		}
+	}
+
+	.navigation {
+		margin-left: auto;
+
+		a {
+			margin-right: 29px;
+		}
+
+		& :last-child {
+			margin-right: 0;
+		}
+	}
+
+}
+
+/***** Footer end *****/
+
+
+/***** Tutorial *****/
+
+.tutorial {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	position: fixed;
+	left: 0;
+	top: 0;
+	background-color: #191919;
+	z-index: -1;
+	opacity: 0;
+	transition: all 0.1s linear;
+
+	&.showTutorial {
+		z-index: 6;
+		opacity: 1;
+	}
+
+	.logo {
+		position: absolute;
+		left: 40px;
+		top: 20px;
+		z-index: 12;
+	}
+
+	.icons {
+		width: 50%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+		background-color: rgba(0, 0, 0, 0.5);
+		overflow: hidden;
+
+		&.setNormalTransition img {
+			transition: transform 0.15s ease-out;
+		}
+	}
+
+	.icon {
+		z-index: 2;
+		transition: transform 0.15s ease-out;
+	}
+
+	.circleWrapper path {
+		opacity: 0;
+
+		&:nth-of-type(1) {
+			transition: all 0.5s 0.6s;
+		}
+
+		&:nth-of-type(2) {
+			transition: all 0.5s 0.9s;
+		}
+	}
+
+	.showCircleWrapper path {
+		opacity: 1;
+	}
+	
+
+	.tutorialIcon:not(.currentIcon) {
+		opacity: 0;
+	}
+
+	.showIcon * {
+		animation: animPath 1s forwards;
+	}
+
+	.showLinesWrapper * {
+		animation: animPath 0.5s 1.2s forwards;
+	}
+
+	.initIcon * {
+		transition: opacity 1s;
+	}
+
+	.initIcon.showInitIcon * {
+		opacity: 1;
+	}
+
+	@keyframes animPath {
+		to {
+			stroke-dashoffset: 0;
+		}
+	}
+
+	.slideBg {
+		width: 110%;
+		height: 110vh;
+		position: absolute;
+		left: -5%;
+		top: -5%;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center bottom;
+		opacity: 0;
+		transform: translateZ(0);
+		transition: opacity 0.5s, transform 0.15s ease-out;
+
+		&.show {
+			z-index: 1;
+			opacity: 1;
+		}
+
+		&.showBgIcons .icon {
+			transform: scale(1);
+			opacity: 1;
+		}
+	}
+
+	.selectTornament {
+		background-image: url(../images/tutorialBg-1.jpg);
+		opacity: 1;
+
+		img {
+			display: none;
+		}
+
+		// img {
+		// 	position: absolute;
+		// 	transform: translateZ(0);
+		// 	background-size: 100% auto;
+		// 	background-repeat: no-repeat;
+		// 	transition: transform 1.5s linear;
+		// 	filter: brightness(0.4);
+		// }
+
+		// img:nth-of-type(1) {
+		// 	left: -65px;
+		// 	top: 0px;
+		// 	transform-origin: 100% 50%;
+		// 	background-size: auto 100%;
+		// }
+
+		// img:nth-of-type(2) {
+		// 	right: 3%;
+		// 	bottom: 5%;
+		// 	transform-origin: 0 0;
+		// }
+
+		// img:nth-of-type(3) {
+		// 	left: 5%;
+		// 	bottom: 5%;
+		// 	transform-origin: 100% 0;
+		// }
+
+		// img:nth-of-type(4) {
+		// 	right: -5%;
+		// 	top: 15%;
+		// 	transform-origin: 0 0;
+		// }
+
+		// img:nth-of-type(5) {
+		// 	left: 40%;
+		// 	transform-origin: 0 50vh;
+		// }
+	}
+
+	.assembleTeam {
+		background-image: url(../images/tutorialBg-2.jpg);
+	}
+
+	.getPoints {
+		background-image: url(../images/tutorialBg-3.jpg);
+	}
+
+	.goToLeaders {
+		background-image: url(../images/tutorialBg-4.jpg);
+	}
+
+	.track {
+		width: calc( 50% + 17px );
+		height: 400vh;
+		position: relative;
+		background-color: #1b1b1b;
+		transform: translateZ(0);
+		transition: all 0.25s;
+	}
+
+	.slideContent {
+		width: 100%;
+		height: 100vh;
+		padding: 40px 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		letter-spacing: 1px;
+		position: absolute;
+		opacity: 0;
+		transform: translateZ(0) translateY(0px);
+		transition: all 0.25s;
+
+		&:first-of-type {
+			justify-content: flex-end;
+		}
+	}
+
+	.show {
+		opacity: 1;
+		transform: translateZ(0) translateY(0);
+	}
+
+	.mainTitle {
+		margin-top: 95px;
+		font-size: 26px;
+		text-transform: uppercase;
+	}
+
+	.sliderNumber {
+		min-width: 66px;
+		min-height: 66px;
+		margin-top: 60px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEIAAABCCAMAAADUivDaAAABy1BMVEUAAAD/lwD/eAD/qAD/rQD/rgD/rAD/cQD/dAD/qAD/dwD/iQD/cAD/dQD/mgD/qgD/rQD/cgD/rAD/jwD/cQD/iQD/cgD/pQD/cAD/dAD/fgD/mgD/bwD/dgD/qgD/cgD/iAD/qgD/qAD/dwD/cAD/dwD/qAD/kAD/cAD/hQD/egD/pAD/bwD/lgD/eQD/ogD/fQD/rAD/qAD/mwD/fgD/qwD/qQD/qAD/dgD/oAD/lgD/rgD/bwD/qAD/nwD/igD/fwD/fQD/qAD/rQD/pwD/kgD/gQD/pAD/egD/qgD/jwD/eAD/cwD/pgD/jwD/bwD/rgD/ggD/rQD/cAD/rgD/iQD/bwD/qgD/cwD/hwD/rQD/bwD/pQD/egD/qwD/cgD/mgD/hAD/ngD/cAD/cAD/ogD/iAD/gAD/rAD/oAD/lgD/iAD/fgD/cQD/rQD/bwD/qQD/mgD/hAD/cAD/lwD/lQD/dwD/rQD/pwD/dQD/rQD/mwD/ggD/qgD/owD/dQD/qAD/rQD/kwD/iwD/jwD/cwD/jgD/oQD/oQD/mAD/jAD/jAD/mwD/mwD/lAD/ogD/ogD/pQD/qAD/qAD/bwD/bwD/hQD/jwD/bwC4X3hfAAAAl3RSTlMADQsL7eKcnFIdEwXt6uPhijElIiAcHBPj4I2IiHZ0WllYUT0nJCLz6OTj4uGtnZybjS8tLCgbFhYQCPn27e3t7evp6Obl5N3c0NDQ0M/Pzs3Nx8ewsLCvr6yrqqeloqKbm46NjIuJiIODgoKCgnt7eHRzclpZVlJQUEhERD49NzUzMzMoEPrs6+vk3c7MsKKYk1xbSUcv1CE2VwAAAgxJREFUeNqt2IdSE2EUhuE3TdN7ISQQEAgQCEV6RFEECyr23gUbVhTsBRG7YhcvV3eEGcyk7O7Z5wJ2ds/+5XyHokKziez4aOPSUuP78cOXakJo9Pic9112amY+YgJT5GXNteNDzeefoFpvwvtxuos8v+7s33Y5ghrp9k0Xuiiou3JzRwPlWC6+uRqjKOf1LZVmSlrX8iVGSc6OjJ3icu3bn1FW3Y62HEU49pwyoYLp9K4oBa0fqUalqkyAAuaGa1Htnud5gXfY+AANHnoC5HH4vqFJKp5XD8vO22hUtdvMamuOotmxtf+tKN8Amr2K21d9hu8pOtRVmFnhP4MuZydZFrT2oUu/u2GlllfQ6cZyRR3WGDo53VEU/k50m0gCuLYG0a2+yQU8OoDAwZ9KMasRuKsU1NaDQH0rpG2IVISpPYHIyRT+m4jcSnLoPiL2I+x7gUhgL7ZeRKJNWE2ImAfZgNBv8SNcg+IPcbrF5Qy3GvFT5UvLiAUu32ZGbHb5kSM/+OTH7w8DLgHpVTSZNOBClF/LxjUHdOptUSYMaJTk7Zq8aTS6dSU9/B1NUp6w8W08zI1IwwT0tKiPNPFucbAKU0Tuq8p4Zy4ZMj/3UVJ/W8ZeLuq+lUVdRVAauBWOhPfT9AJ5Fv7Ffi3DB292anY+YsE1EFKGD83K8EGj0ExicezvCOT10IexkiOQP3AWXF2M9gOLAAAAAElFTkSuQmCC') center center;
+		background-size: 100% auto;
+		font-family: $font-light;
+		transform: translateY(10px);
+		transition: transform 0.25s;
+	}
+
+	.slideTitle {
+		max-width: 300px;
+		margin: 60px 0 56px 0;
+		text-transform: uppercase;
+		font-size: 16px;
+		line-height: 1.5;
+		text-align: center;
+		font-family: $font-light;
+		transform: translateY(10px);
+		transition: transform 0.25s;
+	}
+
+	.trackLine {
+		width: 1px;
+		height: 170px;
+		background-color: #2f2f2f;
+		position: relative;
+
+		$arrow: url('
+				data:image/svg+xml;utf8,
+				<svg xmlns="http://www.w3.org/2000/svg" width="7" height="8">
+				<path fill-rule="evenodd"  fill="#2f2f2f"
+				 d="M7.000,4.533 L3.500,8.000 L-0.000,4.533 L3.000,4.533 L3.000,-0.000 L4.000,-0.000 L4.000,4.533 L7.000,4.533 Z"/>
+				</svg>');
+
+		&.downArrow {
+			margin-bottom: 60px;
+		}
+
+		&.downArrow::after {
+			content: $arrow;
+			width: 30px;
+			height: 30px;
+			position: absolute;
+			left: -15px;
+			bottom: -60px;
+			text-align: center;
+		}
+
+		&.upArrow {
+			margin-top: 60px;
+		}
+
+		&.upArrow::before {
+			content: $arrow;
+			width: 30px;
+			height: 30px;
+			position: absolute;
+			left: -15px;
+			top: -60px;
+			text-align: center;
+			transform: rotateZ(180deg);
+		}
+	}
+
+	.scrollIcon {
+		@include scrollIcon;
+		width: 11px;
+		flex-basis: 30px;
+		min-height: 33px;
+		margin-top: 30px;
+		position: relative;
+		font-size: 0;
+		z-index: 10;
+	}
+
+	.select {
+		@include setButton;
+		background: linear-gradient(to right, $elements-color, #e16f1a);
+		border: none;
+		color: $basic-color;
+		position: relative;
+		z-index: 1;
+		transform: translateY(20px);
+		transition: transform 0.3s !important;
+
+		&::after {
+			content: '';
+			width: 100%;
+			height: 100%;
+			border-radius: 50px/50px;
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			background: linear-gradient(to right, #e16f1a, #fead00);
+			z-index: -1;
+			opacity: 0;
+			transition: opacity 0.15s;
+		}
+
+		&:hover::after {
+			opacity: 1;
+		}
+	}
+
+	//@include setBordergradient('.select', #1b1b1b);
+
+	.progressLine {
+		width: 2px;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		z-index: 1;
+	}
+
+	.progressStep {
+		width: 100%;
+		margin-bottom: 2px;
+		flex: 1;
+		display: flex;
+		position: relative;
+		align-items: center;
+		text-indent: 22px;
+		font-size: 11px;
+		font-family: $font-light;
+		background-color: #2f2f2f;
+
+		&:last-of-type {
+			margin-bottom: 0;
+		}
+	}
+
+	.indicator {
+		width: 100%;
+		height: 100%;
+		background-color: $elements-color;
+		position: absolute;
+		left: 0;
+		top: 0;
+		transform: scaleY(0);
+		transform-origin: 0 0;
+		transition: transform 0.5s, background-color 0.5s;
+
+		&.active {
+			transform: scaleY(1);
+		}
+
+		&.previous {
+			background-color: #8b5808;
+		}
+
+		& + .slideNumber {
+			transition: color 1s;
+			color: $secondary-color;
+		}
+
+		&.active + .slideNumber {
+			color: $basic-color;
+		}
+
+		&.previous + .slideNumber {
+			color: $secondary-color;
+		}
+	}
+
+	.close {
+		@include closeIcon;
+		right: 20px;
+		top: 10px;
+		z-index: 3000;
+	}
+
+}
+
+/***** Tutorial end *****/
+
+
+/***** Tournament list *****/
+
+.tournamentList {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 5;
+	display: none;
+	overflow: hidden;
+
+	.goBackButton {
+		width: 50px;
+		height: 70px;
+		margin: 0 6%;
+		z-index: 1;
+		border: none;
+		background: $arrowIcon no-repeat;
+		background-size: auto 22px;
+		background-position: 50% 50%;
+		transform: rotateZ(90deg);
+		opacity: 0;
+		transition: transform 0.25s;
+		cursor: pointer;
+	}
+
+	* {
+		outline: none;
+	}
+
+	&.showTournamentList {
+		display: flex;
+	}
+
+	.introduction {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		background-size: cover;
+	}
+
+	.translatedBg {
+		width: 55vw;
+		height: 105vh;
+		background: url(../images/tournamentsList-bg.jpg) no-repeat left center;
+		background-size: 100% auto;
+		position: absolute;
+		left: -2.5%;
+		top: -2.5%;
+		z-index: -1;
+		transition: transform 0.15s ease-out;
+	}
+
+	.logo {
+		position: absolute;
+		left: 40px;
+		top: 20px;
+	}
+
+	.title {
+		margin-bottom: 35px;
+		font-size: 26px;
+		text-transform: uppercase;
+		text-align: center;
+		letter-spacing: 3px;
+	}
+
+	.description {
+		line-height: 1.7;
+		text-align: center;
+		letter-spacing: 1px;
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	.list {
+		min-width: 620px;
+		width: 50vw;
+		height: 100vh;
+		position: static;
+		right: 0;
+		top: 0;
+		transform: translateZ(0);
+		perspective: 500px;
+		background-color: #191919;
+	}
+
+	.eng {
+		top: 0;
+	}
+
+	.fr {
+		top: 20vh;
+	}
+
+	.esp {
+		top: 40vh;
+	}
+
+	.it {
+		top: 60vh;
+	}
+
+	.ru {
+		top: 80vh;
+	}
+
+	.tournament {
+		width: 100%;
+		height: auto;
+		position: absolute;
+		transition: all 0.3s;
+		z-index: 0;
+
+		&.goToTop {
+			top: 0;
+		}
+	}
+
+	.selectTournamentTitle {
+		height: 20vh;
+		display: flex;
+		align-items: center;
+		position: relative;
+		border-bottom: 1px #222222 solid;
+		background: #191919 no-repeat calc(100% - 115px) center;
+		text-transform: uppercase;
+		font-family: $font-light;
+		letter-spacing: 1px;
+		cursor: pointer;
+		transition: height 0.3s, background 0.15s, border 0.15s;
+		z-index: 123123;
+		-webkit-will-change: height;
+		will-change: height;
+
+		&.open {
+			height: 16vh;
+			.goBackButton {
+				opacity: 1;
+				transform: rotateZ(90deg) scaleX(-1);
+			}
+		}
+
+		&.open + .tournamentBlock {
+			height: 88vh;
+			opacity: 1;
+		}
+
+		.tournamentName {
+			transform: translateX(calc(-4vw + 63px)) translateZ(0);
+			transition: all 0.3s;
+			-webkit-will-change: transform, width;
+			will-change: transform, width;
+		}
+
+		&:not(.open):hover,
+		&:not(.open):focus {
+			border-bottom: 1px #1d1d1d solid;
+			background-color: #1d1d1d;
+			outline: none;
+
+			&::before {
+				background-color: $elements-color;
+			}
+
+			.goBackButton {
+				opacity: 1;
+			}
+		}
+
+		&::before {
+			content: '';
+			width: 1px;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background-color: transparent;
+			transition: background-color 0.3s;
+		}
+	}
+
+	.iconWrapper {
+		width: 63px;
+		margin: 0 8% 0 0;
+		text-align: center;
+	}
+
+	.tournamentIcon {
+		max-width: 63px;
+		margin-right: 10%;
+		object-fit: cover;
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select:none;
+		user-select:none;
+		transition: all 0.3s;
+		transform: translateZ(0);
+	}
+
+	.closeTournaments {
+		@include closeIcon;
+		right: 20px;
+		top: 10px;
+	}
+
+	.tournamentTitle {
+		font-size: 16px;
+		text-transform: uppercase;
+		font-family: $font-light;
+		text-align: center;
+
+		.icon {
+			width: 120px;
+			height: 120px;
+		}
+
+		.name {
+			margin-top: 40px;
+		}
+	}
+
+	.goBack {
+		width: 50px;
+		height: 51px;
+		padding-right: 100px;
+		display: none;
+		position: absolute;
+		left: 0;
+		top: 120px;
+		border: none;
+		background: url('
+				data:image/svg+xml;utf8,
+				<svg stroke="rgb(255, 174, 0)" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path stroke-width="1.3" d="M8.638,20.500 L0.500,10.500 L8.638,0.500 "/>
+				</svg>') no-repeat;
+		background-position: 20px 13px;
+		cursor: pointer;
+		z-index: 6;
+		transition: transform 0.1s;
+
+		&:hover {
+			transform: translateX(-3px);
+		}
+
+		&:focus {
+			transform: translateX(-3px);
+		}
+
+	}
+
+}
+
+/***** Tournament list end *****/
+
+
+/***** Tournament block *****/
+.tournamentBlock {
+	width: 100%;
+	height: 0;
+	z-index: 5;
+	overflow: auto;
+	transform: translateZ(0);
+	transition: height 0.3s, opacity 0.3s;
+	background-color: #191919;
+	opacity: 0;
+	-webkit-will-change: height;
+	will-change: height;
+
+	.tournamentItem {
+		width: 700px;
+		margin: 0 auto 0 auto;
+	}
+
+	.timeBefore {
+		margin: 130px 0 15px 0;
+		padding: 0 0 60px 0;
+		font-size: 14px;
+		text-align: center;
+		text-transform: uppercase;
+    top: 0;
+    z-index: 10;
+	}
+
+	.roomes {
+		width: 350px;
+	}
+
+	@media all and (max-width: 1350px) {
+		.roomes {
+			width: 230px;
+		}
+	}
+
+	.room {
+		padding: 4px 30px 70px 0;
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		text-align: right;
+		font-size: 14px;
+		text-transform: uppercase;
+
+		&::after {
+			content: '';
+			width: 1px;
+			height: 100%;
+			position: absolute;
+			right: 0;
+			top: 0;
+			background-color: $elements-color;
+		}
+
+		&::before {
+			content: '';
+			width: 7px;
+			height: 7px;
+			position: absolute;
+			right: -3px;
+			top: 0px;
+			border-radius: 50%;
+			background-color: $elements-color;
+			z-index: 1;
+		}
+
+		&:last-of-type::after {
+			display: none
+		}
+	}
+
+	.date {
+		margin-bottom: 15px;
+		display: inline-block;
+		font-size: 12px;
+		color: $secondary-color;
+	}
+
+	.roomTitle {
+		margin-bottom: 15px;
+	}
+
+	.parameters {
+		display: flex;
+	}
+
+	.parameters > * {
+		margin-right: 17px;
+		display: flex;
+		align-items: center;
+
+		&:last-of-type {
+			margin-right: 0;
+		}
+
+		.itemIcon {
+			margin-right: 7px;
+		}
+	}
+
+	.goToRoom {
+		width: 140px;
+		height: 38px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: 30px;
+		position: relative;
+		font-size: 12px;
+		border: 1px #fead00 solid;
+		border-radius: 50px/50px;
+		transition: box-shadow 0.15s;
+	
+		&::after {
+			content: '';
+			width: 13px;
+			height: 13px;
+			position: absolute;
+			top: 11px;
+			font-size: 12px;
+			background: url('
+				data:image/svg+xml;utf8,
+				<svg xmlns="http://www.w3.org/2000/svg"
+						 viewBox="0 0 30 30"
+						 width="13px"
+						 height="13px"
+						 fill="none"
+						 stroke="#fead00"
+						 stroke-width="2px">
+						 <path d="M2.5,15.4h25.7"/>
+						 <path d="M10.2,6.3l-8.4,9l8.4,9"/>
+				</svg>');
+			right: 25px;
+			transform: rotateZ(-180deg) scaleX(0);
+			transform-origin: 100% 50%;
+			transition: transform 0.05s, opacity 0.05s;
+			opacity: 0;
+		}
+
+		&:hover::after {
+			transform: rotateZ(-180deg) scaleX(1);
+			opacity: 1;
+		}
+	}
+
+	.matches {
+		width: 350px;
+		padding: 0 0 170px 30px;
+		float: right;
+		position: -webkit-sticky;
+    position: sticky;
+    top: 75px;
+
+    &::after {
+    	content: '';
+    	width: 100%;
+    	display: block;
+    	clear: both;
+    }
+	}
+
+	@media all and (max-width: 1350px) {
+		.tournamentItem {
+			width: 580px;
+			margin: 0 auto;
+		}
+		.matches {
+			float: right;
+		}
+	}
+
+	.match {
+		margin-bottom: 50px;
+		display: flex;
+		align-items: center;
+		font-size: 12px;
+		text-transform: uppercase;
+
+		.flag:first-of-type {
+			margin-left: 20px;
+		}
+
+		.flag:last-of-type {
+			margin-right: 20px;
+		}
+	}
+
+	.country {
+		// Need for correct vertical align because we use uppercase
+		padding-top: 2px;
+	}
+
+	.startTime {
+		margin: 0 28px;
+		font-size: 14px;
+		color: $secondary-color;
+	}
+
+	.itemsWrapper {
+		// position: relative;
+	}
+
+	// .progressLine {
+	// 	width: 1px;
+	// 	height: 90vh;
+	// 	position: fixed;
+	// 	top: 0;
+	// 	left: 0;
+	// 	z-index: 500;
+
+	// 	.line {
+	// 		width: 1px;
+	// 		height: 50%;
+	// 		position: relative;
+	// 		background-color: #fead00;
+	// 	}
+
+	// 	.line::after {
+	// 		content: attr(data-title);
+	// 		width: 100px;
+	// 		padding: 8px 0;
+	// 		position: absolute;
+	// 		left: 0;
+	// 		bottom: 0;
+	// 		font-size: 12px;
+	// 		text-align: center;
+	// 		// color: $secondary-color;
+	// 		color: white;
+	// 		//background-color: #fead00;
+	// 		//border-bottom: 1px #fead00 solid;
+	// 	}
+	// }
+
+}
+
+/***** Tournament block end *****/
+
