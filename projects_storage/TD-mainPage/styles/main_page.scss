@@ -45,15 +45,11 @@ $borderGradient: url('
 					 d="M26.236,0.500 L211.765,0.500 C225.977,0.500 237.500,12.141 237.500,26.500 C237.500,40.859 225.977,52.500 211.765,52.500 L26.236,52.500 C12.022,52.500 0.500,40.859 0.500,26.500 C0.500,12.141 12.022,0.500 26.236,0.500 Z"/>
 				</svg>');
 
-$aheadIcon: url("data:image/svg+xml;utf8,
-					 		<svg xmlns='http://www.w3.org/2000/svg' width='550' height='550' viewBox='0 0 550 550' fill='#a4a4a4'>
+$arrowIcon: url("data:image/svg+xml;utf8,
+					 		<svg xmlns='http://www.w3.org/2000/svg' width='550' height='550' viewBox='0 0 550 550' fill='#fead00'>
 					 			<path d='M360.731,229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1l215.5,215.5l-215.5,215.5   c-5.3,5.3-5.3,13.8,0,19.1c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-4l225.1-225.1C365.931,242.875,365.931,234.275,360.731,229.075z'/>
 					 		</svg>");
 
-$backIcon: url("data:image/svg+xml;utf8,
-					 		<svg xmlns='http://www.w3.org/2000/svg' width='550' height='550' viewBox='0 0 550 550' fill='#a4a4a4'>
-					 			<path d='M145.188,238.575l215.5-215.5c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-225.1,225.1c-5.3,5.3-5.3,13.8,0,19.1l225.1,225 c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4c5.3-5.3,5.3-13.8,0-19.1L145.188,238.575z'/>
-					 		</svg>");
 // Mixins/extends
 
 @mixin setButton {
@@ -419,7 +415,7 @@ body {
 		font-size: $big-title;
 		text-transform: uppercase;
 		line-height: 1.6;
-		letter-spacing: 4px;
+		letter-spacing: 1px;
 	}
 
 	.textDescription {
@@ -823,6 +819,7 @@ body {
 	.initSliderBg {
 		max-height: 90%;
 		transform: translateZ(0);
+		display: inline-block;
 	}
 
 	.sliderIcon {
@@ -890,7 +887,7 @@ body {
 	}
 
 	.translateLayer {
-		transition: transform 0.3s linear !important;
+		transition: transform 0.15s ease-out !important;
 	}
 
 	/***** Svg end ******/
@@ -901,18 +898,19 @@ body {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: center;
 		position: relative;
 		background-color: #1b1b1b;
 		cursor: pointer;
 	}
 
 	.sliderDescriptions {
-		width: 100%;
-		height: 100%;
+		width: 400px;
+		height: 130px;
+		margin: auto 0;
 		position: relative;
+		top: 55px;
 		opacity: 0;
-		transform: translateZ(0) translateY(70px);
+		transform: translateZ(0) translateY(40px);
 		transition: opacity 4s, transform 1s;
 	}
 
@@ -922,19 +920,15 @@ body {
 	}
 
 	.descriptionBlock {
-		width: 380px;
+		width: 100%;
+		height: 100%;
 		position: absolute;
-		left: calc(50% - 190px);
-		top: calc(50vh - 133px);
-		transform: translateY(10px);
+		left: 0;
+		top: 0;
+		transform: translateX(20px);
 		transition: transform 0.3s ease-out, opacity 0.6s ease-out;
 		z-index: -1;
 		opacity: 0;
-	}
-
-	.descriptionBlock:nth-of-type(1) {
-		width: 300px;
-		left: calc(50% - 150px);
 	}
 
 	.descriptionTitle {
@@ -942,7 +936,7 @@ body {
 		margin: 0 0 35px 0;
 		font-size: 22px;
 		text-transform: uppercase;
-		letter-spacing: 4px;
+		letter-spacing: 2px;
 		color: $basic-color;
 	}
 
@@ -963,36 +957,31 @@ body {
 	}
 
 	.sliderControl {
-		width: 20%;
+		width: 15%;
 		height: 100%;
 		display: block;
 		position: absolute;
-		top: 0;
+		top: -52px;
 		background-color: transparent;
 		background-size: 25px auto;
 		background-repeat: no-repeat;
 		border: none;
 		cursor: pointer;
 
-		&.ahead {
-			right: 0;
-			// background-image: $aheadIcon;
-			background-position: calc(100% - 25px) center;
+		svg {
+			width: 25px;
+			pointer-events: none;
+			transition: fill 0.15s ease-out;
+		}
 
-			svg {
-				width: 25px;
-				pointer-events: none;
-			}
+		&.ahead {
+			padding-left: 5%;
+			right: 0;
 		}
 
 		&.back {
+			padding-right: 5%;
 			left: 0;
-			background-position: 25px center;
-
-			svg {
-				width: 25px;
-				pointer-events: none;
-			}
 		}
 
 		&:hover {
@@ -1002,14 +991,32 @@ body {
 		}
 	}
 
-	.scrollPos {
-		width: 10px;
-		height: 10px;
+	.sliderState {
+		width: 100%;
+		height: 20px;
+		display: flex;
 		position: absolute;
 		left: 0;
-		top: -100vh;
-		background-color: red;
-		z-index: 300;
+		bottom: 0;
+		text-align: center;
+		cursor: auto;
+
+		.slideOne,
+		.slideTwo {
+			width: 50%;
+			height: 100%;
+			color: rgb(60, 60, 60);
+			border-bottom: 1px rgb(60, 60, 60) solid;
+			line-height: 20px;
+			font-size: 12px;
+			font-family: $font-light;
+			transition: color 0.3s 0.3s ease-out, border-color 0.3s 0.3s ease-out;
+
+			&.activeSlide {
+				border-bottom: 1px #a4a4a4 solid;
+				color: #a4a4a4;
+			}
+		}
 	}
 
 }
@@ -1513,17 +1520,12 @@ body {
 		margin: 0 6%;
 		z-index: 1;
 		border: none;
-		background: transparent url('
-				data:image/svg+xml;utf8,
-				<svg xmlns="http://www.w3.org/2000/svg"
-						 width="10.5px" height="18.5px" stroke-width="0.9">
-				<path stroke="rgb(255, 174, 0)" fill="none" d="M1.925,0.500 L9.500,9.000 L1.925,17.500 "/>
-				</svg>') no-repeat;
+		background: $arrowIcon no-repeat;
 		background-size: auto 22px;
 		background-position: 50% 50%;
 		transform: rotateZ(90deg);
 		opacity: 0;
-		transition: opacity 0.3s, transform 0.15s;
+		transition: transform 0.25s;
 		cursor: pointer;
 	}
 
@@ -1551,8 +1553,8 @@ body {
 		background: url(../images/tournamentsList-bg.jpg) no-repeat left center;
 		background-size: 100% auto;
 		position: absolute;
-		left: -2.5;
-		top: -2.5;
+		left: -2.5%;
+		top: -2.5%;
 		z-index: -1;
 		transition: transform 0.15s ease-out;
 	}

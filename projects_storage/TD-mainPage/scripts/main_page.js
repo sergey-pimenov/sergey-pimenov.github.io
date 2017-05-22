@@ -172,7 +172,8 @@ var sliderIcon = document.getElementsByClassName('sliderIcon'),
 var sliderControl = document.getElementsByClassName('sliderControl'),
 		descriptionBlock = document.getElementsByClassName('descriptionBlock'),
 		sliderIcon = document.getElementsByClassName('sliderIcon'),
-		sliderContent = document.getElementsByClassName('sliderContent')[0];
+		sliderContent = document.getElementsByClassName('sliderContent')[0],
+		slidePoint = document.getElementsByClassName('sliderContent');
 
 var initSlider = document.getElementById('initSlider');
 
@@ -190,152 +191,117 @@ for( i = 0; i < descriptionBlock.length; i++ ) {
 	sliderIcons.push(sliderIcon[i]);
 }
 
-// Set current slider
-var currentSlider = 0;
-
 function setSliderState() {
 	// Initial initial state for slider objects
-	descriptionBlocks[currentSlider].style.transform = 'translateY(0)';
-  descriptionBlocks[currentSlider].style.zIndex = '1';
-  descriptionBlocks[currentSlider].style.opacity = '1';
-	sliderIcons[currentSlider].classList.add('currentIcon');
-
-	// Set initial active objects
-	activeDescription = descriptionBlocks[currentSlider];
-	activeIcon = sliderIcons[currentSlider];
+	descriptionBlocks[0].style.transform = 'translateX(0)';
+  descriptionBlocks[0].style.zIndex = '1';
+  descriptionBlocks[0].style.opacity = '1';
+	sliderIcons[0].classList.add('currentIcon');
 }
 
 setSliderState();
 
-var lastSlide = descriptionBlocks.length - 1;
-var direction = 'ahead';
+var sliderCounter = 0;
+var sliderState = 'not moved';
+var lastSlide;
+var slideOne = document.getElementsByClassName('slideOne')[0];
+var slideTwo = document.getElementsByClassName('slideTwo')[0];
 
 sliderContent.addEventListener('click', function(event) {
-	if( event.target.classList.contains('selectButton') ||
-			event.target.classList.contains('selectTournament') ||
-			event.target.classList.contains('sliderControl')) {
+	if (sliderState == 'moved') {
 		return;
 	}
-	if(sliderState != 'not moved') {
+	if(event.target.classList.contains('slidePoint')) {
 		return;
 	}
 	sliderState = 'moved';
-	setTimeout(function() {
-		sliderState = 'not moved';
-	}, 610)
+	lastSlide = sliderCounter;
+	sliderCounter == 0 ? sliderCounter = 1 : sliderCounter = 0;
 
-	if(currentSlider == lastSlide) {
-		direction = 'back';
+	if(sliderCounter == 0) {
+		slideTwo.classList.remove('activeSlide');
+		slideOne.classList.add('activeSlide');
+	} else {
+		slideOne.classList.remove('activeSlide');
+		slideTwo.classList.add('activeSlide');
 	}
 
-	if(direction == 'ahead') {
-		currentSlider++;
-	}
-	
-	if(direction == 'back') {
-		currentSlider--;
-		if(currentSlider == 0) {
-			direction = 'ahead';
-		}
-	}
-	goToSlide(currentSlider);
+	showSlide(sliderCounter, lastSlide, event.target);
+	sliderIcon[lastSlide].classList.remove('showIcon');
+	sliderIcon[sliderCounter].classList.add('showIcon');
 });
 
-function changeSliderContent(event) {
-	if(event.target.classList.contains('selectButton') || event.target.classList.contains('selectTournament')) {
-		return;
+function showSlide(nextSlide, lastSlide, target) {
+	if(!target.classList.contains('back')) {
+		showOne(nextSlide, lastSlide);
+	} else {
+		// Go back with special transition
+		showTwo(nextSlide, lastSlide);
 	}
-	if(sliderState != 'not moved') {
-		return;
-	}
+
 	setTimeout(function() {
 		sliderState = 'not moved';
-	}, 310)
-	// Detect count of slider that was clicked
-  var target = event.target;
-  var parent = target.parentNode;
-  for ( var i = 0; i < parent.children.length; i++ ) {
-  	if ( parent.children[i] == target ) {
-  		currentSlider = i;
-  	}
-  }
-
-  // Add active state for control and show new slide content
-  if(target.classList.contains('active')) {
-  	return;
-  }
-	target.classList.add('active');
-
-	goToSlide(currentSlider);
-	sliderState = 'moved';
+	}, 630)
 }
 
-var sliderState = 'not moved';
+function showOne(nextSlide, lastSlide) {
+	descriptionBlock[lastSlide].style.transform = 'translateX(-100px)';
+	descriptionBlock[lastSlide].style.opacity = '0';
 
-function goToSlide(currentSlider) {
-	// Remove active/visible state from last checked slide
-  activeDescription.style.transition = 'transform 0.3s 0.3s linear, opacity 0.3s linear';
-  activeDescription.style.transform = 'translateY(10px)';
-  activeDescription.style.zIndex = '-1';
-  activeDescription.style.opacity = '0';
-  activeIcon.classList.remove('showIcon');
+	descriptionBlock[nextSlide].style.transform = 'translateX(100px)';
 
-  setTimeout(function() {
-  	activeDescription.style.transition = 'transform 0.3s linear, opacity 0.3s linear';
-  	descriptionBlocks[currentSlider].style.transform = 'translateY(0)';
-  	descriptionBlocks[currentSlider].style.zIndex = '1';
-  	descriptionBlocks[currentSlider].style.opacity = '1';
-  }, 300)
-
-  sliderIcon[currentSlider].classList.add('showIcon');
-
-	// Remember checked slide control and slide content
-  activeDescription = descriptionBlocks[currentSlider];
-  activeIcon = sliderIcons[currentSlider];
+	setTimeout(function() {
+		descriptionBlock[nextSlide].style.opacity = '1';
+		descriptionBlock[nextSlide].style.transform = 'translateX(0)';
+	}, 310);
 }
 
-for(i = 0; i < sliderControl.length; i++) {
-	sliderControl[i].addEventListener('click', function(e) {
-		if(sliderState != 'not moved') {
-			return;
-		}
-		sliderState = 'moved';
-		setTimeout(function() {
-			sliderState = 'not moved';
-		}, 610)
+function showTwo(nextSlide, lastSlide) {
+	descriptionBlock[lastSlide].style.transform = 'translateX(100px)';
+	descriptionBlock[lastSlide].style.opacity = '0';
 
-		if(e.target.classList.contains('ahead')) {
-			if(currentSlider == (descriptionBlock.length - 1)) {
-				goToSlide(0);
-				currentSlider = 0;
-				return;
-			}
+	descriptionBlock[nextSlide].style.transform = 'translateX(-100px)';
 
-			goToSlide(++currentSlider)
-		}
-
-		if(e.target.classList.contains('back')) {
-			if(currentSlider == 0) {
-				goToSlide(descriptionBlock.length - 1);
-				currentSlider = descriptionBlock.length - 1;
-				return;
-			}
-
-			goToSlide(--currentSlider)
-		}
-	})
+	setTimeout(function() {
+		descriptionBlock[nextSlide].style.opacity = '1';
+		descriptionBlock[nextSlide].style.transform = 'translateX(0)';
+	}, 310);
 }
 
 
 
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -393,7 +359,7 @@ function moveSliderSvg(event) {
 	yPos = event.clientY;
 	layer0.style.transform = translate(xPos / 120, yPos / 90);
 	layer1.style.transform = translate(xPos / 100, yPos / 70);
-	layer2.style.transform = translate(xPos / 80, yPos / 50);
+	layer2.style.transform = translate(xPos / 80, yPos / 100);
 	layer3.style.transform = translate(xPos / 70, yPos / 40);
 }
 

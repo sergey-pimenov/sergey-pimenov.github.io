@@ -181,7 +181,7 @@ body {
     font-size: 26px;
     text-transform: uppercase;
     line-height: 1.6;
-    letter-spacing: 4px; }
+    letter-spacing: 1px; }
   .initScreen .textDescription {
     margin-bottom: 60px;
     line-height: 1.8;
@@ -483,7 +483,8 @@ body {
     background-color: #161616; }
   .initSlider .initSliderBg {
     max-height: 90%;
-    transform: translateZ(0); }
+    transform: translateZ(0);
+    display: inline-block; }
   .initSlider .sliderIcon {
     transition: opacity 0.15s 0.15s; }
   .initSlider .iconWraper {
@@ -519,45 +520,44 @@ body {
   .initSlider .starsAndCircles * {
     transition: all 2s 1.8s; }
   .initSlider .translateLayer {
-    transition: transform 0.3s linear !important; }
+    transition: transform 0.15s ease-out !important; }
   .initSlider .sliderContent {
     width: 50%;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     position: relative;
     background-color: #1b1b1b;
     cursor: pointer; }
   .initSlider .sliderDescriptions {
-    width: 100%;
-    height: 100%;
+    width: 400px;
+    height: 130px;
+    margin: auto 0;
     position: relative;
+    top: 55px;
     opacity: 0;
-    transform: translateZ(0) translateY(70px);
+    transform: translateZ(0) translateY(40px);
     transition: opacity 4s, transform 1s; }
   .initSlider .showSlideContent {
     opacity: 1;
     transform: translateZ(0) translateY(0); }
   .initSlider .descriptionBlock {
-    width: 380px;
+    width: 100%;
+    height: 100%;
     position: absolute;
-    left: calc(50% - 190px);
-    top: calc(50vh - 133px);
-    transform: translateY(10px);
+    left: 0;
+    top: 0;
+    transform: translateX(20px);
     transition: transform 0.3s ease-out, opacity 0.6s ease-out;
     z-index: -1;
     opacity: 0; }
-  .initSlider .descriptionBlock:nth-of-type(1) {
-    width: 300px;
-    left: calc(50% - 150px); }
   .initSlider .descriptionTitle {
     width: 100%;
     margin: 0 0 35px 0;
     font-size: 22px;
     text-transform: uppercase;
-    letter-spacing: 4px;
+    letter-spacing: 2px;
     color: white; }
   .initSlider .description {
     color: #a4a4a4;
@@ -572,38 +572,51 @@ body {
     top: 0;
     font-size: 0; }
   .initSlider .sliderControl {
-    width: 20%;
+    width: 15%;
     height: 100%;
     display: block;
     position: absolute;
-    top: 0;
+    top: -52px;
     background-color: transparent;
     background-size: 25px auto;
     background-repeat: no-repeat;
     border: none;
     cursor: pointer; }
+    .initSlider .sliderControl svg {
+      width: 25px;
+      pointer-events: none;
+      transition: fill 0.15s ease-out; }
     .initSlider .sliderControl.ahead {
-      right: 0;
-      background-position: calc(100% - 25px) center; }
-      .initSlider .sliderControl.ahead svg {
-        width: 25px;
-        pointer-events: none; }
+      padding-left: 5%;
+      right: 0; }
     .initSlider .sliderControl.back {
-      left: 0;
-      background-position: 25px center; }
-      .initSlider .sliderControl.back svg {
-        width: 25px;
-        pointer-events: none; }
+      padding-right: 5%;
+      left: 0; }
     .initSlider .sliderControl:hover svg {
       fill: #fead00; }
-  .initSlider .scrollPos {
-    width: 10px;
-    height: 10px;
+  .initSlider .sliderState {
+    width: 100%;
+    height: 20px;
+    display: flex;
     position: absolute;
     left: 0;
-    top: -100vh;
-    background-color: red;
-    z-index: 300; }
+    bottom: 0;
+    text-align: center;
+    cursor: auto; }
+    .initSlider .sliderState .slideOne,
+    .initSlider .sliderState .slideTwo {
+      width: 50%;
+      height: 100%;
+      color: #3c3c3c;
+      border-bottom: 1px #3c3c3c solid;
+      line-height: 20px;
+      font-size: 12px;
+      font-family: "ProximaNova-Light";
+      transition: color 0.3s 0.3s ease-out, border-color 0.3s 0.3s ease-out; }
+      .initSlider .sliderState .slideOne.activeSlide,
+      .initSlider .sliderState .slideTwo.activeSlide {
+        border-bottom: 1px #a4a4a4 solid;
+        color: #a4a4a4; }
 
 /***** Init slider end *****/
 /***** Select tournaments *****/
@@ -959,12 +972,12 @@ body {
     margin: 0 6%;
     z-index: 1;
     border: none;
-    background: transparent url('\a 				data:image/svg+xml;utf8,\a 				<svg xmlns="http://www.w3.org/2000/svg"\a 						 width="10.5px" height="18.5px" stroke-width="0.9">\a 				<path stroke="rgb(255, 174, 0)" fill="none" d="M1.925,0.500 L9.500,9.000 L1.925,17.500 "/>\a 				</svg>') no-repeat;
+    background: url("data:image/svg+xml;utf8,\a 					 		<svg xmlns='http://www.w3.org/2000/svg' width='550' height='550' viewBox='0 0 550 550' fill='#fead00'>\a 					 			<path d='M360.731,229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1l215.5,215.5l-215.5,215.5   c-5.3,5.3-5.3,13.8,0,19.1c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-4l225.1-225.1C365.931,242.875,365.931,234.275,360.731,229.075z'/>\a 					 		</svg>") no-repeat;
     background-size: auto 22px;
     background-position: 50% 50%;
     transform: rotateZ(90deg);
     opacity: 0;
-    transition: opacity 0.3s, transform 0.15s;
+    transition: transform 0.25s;
     cursor: pointer; }
   .tournamentList * {
     outline: none; }
@@ -984,8 +997,8 @@ body {
     background: url(../images/tournamentsList-bg.jpg) no-repeat left center;
     background-size: 100% auto;
     position: absolute;
-    left: -2.5;
-    top: -2.5;
+    left: -2.5%;
+    top: -2.5%;
     z-index: -1;
     transition: transform 0.15s ease-out; }
   .tournamentList .logo {
