@@ -537,8 +537,8 @@ body {
     position: relative;
     top: 55px;
     opacity: 0;
-    transform: translateZ(0) translateY(40px);
-    transition: opacity 4s, transform 1s; }
+    transform: translateY(20px);
+    transition: opacity 1s, transform 1s; }
   .initSlider .showSlideContent {
     opacity: 1;
     transform: translateZ(0) translateY(0); }
@@ -549,7 +549,7 @@ body {
     left: 0;
     top: 0;
     transform: translateX(20px);
-    transition: transform 0.3s ease-out, opacity 0.6s ease-out;
+    transition: all 0.2s ease-in-out;
     z-index: -1;
     opacity: 0; }
   .initSlider .descriptionTitle {
@@ -581,7 +581,11 @@ body {
     background-size: 25px auto;
     background-repeat: no-repeat;
     border: none;
-    cursor: pointer; }
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.25s; }
+    .initSlider .sliderControl:hover {
+      opacity: 1 !important; }
     .initSlider .sliderControl svg {
       width: 25px;
       pointer-events: none;
@@ -594,9 +598,11 @@ body {
       left: 0; }
     .initSlider .sliderControl:hover svg {
       fill: #fead00; }
+  .initSlider.showControls .sliderControl {
+    opacity: 1; }
   .initSlider .sliderState {
     width: 100%;
-    height: 20px;
+    height: 40px;
     display: flex;
     position: absolute;
     left: 0;
@@ -607,16 +613,16 @@ body {
     .initSlider .sliderState .slideTwo {
       width: 50%;
       height: 100%;
-      color: #3c3c3c;
-      border-bottom: 1px #3c3c3c solid;
-      line-height: 20px;
+      color: #a4a4a4;
+      border-bottom: 2px #2f2f2f solid;
+      line-height: 40px;
       font-size: 12px;
       font-family: "ProximaNova-Light";
-      transition: color 0.3s 0.3s ease-out, border-color 0.3s 0.3s ease-out; }
+      transition: color 0.3s 0.15s ease-out, border-color 0.3s 0.15s ease-out; }
       .initSlider .sliderState .slideOne.activeSlide,
       .initSlider .sliderState .slideTwo.activeSlide {
-        border-bottom: 1px #a4a4a4 solid;
-        color: #a4a4a4; }
+        border-bottom: 2px #fead00 solid;
+        color: white; }
 
 /***** Init slider end *****/
 /***** Select tournaments *****/
@@ -966,6 +972,10 @@ body {
   z-index: 5;
   display: none;
   overflow: hidden; }
+  .tournamentList .introText {
+    transition: transform 0.15s ease-out;
+    -webkit-will-change: transform;
+    will-change: transform; }
   .tournamentList .goBackButton {
     width: 50px;
     height: 70px;

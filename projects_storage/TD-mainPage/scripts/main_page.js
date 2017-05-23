@@ -57,7 +57,7 @@ function goToSlider() {
 			animateInitSlider();
 		}
 		sliderAnimationState = true;
-	}, 650)
+	}, 400)
 }
 
 function goToInitScreen() {
@@ -176,6 +176,15 @@ var sliderControl = document.getElementsByClassName('sliderControl'),
 		slidePoint = document.getElementsByClassName('sliderContent');
 
 var initSlider = document.getElementById('initSlider');
+var timeout = null;
+
+initSlider.addEventListener('mousemove', function(e) {
+	initSlider.classList.add('showControls');
+	clearTimeout(timeout);
+	timeout = setTimeout(function() {
+		initSlider.classList.remove('showControls');
+	}, 800);
+});
 
 // Arrays for slider nodes
 var descriptionBlocks = [],
@@ -245,10 +254,9 @@ function showSlide(nextSlide, lastSlide, target) {
 }
 
 function showOne(nextSlide, lastSlide) {
-	descriptionBlock[lastSlide].style.transform = 'translateX(-100px)';
+	descriptionBlock[lastSlide].style.transform = 'translateX(-10px)';
 	descriptionBlock[lastSlide].style.opacity = '0';
-
-	descriptionBlock[nextSlide].style.transform = 'translateX(100px)';
+	descriptionBlock[nextSlide].style.transform = 'translateX(10px)';
 
 	setTimeout(function() {
 		descriptionBlock[nextSlide].style.opacity = '1';
@@ -257,10 +265,9 @@ function showOne(nextSlide, lastSlide) {
 }
 
 function showTwo(nextSlide, lastSlide) {
-	descriptionBlock[lastSlide].style.transform = 'translateX(100px)';
+	descriptionBlock[lastSlide].style.transform = 'translateX(10px)';
 	descriptionBlock[lastSlide].style.opacity = '0';
-
-	descriptionBlock[nextSlide].style.transform = 'translateX(-100px)';
+	descriptionBlock[nextSlide].style.transform = 'translateX(-10px)';
 
 	setTimeout(function() {
 		descriptionBlock[nextSlide].style.opacity = '1';
@@ -776,11 +783,12 @@ function initTournamentList() {
 		x = e.clientX;
 		y = e.clientY;
 
-		throttle(translateObjects(x, y), 32)
+		throttle(translateObjects(x, y), 42)
 	});
 
 	function translateObjects(x, y) {
-		translatedBg.style.transform = 'translate(' + ((x / 170)) + 'px,' + ((y / 150)) + 'px)';
+		translatedBg.style.transform = 'translate(' + ((x / 190)) + 'px,' + ((y / 170)) + 'px)';
+		introText.style.transform = 'translate(' + ((x / 150)) + 'px,' + ((y / 110)) + 'px)';
 	}
 
 	for ( i = 0; i < tournament.length; i++ ) {
