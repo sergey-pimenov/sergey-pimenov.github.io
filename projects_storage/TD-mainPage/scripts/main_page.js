@@ -1,8 +1,8 @@
-/***** Global *****/
+/**** Global *****/
 var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 var isMac = navigator.platform.toUpperCase().indexOf('MAC')>=0;
 var html = document.getElementsByTagName('html')[0];
-
+var currentWindowWidth = 0;
 var tutorialState;
 
 if (!isMac) {
@@ -11,7 +11,8 @@ if (!isMac) {
 
 window.addEventListener('resize', setDynamicVariables);
 
-function setDynamicVariables() {
+function setDynamicVariables() { 
+    currentWindowWidth = document.documentElement.clientWidth;
 	windowHeight = document.documentElement.clientHeight;
 }
 
@@ -65,7 +66,84 @@ function goToInitScreen() {
 	disableScroll('initSlider');
 }
 
-/***** Global end *****/
+
+// Mobile block
+// Mobile swipe direction function from 
+// https://stackoverflow.com/questions/2264072/detect-a-finger-swipe-through-javascript-on-the-iphone-and-android/23230280#23230280
+
+firstBlock.addEventListener('touchstart', handleTouchStart, false);        
+firstBlock.addEventListener('touchmove', handleTouchMove, false);
+
+var xDown = null;                                                        
+var yDown = null;                                                        
+
+function handleTouchStart(evt) {                                         
+    xDown = evt.touches[0].clientX;                                      
+    yDown = evt.touches[0].clientY;                                      
+};                                                
+
+function handleTouchMove(evt) {
+    if ( ! xDown || ! yDown ) {
+        return;
+    }
+
+    var xUp = evt.touches[0].clientX;                                    
+    var yUp = evt.touches[0].clientY;
+
+    var yDiff = yDown - yUp;
+
+    if ( yDiff > 0 ) {
+				goToSlider();
+    }
+
+    /* reset values */
+    xDown = null;
+    yDown = null;                                             
+};
+
+
+
+secondBlock.addEventListener('touchstart', handleTouchStartSecond, false);        
+secondBlock.addEventListener('touchmove', handleTouchMoveSecond, false);
+                                                        
+var yDownSecond = null;                                                        
+
+function handleTouchStartSecond(evt) {                                         
+    xDownSecond = evt.touches[0].clientX;                                      
+    yDownSecond = evt.touches[0].clientY;                                      
+};                                                
+
+function handleTouchMoveSecond(evt) {
+    if ( ! yDownSecond ) {
+        return;
+    }
+
+    var xUp = evt.touches[0].clientX;                                    
+    var yUp = evt.touches[0].clientY;
+
+    var yDiff = yDownSecond - yUp;
+
+    if ( yDiff < 0 ) { 
+  		if(secondBlock.scrollTop == 0) {
+  			goToInitScreen();
+  		}
+    }
+
+    /* reset values */
+    yDownSecond = null;                                               
+};
+
+if(currentWindowWidth <= 768) {
+    window.addEventListener('load', function() {
+        var initSliderBg = document.getElementsByClassName('initSliderBg')[0];
+        initSliderBg.classList.add('mobileSliderStyles');
+        initSliderBg.setAttribute('viewBox', '150 201 198 205');
+    });
+}
+
+/***** Global end ****/
+
+
 /***** Disable/enable scroll *****/
 
 var keys = {37: 1, 38: 1, 39: 1, 40: 1};
@@ -133,26 +211,33 @@ function initInitScreen() {
 	var initScreen = document.getElementsByClassName('initScreen')[0];
 	var paralaxWrapper = document.getElementsByClassName('paralaxWrapper');
 	var x, y;
-	var initTransitionState = 'slow'; 
-	initScreen.addEventListener('mousemove', function(e) {
-		// First transition must be slow
-		if(initTransitionState == 'slow') {
-			initTransitionState = 'normal';
-			setTimeout(function() {
-				initScreen.classList.add('setSprecialTransition');
-			}, 1550);
-		}
-		x = e.clientX;
-		y = e.clientY;
-		throttle(translateObjects(x, y), 32);
-	});
+	var initTransitionState = 'slow';
+
+	if(currentWindowWidth >= 768) {
+		initScreen.addEventListener('mousemove', function(e) {
+			// First transition must be slow
+			if(initTransitionState == 'slow') {
+				initTransitionState = 'normal';
+				setTimeout(function() {
+					initScreen.classList.add('setSprecialTransition');
+				}, 1550);
+			}
+			x = e.clientX;
+			y = e.clientY;
+			throttle(translateObjects(x, y), 32);
+		});
+	}
 
 	function translateObjects(x, y) {
+		if(currentWindowWidth <= 768) {
+			return
+		}
+
 		paralaxWrapper[0].style.transform = 'translate(' + ((x / 170)) + 'px,' + ((y / 150)) + 'px)';
 		paralaxWrapper[1].style.transform = 'translate(' + ((x / 140)) + 'px,' + ((y / 130)) + 'px)';
 		paralaxWrapper[2].style.transform = 'translate(' + ((x / 130)) + 'px,' + ((y / 120)) + 'px)';
 		paralaxWrapper[3].style.transform = 'translate(' + ((x / 90)) + 'px,' + ((y / 80) )+ 'px)';
-		paralaxWrapper[4].style.transform = 'translate(' + ((x / 80)) + 'px,' + ((y / 60) )+ 'px)';
+		paralaxWrapper[4].style.transform = 'translate(' + ((x / 240)) + 'px,' + ((y / 170) )+ 'px)';
 	}
 
 }
@@ -175,16 +260,7 @@ var sliderControl = document.getElementsByClassName('sliderControl'),
 		sliderContent = document.getElementsByClassName('sliderContent')[0],
 		slidePoint = document.getElementsByClassName('sliderContent');
 
-var initSlider = document.getElementById('initSlider');
-var timeout = null;
-
-initSlider.addEventListener('mousemove', function(e) {
-	initSlider.classList.add('showControls');
-	clearTimeout(timeout);
-	timeout = setTimeout(function() {
-		initSlider.classList.remove('showControls');
-	}, 800);
-});
+var selectTournament = document.getElementsByClassName('selectTournament')[0];
 
 // Arrays for slider nodes
 var descriptionBlocks = [],
@@ -275,45 +351,6 @@ function showTwo(nextSlide, lastSlide) {
 	}, 310);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function animateInitSlider() {
 	// window.removeEventListener('scroll', animateInitSlider);
 	for( i = 0; i < sliderContent.length; i++ ) {
@@ -322,6 +359,7 @@ function animateInitSlider() {
 	sliderIcon[0].classList.add('showIcon');
 	verticalLines[0].classList.add('showVerticalLines');
 	iconWraper.classList.add('showWraper');
+	selectTournament.style.transform = 'translateY(0)';
 }
 
 var initSliderBg = document.getElementsByClassName('initSliderBg')[0];
@@ -330,7 +368,9 @@ var initSliderBg = document.getElementsByClassName('initSliderBg')[0];
 var sliderContent = document.querySelectorAll('.contentTitle, .sliderDescriptions')
 
 // Move vector pictures of slider
-initSlider.addEventListener('mousemove', throttle(moveSliderSvg, 32));
+if(currentWindowWidth >= 768) {
+	initSlider.addEventListener('mousemove', throttle(moveSliderSvg, 32));
+}
 
 for( i = 0; i < sliderIconPaths.length; i++ ) {
 	pathLength = sliderIconPaths[i].getTotalLength();
@@ -362,6 +402,9 @@ function translate(x, y) {
 }
 
 function moveSliderSvg(event) {
+	if(currentWindowWidth <= 768) {
+		return
+	}
 	xPos = event.clientX;
 	yPos = event.clientY;
 	layer0.style.transform = translate(xPos / 120, yPos / 90);
@@ -393,57 +436,25 @@ function initSelectTournament() {
 	openTournamentsButton.addEventListener('click', openTournamentsFromTutorial);
 
 	function openTournamentsFromTutorial() {
-
-		tournamentList.style.opacity = '0';
-		tournamentList.classList.toggle('showTournamentList');
-
-		setTimeout(function() {
-			tournamentList.style.transition = 'opacity 0.3s';
-			tournamentList.style.opacity = '1';
-		}, 100);
-		
-		tournamentList.style.zIndex = '100';
-		tournamentOpened = true;
-		tutorialState = 'opened';
+		tournamentList.classList.add('showTournamentList');
+		tournamentList.style.zIndex = '7';
 	}
 
 	function openTournaments() {
-		popupsToning.style.opacity = '1';
-
-		setTimeout(function() {
-			tournamentList.classList.toggle('showTournamentList');
-		}, 100);
-
-		tournamentOpened = true;
+		tournamentList.classList.add('showTournamentList');
+		tournamentList.style.zIndex = '7';
 	}
 
 	function closeTournaments() {
+		tournamentList.classList.remove('showTournamentList');
 		setTimeout(function() {
 			if(tutorialState != 'opened') {
-				popupsToning.style.opacity = '0';
+				tournamentList.style.zIndex = '-1';
 			}
-		}, 100);
-
-		if(tutorialState == 'opened') {
-			tournamentList.style.opacity = '0';
-			setTimeout(function() {
-				tournamentList.classList.toggle('showTournamentList');
-				tournamentList.style.transition = 'none';
-				tournamentList.style.opacity = '1';
-			}, 330);
-		}
-
-		if(tutorialState != 'opened') {
-			tournamentList.classList.toggle('showTournamentList');
-		}
-		tournamentOpened = false;
+		}, 220);
 	}
 
 	function hideTournamentsEsc(closeEvent) {
-		// Do something only when tutorial open
-		if(tournamentOpened == false) {
-			return false;
-		}
 		if( closeEvent.keyCode == 27) {
 			closeTournaments();
 		}
@@ -473,7 +484,6 @@ function initTutorial() {
 			slideTitle = document.getElementsByClassName('slideTitle'),
 			sliderNumber = document.getElementsByClassName('sliderNumber'),
 			selectButton = document.getElementsByClassName('select')[0],
-			popupsToning = document.getElementsByClassName('popupsToning')[0],
 			icon = document.getElementsByClassName('icon')[0],
 			initSlide = document.getElementById('initSlide'),
 			sliderCount = slideContent.length,
@@ -517,11 +527,9 @@ function initTutorial() {
 	function showTutorial() {
 		tutorialOpen = true;
 		slideTitle[0].style.transform = 'translateZ(0) translateY(0)';
-		popupsToning.style.opacity = '1';
-
-		setTimeout(function() {
-			tutorial.classList.add('showTutorial');
-		}, 100);
+		
+		tutorial.classList.add('showTutorial');
+		tutorial.style.zIndex = '6';
 
 		setTimeout(function() {
 			circleWrapper.classList.add('showCircleWrapper');
@@ -532,11 +540,11 @@ function initTutorial() {
 
 	function hideTutorial() {
 
-		setTimeout(function() {
-			popupsToning.style.opacity = '0';
-		}, 100);
-
 		tutorial.classList.remove('showTutorial');
+		setTimeout(function() {
+			tutorial.style.zIndex = '-1';
+		}, 220)
+
 		tutorialOpen = false;
 		tutorialState = 'closed';
 	}
