@@ -45,8 +45,7 @@
 		function getData() {
 			fetch('data.json')
 			  .then(response => response.json())
-			  .then(json => showData.innerHTML = json);
-      console.log('something')
+			  .then(json => showData.innerHTML = json.name + json.surname);
 		}
 	</script>
 </body>
