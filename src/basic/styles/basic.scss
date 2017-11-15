@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
+
+// $path-color : rgb(230, 230, 230);
+$path-color : black;
+$eyes-color: black;
+$light-color : red;
+$text-color : red;
+$accent-color : rgb(80, 80, 80);
+$secondary-color : rgb(150, 150, 150);
+$lines-color-lighter: rgb(235, 235, 235);
+$lines-color: rgb(220, 220, 220);
+$lines-color-strong: rgb(190, 190, 190);
+
+$spread: 2.4px;
+
+body {
+	min-width: 100vw;
+	min-height: 100vh;
+	position: relative;
+	font-family: 'Roboto', sans-serif;
+	overflow: hidden;
+
+	@include mobileXl {
+
+		&.showContent {
+			overflow: auto;
+		}
+	}
+
+	&::after {
+		content: '';
+		width: 100%;
+		height: 100%;
+		background: white;
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+
+	&.show::after {
+		opacity: 0;
+		pointer-events: none;
+	}
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-margin-before:0em;
+	-webkit-margin-after:0em;
+}
+
+::selection {
+	background: rgb(245, 136, 136);
+	color: white;
+}
+
+*:focus {
+	background: rgb(245, 136, 136);
+	color: white;
+	outline: none;
+}

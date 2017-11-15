@@ -1,4 +1,2 @@
-/blog/--sources/--gulp/node_modules
-portfolio_page/sources/gulp/node_modules/*
-projects_storage/project_template/sources/--gulp/node_modules/*
-projects_storage/for_97
+node_modules
+.DS_Store
