@@ -1,5 +1,6 @@
 import Vivus from 'vivus';
 
+// Init animation
 window.addEventListener('load', initAnimation);
 
 function initAnimation() {
@@ -97,8 +98,12 @@ function initAnimation() {
   }, 5500);
 }
 
-var bottom = document.documentElement.clientHeight;
+// Need for mobile Safari fix
+function downArrowPosition() {
+  var bottom = document.documentElement.clientHeight;
+  document.querySelector('.down').style.top = bottom - 40 + 'px';
+}
 
-alert(bottom)
+downArrowPosition();
 
-document.querySelector('.down').style.top = bottom - 40 + 'px';
+window.addEventListener('resize', downArrowPosition);
