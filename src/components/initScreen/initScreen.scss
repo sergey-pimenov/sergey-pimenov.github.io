@@ -177,7 +177,7 @@
 
         @include mobileXl {
             width: 100%;
-            padding: 0 30px 30px 30px;
+            padding: 30px 30px 30px 30px;
             text-align: left;
             position: static;
             background-color: rgba(255, 255, 255, 0.6);
@@ -217,6 +217,7 @@
         position: absolute;
         left: calc(50% - 10px);
         bottom: 15px;
+        // bottom: 90px; IOS
         display: none;
         opacity: 0;
         transition: opacity 0.5s;
@@ -349,7 +350,7 @@
 
     @include mobileXl {
         width: 150%;
-        left: -21%;
+        left: -24%;
         position: fixed;
         opacity: 0.3;
     }

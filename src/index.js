@@ -96,3 +96,9 @@ function initAnimation() {
     }, 500)
   }, 5500);
 }
+
+var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+if(isSafari) {
+  alert('Safari')
+}
