@@ -13,6 +13,11 @@ $lines-color-strong: rgb(190, 190, 190);
 
 $spread: 2.4px;
 
+html {
+	max-width: 100vw;
+	overflow: hidden;
+}
+
 body {
 	min-width: 100vw;
 	min-height: 100vh;
@@ -24,6 +29,10 @@ body {
 
 		&.showContent {
 			overflow: auto;
+
+			.down {
+				opacity: 1;
+			}
 		}
 	}
 
