@@ -97,8 +97,8 @@ function initAnimation() {
   }, 5500);
 }
 
-var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
+var bottom = document.documentElement.clientHeight;
 
-if(isSafari) {
-  alert('Safari')
-}
+alert(bottom)
+
+document.querySelector('.down').style.top = bottom - 40 + 'px';

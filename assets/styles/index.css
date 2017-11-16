@@ -317,7 +317,6 @@ body {
     height: auto;
     position: absolute;
     left: calc(50% - 10px);
-    bottom: 15px;
     display: none;
     opacity: 0;
     -webkit-transition: opacity 0.5s;
