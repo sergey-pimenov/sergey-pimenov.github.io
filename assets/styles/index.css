@@ -278,7 +278,7 @@ body {
         font-size: 5.3vw;
         text-shadow: 2px 2px 3px #dbdbdb; } }
   .initScreen .description {
-    width: 400px;
+    width: 410px;
     position: absolute;
     right: 60px;
     top: 40px;
@@ -306,12 +306,19 @@ body {
     font-weight: 500;
     color: black; }
   .initScreen .separator {
-    margin: 0 3px;
-    font-weight: bold; }
+    margin: 0 3px; }
   .initScreen .open {
     font-weight: 500; }
     .initScreen .open span {
-      border-bottom: 2px black solid; }
+      position: relative; }
+    .initScreen .open span::after {
+      content: '';
+      width: 100%;
+      height: 2px;
+      position: absolute;
+      left: 0;
+      bottom: 1px;
+      background-color: #303030; }
   .initScreen .down {
     width: 20px;
     height: auto;
