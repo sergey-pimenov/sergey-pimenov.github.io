@@ -1,6 +1,8 @@
 import Vivus from 'vivus';
+import throttling from './utils/scripts/throttling';
 
-// Init animation
+///// Init animation /////
+
 window.addEventListener('load', initAnimation);
 
 function initAnimation() {
@@ -35,6 +37,7 @@ function initAnimation() {
 
     play : function() {
       part_5.animation.play()
+      // mousemoveAnimation();
     }
   }
 
@@ -98,7 +101,11 @@ function initAnimation() {
   }, 5500);
 }
 
-// Need for mobile Safari fix
+///// Init animation end /////
+
+
+///// Fix Safiri bug /////
+
 function downArrowPosition() {
   var bottom = document.documentElement.clientHeight;
   document.querySelector('.down').style.top = bottom - 40 + 'px';
@@ -107,3 +114,63 @@ function downArrowPosition() {
 downArrowPosition();
 
 window.addEventListener('resize', downArrowPosition);
+
+///// Fix Safiri bug end /////
+
+
+///// Animation on mousemove event /////
+
+// var initXPos = null;
+// var initYPos = null;
+// var currentXPos;
+// var currentYPos;
+// var iam = document.querySelector('.iam');
+// var head = document.querySelector('.head');
+// var backgrounds = document.querySelector('.backgrounds');
+// var background_1 = document.querySelector('.background-1');
+// var background_2 = document.querySelector('.background-2');
+// var windowXCenter = window.innerWidth / 2;
+// var windowYCenter = window.innerHeight / 2;
+
+// function mousemoveAnimation() {
+//   window.addEventListener('mousemove', (e) => {
+//     currentXPos = e.clientX;
+//     currentYPos = e.clientY;
+
+//     if(initXPos == null && initYPos == null) {
+//       initXPos = e.clientX;
+//       initYPos = e.clientY;
+//     }
+
+//     animateWithThrottle();
+//   })
+// }
+
+// var animateWithThrottle = throttling(() => {
+//   animate();
+// }, 1, 100);
+
+// function animate() {
+//   var x = parseInt( (initXPos - currentXPos) / 100, 10) + 'px';
+//   var bg2X = '-' + x;
+//   var y = parseInt( (initYPos - currentYPos) / 70, 10) + 'px';
+
+//   var xAngle = parseInt( (windowXCenter - currentXPos) / -120, 10) + 'deg';
+//   var yAngle = parseInt( (windowYCenter - currentYPos) / 70, 10) + 'deg';
+
+//   // console.log('X: ' + xAngle)
+//   // console.log('Y: ' + yAngle)
+  
+//   // background_1.style.transform = `translate(${x}, ${y})`;
+//   // background_2.style.transform = `scaleX(-1) translate(${bg2X}, ${y})`;
+
+//   backgrounds.style.transform = `translate(${x}, ${y})`;
+
+//   iam.style.transform = `rotateX(${yAngle}) rotateY(${xAngle})`;
+
+//   head.style.transform = `rotateX(${yAngle}) rotateY(${xAngle})`;
+// }
+
+///// Animation on mousemove event end /////
+
+console.log('Hi! You can find sources here: https://github.com/sergey-pimenov/sergey-pimenov.github.io/tree/master/src')

@@ -55,8 +55,7 @@ a {
   text-decoration: none; }
 
 html {
-  max-width: 100vw;
-  overflow: hidden; }
+  max-width: 100vw; }
 
 body {
   min-width: 100vw;
@@ -115,7 +114,9 @@ body {
   flex-direction: column;
   -webkit-box-align: center;
   -ms-flex-align: center;
-  align-items: center; }
+  align-items: center;
+  -webkit-perspective: 900px;
+  perspective: 900px; }
   .initScreen .slogans {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -136,22 +137,17 @@ body {
       .initScreen .slogans {
         width: 100%;
         height: 100%;
+        padding-top: 30px;
         left: 0;
         top: 0;
         font-size: 18vw;
         text-align: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        justify-content: center;
         text-shadow: 2px 2px 3px #dbdbdb; } }
     .initScreen .slogans.hide {
       -webkit-animation: hide-slogans 1s forwards;
       animation: hide-slogans 1s forwards; }
     .initScreen .slogans li {
-      width: 250px;
+      width: 100%;
       margin-top: 10px;
       opacity: 0;
       -webkit-transform: translateX(-30px);
@@ -199,6 +195,7 @@ body {
       .initScreen .title {
         width: 100%;
         min-height: 100%;
+        padding-top: 30px;
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
@@ -209,9 +206,6 @@ body {
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        justify-content: center;
         position: static; } }
   .initScreen .line {
     display: block;
@@ -344,10 +338,40 @@ body {
     -webkit-transform: translateY(5px);
     transform: translateY(5px); } }
 
+.head {
+  width: 50vw;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  -webkit-transition: -webkit-transform 0.5s linear;
+  transition: -webkit-transform 0.5s linear;
+  transition: transform 0.5s linear;
+  transition: transform 0.5s linear, -webkit-transform 0.5s linear; }
+  @media all and (max-width: 1100px) {
+    .head {
+      width: 150vw; } }
+
+.backgrounds {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  -webkit-transition: -webkit-transform 0.5s linear;
+  transition: -webkit-transform 0.5s linear;
+  transition: transform 0.5s linear;
+  transition: transform 0.5s linear, -webkit-transform 0.5s linear;
+  pointer-events: none; }
+
 .background {
   position: absolute;
   left: 0;
-  bottom: 0vw; }
+  bottom: 0vw;
+  -webkit-transition: -webkit-transform 0.4s linear;
+  transition: -webkit-transform 0.4s linear;
+  transition: transform 0.4s linear;
+  transition: transform 0.4s linear, -webkit-transform 0.4s linear; }
   @media all and (max-width: 1100px) {
     .background {
       display: none; } }
@@ -407,9 +431,7 @@ body {
   right: -0.5vw;
   bottom: 0.7vw;
   -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-  -webkit-transition: opacity 1.5s;
-  transition: opacity 1.5s; }
+  transform: scaleX(-1); }
   .background-2 .show {
     opacity: 1; }
   .background-2 .line-2 {
@@ -424,11 +446,22 @@ body {
   height: 100vh;
   position: absolute;
   left: 25%;
-  bottom: -3vw; }
+  bottom: -3vw;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  -webkit-transition: -webkit-transform 0.5s linear;
+  transition: -webkit-transform 0.5s linear;
+  transition: transform 0.5s linear;
+  transition: transform 0.5s linear, -webkit-transform 0.5s linear;
+  -webkit-transform: none !important;
+  transform: none !important; }
   @media all and (max-width: 1100px) {
     .iam {
       width: 150%;
       left: -24%;
+      bottom: -10vh;
       position: fixed;
       opacity: 0.3; } }
   .iam svg {
