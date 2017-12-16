@@ -29,7 +29,7 @@ body {
 	@include mobileXl {
 
 		&.showContent {
-			overflow: auto;
+			overflow-y: auto;
 
 			.down {
 				opacity: 1;

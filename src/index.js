@@ -1,7 +1,18 @@
 import Vivus from 'vivus';
 import throttling from './utils/scripts/throttling';
 
+// Prevent scroll restore
+
+document.addEventListener('unload', () => {
+  window.scrollTo(0, 0); 
+});
+
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+
 ///// Init animation /////
+
 
 window.addEventListener('load', initAnimation);
 
