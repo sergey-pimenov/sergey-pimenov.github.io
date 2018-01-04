@@ -108,7 +108,7 @@ function initAnimation() {
     setTimeout(() => {
       title.classList.add('show');
       description.classList.add('show');
-    }, 500)
+    }, 1000)
   }, 5500);
 }
 
