@@ -12,8 +12,6 @@ if ('scrollRestoration' in history) {
 }
 
 ///// Init animation /////
-
-
 window.addEventListener('load', initAnimation);
 
 function initAnimation() {
@@ -101,7 +99,7 @@ function initAnimation() {
   document.body.classList.add('show');
 
   setTimeout(() => {
-    document.body.classList.add('showContent');
+    document.getElementsByTagName('html')[0].classList.add('showContent');
     slogans.classList.add('hide');
     backgrounds[0].classList.add('show');
     backgrounds[1].classList.add('show');
@@ -111,7 +109,6 @@ function initAnimation() {
     }, 1000)
   }, 5500);
 }
-
 ///// Init animation end /////
 
 

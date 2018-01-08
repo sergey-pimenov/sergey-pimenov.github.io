@@ -14,21 +14,14 @@ $lines-color-strong: rgb(190, 190, 190);
 $spread: 2.4px;
 
 html {
-	max-width: 100vw;
-}
-
-body {
-	min-width: 100vw;
-	min-height: 100vh;
-	position: relative;
-	font-family: 'Roboto', sans-serif;
+	width: 100vw;
+	height: 100%;
 	overflow: hidden;
-	-webkit-font-smoothing: antialiased;
-	-webkit-overflow-scrolling: touch;
 
 	@include mobileXl {
 
-		&.showContent {
+		&.showContent,
+		&.showContent body {
 			overflow-y: auto;
 
 			.down {
@@ -36,6 +29,16 @@ body {
 			}
 		}
 	}
+}
+
+body {
+	min-width: 100vw;
+	height: 100%;
+	position: relative;
+	font-family: 'Roboto', sans-serif;
+	overflow: hidden;
+	-webkit-font-smoothing: antialiased;
+	-webkit-overflow-scrolling: touch;
 
 	&::after {
 		content: '';
