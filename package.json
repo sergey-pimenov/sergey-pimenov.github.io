@@ -1,5 +1,5 @@
 {
-  "name": "Portfolio page",
+  "name": "Portfolio-page",
   "version": "0.0.0",
   "description": "",
   "main": "gulpfile.js",
@@ -17,13 +17,14 @@
     "gulp-autoprefixer": "^4.0.0",
     "gulp-clean-css": "^3.8.0",
     "gulp-flatten": "^0.3.1",
+    "gulp-htmlmin": "^4.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
     "gulp-uglify": "^3.0.0",
     "pump": "^1.0.2",
     "scrollmonitor": "^1.2.3",
     "vivus": "^0.4.3",
-    "webpack": "^2.6.1",
+    "webpack": "^2.7.0",
     "webpack-stream": "^3.2.0"
   },
   "scripts": {
