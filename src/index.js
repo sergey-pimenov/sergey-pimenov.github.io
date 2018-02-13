@@ -119,8 +119,15 @@ function downArrowPosition() {
   document.querySelector('.down').style.top = bottom - 40 + 'px';
 }
 
-downArrowPosition();
+window.addEventListener('load', downArrowPosition)
 
 window.addEventListener('resize', downArrowPosition);
+
+
+// Fix animation bug after page reload
+
+window.addEventListener('beforeunload', () => {
+  location.reload()
+});
 
 console.log('Hi! You can find sources here: https://github.com/sergey-pimenov/sergey-pimenov.github.io/tree/master/src')

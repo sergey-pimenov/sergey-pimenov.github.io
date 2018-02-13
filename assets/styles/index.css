@@ -272,6 +272,7 @@ body {
     transition: opacity 1.5s 1s; }
     @media all and (max-width: 1100px) {
       .initScreen .description {
+        opacity: 1;
         width: 100%;
         padding: 30px 30px 30px 30px;
         text-align: left;

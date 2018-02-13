@@ -175,6 +175,7 @@
         transition: opacity 1.5s 1s;
 
         @include mobileXl {
+            opacity: 1;
             width: 100%;
             padding: 30px 30px 30px 30px;
             text-align: left;
