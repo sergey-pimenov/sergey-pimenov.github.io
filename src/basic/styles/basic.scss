@@ -78,7 +78,11 @@ body.disableTransitions {
 	.backgrounds,
 	.backgrounds *,
 	.part-6,
-	.part-6 * {
+	.part-6 *,
+	.name,
+	.name *,
+	.description,
+	.description * {
 		transition: none !important;
 	}
 }
