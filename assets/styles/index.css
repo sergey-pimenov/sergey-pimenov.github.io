@@ -109,8 +109,8 @@ body.disableTransitions .backgrounds,
 body.disableTransitions .backgrounds *,
 body.disableTransitions .part-6,
 body.disableTransitions .part-6 *,
-body.disableTransitions .name,
-body.disableTransitions .name *,
+body.disableTransitions .title,
+body.disableTransitions .title *,
 body.disableTransitions .description,
 body.disableTransitions .description * {
   -webkit-transition: none !important;
