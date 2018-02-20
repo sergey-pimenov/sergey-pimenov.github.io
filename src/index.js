@@ -2,7 +2,6 @@ import Vivus from 'vivus';
 import throttling from './utils/scripts/throttling';
 
 // Prevent scroll restore
-
 document.addEventListener('unload', () => {
   window.scrollTo(0, 0); 
 });
@@ -113,7 +112,6 @@ function initAnimation() {
 
 
 ///// Fix Safari bug /////
-
 function downArrowPosition() {
   var bottom = document.documentElement.clientHeight;
   document.querySelector('.down').style.top = bottom - 40 + 'px';
@@ -125,9 +123,12 @@ window.addEventListener('resize', downArrowPosition);
 
 
 // Fix animation bug after page reload
-
 window.addEventListener('beforeunload', () => {
   location.reload()
 });
+
+setTimeout(() => {
+  document.body.classList.remove('disableTransitions');
+}, 1000);
 
 console.log('Hi! You can find sources here: https://github.com/sergey-pimenov/sergey-pimenov.github.io/tree/master/src')
