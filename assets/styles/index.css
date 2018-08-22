@@ -277,8 +277,7 @@ body.disableTransitions .description * {
     line-height: 1.7;
     color: #353535;
     text-align: right;
-    opacity: 0;
-    will-change: opacity;
+    z-index: 123;
     -webkit-transition: opacity 1.5s 1s;
     transition: opacity 1.5s 1s; }
     @media all and (max-width: 1100px) {
