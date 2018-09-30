@@ -47,6 +47,7 @@ table {
   border-spacing: 0; }
 
 * {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
 a {
@@ -60,7 +61,9 @@ html {
   -webkit-text-size-adjust: 100%; }
   @media all and (max-width: 1100px) {
     html * {
+      -webkit-animation-delay: 0.0001s !important;
       animation-delay: 0.0001s !important;
+      -webkit-animation-duration: 0.0001s !important;
       animation-duration: 0.0001s !important; }
     html body {
       overflow-y: auto; } }
@@ -91,6 +94,10 @@ body {
   -webkit-margin-before: 0em;
   -webkit-margin-after: 0em; }
 
+::-moz-selection {
+  background: #f58888;
+  color: white; }
+
 ::selection {
   background: #f58888;
   color: white; }
@@ -101,9 +108,11 @@ a:focus {
   outline: none; }
 
 body * {
+  -webkit-animation-play-state: paused !important;
   animation-play-state: paused !important; }
 
 body.playAnimation * {
+  -webkit-animation-play-state: running !important;
   animation-play-state: running !important; }
 
 .iam {
@@ -112,9 +121,15 @@ body.playAnimation * {
   position: absolute;
   left: 25%;
   bottom: -3vw;
+  -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
+  -webkit-transform-origin: 50% 50%;
   transform-origin: 50% 50%;
+  -webkit-transition: -webkit-transform 0.5s linear;
+  transition: -webkit-transform 0.5s linear;
   transition: transform 0.5s linear;
+  transition: transform 0.5s linear, -webkit-transform 0.5s linear;
+  -webkit-transform: none !important;
   transform: none !important; }
   @media all and (max-width: 1100px) {
     .iam {
@@ -191,6 +206,7 @@ body.playAnimation * {
     stroke-miterlimit: 10; }
   .iam .part-6 {
     opacity: 0;
+    -webkit-transition: opacity 1.5s;
     transition: opacity 1.5s; }
     .iam .part-6 .st1 {
       fill: none;
@@ -207,13 +223,19 @@ body.playAnimation * {
   position: absolute;
   left: 0;
   bottom: 0;
+  -webkit-transition: -webkit-transform 0.5s linear;
+  transition: -webkit-transform 0.5s linear;
   transition: transform 0.5s linear;
+  transition: transform 0.5s linear, -webkit-transform 0.5s linear;
   pointer-events: none; }
   .backgrounds .background {
     position: absolute;
     left: 0;
     bottom: 0vw;
-    transition: transform 0.4s linear; }
+    -webkit-transition: -webkit-transform 0.4s linear;
+    transition: -webkit-transform 0.4s linear;
+    transition: transform 0.4s linear;
+    transition: transform 0.4s linear, -webkit-transform 0.4s linear; }
     @media all and (max-width: 1100px) {
       .backgrounds .background {
         visibility: hidden; } }
@@ -225,6 +247,7 @@ body.playAnimation * {
       left: calc(50vw - 42.5vw);
       bottom: -8vw;
       opacity: 0;
+      -webkit-animation: show 1.5s 6s forwards;
       animation: show 1.5s 6s forwards; }
     .backgrounds .background .line-1 .st0 {
       fill: none;
@@ -236,6 +259,7 @@ body.playAnimation * {
       left: calc(50vw - 51.5vw);
       bottom: -3vw;
       opacity: 0;
+      -webkit-animation: show 1.5s 6.5s forwards;
       animation: show 1.5s 6.5s forwards; }
     .backgrounds .background .line-2 .st0 {
       fill: none;
@@ -252,6 +276,7 @@ body.playAnimation * {
       left: calc(50vw - 58vw);
       bottom: 9vw;
       opacity: 0;
+      -webkit-transition: opacity 1.5s 1s;
       transition: opacity 1.5s 1s; }
     .backgrounds .background.show .line-3 {
       opacity: 1; }
@@ -264,6 +289,7 @@ body.playAnimation * {
     left: auto;
     right: -0.5vw;
     bottom: 0.7vw;
+    -webkit-transform: scaleX(-1);
     transform: scaleX(-1); }
     .backgrounds .background-2 .show {
       opacity: 1; }
@@ -277,9 +303,16 @@ body.playAnimation * {
 .content {
   width: 100vw;
   height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   position: relative;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center; }
   @media all and (max-width: 1100px) {
     .content {
@@ -287,9 +320,16 @@ body.playAnimation * {
       height: auto;
       min-height: 100%;
       margin: auto;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
       justify-content: center; } }
   .content .slogans {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     position: absolute;
     left: 50px;
@@ -299,6 +339,7 @@ body.playAnimation * {
     font-weight: bold;
     color: #505050;
     z-index: 1;
+    -webkit-animation: hide 1s 6s forwards;
     animation: hide 1s 6s forwards; }
     @media all and (max-width: 1100px) {
       .content .slogans {
@@ -309,10 +350,13 @@ body.playAnimation * {
       opacity: 0;
       will-change: transform, opacity; }
     .content .slogans li:nth-of-type(1) {
+      -webkit-animation: show 1s 1s ease forwards;
       animation: show 1s 1s ease forwards; }
     .content .slogans li:nth-of-type(2) {
+      -webkit-animation: show 1s 2s ease forwards;
       animation: show 1s 2s ease forwards; }
     .content .slogans li:nth-of-type(3) {
+      -webkit-animation: show 1s 3s ease forwards;
       animation: show 1s 3s ease forwards; }
   .content .title {
     position: absolute;
@@ -340,6 +384,7 @@ body.playAnimation * {
       .content .title .line:nth-of-type(1) {
         font-size: 1em; } }
   .content .title .line:nth-of-type(1) {
+    -webkit-animation: show 2s 7s ease forwards;
     animation: show 2s 7s ease forwards; }
   .content .title .line:nth-of-type(2) {
     font-size: 70px; }
@@ -347,8 +392,10 @@ body.playAnimation * {
       .content .title .line:nth-of-type(2) {
         font-size: 0.825em; } }
   .content .title .line:nth-of-type(2) {
+    -webkit-animation: show 2s 7.5s ease forwards;
     animation: show 2s 7.5s ease forwards; }
   .content .title .line:nth-of-type(3) {
+    -webkit-animation: show 2s 8s ease forwards;
     animation: show 2s 8s ease forwards; }
   .content .position {
     margin-top: 12px;
@@ -374,6 +421,7 @@ body.playAnimation * {
     text-align: right;
     opacity: 0;
     z-index: 101;
+    -webkit-animation: show 1.5s 8.5s forwards;
     animation: show 1.5s 8.5s forwards; }
     @media all and (max-width: 1100px) {
       .content .description {
@@ -410,19 +458,35 @@ body.playAnimation * {
     left: calc(50% - 10px);
     display: none;
     opacity: 0;
+    -webkit-transition: opacity 0.5s;
     transition: opacity 0.5s; }
     @media all and (max-width: 1100px) {
       .content .down {
         display: block;
+        -webkit-animation: scroll-anim 0.7s infinite alternate;
         animation: scroll-anim 0.7s infinite alternate; } }
+
+@-webkit-keyframes scroll-anim {
+  100% {
+    -webkit-transform: translateY(5px);
+    transform: translateY(5px); } }
 
 @keyframes scroll-anim {
   100% {
+    -webkit-transform: translateY(5px);
     transform: translateY(5px); } }
+
+@-webkit-keyframes show {
+  100% {
+    opacity: 1; } }
 
 @keyframes show {
   100% {
     opacity: 1; } }
+
+@-webkit-keyframes hide {
+  100% {
+    opacity: 0; } }
 
 @keyframes hide {
   100% {
