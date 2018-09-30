@@ -1,19 +1,29 @@
 import Vivus from 'vivus';
-import throttling from './utils/scripts/throttling';
 
-// Prevent scroll restore
-document.addEventListener('unload', () => {
-  window.scrollTo(0, 0); 
-});
+var animationInit = false;
 
-if ('scrollRestoration' in history) {
-  history.scrollRestoration = 'manual';
+if (document.hidden == false) {
+  initAnimation();
+  document.body.classList.add('playAnimation');
 }
 
-///// Init animation /////
-window.addEventListener('load', initAnimation);
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    document.body.classList.remove('playAnimation');
+  }
+
+  if (!document.hidden) {
+    document.body.classList.add('playAnimation');
+    
+    if (!animationInit) initAnimation();
+  }
+});
 
 function initAnimation() {
+  animationInit = true;
+
+  document.body.classList.add('show');
+
   // Nodes
   var part1Node = document.querySelector('.part-1');
   var part2Node = document.querySelector('.part-2');
@@ -26,14 +36,8 @@ function initAnimation() {
   var description = document.querySelector('.description');
   var slogans = document.querySelector('.slogans');
 
-  setTimeout(() => {
-    slogans.classList.add('show');
-  }, 500);
 
-  setTimeout(() => {
-    slogans.classList.add('animate');
-  }, 600);
-
+  // From end of animation so start
   var part_5 = {
     animation : new Vivus(part5Node, {
       type: 'oneByOne',
@@ -44,8 +48,7 @@ function initAnimation() {
     }),
 
     play : function() {
-      part_5.animation.play()
-      // mousemoveAnimation();
+      part_5.animation.play();
     }
   }
 
@@ -54,6 +57,9 @@ function initAnimation() {
       type: 'oneByOne',
       duration: 200,
       animTimingFunction: Vivus.EASE
+    }, () => {
+      backgrounds[0].classList.add('show');
+      backgrounds[1].classList.add('show');
     }),
 
     play : function() {
@@ -93,42 +99,30 @@ function initAnimation() {
       animTimingFunction: Vivus.EASE
     }, part_2.play)
   }
-
+  
   part_1.animation.play();
-  document.body.classList.add('show');
-
-  setTimeout(() => {
-    document.getElementsByTagName('html')[0].classList.add('showContent');
-    slogans.classList.add('hide');
-    backgrounds[0].classList.add('show');
-    backgrounds[1].classList.add('show');
-    setTimeout(() => {
-      title.classList.add('show');
-      description.classList.add('show');
-    }, 1000)
-  }, 5500);
 }
 ///// Init animation end /////
 
 
-///// Fix Safari bug /////
+///// Fix Safari bugs /////
 function downArrowPosition() {
   var bottom = document.documentElement.clientHeight;
   document.querySelector('.down').style.top = bottom - 40 + 'px';
 }
 
-window.addEventListener('load', downArrowPosition)
+window.addEventListener('load', downArrowPosition);
 
-window.addEventListener('resize', downArrowPosition);
+// window.addEventListener('resize', downArrowPosition);
 
 
-// Fix animation bug after page reload
-window.addEventListener('beforeunload', () => {
-  location.reload()
+// Prevent scroll restore
+document.addEventListener('unload', () => {
+  window.scrollTo(0, 0);
 });
 
-setTimeout(() => {
-  document.body.classList.remove('disableTransitions');
-}, 1000);
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
 
 console.log('Hi! You can find sources here: https://github.com/sergey-pimenov/sergey-pimenov.github.io/tree/master/src')

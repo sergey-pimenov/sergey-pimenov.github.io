@@ -1,4 +1,5 @@
 var gulp = require('gulp'),
+    nunjucksRender = require('gulp-nunjucks-render'),
     sass = require('gulp-sass'),
     rename = require('gulp-rename'),
     webpackStream = require('webpack-stream'),
@@ -14,7 +15,26 @@ var uglify = require('gulp-uglify'),
     cleanCSS = require('gulp-clean-css'),
     htmlmin = require('gulp-htmlmin');
 
-    
+
+///// Bring together all nunjucks partials  //////
+gulp.task('assembleNunjucksPartials', () => {
+  return gulp.src(['src/**/*.html'])
+    .pipe(flatten())
+    .pipe(gulp.dest('.tmp/partials'))
+});
+
+
+///// Compile Nunjucks /////
+gulp.task('compileNunjucks', ['assembleNunjucksPartials'], function () {
+  return gulp.src('./src/index.html')
+    .pipe(nunjucksRender({ path: ['.tmp/partials'] }))
+    .pipe(gulp.dest('./'))
+    .pipe(browserSync.reload({
+      stream: true
+    }));
+});
+
+
 ///// Compile Sass /////
 gulp.task('compileSass', function () {
   return gulp.src('src/index.scss')
@@ -151,6 +171,7 @@ gulp.task('default', [
                       'browserSync',
                       'compileSass',
                       'assetsIndex',
+                      'compileNunjucks',
                       'compileJS',
                       'scriptTrans',
                       'imageTrans',
@@ -159,7 +180,7 @@ gulp.task('default', [
   function() {
   	gulp.watch(['src/**/*.scss', 'src/index.scss'], ['compileSass']);
     gulp.watch(['src/**/*.js', 'src/index.js'], ['compileJS']);
-  	gulp.watch(['src/index.html'], ['assetsIndex']);
+    gulp.watch(['src/index.html', 'src/**/*.html'], ['compileNunjucks']);
     gulp.watch(['src/libs/scripts/**/*.js'], ['scriptTrans']);
     gulp.watch(['src/**/*.{jpg,png,gif,svg}'], ['imageTrans']);
     gulp.watch(['src/**/*.{eot,woff2,woff,ttf,svg}'], ['fontsTrans']);

@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
 
-// $path-color : rgb(230, 230, 230);
 $path-color : black;
 $eyes-color: black;
 $light-color : red;
@@ -17,16 +16,16 @@ html {
 	width: 100vw;
 	height: 100%;
 	overflow: hidden;
+	-webkit-text-size-adjust: 100%;
 
 	@include mobileXl {
+		* {
+			animation-delay: 0.0001s !important;
+			animation-duration: 0.0001s !important;
+		}
 
-		&.showContent,
-		&.showContent body {
+		body {
 			overflow-y: auto;
-
-			.down {
-				opacity: 1;
-			}
 		}
 	}
 }
@@ -68,21 +67,16 @@ body {
 	color: white;
 }
 
-*:focus {
+a:focus {
 	background: rgb(245, 136, 136);
 	color: white;
 	outline: none;
 }
 
-body.disableTransitions {
-	.backgrounds,
-	.backgrounds *,
-	.part-6,
-	.part-6 *,
-	.title,
-	.title *,
-	.description,
-	.description * {
-		transition: none !important;
-	}
+body * {
+  animation-play-state: paused !important;
+}
+
+body.playAnimation * {
+  animation-play-state: running !important;
 }

@@ -1,0 +1,106 @@
+.backgrounds {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transition: transform 0.5s linear;
+  pointer-events: none;
+
+  .background {
+    position: absolute;
+    left: 0;
+    bottom: 0vw;
+    transition: transform 0.4s linear;
+
+    @include mobileXl {
+      visibility: hidden;
+    }
+  
+    ellipse {
+      fill: $lines-color;
+    }
+  
+    .line-1 {
+      width: 35vw;
+      position: absolute;
+      left: calc(50vw - 42.5vw);
+      bottom: -8vw;
+      opacity: 0;
+      animation: show 1.5s 6s forwards;
+    }
+
+    .line-1 .st0 {
+      fill: none;
+      stroke: $lines-color-strong;
+      stroke-miterlimit: 10;
+    }
+
+    .line-2 {
+      width: 42vw;
+      position: absolute;
+      left: calc(50vw - 51.5vw);
+      bottom: -3vw;
+      opacity: 0;
+      animation: show 1.5s 6.5s forwards;
+    }
+    
+    .line-2 {
+      .st0 {
+        fill: none;
+        stroke: $lines-color;
+        stroke-miterlimit: 10;
+      }
+
+      .st1 {
+        fill:none;
+        stroke: $lines-color;
+        stroke-linecap: round;
+        stroke-miterlimit: 10;
+      }
+    }
+
+    .line-3 {
+      width: 47vw;
+      position: absolute;
+      left: calc(50vw - 58vw);
+      bottom: 9vw;
+      opacity: 0;
+      transition: opacity 1.5s 1s;
+    }
+
+    &.show .line-3 {
+      opacity: 1;
+    }
+
+    .line-3 {
+      .st0 {
+        fill: none;
+        stroke: $lines-color-lighter;
+        stroke-miterlimit: 10;
+      }
+    }
+  }
+
+  .background-2 {
+    position: absolute;
+    left: auto;
+    right: -0.5vw;
+    bottom: 0.7vw;
+    transform: scaleX(-1);
+
+    .show {
+      opacity: 1;
+    }
+
+    .line-2 {
+      left: calc(50vw - 51vw);
+      bottom: -3vw;
+    }
+
+    .line-3 {
+      left: calc(50vw - 57vw);
+      bottom: 9vw;
+    }
+  }
+}

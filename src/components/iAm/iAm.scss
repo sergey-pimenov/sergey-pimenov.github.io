@@ -1,0 +1,136 @@
+.iam {
+  width: 50%;
+  height: 100vh;
+  position: absolute;
+  left: 25%;
+  bottom: -3vw;
+  transform-style: preserve-3d;
+  transform-origin: 50% 50%;
+  transition: transform 0.5s linear;
+  transform: none !important;
+
+  @include mobileXl {
+    display: none;
+  }
+
+  svg {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+
+  .st0 {
+    fill:none;
+    stroke:#000000;
+    stroke-linecap:round;
+    stroke-miterlimit:10;
+    stroke-width: 0.9;
+  }
+
+  .part-3,
+  .part-4,
+  .part-5 {
+    .st1 {
+      fill:none;
+      stroke:#000000;
+      stroke-width:0.4;
+      stroke-linecap:round;
+      stroke-miterlimit:10;
+    }
+  }
+
+  .part-1 {
+    .st1 {
+      fill:none;
+      stroke:#000000;
+      stroke-width:0.4;
+      stroke-linecap:round;
+      stroke-miterlimit:10;
+    }
+    
+    .st2 {
+      fill:none;
+      stroke:#000000;
+      stroke-width:0.5;
+      stroke-miterlimit:10;
+    }
+  }
+
+  .part-2 {
+    .st1 {
+      fill:none;
+      stroke:#000000;
+      stroke-width:0.7;
+      stroke-miterlimit:10;
+    }
+    
+    .st2 {
+      opacity:0.43;
+      fill:none;
+      stroke:#000000;
+      stroke-width:0.7;
+      stroke-miterlimit:10;
+      enable-background:new;
+    }
+
+    .st3 {
+      fill:none;
+      stroke:#000000;
+      stroke-width:0.4;
+      stroke-linecap:round;
+      stroke-miterlimit:10;
+    }
+  }
+
+  .part-4 {
+    .st2 {
+      fill:none;
+      stroke:#000000;
+      stroke-width:0.7;
+      stroke-miterlimit:10;
+    }
+  }
+
+  .part-5 {
+    .st2 {
+      fill:none;
+      stroke:#000000;
+      stroke-width:0.7;
+      stroke-linecap:round;
+      stroke-miterlimit:10;
+    }
+
+    .st3 {
+      fill:none;
+      stroke:#000000;
+      stroke-width:0.7;
+      stroke-miterlimit:10;
+    }
+
+    .st4 {
+      fill:none;
+      stroke:#000000;
+      stroke-width:0.25;
+      stroke-miterlimit:10;
+    }
+  }
+  
+  .part-6 {
+    opacity: 0;
+    transition: opacity 1.5s;
+
+    .st1{
+      fill:none;
+      stroke:#000000;
+      stroke-width:0.7;
+      stroke-linecap:round;
+      stroke-miterlimit:10;
+    }
+
+    &.show {
+      opacity: 1;
+    }
+  }
+}

@@ -1,0 +1,213 @@
+.content {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+
+  @include mobileXl {
+    max-width: 500px;
+    height: auto;
+    min-height: 100%;
+    margin: auto;
+    justify-content: center;
+  }
+
+  .slogans {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 50px;
+    top: 30px;
+    font-size: 86px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: rgb(80, 80, 80);
+    z-index: 1;
+    animation: hide 1s 6s forwards;
+
+    @include mobileXl {
+      display: none;
+    }
+
+    li {
+      width: 100%;
+      margin-top: 10px;
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    li:nth-of-type(1) {
+      animation: show 1s 1s ease forwards;
+    }
+
+    li:nth-of-type(2) {
+      animation: show 1s 2s ease forwards;
+    }
+
+    li:nth-of-type(3) {
+      animation: show 1s 3s ease forwards;
+    }
+  }
+
+  .title {
+    position: absolute;
+    left: 60px;
+    top: 40px;
+    z-index: 2;
+
+    @include mobileXl {
+      width: 100%;
+      padding: 30px 20px 0 20px;
+      position: static;
+      font-size: calc(37px + 7vmin);
+    }
+  }
+
+  .line {
+    opacity: 0;
+    display: block;
+  }
+
+  .name {
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: bold;
+    line-height: 1.05;
+    color: rgb(80, 80, 80);
+  }
+
+  .title .line:nth-of-type(1) {
+    font-size: 86px;
+
+    @include mobileXl {
+      font-size: 1em;
+    }
+  }
+
+  .title .line:nth-of-type(1) {
+    animation: show 2s 7s ease forwards;
+  }
+
+  .title .line:nth-of-type(2) {
+    font-size: 70px;
+
+    @include mobileXl {
+      font-size: 0.825em;
+    }
+  }
+
+  .title .line:nth-of-type(2) {
+    animation: show 2s 7.5s ease forwards;
+  }
+
+  .title .line:nth-of-type(3) {
+    animation: show 2s 8s ease forwards;
+  }
+
+  .position {
+    margin-top: 12px;
+    font-size: 50px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: bold;
+    z-index: 1;
+    font-size: 26.2px;
+    color: rgb(168, 168, 168);
+
+    @include mobileXl {
+      font-size: 0.25em;
+      margin-top: 10px;
+      // text-shadow: 2px 2px 3px rgb(219, 219, 219);
+    }
+  }
+
+  .description {
+    width: 410px;
+    position: absolute;
+    right: 60px;
+    top: 40px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgb(53, 53, 53);
+    text-align: right;
+    opacity: 0;
+    z-index: 101;
+    animation: show 1.5s 8.5s forwards;
+
+    @include mobileXl {
+      font-size: 16px;
+      opacity: 1;
+      width: 100%;
+      padding: 30px 20px 30px 20px;
+      text-align: left;
+      position: static;
+      background-color: rgba(255, 255, 255, 0.6);
+      z-index: 1;
+    }
+  }
+
+  p {
+    margin-bottom: 10px;
+  }
+
+  strong {
+    font-weight: 500;
+    color: black;
+  }
+
+  .separator {
+    margin: 0 3px;
+  }
+
+  .open {
+    span {
+      position: relative;
+    }
+
+    span::after {
+      content: '';
+      width: 100%;
+      height: 2px;
+      position: absolute;
+      left: 0;
+      bottom: 1px;
+      background-color: rgb(48, 48, 48);
+      display: none;
+    }
+  }
+
+  .down {
+    width: 20px;
+    height: auto;
+    position: absolute;
+    left: calc(50% - 10px);
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s;
+
+    @include mobileXl {
+      display: block;
+      animation: scroll-anim 0.7s infinite alternate;
+    }
+  }
+
+  @keyframes scroll-anim {
+    100% {
+      transform: translateY(5px);
+    }
+  }
+
+  @keyframes show {
+    100% {
+      opacity: 1; 
+    }
+  }
+
+  @keyframes hide {
+    100% {
+      opacity: 0;
+    }
+  }
+}
