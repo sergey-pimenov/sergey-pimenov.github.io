@@ -205,9 +205,7 @@ body.playAnimation * {
     stroke-width: 0.25;
     stroke-miterlimit: 10; }
   .iam .part-6 {
-    opacity: 0;
-    -webkit-transition: opacity 1.5s;
-    transition: opacity 1.5s; }
+    opacity: 0; }
     .iam .part-6 .st1 {
       fill: none;
       stroke: #000000;
@@ -215,7 +213,16 @@ body.playAnimation * {
       stroke-linecap: round;
       stroke-miterlimit: 10; }
     .iam .part-6.show {
-      opacity: 1; }
+      -webkit-animation: showEyes 1.5s forwards;
+      animation: showEyes 1.5s forwards; }
+
+@-webkit-keyframes showEyes {
+  100% {
+    opacity: 1; } }
+
+@keyframes showEyes {
+  100% {
+    opacity: 1; } }
 
 .backgrounds {
   width: 100vw;
