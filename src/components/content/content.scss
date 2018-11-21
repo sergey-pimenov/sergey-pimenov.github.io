@@ -25,7 +25,7 @@
     font-weight: bold;
     color: rgb(80, 80, 80);
     z-index: 1;
-    animation: hide 1s 6s forwards;
+    animation: hide 1s 5s forwards;
 
     @include mobileXl {
       display: none;
@@ -87,7 +87,7 @@
   }
 
   .title .line:nth-of-type(1) {
-    animation: show 2s 7s ease forwards;
+    animation: show 2s 6s ease forwards;
   }
 
   .title .line:nth-of-type(2) {
@@ -99,11 +99,11 @@
   }
 
   .title .line:nth-of-type(2) {
-    animation: show 2s 7.5s ease forwards;
+    animation: show 2s 6.5s ease forwards;
   }
 
   .title .line:nth-of-type(3) {
-    animation: show 2s 8s ease forwards;
+    animation: show 2s 7s ease forwards;
   }
 
   .position {
@@ -134,7 +134,7 @@
     text-align: right;
     opacity: 0;
     z-index: 101;
-    animation: show 1.5s 8.5s forwards;
+    animation: show 1.5s 7s forwards;
 
     @include mobileXl {
       font-size: 16px;

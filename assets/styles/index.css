@@ -346,8 +346,8 @@ body.playAnimation * {
     font-weight: bold;
     color: #505050;
     z-index: 1;
-    -webkit-animation: hide 1s 6s forwards;
-    animation: hide 1s 6s forwards; }
+    -webkit-animation: hide 1s 5s forwards;
+    animation: hide 1s 5s forwards; }
     @media all and (max-width: 1100px) {
       .content .slogans {
         display: none; } }
@@ -391,19 +391,19 @@ body.playAnimation * {
       .content .title .line:nth-of-type(1) {
         font-size: 1em; } }
   .content .title .line:nth-of-type(1) {
-    -webkit-animation: show 2s 7s ease forwards;
-    animation: show 2s 7s ease forwards; }
+    -webkit-animation: show 2s 6s ease forwards;
+    animation: show 2s 6s ease forwards; }
   .content .title .line:nth-of-type(2) {
     font-size: 70px; }
     @media all and (max-width: 1100px) {
       .content .title .line:nth-of-type(2) {
         font-size: 0.825em; } }
   .content .title .line:nth-of-type(2) {
-    -webkit-animation: show 2s 7.5s ease forwards;
-    animation: show 2s 7.5s ease forwards; }
+    -webkit-animation: show 2s 6.5s ease forwards;
+    animation: show 2s 6.5s ease forwards; }
   .content .title .line:nth-of-type(3) {
-    -webkit-animation: show 2s 8s ease forwards;
-    animation: show 2s 8s ease forwards; }
+    -webkit-animation: show 2s 7s ease forwards;
+    animation: show 2s 7s ease forwards; }
   .content .position {
     margin-top: 12px;
     font-size: 50px;
@@ -428,8 +428,8 @@ body.playAnimation * {
     text-align: right;
     opacity: 0;
     z-index: 101;
-    -webkit-animation: show 1.5s 8.5s forwards;
-    animation: show 1.5s 8.5s forwards; }
+    -webkit-animation: show 1.5s 7s forwards;
+    animation: show 1.5s 7s forwards; }
     @media all and (max-width: 1100px) {
       .content .description {
         font-size: 16px;
