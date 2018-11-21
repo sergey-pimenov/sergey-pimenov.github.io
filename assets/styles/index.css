@@ -283,10 +283,8 @@ body.playAnimation * {
       left: calc(50vw - 58vw);
       bottom: 9vw;
       opacity: 0;
-      -webkit-transition: opacity 1.5s 1s;
-      transition: opacity 1.5s 1s; }
-    .backgrounds .background.show .line-3 {
-      opacity: 1; }
+      -webkit-animation: show 1.5s 7s forwards;
+      animation: show 1.5s 7s forwards; }
     .backgrounds .background .line-3 .st0 {
       fill: none;
       stroke: #ebebeb;
@@ -298,8 +296,6 @@ body.playAnimation * {
     bottom: 0.7vw;
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1); }
-    .backgrounds .background-2 .show {
-      opacity: 1; }
     .backgrounds .background-2 .line-2 {
       left: calc(50vw - 51vw);
       bottom: -3vw; }

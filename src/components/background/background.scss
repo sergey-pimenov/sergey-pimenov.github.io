@@ -66,11 +66,7 @@
       left: calc(50vw - 58vw);
       bottom: 9vw;
       opacity: 0;
-      transition: opacity 1.5s 1s;
-    }
-
-    &.show .line-3 {
-      opacity: 1;
+      animation: show 1.5s 7s forwards;
     }
 
     .line-3 {
@@ -88,10 +84,6 @@
     right: -0.5vw;
     bottom: 0.7vw;
     transform: scaleX(-1);
-
-    .show {
-      opacity: 1;
-    }
 
     .line-2 {
       left: calc(50vw - 51vw);
