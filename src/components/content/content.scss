@@ -107,14 +107,14 @@
   }
 
   .position {
-    margin-top: 12px;
+    margin-top: 10px;
     font-size: 50px;
     letter-spacing: 3px;
     text-transform: uppercase;
     font-weight: bold;
     z-index: 1;
-    font-size: 26.2px;
-    color: rgb(168, 168, 168);
+    font-size: 44px;
+    color: rgb(189, 189, 189);
 
     @include mobileXl {
       font-size: 0.25em;
@@ -124,7 +124,7 @@
   }
 
   .description {
-    width: 410px;
+    width: 425px;
     position: absolute;
     right: 60px;
     top: 40px;
