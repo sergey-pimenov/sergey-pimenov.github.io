@@ -1,8 +1,7 @@
-@import 'utils/styles/breakpounts';
-@import 'basic/styles/reset';
-@import 'basic/styles/basic';
+@import './libs/styles/reset';
+@import './basic/styles/vars';
+@import './basic/styles/mixins';
+@import './basic/styles/basic';
 
-
-@import 'components/iAm/iAm';
-@import 'components/background/background';
-@import 'components/content/content';
+@import './components/iAm/iAm';
+@import './components/content/content';
