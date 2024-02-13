@@ -2,7 +2,6 @@
   "name": "personal-website",
   "version": "0.0.1",
   "description": "Personal website",
-  "main": "index.js",
   "scripts": {
     "start": "npx parcel src/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
