@@ -1,213 +1,178 @@
 .content {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
   position: relative;
-  flex-direction: column;
-  align-items: center;
+  z-index: 1;
 
-  @include mobileXl {
-    max-width: 500px;
-    height: auto;
-    min-height: 100%;
-    margin: auto;
-    justify-content: center;
-  }
-
-  .slogans {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    left: 50px;
-    top: 30px;
-    font-size: 86px;
-    text-transform: uppercase;
-    font-weight: bold;
-    color: rgb(80, 80, 80);
-    z-index: 1;
-    animation: hide 1s 5s forwards;
-
-    @include mobileXl {
-      display: none;
-    }
-
-    li {
-      width: 100%;
-      margin-top: 10px;
-      opacity: 0;
-      will-change: transform, opacity;
-    }
-
-    li:nth-of-type(1) {
-      animation: show 1s 1s ease forwards;
-    }
-
-    li:nth-of-type(2) {
-      animation: show 1s 2s ease forwards;
-    }
-
-    li:nth-of-type(3) {
-      animation: show 1s 3s ease forwards;
-    }
-  }
-
-  .title {
-    position: absolute;
-    left: 60px;
-    top: 40px;
-    z-index: 2;
-
-    @include mobileXl {
-      width: 100%;
-      padding: 30px 20px 0 20px;
-      position: static;
-      font-size: calc(37px + 7vmin);
-    }
-  }
-
-  .line {
-    opacity: 0;
-    display: block;
-  }
-
-  .name {
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    font-weight: bold;
-    line-height: 1.05;
-    color: rgb(80, 80, 80);
-  }
-
-  .title .line:nth-of-type(1) {
-    font-size: 86px;
-
-    @include mobileXl {
-      font-size: 1em;
-    }
-  }
-
-  .title .line:nth-of-type(1) {
-    animation: show 2s 6s ease forwards;
-  }
-
-  .title .line:nth-of-type(2) {
-    font-size: 70px;
-
-    @include mobileXl {
-      font-size: 0.825em;
-    }
-  }
-
-  .title .line:nth-of-type(2) {
-    animation: show 2s 6.5s ease forwards;
-  }
-
-  .title .line:nth-of-type(3) {
-    animation: show 2s 7s ease forwards;
-  }
-
-  .position {
-    margin-top: 10px;
-    font-size: 50px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    font-weight: bold;
-    z-index: 1;
-    font-size: 44px;
-    color: rgb(189, 189, 189);
-
-    @include mobileXl {
-      font-size: 0.25em;
-      margin-top: 10px;
-      // text-shadow: 2px 2px 3px rgb(219, 219, 219);
-    }
-  }
-
-  .description {
-    width: 425px;
-    position: absolute;
-    right: 60px;
-    top: 40px;
-    font-size: 15px;
-    line-height: 1.7;
-    color: rgb(53, 53, 53);
-    text-align: right;
-    opacity: 0;
-    z-index: 101;
-    animation: show 1.5s 7s forwards;
-
-    @include mobileXl {
-      font-size: 16px;
-      opacity: 1;
-      width: 100%;
-      padding: 30px 20px 30px 20px;
-      text-align: left;
-      position: static;
-      background-color: rgba(255, 255, 255, 0.6);
-      z-index: 1;
-    }
-  }
-
-  p {
-    margin-bottom: 10px;
-  }
-
-  strong {
-    font-weight: 500;
+  &_inner {
+    max-width: 620px;
+    margin: 0 0 0 auto;
+    padding: 20px 70px 50px 50px;
     color: black;
-  }
 
-  .separator {
-    margin: 0 3px;
-  }
-
-  .open {
-    span {
-      position: relative;
+    @include mobileXl {
+      max-width: 100%;
+      margin: 0 auto;
     }
 
-    span::after {
-      content: '';
-      width: 100%;
-      height: 2px;
+    @media all and (max-width: 570px) {
+      padding: 20px 30px 50px 30px;
+    }
+  }
+
+  &_menu {
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: -1px;
+    right: 0;
+    min-height: 50px;
+    z-index: 1;
+    background: white;
+
+    @include mobileXl {
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 10px 0;
+    }
+
+    @media all and (max-width: 400px) {
+      justify-content: space-between;
+    }
+  }
+
+  &_menu-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    margin-right: 30px;
+    font-size: 14px;
+    color: black;
+    text-decoration: none;
+    letter-spacing: 1.5;
+    white-space: nowrap;
+
+    @include mobileXl {
+      padding: 10px 0;
+    }
+
+    @media all and (max-width: 390px) {
+      margin-right: 10px;
+      font-size: 13px;
+    }
+
+    &::before {
+      content: "";
+      display: block;
       position: absolute;
+      bottom: -3px;
       left: 0;
-      bottom: 1px;
-      background-color: rgb(48, 48, 48);
-      display: none;
+      width: 100%;
+      height: 0.5px;
     }
   }
 
-  .down {
-    width: 20px;
-    height: auto;
-    position: absolute;
-    left: calc(50% - 10px);
+  &_menu-icon {
+    height: 15px;
+    margin-right: 5px;
+  }
+
+  &_menu-icon-li {
+    height: 19px;
+  }
+
+  &_title {
+    position: fixed;
+    top: 20px;
+    left: 50px;
+    padding-right: 10px;
+    background-color: rgba(white, 0.85);
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: black;
+
+    @include mobileXl {
+      position: static;
+      margin-top: 30px;
+      background: none;
+      text-align: center;
+    }
+
+    @media all and (max-width: 400px) {
+      font-size: 27px;
+    }
+  }
+
+  &_face {
+    width: 100%;
+    max-width: 250px;
+    margin: 30px auto 0 auto;
     display: none;
-    opacity: 0;
-    transition: opacity 0.5s;
+    border: 1px black dashed;
+    border-radius: 50%;
 
     @include mobileXl {
       display: block;
-      animation: scroll-anim 0.7s infinite alternate;
+    }
+
+    @media all and (max-width: 400px) {
+      max-width: 170px;
     }
   }
 
-  @keyframes scroll-anim {
-    100% {
-      transform: translateY(5px);
-    }
+  &_title-description {
+    font-size: 16px;
   }
 
-  @keyframes show {
-    100% {
-      opacity: 1; 
-    }
+  &_description {
+    margin-top: 30px;
+    font-size: 16px;
+    letter-spacing: 1.05;
+    line-height: 1.87;
   }
 
-  @keyframes hide {
-    100% {
-      opacity: 0;
+  &_accent {
+    display: inline-block;
+    padding: 0 4px 1px 4px;
+    line-height: 1.25;
+    color: white;
+    font-weight: 300;
+    background: rgba(30, 30, 30, 1);
+  }
+
+  &_emoji {
+    display: inline-block;
+    position: relative;
+    top: 2px;
+    left: -3px;
+    margin-right: 3px;
+    font-size: 50px;
+    font-family: "Honk", system-ui;
+    line-height: 0;
+  }
+
+  &_accent-secondary {
+    display: block;
+    margin: 0 14px 10px 0;
+    font-size: 20px;
+    line-height: 1.5;
+    font-weight: 500;
+  }
+
+  &_list-wrapper {
+    margin-top: 55px;
+  }
+
+  &_list-item {
+    position: relative;
+    margin-bottom: 55px;
+    padding-bottom: 20px;
+    border-bottom: 1px black dashed;
+    font-size: 16px;
+    letter-spacing: 1.05;
+    line-height: 1.87;
+
+    &:last-child {
+      border-bottom: none;
     }
   }
 }

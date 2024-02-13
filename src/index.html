@@ -1,29 +1,15 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <!--
-    Hi there! 
-    You can find sources here: 
-    https://github.com/sergey-pimenov/sergey-pimenov.github.io/tree/master/src 
-  -->
-  
-  {% include "metas.html" %}
-
-  <title> Sergey Pimenov </title>
-
-  {% include "social.html" %}
-
-  <link rel="shortcut icon" href="static/images/beer.png" type="image/png">
-  <link rel="stylesheet" href="assets/styles/index.css">
-</head>
-<body class="disableTransitions">
-
-  {% include "content.html" %}
-
-  {% include "iAm.html" %}
-  
-  {% include "background.html" %}
-
-  <script src="assets/scripts/index.js"> </script>
-</body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Sergey Pimenov</title>
+    <include src="src/basic/html/social.html"></include>
+    <include src="src/basic/html/metas.html"></include>
+    <link href="./index.scss" rel="stylesheet" />
+  </head>
+  <body class="disableTransitions">
+    <include src="src/components/iAm/iAm.html"></include>
+    <include src="src/components/content/content.html"></include>
+    <script src="./index.js" type="module"></script>
+  </body>
 </html>
